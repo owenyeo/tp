@@ -36,8 +36,10 @@ Unsuccessful Command: Displays an error message “Please specify the details to
   specifying any tags after it.
 
 Examples:
+
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
@@ -49,6 +51,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
+
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
@@ -77,6 +80,27 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
 ### Clearing all entries : `clear`
+
+Clears all entries from TimetaBRO.
+
+Format: `clear`
+
+Successful Command:
+
+`All friends have been deleted`
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+Successful Command:
+
+The app closes after saving all data.
+
+### Clearing all entries : `clear`
+
 
 ### Listing all persons : `list`
 
