@@ -1,5 +1,4 @@
 <<<<<<< HEAD
-<<<<<<< HEAD
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
@@ -125,8 +124,6 @@ public class ParserUtil {
     }
 }
 =======
-=======
->>>>>>> parent of a812840c (Add files via upload)
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
@@ -142,10 +139,6 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-<<<<<<< HEAD
-=======
-import seedu.address.model.person.Remark;
->>>>>>> parent of a812840c (Add files via upload)
 import seedu.address.model.tag.Tag;
 
 /**
@@ -254,18 +247,5 @@ public class ParserUtil {
         }
         return tagSet;
     }
-<<<<<<< HEAD
 }
 >>>>>>> parent of 440a0682 (AddressBook: Add 'remarks' command for enhanced note-taking)
-=======
-
-    /**
-     * Parses {@code String remark} into a {@code Remark}.
-     */
-    public static Remark parseRemark(String remark) throws ParseException {
-        requireNonNull(remark);
-        String trimmedRemark = remark.trim();
-        return new seedu.address.model.person.Remark(trimmedRemark);
-    }
-}
->>>>>>> parent of a812840c (Add files via upload)

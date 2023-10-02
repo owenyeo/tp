@@ -1,5 +1,4 @@
 <<<<<<< HEAD
-<<<<<<< HEAD
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
@@ -243,8 +242,6 @@ public class EditCommand extends Command {
     }
 }
 =======
-=======
->>>>>>> parent of a812840c (Add files via upload)
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
@@ -273,10 +270,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-<<<<<<< HEAD
-=======
-import seedu.address.model.person.Remark;
->>>>>>> parent of a812840c (Add files via upload)
 import seedu.address.model.tag.Tag;
 
 /**
@@ -351,15 +344,9 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-<<<<<<< HEAD
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
-=======
-        Remark updatedRemark = personToEdit.getRemark();
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);    }
->>>>>>> parent of a812840c (Add files via upload)
 
     @Override
     public boolean equals(Object other) {
@@ -395,10 +382,6 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
-<<<<<<< HEAD
-=======
-        private Remark remark;
->>>>>>> parent of a812840c (Add files via upload)
 
         public EditPersonDescriptor() {}
 
@@ -412,10 +395,6 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
-<<<<<<< HEAD
-=======
-            setRemark(toCopy.remark);
->>>>>>> parent of a812840c (Add files via upload)
         }
 
         /**
@@ -425,17 +404,6 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
         }
 
-<<<<<<< HEAD
-=======
-        public void setRemark(Remark remark) {
-            this.remark = remark;
-        }
-
-        public Optional<Remark> getRemark() {
-            return Optional.ofNullable(remark);
-        }
-
->>>>>>> parent of a812840c (Add files via upload)
         public void setName(Name name) {
             this.name = name;
         }
@@ -516,7 +484,4 @@ public class EditCommand extends Command {
         }
     }
 }
-<<<<<<< HEAD
 >>>>>>> parent of 440a0682 (AddressBook: Add 'remarks' command for enhanced note-taking)
-=======
->>>>>>> parent of a812840c (Add files via upload)

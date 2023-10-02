@@ -1,5 +1,4 @@
 <<<<<<< HEAD
-<<<<<<< HEAD
 package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -118,8 +117,6 @@ public class Person {
 
 }
 =======
-=======
->>>>>>> parent of a812840c (Add files via upload)
 package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -128,11 +125,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-<<<<<<< HEAD
 
 import seedu.address.commons.util.ToStringBuilder;
-=======
->>>>>>> parent of a812840c (Add files via upload)
 import seedu.address.model.tag.Tag;
 
 /**
@@ -145,10 +139,6 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
-<<<<<<< HEAD
-=======
-    private final Remark remark;
->>>>>>> parent of a812840c (Add files via upload)
 
     // Data fields
     private final Address address;
@@ -157,21 +147,13 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-<<<<<<< HEAD
     public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-=======
-    public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
->>>>>>> parent of a812840c (Add files via upload)
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-<<<<<<< HEAD
-=======
-        this.remark = remark;
->>>>>>> parent of a812840c (Add files via upload)
     }
 
     public Name getName() {
@@ -190,13 +172,6 @@ public class Person {
         return address;
     }
 
-<<<<<<< HEAD
-=======
-    public Remark getRemark() {
-        return remark;
-    }
-
->>>>>>> parent of a812840c (Add files via upload)
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -238,12 +213,7 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
-<<<<<<< HEAD
                 && tags.equals(otherPerson.tags);
-=======
-                && tags.equals(otherPerson.tags)
-                && remark.equals(otherPerson.remark);
->>>>>>> parent of a812840c (Add files via upload)
     }
 
     @Override
@@ -254,7 +224,6 @@ public class Person {
 
     @Override
     public String toString() {
-<<<<<<< HEAD
         return new ToStringBuilder(this)
                 .add("name", name)
                 .add("phone", phone)
@@ -266,21 +235,3 @@ public class Person {
 
 }
 >>>>>>> parent of 440a0682 (AddressBook: Add 'remarks' command for enhanced note-taking)
-=======
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" Phone: ")
-                .append(getPhone())
-                .append(" Email: ")
-                .append(getEmail())
-                .append(" Address: ")
-                .append(getAddress())
-                .append(" Remark: ")
-                .append(getRemark())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
-        return builder.toString();
-    }
-
-}
->>>>>>> parent of a812840c (Add files via upload)
