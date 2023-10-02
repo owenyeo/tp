@@ -94,21 +94,26 @@ Format: `list`
 
 ### Editing a person : `edit`
 
-Edits an existing person in the address book.
+Edits an existing person in TimetaBRO.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [t/TELEGRAM_HANDLE] [e/EMAIL] [m/MODULE /from START_TIME /to END_TIME /day DAY] [t/TAG]…`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+Successful Command:
+Changes the specified parameters of [INDEX]’s profile
+
+Unsuccessful Command: Displays an error message “Please specify the details to change! Correct syntax: edit INDEX [n/NAME] [p/PHONE_NUMBER] [t/TELEGRAM_HANDLE] [e/EMAIL] [m/MODULE /from START_TIME /to END_TIME /day DAY] [t/TAG]”
+
+
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+  specifying any tags after it.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
 ### Locating persons by name: `find`
 
 Finds persons whose names contain any of the given keywords.
@@ -132,6 +137,12 @@ Examples:
 Deletes the specified person from the address book.
 
 Format: `delete INDEX`
+
+Successful Command:
+Delete person from user’s profile. Display message “(NAME) deleted”
+
+Unsuccessful Command:
+Display error message “Cannot delete (NAME)” or “Cannot find (INDEX)”
 
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
