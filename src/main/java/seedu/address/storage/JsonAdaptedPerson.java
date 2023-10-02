@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package seedu.address.storage;
 
 import java.util.ArrayList;
@@ -109,6 +110,8 @@ class JsonAdaptedPerson {
 
 }
 =======
+=======
+>>>>>>> parent of a812840c (Add files via upload)
 package seedu.address.storage;
 
 import java.util.ArrayList;
@@ -126,6 +129,10 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+<<<<<<< HEAD
+=======
+import seedu.address.model.person.Remark;
+>>>>>>> parent of a812840c (Add files via upload)
 import seedu.address.model.tag.Tag;
 
 /**
@@ -139,6 +146,10 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+<<<<<<< HEAD
+=======
+    private final String remark;
+>>>>>>> parent of a812840c (Add files via upload)
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -147,11 +158,19 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
+<<<<<<< HEAD
             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+=======
+            @JsonProperty("remark") String remark, @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+>>>>>>> parent of a812840c (Add files via upload)
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+<<<<<<< HEAD
+=======
+        this.remark = remark;
+>>>>>>> parent of a812840c (Add files via upload)
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -165,6 +184,10 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+<<<<<<< HEAD
+=======
+        remark = source.getRemark().value;
+>>>>>>> parent of a812840c (Add files via upload)
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -213,9 +236,23 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+<<<<<<< HEAD
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
 }
 >>>>>>> parent of 440a0682 (AddressBook: Add 'remarks' command for enhanced note-taking)
+=======
+        if (remark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
+        }
+
+        final Remark modelRemark = new Remark(remark);
+
+        final Set<Tag> modelTags = new HashSet<>(personTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags);
+    }
+
+}
+>>>>>>> parent of a812840c (Add files via upload)

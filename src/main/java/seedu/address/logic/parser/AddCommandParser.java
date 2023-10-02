@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -61,6 +62,8 @@ public class AddCommandParser implements Parser<AddCommand> {
 
 }
 =======
+=======
+>>>>>>> parent of a812840c (Add files via upload)
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -69,6 +72,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+<<<<<<< HEAD
+=======
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+>>>>>>> parent of a812840c (Add files via upload)
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -80,6 +87,10 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+<<<<<<< HEAD
+=======
+import seedu.address.model.person.Remark;
+>>>>>>> parent of a812840c (Add files via upload)
 import seedu.address.model.tag.Tag;
 
 /**
@@ -107,8 +118,14 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+<<<<<<< HEAD
 
         Person person = new Person(name, phone, email, address, tagList);
+=======
+        Remark remark = new Remark("");
+
+        Person person = new Person(name, phone, email, address, remark, tagList);
+>>>>>>> parent of a812840c (Add files via upload)
 
         return new AddCommand(person);
     }
@@ -122,4 +139,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     }
 
 }
+<<<<<<< HEAD
 >>>>>>> parent of 440a0682 (AddressBook: Add 'remarks' command for enhanced note-taking)
+=======
+>>>>>>> parent of a812840c (Add files via upload)

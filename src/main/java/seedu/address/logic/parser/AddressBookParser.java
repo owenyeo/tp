@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -86,6 +87,8 @@ public class AddressBookParser {
 
 }
 =======
+=======
+>>>>>>> parent of a812840c (Add files via upload)
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -105,6 +108,10 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+<<<<<<< HEAD
+=======
+import seedu.address.logic.commands.RemarkCommand;
+>>>>>>> parent of a812840c (Add files via upload)
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -165,6 +172,12 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+<<<<<<< HEAD
+=======
+        case RemarkCommand.COMMAND_WORD:
+            return new RemarkCommandParser().parse(arguments);
+            
+>>>>>>> parent of a812840c (Add files via upload)
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
@@ -172,4 +185,7 @@ public class AddressBookParser {
     }
 
 }
+<<<<<<< HEAD
 >>>>>>> parent of 440a0682 (AddressBook: Add 'remarks' command for enhanced note-taking)
+=======
+>>>>>>> parent of a812840c (Add files via upload)

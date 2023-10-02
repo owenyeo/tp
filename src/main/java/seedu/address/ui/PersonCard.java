@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 package seedu.address.ui;
 
 import java.util.Comparator;
@@ -59,6 +60,8 @@ public class PersonCard extends UiPart<Region> {
     }
 }
 =======
+=======
+>>>>>>> parent of a812840c (Add files via upload)
 package seedu.address.ui;
 
 import java.util.Comparator;
@@ -88,6 +91,11 @@ public class PersonCard extends UiPart<Region> {
     public final Person person;
 
     @FXML
+<<<<<<< HEAD
+=======
+    private Label remark;
+    @FXML
+>>>>>>> parent of a812840c (Add files via upload)
     private HBox cardPane;
     @FXML
     private Label name;
@@ -116,6 +124,12 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+<<<<<<< HEAD
     }
 }
 >>>>>>> parent of 440a0682 (AddressBook: Add 'remarks' command for enhanced note-taking)
+=======
+        remark.setText(person.getRemark().value);
+    }
+}
+>>>>>>> parent of a812840c (Add files via upload)
