@@ -120,26 +120,25 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * Only the name is searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+### Clearing all entries : `clear`
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+Clears all entries from TimetaBRO.
 
-### Deleting a person : `delete`
+Format: `clear`
 
-Deletes the specified person from the address book.
+Successful Command:
 
-Format: `delete INDEX`
+`All friends have been deleted`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+### Exiting the program : `exit`
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+Exits the program.
+
+Format: `exit`
+
+Successful Command:
+
+The app closes after saving all data.
 
 ### Clearing all entries : `clear`
 
