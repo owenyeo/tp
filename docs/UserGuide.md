@@ -65,19 +65,28 @@ Deletes the specified person from the address book.
 
 Format: `delete INDEX`
 
+
+=======
 Successful Command:
 Delete person from user’s profile. Display message “(NAME) deleted”
 
 Unsuccessful Command:
 Display error message “Cannot delete (NAME)” or “Cannot find (INDEX)”
 
+
 * Deletes the person at the specified `INDEX`.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+
+
+### Saving the data
+
+TimetaBRO data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+=======
 
 ### Clearing all entries : `clear`
 
@@ -97,12 +106,28 @@ Format: `exit`
 
 Successful Command:
 
+
 The app closes after saving all data.
 
+
+TimetaBRO data are saved automatically as a JSON file `[JAR file location]/data/timetabro.json`. Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">Caution:
+If your changes to the data file makes its format invalid, TimetaBRO will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.
+</div>
+
+--------------------------------------------------------------------------------------------------------------------
+=======
 ### Clearing all entries : `clear`
 
 
+
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TimetaBRO home folder.
+=======
 ### Listing all persons : `list`
+
 
 Shows a list of all added friends.
 
@@ -114,4 +139,12 @@ Adds a person to your list. `Added {NAME} to the list.`
 
 Unsuccessful Command:
 
-Displays an error message. `To list, please run the command ‘list’`
+| Action     | Format, Examples                                                                                                                                                                                                                                         |
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `​add n/NAME u/NICKNAME p/PHONE_NUMBER t/TELEGRAM_HANDLE e/EMAIL [m/MODULE /from START_TIME /to END_TIME /day DAY] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 t/johndoe e/johnd@example.com m/CS2103T /from 1200 /to 1300 /day Wednesday t/police` |
+| **Clear**  | `clear`                                                                                                                                                                                                                                                  |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                      |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [t/TELEGRAM_HANDLE] [e/EMAIL] [m/MODULE /from START_TIME /to END_TIME /day DAY] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                    |
+| **List**   | `list`                                                                                                                                                                                                                                                   |
+| **Help**   | `help`                                                                                                                                                                                                                                                   |
+
