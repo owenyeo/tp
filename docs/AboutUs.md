@@ -9,50 +9,50 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Andre Foo En Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/andrefoo.png" width="200px">
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/johndoe)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
+* Role: Developer
 
-### Jane Doe
+### Khiew Yiquan, Edric
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/edrickhiew.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/lululwtv)]
 [[portfolio](team/johndoe.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Ui
 
-### Johnny Doe
+### Krista Yeo Su-Anne
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/kristayeo.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/kristayeo)] [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Owen Yeo Le Yang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/owenyeo.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/owenyeo)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Teo Zheng Yang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/teozhengyang.png" width="200px">
 
-[[github](http://github.com/johndoe)]
+[[github](http://github.com/teozhengyang)]
 [[portfolio](team/johndoe.md)]
 
 * Role: Developer
