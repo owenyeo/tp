@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Khiew Yiquan, Edric
 
-<img src="images/edrickhiew.png" width="200px">
+<img src="images/lululwtv.png" width="200px">
 
 [[github](http://github.com/lululwtv)]
 [[portfolio](team/johndoe.md)]
