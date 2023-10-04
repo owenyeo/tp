@@ -270,16 +270,29 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                   | I want to …​                                        | So that I can…​                                                   |
+|----------|---------------------------|-----------------------------------------------------|-------------------------------------------------------------------|
+| `* * *`  | new user                  | add people to my list of friends                    | I add new friends to my list                                      |
+| `* * *`  | user                      | delete people off my list of friends                | I don't need to see their faces                                   |
+| `* * *`  | user                      | view my list of friends                             | view my friends at a glance                                       |
+| `* * *`  | user                      | search for my friends' profiles                     | find them more easily                                             |
+| `* * *`  | user                      | edit details in my friends profiles                 | change details if wrongly filled up or if they change             |
+| `* * *`  | student                   | input my timetable                                  | compare with my friends' schedules                                |
+| `* * *`  | student                   | input my friend's timetable                         | compare my timetable with their's                                 |
+| `* * *`  | student with many friends | search for friends                                  | quickly find and view their schedules                             |
+| `*`      | student                   | give friends nicknames                              | personalize and easily identify them                              |
+| `* *`    | student                   | create events for meeting up                        | plan gatherings                                                   |
+| `* *`    | student                   | identify common modules with my friends             | attend classes with them                                          |
+| `* *`    | student                   | create events for meeting up                        | plan gatherings                                                   |
+| `* *`    | student                   | add friends to events                               | remember who is attending events                                  |
+| `* *`    | student                   | edit events                                         | update changes in plans                                           |
+| `*`      | student                   | view my timetable in a visual format                | easily view my commitments                                        |
+| `*`      | student                   | visually compare my timetable with with my friend's | quickly identify overlaps or free times                           |
+| `* *`    | student                   | add friend groups                                   | easily manage and view schedules for specific circles of friends. |
+| `* *`    | student                   | identify common free times within friend groups     | plan for group activities                                         |
+| `*`      | student                   | see combined timetables of multiple friends         | create events visually                                            |
+| `*`      | student                   | see combined timetables of a friend group           | plan for group activities                                         |
 
-*{More to be added}*
 
 ### Use cases
 
