@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/lululwtv.png" width="200px">
 
 [[github](http://github.com/lululwtv)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/lululwtv.md)]
 
 * Role: Developer
 * Responsibilities: Ui
@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/owenyeo.png" width="200px">
 
 [[github](http://github.com/owenyeo)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/owenyeo.md)]
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
