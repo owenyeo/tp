@@ -327,9 +327,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse. 
 4.  Should not have a latency of more than 2 seconds to ensure optimal user experience
-5. 
+5.  Should be able to hold up to 10 modules per person without noticeable detriments to the performance of the app
+6.  Should ensure the integrity of user data, preventing any data corruption or loss during normal usage.
+7.  Should implement appropriate security measures to protect user data from unauthorized access or tampering.
+8.  Should be designed with accessibility in mind, ensuring that it is usable by individuals with disabilities, including those who rely on screen readers or keyboard navigation. 
+9.  Should be able to handle a growing number of contacts without a significant decrease in performance.
 
 *{More to be added}*
 
