@@ -401,6 +401,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Course**: An academic course that a student is taking that requires phyiscal attendance.
+* **CCA**: Co-Curricular Activity. Activities that students do outside of their academics
+* **Timetable**: A weekly routine followed by a student, consisting of their CCAs and courses taken.
+* **Lunch/Dinner buddy**: A friend that you routinely eat with for said meal.
 
 --------------------------------------------------------------------------------------------------------------------
 
