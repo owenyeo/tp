@@ -113,7 +113,7 @@ Delete person from user’s profile.`(NAME) deleted.`
 
 Unsuccessful Command:
 
-- `Cannot delete (NAME)` 
+- `Cannot delete (NAME)`
 - `Cannot find (INDEX)`
 
 Examples:
