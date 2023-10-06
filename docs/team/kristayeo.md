@@ -1,12 +1,9 @@
-# Teo Zheng Yang's Project Portfolio Page
+# Project Portfolio Page: TimetaBRO
 
-## Project: TimetaBRO
+## Overview
+[to be added later]
 
-### Overview
-
-TimetaBRO, your ultimate companion for managing your university life, social interactions, and schedules.
-
-### Summary of Contributions
+## Summary of Contributions
 
 **Code contributed:** [Link to your code on tP Code Dashboard]
 
