@@ -401,10 +401,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
-* **Course**: An academic course that a student is taking that requires phyiscal attendance.
-* **CCA**: Co-Curricular Activity. Activities that students do outside of their academics
-* **Timetable**: A weekly routine followed by a student, consisting of their CCAs and courses taken.
-* **Lunch/Dinner buddy**: A friend that you routinely eat with for said meal.
+* **Performance**: Speed at which the app completes queries.
+* **Tampering**: Modifying data without permission from the owner of said data.
+* **normal usage**: Day-to-day usage of the app without any errors occurring.
+* **Optimal user experience**: User can utilise all functionality without bugs and lag.
 
 --------------------------------------------------------------------------------------------------------------------
 
