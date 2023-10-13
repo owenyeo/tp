@@ -19,14 +19,19 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
+import seedu.address.model.user.ReadOnlyUserData;
+import seedu.address.model.user.ReadOnlyUserPrefs;
+import seedu.address.model.user.UserData;
+import seedu.address.model.user.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonUserDataStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
+import seedu.address.storage.UserDataStorage;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
@@ -58,7 +63,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        UserDataStorage userDataStorage = new JsonUserDataStorage(userPrefs.getUserDataFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, userDataStorage);
 
         model = initModelManager(storage, userPrefs);
 
@@ -90,7 +96,22 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        Optional<ReadOnlyUserData> userDataOptional;
+        ReadOnlyUserData userData;
+        try {
+            userDataOptional = storage.readUserData();
+            if (!userDataOptional.isPresent()) {
+                logger.info("Creating a new data file " + storage.getUserDataFilePath()
+                        + " populated with a sample UserData.");
+            }
+            userData = userDataOptional.orElseGet(SampleDataUtil::getSampleUserData);
+        } catch (DataLoadingException e) {
+            logger.warning("Data file at " + storage.getUserDataFilePath() + " could not be loaded."
+                    + " Will be starting with an empty UserData.");
+            userData = new UserData();
+        }
+
+        return new ModelManager(initialData, userPrefs, userData);
     }
 
     private void initLogging(Config config) {

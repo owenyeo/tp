@@ -13,6 +13,8 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.FreeTime;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.user.ReadOnlyUserData;
+import seedu.address.model.user.UserData;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -45,6 +47,14 @@ public class SampleDataUtil {
                 getFreeTimeSet("Monday 1200 1300", "Tuesday 1200 1300"),
                 getTagSet("colleagues"))
         };
+    }
+
+    public static Person getSampleUser() {
+        return new Person(new Name("Me"),new Phone("00000000"), new Email("me@example.com"), 
+            new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), getTagSet("family"));
+    }
+    public static ReadOnlyUserData getSampleUserData() {
+        return new UserData(getSampleUser());
     }
 
     public static ReadOnlyAddressBook getSampleAddressBook() {
