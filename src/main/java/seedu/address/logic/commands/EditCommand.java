@@ -21,11 +21,12 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.FreeTime;
+import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -99,9 +100,10 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Set<FreeTime> updatedFreeTimes = personToEdit.getFreeTimes();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedFreeTimes, updatedTags);
     }
 
     @Override
@@ -137,6 +139,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private Address address;
+        private Set<FreeTime> freeTimes;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -150,6 +153,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setFreeTimes(toCopy.freeTimes);
             setTags(toCopy.tags);
         }
 
@@ -207,6 +211,23 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code freeTimes} to this object's {@code freeTimes}.
+         * A defensive copy of {@code freeTimes} is used internally.
+         */
+        public void setFreeTimes(Set<FreeTime> freeTimes) {
+            this.freeTimes = (freeTimes != null) ? new HashSet<>(freeTimes) : null;
+        }
+
+        /**
+         * Returns an unmodifiable freeTimes set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code freeTimes} is null.
+         */
+        public Optional<Set<FreeTime>> getFreeTimes() {
+            return (freeTimes != null) ? Optional.of(Collections.unmodifiableSet(freeTimes)) : null;
         }
 
         @Override

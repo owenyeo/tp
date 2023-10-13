@@ -9,10 +9,11 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.FreeTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -93,6 +94,33 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String freeTime} into a {@code FreeTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code freeTime} is invalid.
+     */
+    public static FreeTime parseFreeTime(String freeTime) throws ParseException {
+        requireNonNull(freeTime);
+        String trimmedFreeTime = freeTime.trim();
+        if(!FreeTime.isValidFreeTime(trimmedFreeTime)) {
+            throw new ParseException(FreeTime.MESSAGE_CONSTRAINTS);
+        }
+        return new FreeTime(trimmedFreeTime);
+    }
+
+    /**
+     * Parses {@code Collection<String> freeTimes} into a {@code Set<FreeTime>}.
+     */
+    public static Set<FreeTime> parseFreeTimes(Collection<String> freeTimes) throws ParseException {
+        requireNonNull(freeTimes);
+        final Set<FreeTime> freeTimeSet = new HashSet<>();
+        for (String freeTimeName : freeTimes) {
+            freeTimeSet.add(parseFreeTime(freeTimeName));
+        }
+        return freeTimeSet;
     }
 
     /**
