@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Owen's Project Portfolio Page
+title: Owen Yeo's Project Portfolio Page
 ---
 
 ## Project: TimetaBRO
