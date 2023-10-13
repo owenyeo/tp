@@ -401,6 +401,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Performance**: Speed at which the app completes queries.
+* **Tampering**: Modifying data without permission from the owner of said data.
+* **normal usage**: Day-to-day usage of the app without any errors occurring.
+* **Optimal user experience**: User can utilise all functionality without bugs and lag.
 
 --------------------------------------------------------------------------------------------------------------------
 
