@@ -168,6 +168,21 @@ public class AddCommandTest {
         public ReadOnlyUserData getUserData() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Person getUser() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setUser(Person user) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Person> getUserView() {
+            throw new UnsupportedOperationException("This method should not be called.");
+        }
     }
 
     /**

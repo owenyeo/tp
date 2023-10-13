@@ -45,7 +45,7 @@ class JsonSerializableUserData {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public UserData toModelType() throws IllegalValueException {
-        UserData userData = new UserData();
+        UserData userData = new UserData(this.user.toModelType());
         return userData;
     }
 
