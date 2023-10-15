@@ -129,6 +129,16 @@ public class ModelManager implements Model {
         return userData;
     }
 
+    @Override
+    public Person getUser() {
+        return userData.getUser();
+    }
+
+    @Override
+    public void setUser(Person user) {
+        userData.setUser(user);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -144,6 +154,17 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== User View Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code userData}
+     */
+    @Override
+    public ObservableList<Person> getUserView() {
+        return userData.getUserView();
     }
 
     @Override
