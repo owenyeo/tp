@@ -11,7 +11,7 @@ public class MealBuddyCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        throw new UnsupportedOperationException("Unimplemented method:'execute'");
     }
     
 }
