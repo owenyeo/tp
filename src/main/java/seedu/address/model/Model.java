@@ -16,6 +16,8 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
+    Predicate<Person> PREDICATE_SHOW_USER= user -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -54,9 +56,26 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
+    /**
+     * Replaces user data with the data in {@code userData}.
+     */
     void setUserData(ReadOnlyUserData userData);
     
+    /**
+     * Returns the user data.
+     */
     ReadOnlyUserData getUserData();
+
+    /**
+     * Returns the user.
+     */
+    Person getUser();
+
+    /**
+     * Sets the user.
+     * @param user
+     */
+    void setUser(Person user);
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -84,6 +103,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the user */
+    ObservableList<Person> getUserView();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
