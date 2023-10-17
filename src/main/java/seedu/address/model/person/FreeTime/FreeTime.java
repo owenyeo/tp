@@ -32,13 +32,16 @@ public class FreeTime implements Comparable<FreeTime> {
     public FreeTime(String freeTime) {
         requireNonNull(freeTime);
         checkArgument(isValidFreeTime(freeTime), MESSAGE_CONSTRAINTS);
-        this.freeTime = freeTime;
 
         String[] parts = freeTime.split(" ");
         this.day = DayOfWeek.valueOf(parts[0].toUpperCase());
         int startBlock = Integer.parseInt(parts[1]) / 100 * 2 + (Integer.parseInt(parts[1]) % 100) / 30;
         int endBlock = Integer.parseInt(parts[2]) / 100 * 2 + (Integer.parseInt(parts[2]) % 100) / 30;
         this.timeBlocks = new HalfHourBlocks(startBlock, endBlock);
+
+        //Capitalize the first letter of the day
+        String formattedDay = parts[0].substring(0, 1).toUpperCase() + parts[0].substring(1).toLowerCase();
+        this.freeTime = formattedDay + " " + parts[1] + " " + parts[2];
     }
 
     /**
