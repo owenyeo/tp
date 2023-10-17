@@ -47,12 +47,17 @@ public class CommonFreetimeCommand extends Command {
             try {
                 Person friend = model.getPersonWithName(this.name);
                 Set<FreeTime> userFreeTime = model.getUser().getFreeTimes();
-                System.out.println("debug");
                 Set<FreeTime> friendFreeTime = friend.getFreeTimes();
-                Set<FreeTime> commonFreeTime = new HashSet<>(userFreeTime);
-                commonFreeTime.retainAll(friendFreeTime);
+                Set<FreeTime> commonFreeTime = new HashSet<>();
+                for (FreeTime user : userFreeTime) {
+                    for (FreeTime friendTime : friendFreeTime) {
+                        if (user.hasOverlap(friendTime)) {
+                            commonFreeTime.add(user);
+                        }
+                    }
+                }
                 if (commonFreeTime.isEmpty()) {
-                    return new CommandResult(MESSAGE_NO_CONTACTS);
+                    return new CommandResult("You and " + friend.getName().toString() + " have no common free time!");
                 } else {
                     StringBuilder sb = new StringBuilder(MESSAGE_SUCCESS);
                     for (FreeTime freeTime : commonFreeTime) {
@@ -61,7 +66,7 @@ public class CommonFreetimeCommand extends Command {
                     return new CommandResult(sb.toString());
                 }
             } catch (Exception e) {
-                throw new CommandException("No such contact!" + this.name.toString());
+                throw new CommandException(e.getMessage());
             }
         }
     }

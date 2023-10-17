@@ -1,7 +1,6 @@
 package seedu.address.model.person.FreeTime;
 
 import java.time.DayOfWeek;
-import java.util.Optional;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -91,18 +90,22 @@ public class FreeTime implements Comparable<FreeTime> {
      * @param other The other FreeTime to check against.
      * @return An Optional containing the overlapping FreeTime if it exists, or an empty Optional otherwise.
      */
-    public Optional<FreeTime> overlap(FreeTime other) {
+    public FreeTime overlap(FreeTime other) {
         if (this.day != other.day) {
-            return Optional.empty();
+            return null;
         }
 
         if (this.timeBlocks.overlaps(other.timeBlocks)) {
             HalfHourBlocks overlapBlocks = this.timeBlocks.getOverlap(other.timeBlocks);
             // You can convert overlapBlocks back to a string representation if needed
-            return Optional.of(new FreeTime(day + " " + overlapBlocks.toString()));
+            return new FreeTime(day + " " + overlapBlocks.toString());
         }
 
-        return Optional.empty();
+        return null;
+    }
+
+    public boolean hasOverlap(FreeTime other) {
+        return !this.overlap(other).equals(null);
     }
 
     /**
