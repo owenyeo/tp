@@ -50,14 +50,31 @@ public class HalfHourBlocks {
     }
 
 
+    /**
+     * Returns a string representation of the HalfHourBlocks object.
+     * The string contains the indices of the half-hour blocks that are marked as free time, separated by a hyphen.
+     * For example, if blocks 0, 2, and 4 are marked as free time, the string returned will be "0-2-4-".
+     *
+     * @return A string representation of the HalfHourBlocks object.
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        int startIndex = 0, endIndex = 0;
         for (int i = 0; i < BLOCKS_IN_DAY; i++) {
-            if (blocks[i]) {
-                sb.append(i).append("-");
+            if ((blocks[i] && blocks[i-1] == false) || blocks[i] && i == 0) {
+                startIndex = i;
+            }
+            if ((blocks[i] && blocks[i+1] == false) || blocks[i] && i == BLOCKS_IN_DAY - 1) {
+                endIndex = i;
             }
         }
+
+        Integer startTimeInt = startIndex /2 * 100 + (startIndex % 2) * 30;
+        Integer endTimeInt = endIndex /2 * 100 + (endIndex % 2) * 30;
+        String startTime = startTimeInt.toString();
+        String endTime = endTimeInt.toString();
+        sb.append(startTime).append(" ").append(endTime);
         return sb.toString();
     }
 }

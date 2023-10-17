@@ -16,6 +16,7 @@ import seedu.address.model.user.ReadOnlyUserData;
 import seedu.address.model.user.ReadOnlyUserPrefs;
 import seedu.address.model.user.UserData;
 import seedu.address.model.user.UserPrefs;
+import seedu.address.model.person.Name;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -151,6 +152,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Person getPersonWithName(Name name) {
+        return addressBook.getPersonWithName(name);
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
@@ -183,5 +189,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
     }
-
 }

@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.Name;
 
 /**
  * Wraps all data at the address-book level
@@ -46,6 +47,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
+    }
+
+    /**
+     * Returns the person with the given name
+     * 
+     * @param name Name of the person to be retrieved.
+     */
+    public Person getPersonWithName(Name name) {
+        return persons.getPersonWithName(name);
     }
 
     /**

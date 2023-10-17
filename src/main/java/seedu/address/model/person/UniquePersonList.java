@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.person.Name;
 
 import java.util.Iterator;
 import java.util.List;
@@ -46,6 +47,21 @@ public class UniquePersonList implements Iterable<Person> {
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Returns the person with the given name.
+     * 
+     * @param name Name of the person to be retrieved.
+     */
+    public Person getPersonWithName(Name name) {
+        requireNonNull(name);
+        for (Person person : internalList) {
+            if (person.getName().equals(name)) {
+                return person;
+            }
+        }
+        return null;
     }
 
     /**
