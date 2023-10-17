@@ -60,7 +60,7 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<FreeTime> getFreeTimes() {
+    public Set<FreeTime> getFreeTimes() throws NullPointerException {
         return Collections.unmodifiableSet(freeTimes);
     }
 
