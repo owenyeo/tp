@@ -59,6 +59,15 @@ public class LogsCenter {
     }
 
     /**
+     * Retrieves the current logging level.
+     *
+     * @return The current logging level as a {@link java.util.logging.Level} object.
+     */
+    public static Level getCurrentLogLevel() {
+        return currentLogLevel;
+    }
+
+    /**
      * Creates a Logger for the given class name.
      */
     public static <T> Logger getLogger(Class<T> clazz) {
