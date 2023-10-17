@@ -51,8 +51,8 @@ public class CommonFreetimeCommand extends Command {
                 Set<FreeTime> commonFreeTime = new HashSet<>();
                 for (FreeTime user : userFreeTime) {
                     for (FreeTime friendTime : friendFreeTime) {
-                        if (user.hasOverlap(friendTime)) {
-                            commonFreeTime.add(user);
+                        if (!user.overlap(friendTime).isNull()) {
+                            commonFreeTime.add(user.overlap(friendTime));
                         }
                     }
                 }

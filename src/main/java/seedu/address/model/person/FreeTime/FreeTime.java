@@ -107,8 +107,12 @@ public class FreeTime implements Comparable<FreeTime> {
         return null;
     }
 
-    public boolean hasOverlap(FreeTime other) {
-        return !this.overlap(other).equals(null);
+
+    /*
+     * Returns true if the current FreeTime overlaps with another FreeTime.
+     */
+    public boolean isNull() {
+        return this.timeBlocks.equals(null);
     }
 
     /**

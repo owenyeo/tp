@@ -56,9 +56,9 @@ public class EditUserCommandParser implements Parser<EditUserCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        // if (argMultimap.getValue(PREFIX_FREETIME).isPresent()) {
-        //     editPersonDescriptor.setTags(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
-        // }
+        if (argMultimap.getValue(PREFIX_FREETIME).isPresent()) {
+            editPersonDescriptor.setTags(ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG)));
+        }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
