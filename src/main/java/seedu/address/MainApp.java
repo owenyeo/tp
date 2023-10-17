@@ -96,6 +96,7 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
+        logger.info("Using data file : " + storage.getUserDataFilePath());
         Optional<ReadOnlyUserData> userDataOptional;
         ReadOnlyUserData userData;
         try {
@@ -108,7 +109,7 @@ public class MainApp extends Application {
         } catch (DataLoadingException e) {
             logger.warning("Data file at " + storage.getUserDataFilePath() + " could not be loaded."
                     + " Will be starting with an empty UserData.");
-            userData = new UserData();
+            userData = new UserData(SampleDataUtil.getSampleUser());
         }
 
         return new ModelManager(initialData, userPrefs, userData);

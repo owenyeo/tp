@@ -51,7 +51,7 @@ public class SampleDataUtil {
 
     public static Person getSampleUser() {
         return new Person(new Name("Me"),new Phone("00000000"), new Email("me@example.com"), 
-            new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), getFreeTimeSet("Monday 1200 1300"), getTagSet());
+            new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), getFreeTimeSet("Monday 1200 1300"), getTagSet("me"));
     }
     public static ReadOnlyUserData getSampleUserData() {
         return new UserData(getSampleUser());
