@@ -17,9 +17,6 @@ import seedu.address.model.user.UserData;
  */
 @JsonRootName(value = "userdata")
 class JsonSerializableUserData {
-
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
-
     private final JsonAdaptedPerson user;
 
     /**
