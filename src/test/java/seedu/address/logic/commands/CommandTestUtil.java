@@ -41,7 +41,9 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_FREETIME_MONDAY = "Monday 1200 1300";
-    public static final String VALID_FREETIME_TUESDAY = "Tuesday 1330 1449";
+    //TODO: Add VALID_FREETIME_TUESDAY to test classes for the add/edit commands to help assert failure
+
+    public static final String VALID_FREETIME_TUESDAY = "Tuesday 1330 1500";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -59,6 +61,7 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    //TODO: Add INVALID_FREETIME_DESC to test classes for the add/edit commands to help assert failure
     public static final String INVALID_FREETIME_DESC = " " + PREFIX_FREETIME; //empty string not allowed for free times
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
