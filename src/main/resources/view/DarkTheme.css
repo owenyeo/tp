@@ -351,6 +351,11 @@
     -fx-font-size: 11;
 }
 
+#freeTimes {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
 #freeTimes .label {
     -fx-text-fill: white;
     -fx-background-color: #6b358c;
