@@ -7,7 +7,7 @@ import seedu.address.model.person.FreeTime.FreeTime;
 import seedu.address.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Tag}.
+ * Jackson-friendly version of {@link FreeTime}.
  */
 public class JsonAdaptedFreeTime {
 
@@ -22,7 +22,7 @@ public class JsonAdaptedFreeTime {
     }
 
     /**
-     * Converts a given {@code Tag} into this class for Jackson use.
+     * Converts a given {@code FreeTime} into this class for Jackson use.
      */
     public JsonAdaptedFreeTime(FreeTime source) {
         freeTime = source.freeTime;
@@ -38,8 +38,10 @@ public class JsonAdaptedFreeTime {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted freeTime.
      */
-    public FreeTime toModelType(){
+    public FreeTime toModelType() throws IllegalValueException {
+        if (!FreeTime.isValidFreeTime(freeTime)) {
+            throw new IllegalValueException(FreeTime.MESSAGE_CONSTRAINTS);
+        }
         return new FreeTime(freeTime);
     }
-
 }
