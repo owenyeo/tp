@@ -1,4 +1,4 @@
-package seedu.address.model.person.FreeTime;
+package seedu.address.model.person.timetable;
 
 /**
  * Represents the half-hour blocks within a day.

@@ -12,7 +12,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.FreeTime.FreeTime;
+import seedu.address.model.person.timetable.FreeTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -112,7 +112,7 @@ public class EditPersonDescriptor {
      * Returns {@code Optional#empty()} if {@code freeTimes} is null.
      */
     public Optional<Set<FreeTime>> getFreeTimes() {
-        return (freeTimes != null) ? Optional.of(Collections.unmodifiableSet(freeTimes)) : null;
+        return (freeTimes != null) ? Optional.of(Collections.unmodifiableSet(freeTimes)) : Optional.empty();
     }
 
     @Override
@@ -141,6 +141,7 @@ public class EditPersonDescriptor {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("free times", freeTimes)
                 .add("tags", tags)
                 .toString();
     }
