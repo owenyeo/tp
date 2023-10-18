@@ -41,6 +41,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_FREETIME_MONDAY = "Monday 1200 1300";
+
     //TODO: Add VALID_FREETIME_TUESDAY to test classes for the add/edit commands to help assert failure
 
     public static final String VALID_FREETIME_TUESDAY = "Tuesday 1330 1500";
