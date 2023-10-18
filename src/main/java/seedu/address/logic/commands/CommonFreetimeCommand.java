@@ -2,8 +2,7 @@ package seedu.address.logic.commands;
 
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.FreeTime.FreeTime;
-import seedu.address.model.user.UserData;
+import seedu.address.model.person.timetable.FreeTime;
 
 import java.util.HashSet;
 import java.util.Set;

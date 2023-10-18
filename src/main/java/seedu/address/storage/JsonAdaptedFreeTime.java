@@ -3,8 +3,7 @@ package seedu.address.storage;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.FreeTime.FreeTime;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.timetable.FreeTime;
 
 /**
  * Jackson-friendly version of {@link FreeTime}.
