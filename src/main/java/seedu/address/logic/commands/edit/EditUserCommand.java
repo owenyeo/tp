@@ -44,44 +44,48 @@ public class EditUserCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Your Details: %1$s";
+    public static final String MESSAGE_EDIT_USER_SUCCESS = "Edited Your Details: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
-    private final EditPersonDescriptor editPersonDescriptor;
+    public static final String MESSAGE_DUPLICATE_USER = "No changes to user.";
+
+    private final EditPersonDescriptor editUserDescriptor;
 
     /**
-     * @param editPersonDescriptor details to edit the person with
+     * @param editUserDescriptor details to edit the user with
      */
-    public EditUserCommand(EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(editPersonDescriptor);
+    public EditUserCommand(EditPersonDescriptor editUserDescriptor) {
+        requireNonNull(editUserDescriptor);
 
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editUserDescriptor = new EditPersonDescriptor(editUserDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Person personToEdit = model.getUser();
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Person userToEdit = model.getUser();
+        Person editedUser = createEditedUser(userToEdit, editUserDescriptor);
 
-        model.setUser(editedPerson);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+        if (userToEdit.equals(editedUser)) {
+            throw new CommandException(MESSAGE_DUPLICATE_USER);
+        }
+
+        model.setUser(editedUser);
+        return new CommandResult(String.format(MESSAGE_EDIT_USER_SUCCESS, Messages.format(editedUser)));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Person} with the details of {@code userToEdit}
+     * edited with {@code editUserDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
-
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<FreeTime> updatedFreeTimes = editPersonDescriptor.getFreeTimes().orElse(personToEdit.getFreeTimes());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
+    private static Person createEditedUser(Person userToEdit, EditPersonDescriptor editUserDescriptor) {
+        assert userToEdit != null;
+        Name updatedName = editUserDescriptor.getName().orElse(userToEdit.getName());
+        Phone updatedPhone = editUserDescriptor.getPhone().orElse(userToEdit.getPhone());
+        Email updatedEmail = editUserDescriptor.getEmail().orElse(userToEdit.getEmail());
+        Address updatedAddress = editUserDescriptor.getAddress().orElse(userToEdit.getAddress());
+        Set<FreeTime> updatedFreeTimes = editUserDescriptor.getFreeTimes().orElse(userToEdit.getFreeTimes());
+        Set<Tag> updatedTags = editUserDescriptor.getTags().orElse(userToEdit.getTags());
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedFreeTimes, updatedTags);
     }
 
@@ -92,18 +96,18 @@ public class EditUserCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditUserCommand)) {
             return false;
         }
 
         EditUserCommand otherEditUserCommand = (EditUserCommand) other;
-        return editPersonDescriptor.equals(otherEditUserCommand.editPersonDescriptor);
+        return editUserDescriptor.equals(otherEditUserCommand.editUserDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("editPersonDescriptor", editPersonDescriptor)
+                .add("editUserDescriptor", editUserDescriptor)
                 .toString();
     }
 }
