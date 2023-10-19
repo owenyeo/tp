@@ -18,6 +18,7 @@ import seedu.address.model.person.timetable.FreeTime;
  * If a name is specified, the command returns the user's common free time with the specified contact.
  * Inherits from the Command class and overrides its execute method.
  */
+
 public class CommonFreetimeCommand extends Command {
 
     public static final String COMMAND_WORD = "cft";
@@ -28,7 +29,7 @@ public class CommonFreetimeCommand extends Command {
     public static final String MESSAGE_NO_FREE_TIME = "You have no free time!";
     public static final String MESSAGE_NO_CONTACTS = "You have no contacts with the same free time as you!";
 
-    public Name name = null;
+    private Name name = null;
 
     public CommonFreetimeCommand() {
     }
@@ -37,15 +38,18 @@ public class CommonFreetimeCommand extends Command {
         this.name = name;
     }
 
-
     /**
-     * Finds common free time between user and person
-     * 
+     * Executes the CommonFreetimeCommand to find common free time between user and person.
+     * If no name is specified, the command returns the user's common free time with all contacts.
+     * If a name is specified, the command returns the user's common free time with the specified contact.
+     *
      * @param model {@code Model} which the command should operate on.
+     * @return a CommandResult object that contains the result of executing the command.
+     * @throws CommandException if an error occurs during command execution.
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        ArrayList<Person> overlappingContacts= new ArrayList<>();
+        ArrayList<Person> overlappingContacts = new ArrayList<>();
 
         // If user has no free time, return error message
         if (model.getUser().getFreeTimes().isEmpty()) {
@@ -54,7 +58,7 @@ public class CommonFreetimeCommand extends Command {
         // If no name is specified, return the user's common free time with all contacts
         if (this.name == null) {
             Set<FreeTime> userFreeTime = model.getUser().getFreeTimes();
-            ObservableList<Person> contacts = model.getAddressBook(). getPersonList();
+            ObservableList<Person> contacts = model.getAddressBook().getPersonList();
             Set<FreeTime> commonFreeTime = new HashSet<>();
             for (Person contact : contacts) {
                 Set<FreeTime> contactFreeTime = contact.getFreeTimes();

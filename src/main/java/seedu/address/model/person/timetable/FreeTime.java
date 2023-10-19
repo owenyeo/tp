@@ -1,23 +1,23 @@
 package seedu.address.model.person.timetable;
 
-import java.time.DayOfWeek;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.DayOfWeek;
+
 /**
- * Represents a Person's free time in the address book.
+ * Represents a block of free time in a day, with a day of the week and start and end times.
  * Guarantees: immutable; is valid as declared in {@link #isValidFreeTime(String)}
  */
 public class FreeTime implements Comparable<FreeTime> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Input should be in the format 'DAY HHMM HHMM', \n" +
-            "where 'DAY' is a valid day of the week (e.g., Monday, tuesday, WEDNESDAY), \n" +
-            "and 'HHMM' represents a valid 24-hour time format in half-hour blocks (e.g., 0000, 1230, 2300). \n" +
-            "Day is case-insensitive.";
+    public static final String MESSAGE_CONSTRAINTS = "Input should be in the format 'DAY HHMM HHMM', \n"
+        + "where 'DAY' is a valid day of the week (e.g., Monday, tuesday, WEDNESDAY), \n"
+        + "and 'HHMM' represents a valid 24-hour time format in half-hour blocks (e.g., 0000, 1230, 2300). \n"
+        + "Day is case-insensitive.";
 
-    public static final String VALIDATION_REGEX = "^(?i)(monday|tuesday|wednesday|thursday|friday|saturday|sunday) " +
-            "([01]?[0-9]|2[0-3])(00|30) ([01]?[0-9]|2[0-3])(00|30)$"; //format: (case-insensitive) day 2359 2359
+    public static final String VALIDATION_REGEX = "^(?i)(monday|tuesday|wednesday|thursday|friday|saturday|sunday) "
+        + "([01]?[0-9]|2[0-3])(00|30) ([01]?[0-9]|2[0-3])(00|30)$"; //format: (case-insensitive) day 2359 2359
 
     public final String freeTime;
     private final DayOfWeek day;
@@ -75,7 +75,8 @@ public class FreeTime implements Comparable<FreeTime> {
      * The comparison is primarily based on the day of the week, followed by the start time, and then the end time.
      *
      * @param other The other FreeTime instance to compare against.
-     * @return A negative integer, zero, or a positive integer as this FreeTime is less than, equal to, or greater than the specified FreeTime.
+     * @return A negative integer, zero, or a positive integer as this FreeTime is less than, equal to
+     *     or greater than the specified FreeTime.
      */
     @Override
     public int compareTo(FreeTime other) {
@@ -108,8 +109,11 @@ public class FreeTime implements Comparable<FreeTime> {
     }
 
 
-    /*
+    /**
      * Checks if the current FreeTime overlaps with another FreeTime.
+     *
+     * @param other The other FreeTime to check against.
+     * @return true if there's an overlap, false otherwise.
      */
     public boolean isOverlap(FreeTime other) {
         if (this.day != other.day) {
@@ -129,5 +133,4 @@ public class FreeTime implements Comparable<FreeTime> {
     public String toString() {
         return '[' + freeTime + ']';
     }
-
 }
