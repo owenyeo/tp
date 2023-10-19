@@ -1,9 +1,5 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.timetable.FreeTime;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,6 +7,9 @@ import java.util.Set;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.timetable.FreeTime;
 
 /**
  * Represents a command that finds all contacts with the same free time as the User.
@@ -22,7 +21,8 @@ import seedu.address.model.Model;
 public class CommonFreetimeCommand extends Command {
 
     public static final String COMMAND_WORD = "cft";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all contacts with the same free time as the User.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds all contacts with the same free time as the User.\n"
             + "Example: " + COMMAND_WORD;
     public static final String MESSAGE_SUCCESS = "Here are the contacts with the same free time as you: \n";
     public static final String MESSAGE_NO_FREE_TIME = "You have no free time!";
@@ -76,7 +76,7 @@ public class CommonFreetimeCommand extends Command {
                     sb.append(overlappingContacts.get(i).getName()).append(" is free at ");
                     sb.append(freeTime.toString()).append("\n");
                     i++;
-                    }
+                }
                 return new CommandResult(sb.toString());
             }
         } else {
@@ -97,7 +97,8 @@ public class CommonFreetimeCommand extends Command {
                 } else {
                     StringBuilder sb = new StringBuilder(MESSAGE_SUCCESS);
                     for (FreeTime freeTime : commonFreeTime) {
-                        sb.append(friend.getName().toString()).append(" is free at ").append(freeTime.toString()).append("\n");
+                        sb.append(friend.getName().toString()).append(" is free at ")
+                                .append(freeTime.toString()).append("\n");
                     }
                     return new CommandResult(sb.toString());
                 }
