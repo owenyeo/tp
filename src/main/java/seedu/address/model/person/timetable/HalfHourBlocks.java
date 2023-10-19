@@ -66,7 +66,7 @@ public class HalfHourBlocks {
                 startIndex = i;
             }
             if ((blocks[i] && blocks[i+1] == false) || blocks[i] && i == BLOCKS_IN_DAY - 1) {
-                endIndex = i;
+                endIndex = i + 1;
             }
         }
 

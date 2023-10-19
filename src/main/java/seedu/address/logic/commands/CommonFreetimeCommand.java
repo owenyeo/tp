@@ -4,15 +4,20 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.timetable.FreeTime;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
- * Checks for a contact with the same free time as the User 
- * and returns a list of contacts with the same free time.
+ * Represents a command that finds all contacts with the same free time as the User.
+ * A CommonFreetimeCommand object can be created with or without a specified contact name.
+ * If no name is specified, the command returns the user's common free time with all contacts.
+ * If a name is specified, the command returns the user's common free time with the specified contact.
+ * Inherits from the Command class and overrides its execute method.
  */
 public class CommonFreetimeCommand extends Command {
 
@@ -40,8 +45,40 @@ public class CommonFreetimeCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        if (this.name == null) {
+        ArrayList<Person> overlappingContacts= new ArrayList<>();
+
+        // If user has no free time, return error message
+        if (model.getUser().getFreeTimes().isEmpty()) {
             return new CommandResult(MESSAGE_NO_FREE_TIME);
+        }
+        // If no name is specified, return the user's common free time with all contacts
+        if (this.name == null) {
+            Set<FreeTime> userFreeTime = model.getUser().getFreeTimes();
+            ObservableList<Person> contacts = model.getAddressBook(). getPersonList();
+            Set<FreeTime> commonFreeTime = new HashSet<>();
+            for (Person contact : contacts) {
+                Set<FreeTime> contactFreeTime = contact.getFreeTimes();
+                for (FreeTime userTime : userFreeTime) {
+                    for (FreeTime contactTime : contactFreeTime) {
+                        if (userTime.isOverlap(contactTime)) {
+                            commonFreeTime.add(userTime.overlap(contactTime));
+                            overlappingContacts.add(contact);
+                        }
+                    }
+                }
+            }
+            if (commonFreeTime.isEmpty()) {
+                return new CommandResult(MESSAGE_NO_CONTACTS);
+            } else {
+                StringBuilder sb = new StringBuilder(MESSAGE_SUCCESS);
+                int i = 0;
+                for (FreeTime freeTime : commonFreeTime) {
+                    sb.append(overlappingContacts.get(i).getName()).append(" is free at ");
+                    sb.append(freeTime.toString()).append("\n");
+                    i++;
+                    }
+                return new CommandResult(sb.toString());
+            }
         } else {
             try {
                 Person friend = model.getPersonWithName(this.name);
@@ -50,8 +87,6 @@ public class CommonFreetimeCommand extends Command {
                 Set<FreeTime> commonFreeTime = new HashSet<>();
                 for (FreeTime userTime : userFreeTime) {
                     for (FreeTime friendTime : friendFreeTime) {
-                        System.out.println(userTime.getClass());
-                        System.out.println(friendTime.getClass());
                         if (userTime.isOverlap(friendTime)) {
                             commonFreeTime.add(userTime.overlap(friendTime));
                         }
@@ -71,5 +106,4 @@ public class CommonFreetimeCommand extends Command {
             }
         }
     }
-    
 }
