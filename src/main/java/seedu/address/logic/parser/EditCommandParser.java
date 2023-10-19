@@ -18,6 +18,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.edit.EditCommand;
 import seedu.address.logic.commands.edit.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.timetable.FreeTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -59,9 +60,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        if (argMultimap.getValue(PREFIX_FREETIME).isPresent()) {
-            editPersonDescriptor.setFreeTimes((ParserUtil.parseFreeTimes(argMultimap.getAllValues(PREFIX_FREETIME))));
-        }
+        parseFreeTimesForEdit(argMultimap.getAllValues(PREFIX_FREETIME)).ifPresent(editPersonDescriptor::setFreeTimes);
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
@@ -69,6 +68,16 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         return new EditCommand(index, editPersonDescriptor);
+    }
+
+    private Optional<Set<FreeTime>> parseFreeTimesForEdit(Collection<String> freetimes) throws ParseException {
+        assert freetimes != null;
+
+        if (freetimes.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> freeTimeSet = freetimes.size() == 1 && freetimes.contains("") ? Collections.emptySet() : freetimes;
+        return Optional.of(ParserUtil.parseFreeTimes(freeTimeSet));
     }
 
     /**

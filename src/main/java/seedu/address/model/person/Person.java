@@ -1,6 +1,7 @@
 package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.util.SampleDataUtil.getFreeTimeSet;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -38,6 +39,13 @@ public class Person {
         this.address = address;
         this.freeTimes.addAll(freeTimes);
         this.tags.addAll(tags);
+    }
+
+    public Person() {
+        this.name = new Name("me");
+        this.phone = new Phone("00000000");
+        this.email = new Email("me@example.com");
+        this.address = new Address("Blk 436 Serangoon Gardens Street 26, #16-43");
     }
 
     public Name getName() {

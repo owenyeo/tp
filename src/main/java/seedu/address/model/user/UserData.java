@@ -9,7 +9,7 @@ import seedu.address.model.person.UniquePersonList;
  */
 public class UserData implements ReadOnlyUserData {
 
-    private Person user;
+    private Person user = new Person();
 
     public UserData() {};
 

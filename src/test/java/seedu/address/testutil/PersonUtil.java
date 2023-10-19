@@ -57,7 +57,7 @@ public class PersonUtil {
         if (descriptor.getFreeTimes().isPresent()) {
             Set<FreeTime> freeTimes = descriptor.getFreeTimes().get();
             if (freeTimes.isEmpty()) {
-                sb.append(PREFIX_FREETIME);
+                sb.append(PREFIX_FREETIME).append(" ");
             } else {
                 freeTimes.forEach(s -> sb.append(PREFIX_FREETIME).append(s.freeTime).append(" "));
             }
