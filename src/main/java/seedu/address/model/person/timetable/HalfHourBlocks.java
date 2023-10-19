@@ -70,11 +70,9 @@ public class HalfHourBlocks {
             }
         }
 
-        Integer startTimeInt = startIndex /2 * 100 + (startIndex % 2) * 30;
-        Integer endTimeInt = endIndex /2 * 100 + (endIndex % 2) * 30;
-        String startTime = startTimeInt.toString();
-        String endTime = endTimeInt.toString();
-        sb.append(startTime).append(" ").append(endTime);
+        int startTimeInt = startIndex / 2 * 100 + (startIndex % 2) * 30;
+        int endTimeInt = endIndex / 2 * 100 + (endIndex % 2) * 30;
+        sb.append(startTimeInt).append(" ").append(endTimeInt);
         return sb.toString();
     }
 }
