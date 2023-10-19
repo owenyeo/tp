@@ -39,5 +39,5 @@ public class UserData implements ReadOnlyUserData {
     public Person getUser() {
         return user;
     }
-    
+
 }

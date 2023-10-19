@@ -1,7 +1,6 @@
 package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.util.SampleDataUtil.getFreeTimeSet;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -41,6 +40,9 @@ public class Person {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Constructor for Person with default values.
+     */
     public Person() {
         this.name = new Name("me");
         this.phone = new Phone("00000000");

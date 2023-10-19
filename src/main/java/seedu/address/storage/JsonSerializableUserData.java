@@ -1,9 +1,5 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
@@ -33,7 +29,7 @@ class JsonSerializableUserData {
      * @param source future changes to this will not affect the created {@code JsonSerializableUserData}.
      */
     public JsonSerializableUserData(ReadOnlyUserData source) {
-        user = new JsonAdaptedPerson(source.getUser());    
+        user = new JsonAdaptedPerson(source.getUser());
     }
 
     /**
@@ -47,4 +43,3 @@ class JsonSerializableUserData {
     }
 
 }
-

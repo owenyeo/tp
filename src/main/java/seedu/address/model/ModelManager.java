@@ -11,12 +11,12 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.user.ReadOnlyUserData;
 import seedu.address.model.user.ReadOnlyUserPrefs;
 import seedu.address.model.user.UserData;
 import seedu.address.model.user.UserPrefs;
-import seedu.address.model.person.Name;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -35,7 +35,8 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyUserData userData) {
         requireAllNonNull(addressBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " ,user prefs " + userPrefs + " and user data " + userData);
+        logger.fine("Initializing with address book: "
+            + addressBook + " ,user prefs " + userPrefs + " and user data " + userData);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);

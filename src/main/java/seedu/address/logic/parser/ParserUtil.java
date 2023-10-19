@@ -9,10 +9,10 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.timetable.FreeTime;
 import seedu.address.model.tag.Tag;
 
@@ -105,7 +105,7 @@ public class ParserUtil {
     public static FreeTime parseFreeTime(String freeTime) throws ParseException {
         requireNonNull(freeTime);
         String trimmedFreeTime = freeTime.trim();
-        if(!FreeTime.isValidFreeTime(trimmedFreeTime)) {
+        if (!FreeTime.isValidFreeTime(trimmedFreeTime)) {
             throw new ParseException(FreeTime.MESSAGE_CONSTRAINTS);
         }
         return new FreeTime(trimmedFreeTime);

@@ -8,9 +8,9 @@ import java.util.logging.Logger;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataLoadingException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.user.ReadOnlyUserData;
 import seedu.address.model.user.ReadOnlyUserPrefs;
 import seedu.address.model.user.UserPrefs;
-import seedu.address.model.user.ReadOnlyUserData;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -25,7 +25,8 @@ public class StorageManager implements Storage {
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage, UserDataStorage userDataStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage,
+        UserPrefsStorage userPrefsStorage, UserDataStorage userDataStorage) {
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
         this.userDataStorage = userDataStorage;
@@ -79,7 +80,7 @@ public class StorageManager implements Storage {
     }
 
     // ================ UserData methods ==============================
-    
+
     @Override
     public Path getUserDataFilePath() {
         return userDataStorage.getUserDataFilePath();

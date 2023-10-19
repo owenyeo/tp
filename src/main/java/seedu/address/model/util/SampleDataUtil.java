@@ -6,12 +6,12 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.timetable.FreeTime;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.timetable.FreeTime;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.user.ReadOnlyUserData;
 import seedu.address.model.user.UserData;
@@ -50,8 +50,9 @@ public class SampleDataUtil {
     }
 
     public static Person getSampleUser() {
-        return new Person(new Name("Me"),new Phone("00000000"), new Email("me@example.com"), 
-            new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), getFreeTimeSet("Monday 1200 1300"), getTagSet("me"));
+        return new Person(new Name("Me"), new Phone("00000000"), new Email("me@example.com"),
+            new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+            getFreeTimeSet("Monday 1200 1300"), getTagSet("me"));
     }
     public static ReadOnlyUserData getSampleUserData() {
         return new UserData(getSampleUser());
