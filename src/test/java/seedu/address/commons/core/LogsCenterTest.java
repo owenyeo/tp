@@ -1,11 +1,10 @@
 package seedu.address.commons.core;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import org.junit.jupiter.api.Test;
 
 public class LogsCenterTest {
 

@@ -59,7 +59,7 @@ public class EditUserCommandParser implements Parser<EditUserCommand> {
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
-        if (!editPersonDescriptor.isAnyFieldEdited()) {
+        if (editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditUserCommand.MESSAGE_NOT_EDITED);
         }
 

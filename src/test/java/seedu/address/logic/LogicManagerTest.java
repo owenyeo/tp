@@ -162,7 +162,8 @@ public class LogicManagerTest {
 
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ExceptionUserPrefs.json"));
-        JsonUserDataStorage userDataStorage = new JsonUserDataStorage(temporaryFolder.resolve("ExceptionUserData.json"));
+        JsonUserDataStorage userDataStorage = new JsonUserDataStorage(temporaryFolder
+                .resolve("ExceptionUserData.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, userDataStorage);
 
         logic = new LogicManager(model, storage);

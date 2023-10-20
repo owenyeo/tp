@@ -8,11 +8,11 @@ public class CommonFreetimeCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertEquals(0,0);
+        assertEquals(0, 0);
     }
 
     @Test
     public void parse_validArgs_returnsMealBuddyCommand() {
-        assertEquals(0,0);
+        assertEquals(0, 0);
     }
 }
