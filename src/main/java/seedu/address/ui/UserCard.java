@@ -1,15 +1,17 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
-import java.util.concurrent.Flow;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
+/**
+ * Represents a user card in the GUI.
+ * Displays the user's name, phone number, address, email, free times, and tags.
+ */
 public class UserCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
@@ -29,6 +31,10 @@ public class UserCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+    /**
+     * Creates a new UserCard with the given Person object.
+     * @param user The Person object to display in the card.
+     */
     public UserCard(Person user) {
         super(FXML);
         this.user = user;

@@ -3,10 +3,10 @@ package seedu.address.logic.commands.edit;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FREETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FREETIME;
 
 import java.util.Set;
 
@@ -16,13 +16,14 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.timetable.FreeTime;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.timetable.FreeTime;
 import seedu.address.model.tag.Tag;
+
 
 /**
  * Edits the details of the user of the address book.
@@ -31,7 +32,8 @@ public class EditUserCommand extends Command {
 
     public static final String COMMAND_WORD = "user";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits your details. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Edits your details. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
             + "[" + PREFIX_NAME + "NAME] "

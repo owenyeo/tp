@@ -60,18 +60,19 @@ public class HalfHourBlocks {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        int startIndex = 0, endIndex = 0;
+        int startIndex = 0;
+        int endIndex = 0;
         for (int i = 0; i < BLOCKS_IN_DAY; i++) {
-            if ((blocks[i] && blocks[i-1] == false) || blocks[i] && i == 0) {
+            if ((blocks[i] && blocks[i - 1] == false) || blocks[i] && i == 0) {
                 startIndex = i;
             }
-            if ((blocks[i] && blocks[i+1] == false) || blocks[i] && i == BLOCKS_IN_DAY - 1) {
+            if ((blocks[i] && blocks[i + 1] == false) || blocks[i] && i == BLOCKS_IN_DAY - 1) {
                 endIndex = i + 1;
             }
         }
 
-        Integer startTimeInt = startIndex /2 * 100 + (startIndex % 2) * 30;
-        Integer endTimeInt = endIndex /2 * 100 + (endIndex % 2) * 30;
+        Integer startTimeInt = startIndex / 2 * 100 + (startIndex % 2) * 30;
+        Integer endTimeInt = endIndex / 2 * 100 + (endIndex % 2) * 30;
         String startTime = startTimeInt.toString();
         String endTime = endTimeInt.toString();
         sb.append(startTime).append(" ").append(endTime);
