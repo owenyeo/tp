@@ -76,7 +76,7 @@ public class FreeTime implements Comparable<FreeTime> {
      *
      * @param other The other FreeTime instance to compare against.
      * @return A negative integer, zero, or a positive integer as this FreeTime is less than, equal to, or greater
-     * than the specified FreeTime.
+     *      than the specified FreeTime.
      */
     @Override
     public int compareTo(FreeTime other) {
