@@ -70,7 +70,6 @@ public class HalfHourBlocks {
                 endIndex = i + 1;
             }
         }
-        
         int startTimeInt = startIndex / 2 * 100 + (startIndex % 2) * 30;
         int endTimeInt = endIndex / 2 * 100 + (endIndex % 2) * 30;
         sb.append(startTimeInt).append(" ").append(endTimeInt);
