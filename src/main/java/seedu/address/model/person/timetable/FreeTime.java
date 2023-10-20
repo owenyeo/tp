@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.DayOfWeek;
 
 /**
- * Represents a Person's free time in the address book.
+ * Represents a block of free time in a day, with a day of the week and start and end times.
  * Guarantees: immutable; is valid as declared in {@link #isValidFreeTime(String)}
  */
 public class FreeTime implements Comparable<FreeTime> {

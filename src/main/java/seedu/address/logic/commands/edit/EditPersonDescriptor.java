@@ -8,10 +8,10 @@ import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.timetable.FreeTime;
 import seedu.address.model.tag.Tag;
 
@@ -46,7 +46,7 @@ public class EditPersonDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(name, phone, email, address, freeTimes, tags);
+        return !CollectionUtil.isAnyNonNull(name, phone, email, address, freeTimes, tags);
     }
 
     public void setName(Name name) {
@@ -131,6 +131,7 @@ public class EditPersonDescriptor {
                 && Objects.equals(phone, otherEditPersonDescriptor.phone)
                 && Objects.equals(email, otherEditPersonDescriptor.email)
                 && Objects.equals(address, otherEditPersonDescriptor.address)
+                && Objects.equals(freeTimes, otherEditPersonDescriptor.freeTimes)
                 && Objects.equals(tags, otherEditPersonDescriptor.tags);
     }
 

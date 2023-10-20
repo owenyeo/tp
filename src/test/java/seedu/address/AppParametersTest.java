@@ -96,6 +96,7 @@ public class AppParametersTest {
         appParameters1.setConfigPath(Paths.get("test_config_path"));
         appParameters2.setConfigPath(Paths.get("test_config_path"));
 
-        assertEquals(appParameters1.hashCode(), appParameters2.hashCode(), "Hash codes of equal AppParameters should be the same");
+        assertEquals(appParameters1.hashCode(), appParameters2.hashCode(),
+                "Hash codes of equal AppParameters should be the same");
     }
 }
