@@ -25,7 +25,7 @@ public class JsonAdaptedFreeTime {
      * Converts a given {@code FreeTime} into this class for Jackson use.
      */
     public JsonAdaptedFreeTime(FreeTime source) {
-        freeTime = source.freeTime;
+        freeTime = source.freeTimeString;
     }
 
     @JsonValue

@@ -43,8 +43,8 @@ public class UserCard extends UiPart<Region> {
         address.setText(user.getAddress().value);
         email.setText(user.getEmail().value);
         user.getFreeTimes().stream()
-                .sorted(Comparator.comparing(freeTime -> freeTime.freeTime))
-                .forEach(freeTime -> freeTimes.getChildren().add(new Label(freeTime.freeTime)));
+                .sorted(Comparator.comparing(freeTime -> freeTime.freeTimeString))
+                .forEach(freeTime -> freeTimes.getChildren().add(new Label(freeTime.freeTimeString)));
         user.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

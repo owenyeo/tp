@@ -37,7 +37,7 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         person.getFreeTimes().stream().forEach(
-                s -> sb.append(PREFIX_FREETIME + s.freeTime + " ")
+                s -> sb.append(PREFIX_FREETIME + s.freeTimeString + " ")
         );
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
@@ -59,7 +59,7 @@ public class PersonUtil {
             if (freeTimes.isEmpty()) {
                 sb.append(PREFIX_FREETIME).append(" ");
             } else {
-                freeTimes.forEach(s -> sb.append(PREFIX_FREETIME).append(s.freeTime).append(" "));
+                freeTimes.forEach(s -> sb.append(PREFIX_FREETIME).append(s.freeTimeString).append(" "));
             }
         }
         if (descriptor.getTags().isPresent()) {
