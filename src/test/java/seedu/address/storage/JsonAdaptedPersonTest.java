@@ -123,5 +123,14 @@ public class JsonAdaptedPersonTest {
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
-    //TODO: Create tests for invalid free time and null free time
+    @Test
+    public void toModelType_invalidFreeTimes_throwsIllegalValueException() {
+        List<JsonAdaptedFreeTime> invalidFreeTimes = new ArrayList<>(VALID_FREETIMES);
+        invalidFreeTimes.add(new JsonAdaptedFreeTime(INVALID_FREETIME));
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                        invalidFreeTimes, VALID_TAGS);
+        assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
 }

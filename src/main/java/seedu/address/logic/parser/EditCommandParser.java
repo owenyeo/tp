@@ -71,6 +71,11 @@ public class EditCommandParser implements Parser<EditCommand> {
         return new EditCommand(index, editPersonDescriptor);
     }
 
+    /**
+     * Parses {@code Collection<String> freetimes} into a {@code Set<FreeTime>} if {@code freetimes} is non-empty.
+     * If {@code freetimes} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<FreeTime>} containing zero tags.
+     */
     private Optional<Set<FreeTime>> parseFreeTimesForEdit(Collection<String> freetimes) throws ParseException {
         assert freetimes != null;
 
