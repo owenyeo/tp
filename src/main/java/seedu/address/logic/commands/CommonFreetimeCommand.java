@@ -51,11 +51,12 @@ public class CommonFreetimeCommand extends Command {
         if (model.getUser().getFreeTimes().isEmpty()) {
             return new CommandResult(MESSAGE_NO_FREE_TIME);
         }
+
         // If no name is specified, return the user's common free time with all contacts
         if (this.name == null) {
             Set<FreeTime> userFreeTime = model.getUser().getFreeTimes();
-            ObservableList<Person> contacts = model.getAddressBook(). getPersonList();
-            Set<FreeTime> commonFreeTime = new HashSet<>();
+            ObservableList<Person> contacts = model.getAddressBook().getPersonList();
+            ArrayList<FreeTime> commonFreeTime = new ArrayList<>();
             for (Person contact : contacts) {
                 Set<FreeTime> contactFreeTime = contact.getFreeTimes();
                 for (FreeTime userTime : userFreeTime) {
@@ -72,12 +73,14 @@ public class CommonFreetimeCommand extends Command {
             } else {
                 StringBuilder sb = new StringBuilder(MESSAGE_SUCCESS);
                 int i = 0;
-                for (FreeTime freeTime : commonFreeTime) {
-                    sb.append(overlappingContacts.get(i).getName()).append(" is free at ");
+                for (Person contact : overlappingContacts) {
+                    Name nameOfContact = contact.getName();
+                    sb.append(nameOfContact).append(" is free at ");
+                    FreeTime freeTime = commonFreeTime.get(i);
                     sb.append(freeTime.toString()).append("\n");
                     i++;
-                    }
-                return new CommandResult(sb.toString());
+                }
+                return new CommandResult(sb.toString() + "\n" + overlappingContacts.toString());
             }
         } else {
             try {
