@@ -1,9 +1,5 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.timetable.FreeTime;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,6 +8,9 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.timetable.FreeTime;
 
 /**
  * Represents a command that finds all contacts with the same free time as the User.
@@ -23,13 +22,13 @@ import seedu.address.model.Model;
 public class CommonFreetimeCommand extends Command {
 
     public static final String COMMAND_WORD = "cft";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all contacts with the same free time as the User.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds all contacts with the same free time as the User.\n"
             + "Example: " + COMMAND_WORD;
     public static final String MESSAGE_COMMON_FREETIME_SUCCESS =
             "Here are the contacts with the same free time as you: \n";
     public static final String MESSAGE_NO_FREE_TIME = "You have no free time!";
     public static final String MESSAGE_NO_CONTACTS = "You have no contacts with the same free time as you!";
-  
     private Name name = null; // name of person (user) to find common free time with
 
     public CommonFreetimeCommand() {
@@ -46,7 +45,7 @@ public class CommonFreetimeCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        ArrayList<Person> overlappingContacts= new ArrayList<>();
+        ArrayList<Person> overlappingContacts = new ArrayList<>();
 
         // If user has no free time, return error message
         if (model.getUser().getFreeTimes().isEmpty()) {
@@ -94,14 +93,18 @@ public class CommonFreetimeCommand extends Command {
                         commonFreeTime.add(userTime.overlap(friendTime));
                     }
                 }
-                if (commonFreeTime.isEmpty()) {
-                    return new CommandResult("You and " + friend.getName().toString() + " have no common free time!");
-                } else {
-                    StringBuilder sb = new StringBuilder(MESSAGE_SUCCESS);
-                    for (FreeTime freeTime : commonFreeTime) {
-                        sb.append(friend.getName().toString()).append(" is free at ").append(freeTime.toString()).append("\n");
-                    }
-                    return new CommandResult(sb.toString());
+            }
+            if (commonFreeTime.isEmpty()) {
+                return new CommandResult("You and "
+                        + friend.getName().toString()
+                        + " have no common free time!");
+            } else {
+                StringBuilder sb = new StringBuilder(MESSAGE_COMMON_FREETIME_SUCCESS);
+                for (FreeTime freeTime : commonFreeTime) {
+                    sb.append(friend.getName()
+                            .toString())
+                            .append(" is free at ")
+                            .append(freeTime.toString()).append("\n");
                 }
                 return new CommandResult(sb.toString());
             }
