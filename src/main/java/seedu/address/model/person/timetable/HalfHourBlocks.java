@@ -1,5 +1,7 @@
 package seedu.address.model.person.timetable;
 
+import java.util.Arrays;
+
 /**
  * Represents the half-hour blocks within a day.
  * Each block is represented as a boolean value indicating if that half-hour block is free.
@@ -49,6 +51,24 @@ public class HalfHourBlocks {
         return overlap;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+
+        if (other == null || getClass() != other.getClass()) {
+            return false;
+        }
+
+        HalfHourBlocks that = (HalfHourBlocks) other;
+        return Arrays.equals(blocks, that.blocks);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(blocks);
+    }
 
     /**
      * Returns a string representation of the HalfHourBlocks object.
@@ -70,8 +90,8 @@ public class HalfHourBlocks {
                 endIndex = i + 1;
             }
         }
-        int startTimeInt = startIndex / 2 * 100 + (startIndex % 2) * 30;
-        int endTimeInt = endIndex / 2 * 100 + (endIndex % 2) * 30;
+        String startTimeInt = String.format("%04d", startIndex / 2 * 100 + (startIndex % 2) * 30);
+        String endTimeInt = String.format("%04d", endIndex / 2 * 100 + (endIndex % 2) * 30);
         sb.append(startTimeInt).append(" ").append(endTimeInt);
         return sb.toString();
     }
