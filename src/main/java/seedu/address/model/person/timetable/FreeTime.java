@@ -50,26 +50,6 @@ public class FreeTime implements Comparable<FreeTime> {
         return test.matches(VALIDATION_REGEX);
     }
 
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof FreeTime)) {
-            return false;
-        }
-
-        FreeTime otherFreeTime = (FreeTime) other;
-        return freeTimeString.equals(otherFreeTime.freeTimeString);
-    }
-
-    @Override
-    public int hashCode() {
-        return freeTimeString.hashCode();
-    }
-
     /**
      * Compares this FreeTime instance with another instance.
      * The comparison is primarily based on the day of the week, followed by the start time, and then the end time.
@@ -108,7 +88,6 @@ public class FreeTime implements Comparable<FreeTime> {
         return null;
     }
 
-
     /**
      * Checks if the current {@code FreeTime} overlaps with the specified {@code FreeTime}.
      *
@@ -122,6 +101,26 @@ public class FreeTime implements Comparable<FreeTime> {
         }
 
         return this.timeBlocks.overlaps(other.timeBlocks);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof FreeTime)) {
+            return false;
+        }
+
+        FreeTime otherFreeTime = (FreeTime) other;
+        return freeTimeString.equals(otherFreeTime.freeTimeString);
+    }
+
+    @Override
+    public int hashCode() {
+        return freeTimeString.hashCode();
     }
 
     /**

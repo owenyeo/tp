@@ -1,18 +1,19 @@
 package seedu.address.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CommonFreetimeCommand;
+
 public class CommonFreetimeCommandParserTest {
+    private CommonFreetimeCommandParser parser = new CommonFreetimeCommandParser();
 
     @Test
-    public void parse_emptyArg_throwsParseException() {
-        assertEquals(0, 0);
+    public void parse_emptyArg_returnsCommonFreetimeCommand() {
+        assertParseFailure(parser, "",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CommonFreetimeCommand.MESSAGE_USAGE));
     }
 
-    @Test
-    public void parse_validArgs_returnsMealBuddyCommand() {
-        assertEquals(0, 0);
-    }
 }

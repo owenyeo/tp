@@ -17,6 +17,7 @@ import java.util.Set;
 import seedu.address.logic.commands.edit.EditPersonDescriptor;
 import seedu.address.logic.commands.edit.EditUserCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.timetable.FreeTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -55,9 +56,7 @@ public class EditUserCommandParser implements Parser<EditUserCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
-        if (argMultimap.getValue(PREFIX_FREETIME).isPresent()) {
-            editPersonDescriptor.setFreeTimes((ParserUtil.parseFreeTimes(argMultimap.getAllValues(PREFIX_FREETIME))));
-        }
+        parseFreeTimesForEdit(argMultimap.getAllValues(PREFIX_FREETIME)).ifPresent(editPersonDescriptor::setFreeTimes);
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (editPersonDescriptor.isAnyFieldEdited()) {
@@ -65,6 +64,23 @@ public class EditUserCommandParser implements Parser<EditUserCommand> {
         }
 
         return new EditUserCommand(editPersonDescriptor);
+    }
+
+    /**
+     * Parses {@code Collection<String> freetimes} into a {@code Set<FreeTime>} if {@code freetimes} is non-empty.
+     * If {@code freetimes} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<FreeTime>} containing zero tags.
+     */
+    private Optional<Set<FreeTime>> parseFreeTimesForEdit(Collection<String> freetimes) throws ParseException {
+        assert freetimes != null;
+
+        if (freetimes.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> freeTimeSet = freetimes.size() == 1 && freetimes.contains("")
+                ? Collections.emptySet()
+                : freetimes;
+        return Optional.of(ParserUtil.parseFreeTimes(freeTimeSet));
     }
 
     /**
