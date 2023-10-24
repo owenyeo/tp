@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.CommonFreetimeCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -72,6 +73,21 @@ public class AddressBookParserTest {
         assertEquals(new EditUserCommand(descriptor), command);
     }
 
+    @Test
+    public void parseCommand_commonFreetime_validArgs() throws Exception {
+        Person person = new PersonBuilder().build();
+        CommonFreetimeCommand command = (CommonFreetimeCommand) parser.parseCommand(
+                CommonFreetimeCommand.COMMAND_WORD + " " + "n/" + person.getName());
+        assertEquals(new CommonFreetimeCommand(person.getName()), command);
+    }
+
+    @Test
+    public void parseCommand_commonFreetime_all() throws Exception {
+        CommonFreetimeCommand command = (CommonFreetimeCommand) parser.parseCommand(
+                CommonFreetimeCommand.COMMAND_WORD);
+        assertEquals(new CommonFreetimeCommand(), command);
+    }
+
 
     @Test
     public void parseCommand_exit() throws Exception {
@@ -102,7 +118,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+                -> parser.parseCommand(""));
     }
 
     @Test

@@ -86,12 +86,15 @@ public class CommonFreetimeCommandTest {
     public void equals() {
         final CommonFreetimeCommand standardCommand = new CommonFreetimeCommand(AMY.getName());
 
+        final CommonFreetimeCommand standardAllCommand = new CommonFreetimeCommand();
         // same values -> returns true
         CommonFreetimeCommand commandWithSameValues = new CommonFreetimeCommand(AMY.getName());
         assertEquals(standardCommand, commandWithSameValues);
 
         // same object -> returns true
         assertEquals(standardCommand, standardCommand);
+
+        assertEquals(new CommonFreetimeCommand(), standardAllCommand);
 
         // null -> returns false
         assertNotEquals(null, standardCommand);
