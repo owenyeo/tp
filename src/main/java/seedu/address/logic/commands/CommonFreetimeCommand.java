@@ -128,7 +128,8 @@ public class CommonFreetimeCommand extends Command {
         }
 
         CommonFreetimeCommand otherCommonFreetimeCommand = (CommonFreetimeCommand) other;
-        return name.equals(otherCommonFreetimeCommand.name);
+        return (name == null && otherCommonFreetimeCommand.name == null)
+                || name.equals(otherCommonFreetimeCommand.name);
     }
 
     @Override
