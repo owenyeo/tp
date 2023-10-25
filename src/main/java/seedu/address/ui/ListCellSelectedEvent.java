@@ -9,13 +9,13 @@ import seedu.address.model.person.Person;
  * It provides information about the selected person.
  */
 public class ListCellSelectedEvent extends Event {
-    private final Person selectedPerson;
-
     /**
      * The event type for list cell selected events.
      */
     public static final EventType<ListCellSelectedEvent> LIST_CELL_SELECTED =
             new EventType<>(Event.ANY, "LIST_CELL_SELECTED");
+
+    private final Person selectedPerson;
 
     /**
      * Constructs a new {@code ListCellSelectedEvent} with the specified selected person.

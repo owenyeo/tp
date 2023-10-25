@@ -9,7 +9,8 @@ import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
 /**
- * The {@code SelectedFriendCard} class represents a card that displays detailed information about a selected friend (person).
+ * The {@code SelectedFriendCard} class represents a card that displays detailed information
+ * about a selected friend (person).
  * It is typically used to display the information of a friend when selected in the user interface.
  */
 public class SelectedFriendCard extends UiPart<Region> {
