@@ -12,7 +12,7 @@ import seedu.address.model.person.Person;
 
 
 public class SelectedFriendCard extends UiPart<Region> {
-    private static final String FXML = "UserCard.fxml";
+    private static final String FXML = "SelectedFriendCard.fxml";
 
     public final Person selectedFriend;
 
