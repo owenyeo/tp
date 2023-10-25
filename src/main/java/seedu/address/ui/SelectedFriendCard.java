@@ -1,16 +1,17 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
-import java.util.concurrent.Flow;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
-
+/**
+ * The {@code SelectedFriendCard} class represents a card that displays detailed information about a selected friend (person).
+ * It is typically used to display the information of a friend when selected in the user interface.
+ */
 public class SelectedFriendCard extends UiPart<Region> {
     private static final String FXML = "SelectedFriendCard.fxml";
 
@@ -29,6 +30,11 @@ public class SelectedFriendCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+    /**
+     * Constructs a new {@code SelectedFriendCard} with the specified selected friend.
+     *
+     * @param selectedFriend The selected friend whose information is to be displayed on this card.
+     */
     public SelectedFriendCard(Person selectedFriend) {
         super(FXML);
         this.selectedFriend = selectedFriend;
