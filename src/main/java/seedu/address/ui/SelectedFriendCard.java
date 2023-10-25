@@ -1,24 +1,22 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.concurrent.Flow;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
 
-/**
- * Represents a user card in the GUI.
- * Displays the user's name, phone number, address, email, free times, and tags.
- */
-public class UserCard extends UiPart<Region> {
 
+public class SelectedFriendCard extends UiPart<Region> {
     private static final String FXML = "UserCard.fxml";
 
-    public final Person user;
+    public final Person selectedFriend;
 
-    @FXML
+    @javafx.fxml.FXML
     private Label userName;
     @FXML
     private Label phone;
@@ -31,23 +29,18 @@ public class UserCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
-    /**
-     * Creates a new UserCard with the given Person object.
-     * @param user The Person object to display in the card.
-     */
-    public UserCard(Person user) {
+    public SelectedFriendCard(Person selectedFriend) {
         super(FXML);
-        this.user = user;
-        userName.setText(user.getName().fullName);
-        phone.setText(user.getPhone().value);
-        address.setText(user.getAddress().value);
-        email.setText(user.getEmail().value);
-        user.getFreeTimes().stream()
+        this.selectedFriend = selectedFriend;
+        userName.setText(selectedFriend.getName().fullName);
+        phone.setText(selectedFriend.getPhone().value);
+        address.setText(selectedFriend.getAddress().value);
+        email.setText(selectedFriend.getEmail().value);
+        selectedFriend.getFreeTimes().stream()
                 .sorted(Comparator.comparing(freeTime -> freeTime.freeTimeString))
                 .forEach(freeTime -> freeTimes.getChildren().add(new Label(freeTime.freeTimeString)));
-        user.getTags().stream()
+        selectedFriend.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
-
 }
