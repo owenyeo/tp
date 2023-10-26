@@ -14,12 +14,12 @@ import seedu.address.model.person.Person;
  */
 public class UserCard extends UiPart<Region> {
 
-    private static final String FXML = "PersonListCard.fxml";
+    private static final String FXML = "UserCard.fxml";
 
     public final Person user;
 
     @FXML
-    private Label name;
+    private Label userName;
     @FXML
     private Label phone;
     @FXML
@@ -38,7 +38,7 @@ public class UserCard extends UiPart<Region> {
     public UserCard(Person user) {
         super(FXML);
         this.user = user;
-        name.setText(user.getName().fullName);
+        userName.setText(user.getName().fullName);
         phone.setText(user.getPhone().value);
         address.setText(user.getAddress().value);
         email.setText(user.getEmail().value);
