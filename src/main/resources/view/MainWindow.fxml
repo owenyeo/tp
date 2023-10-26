@@ -16,6 +16,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
          title="TimetaBRO" minWidth="1200" minHeight="800" onCloseRequest="#handleExit">
   <icons>
@@ -62,15 +63,18 @@
           <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"/>
         </VBox>
 
-        <GridPane HBox.hgrow="ALWAYS">
+        <GridPane HBox.hgrow="ALWAYS" styleClass="pane-with-border" minWidth="800">
           <rowConstraints>
             <RowConstraints percentHeight="50" />
             <RowConstraints percentHeight="50" />
           </rowConstraints>
 
+          <columnConstraints>
+            <ColumnConstraints percentWidth="100" />
+          </columnConstraints>
+
           <VBox styleClass="pane-with-border" GridPane.rowIndex="0">
-            <StackPane VBox.vgrow="ALWAYS" fx:id="userProfilePlaceholder" styleClass="pane-with-border"
-                       minWidth="800" prefWidth="800">
+            <StackPane VBox.vgrow="ALWAYS" fx:id="userProfilePlaceholder" styleClass="pane-with-border">
             </StackPane>
 
           </VBox>
