@@ -6,7 +6,7 @@ import seedu.address.model.person.Person;
  * Represents a BirthdayEvent in the application.
  * A specialized event to mark the birthday of a specific person.
  */
-public class BirthdayEvent extends DatedEvent {
+public class BirthdayEvent extends DatedEvent { 
     private Person birthdayGuy;
 
     /**
@@ -18,12 +18,12 @@ public class BirthdayEvent extends DatedEvent {
      * @param friend Person whose birthday is being celebrated.
      */
     public BirthdayEvent(String name, String timeBlockString,
-                       String dateString, Person friend) {
+                       String dateString, Person friend) { 
         super(name, timeBlockString, dateString, true);
         this.birthdayGuy = friend;
     }
 
-    public Person getBirthdayGuy(){
+    public Person getBirthdayGuy(){ 
         return birthdayGuy;
     }
 
