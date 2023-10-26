@@ -217,7 +217,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (selectedPerson != null) {
+            if (selectedPerson != null && commandResult.isEdit()) {
                 friendProfile= new SelectedFriendCard(logic.getFilteredPersonList().get(selectedPersonPos));
                 selectedFriendPlaceholder.getChildren().clear();
                 selectedFriendPlaceholder.getChildren().add(friendProfile.getRoot());
