@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  * Encapsulates an event that is not recurring on a weekly basis.
  * Contains details such as the event name, time block, date, and reminder settings.
  */
-public class DatedEvent {
+public class DatedEvent implements Comparable<DatedEvent> {
     public static final String MESSAGE_CONSTRAINTS =
             "Input should be in the format 'name YYYY-MM-DD HHMM HHMM', \n"
                     + "where:\n"
@@ -104,6 +104,26 @@ public class DatedEvent {
                 + "\"timeBlock\": \"" + timeBlock.toString() + "\","
                 + "\"hasReminder\": " + hasReminder
                 + "}";
+    }
+
+     * Compares this DatedEvent instance with another instance.
+     * The comparison is primarily based on the event's date. If the dates are the same,
+     * the comparison proceeds to the start time of the associated TimeBlock.
+     *
+     * @param other The other DatedEvent instance to compare against.
+     * @return A negative integer, zero, or a positive integer as this DatedEvent is less than,
+     *         equal to, or greater than the specified DatedEvent.
+     */
+    @Override
+    public int compareTo(DatedEvent other) {
+        // First, compare the dates.
+        int dateComparison = this.date.compareTo(other.date);
+        if (dateComparison != 0) {
+            return dateComparison;
+        }
+
+        // If the dates are the same, compare the time blocks.
+        return this.timeBlock.compareByStartTime(other.timeBlock);
     }
 
     @Override
