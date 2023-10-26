@@ -278,29 +278,33 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                   | I want to …​                                        | So that I can…​                                                   |
-|----------|---------------------------|-----------------------------------------------------|-------------------------------------------------------------------|
-| `* * *`  | new user                  | add people to my list of friends                    | I add new friends to my list                                      |
-| `* * *`  | user                      | delete people off my list of friends                | I don't need to see their faces                                   |
-| `* * *`  | user                      | view my list of friends                             | view my friends at a glance                                       |
-| `* * *`  | user                      | search for my friends' profiles                     | find them more easily                                             |
-| `* * *`  | user                      | edit details in my friends profiles                 | change details if wrongly filled up or if they change             |
-| `* * *`  | student                   | input my timetable                                  | compare with my friends' schedules                                |
-| `* * *`  | student                   | input my friend's timetable                         | compare my timetable with their's                                 |
-| `* * *`  | student with many friends | search for friends                                  | quickly find and view their schedules                             |
-| `*`      | student                   | give friends nicknames                              | personalize and easily identify them                              |
-| `* *`    | student                   | create events for meeting up                        | plan gatherings                                                   |
-| `* *`    | student                   | identify common modules with my friends             | attend classes with them                                          |
-| `* *`    | student                   | create events for meeting up                        | plan gatherings                                                   |
-| `* *`    | student                   | add friends to events                               | remember who is attending events                                  |
-| `* *`    | student                   | edit events                                         | update changes in plans                                           |
-| `*`      | student                   | view my timetable in a visual format                | easily view my commitments                                        |
-| `*`      | student                   | visually compare my timetable with with my friend's | quickly identify overlaps or free times                           |
-| `* *`    | student                   | add friend groups                                   | easily manage and view schedules for specific circles of friends. |
-| `* *`    | student                   | identify common free times within friend groups     | plan for group activities                                         |
-| `*`      | student                   | see combined timetables of multiple friends         | create events visually                                            |
-| `*`      | student                   | see combined timetables of a friend group           | plan for group activities                                         |
-
+| Priority | As a …​      | I want to …​                                                                       | So that I can…​                                                            |
+|----------|--------------|------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| `* * *`  | new user     | see a welcoming popup when i first open the app                                    | navigate the app easily and fill up my own details                         |
+| `* * *`  | user         | add contacts to my list of friends using information like name and contact details | identify them more easily                                                  |
+| `* * *`  | user         | view my list of friends                                                            | see all my friends in a glance                                             |  
+| `* * *`  | user         | edit details of my friends                                                         | keep their information up to date or change any wrongly filled information |
+| `* * *`  | user         | search for specific friend                                                         | find their information more easily                                         |
+| `* * *`  | user         | delete friends from my list of friends                                             | remove people who are no longer my friends and not needed in the list      |
+| `* * *`  | student      | add my timetable to the app                                                        | easily access and keep track of my own timetable                           |
+| `* * *`  | student      | add my friend's timetable to the app                                               | keep track of my friends                                                   |
+| `* * *`  | student      | identify common free time slots with friends                                       | organise meals or other social activities with them                        |
+| `* * *`  | student      | set reminders about events                                                         | be well-prepared and organised for all my commitments                      |
+| `* * *`  | student      | create events                                                                      | keep track of important commitments and activities                         |
+| `* * *`  | busy student | receive reminders about events                                                     | remember any upcoming events                                               |
+| `* * *`  | busy student | receive reminders about my friends' birthdays                                      | plan something for their birthday                                          |
+| `* *`    | student      | edit my timetable                                                                  | update changes in my timetable                                             |
+| `* *`    | student      | view my own timetable                                                              | plan my day and easily view my commitments                                 |
+| `* *`    | student      | view my friends' timetables                                                        | know more about their day                                                  |
+| `* *`    | student      | visually compare my timetable with that of my friends                              | quickly identify overlaps or free times                                    |
+| `* *`    | student      | identify common modules with my friends                                            | attend classes with them                                                   |
+| `* *`    | student      | edit events                                                                        | update any change in event details                                         |
+| `*`      | student      | give my friends nicknames and set their profile pictures in my list                | personalise and easily identify them                                       |
+| `*`      | student      | set my own profile picture                                                         | personalise my own profile                                                 |
+| `*`      | student      | add friends to events                                                              | remember who is attending events                                           |
+| `*`      | student      | create friend groups                                                               | easily manage and view schedules for specific circles of friends           |
+| `*`      | student      | see combined timetables of multiple friends                                        | find common free time visually                                             |
+| `*`      | student      | add notes to events                                                                | remember additional information about the event                            |
 
 ### Use cases
 
