@@ -17,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -37,6 +38,8 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private UserCard userProfile;
+    private Person selectedPerson;
+    private int selectedPersonPos;
     private SelectedFriendCard friendProfile;
 
     @FXML
@@ -139,14 +142,16 @@ public class MainWindow extends UiPart<Stage> {
 
         if (scene != null) {
             scene.addEventFilter(ListCellSelectedEvent.LIST_CELL_SELECTED, event -> {
-                Person selectedPerson = event.getSelectedPerson();
+                selectedPerson = event.getSelectedPerson();
                 if (selectedPerson != null) {
                     friendProfile = new SelectedFriendCard(selectedPerson);
                     selectedFriendPlaceholder.getChildren().clear();
                     selectedFriendPlaceholder.getChildren().add(friendProfile.getRoot());
+                    selectedPersonPos = logic.getFilteredPersonList().indexOf(selectedPerson);
                 }
             });
         }
+
     }
 
     /**
@@ -212,12 +217,20 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (selectedPerson != null) {
+                friendProfile= new SelectedFriendCard(logic.getFilteredPersonList().get(selectedPersonPos));
+                selectedFriendPlaceholder.getChildren().clear();
+                selectedFriendPlaceholder.getChildren().add(friendProfile.getRoot());
+            }
+
             return commandResult;
+
         } catch (CommandException | ParseException e) {
             logger.info("An error occurred while executing command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+
     }
 
 }
