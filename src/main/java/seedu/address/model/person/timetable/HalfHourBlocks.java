@@ -6,9 +6,11 @@ import java.util.Arrays;
  * Represents the half-hour blocks within a day.
  * Each block is represented as a boolean value indicating if that half-hour block is free.
  */
-public class HalfHourBlocks {
+public class HalfHourBlocks implements Comparable<HalfHourBlocks> {
     private static final int BLOCKS_IN_DAY = 48;
     private final boolean[] blocks = new boolean[BLOCKS_IN_DAY];
+    private final int startHalfHour;
+    private final int endHalfHour;
 
     /**
      * Constructs a new HalfHourBlocks with specified start and end half-hour blocks.
@@ -20,6 +22,8 @@ public class HalfHourBlocks {
         for (int i = startHalfHour; i < endHalfHour; i++) {
             blocks[i] = true;
         }
+        this.startHalfHour = startHalfHour;
+        this.endHalfHour = endHalfHour;
     }
 
     /**
@@ -49,6 +53,11 @@ public class HalfHourBlocks {
             overlap.blocks[i] = this.blocks[i] && other.blocks[i];
         }
         return overlap;
+    }
+
+    @Override
+    public int compareTo(HalfHourBlocks other) {
+        return Integer.compare(this.startHalfHour, other.startHalfHour);
     }
 
     @Override
