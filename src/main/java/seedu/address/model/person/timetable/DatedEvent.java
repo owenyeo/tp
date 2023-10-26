@@ -92,6 +92,20 @@ public class DatedEvent {
         return test.matches(DATE_TIME_VALIDATION_REGEX);
     }
 
+    /**
+     * Returns a format of DateTime that can be stored in a Json File.
+     *
+     * @return Json formatted String.
+     */
+    public String toJsonString() {
+        return "{"
+                + "\"name\": \"" + name + "\","
+                + "\"date\": \"" + date.format(DateTimeFormatter.ofPattern(dateTimeFormatterPattern)) + "\","
+                + "\"timeBlock\": \"" + timeBlock.toString() + "\","
+                + "\"hasReminder\": " + hasReminder
+                + "}";
+    }
+
     @Override
     public String toString() {
         return "Event Name: " + name + "\n"
