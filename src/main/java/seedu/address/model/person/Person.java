@@ -82,6 +82,8 @@ public class Person {
         return Collections.unmodifiableSet(tags);
     }
 
+    //TODO: person.getFreeTimesWith(otherPerson)
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
