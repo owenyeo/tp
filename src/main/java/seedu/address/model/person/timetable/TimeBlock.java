@@ -75,6 +75,16 @@ public class TimeBlock implements Comparable<TimeBlock> {
     }
 
     /**
+     * Compares the start time of this TimeBlock with another TimeBlock's start time.
+     *
+     * @param other The other TimeBlock instance to compare against.
+     * @return A negative integer, zero, or a positive integer as this TimeBlock's start time is less than,
+     *         equal to, or greater than the specified TimeBlock's start time.
+     */
+    public int compareByStartTime(TimeBlock other) {
+        return this.timeBlocks.compareTo(other.timeBlocks);
+    }
+    /**
      * Checks if the current TimeBlock overlaps with another TimeBlock.
      * If there's an overlap, returns a new TimeBlock representing the overlapping period.
      *
