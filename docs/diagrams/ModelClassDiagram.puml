@@ -12,6 +12,7 @@ Class ModelManager
 
 Class UniquePersonList
 Class Person
+Class User
 Class Address
 Class Email
 Class Name
@@ -19,12 +20,14 @@ Class Phone
 Class Tag
 Class FreeTime
 Class HalfHourBlocks
+Class DatedEvent
 
 package User as "User" {
 Class "<<interface>>\nReadOnlyUserData" as ReadOnlyUserData
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class UserPrefs
 Class UserData
+Class User
 }
 Class I #FFFFFF
 }
@@ -44,7 +47,7 @@ ModelManager -right-> "1" UserData
 UserPrefs .up.|> ReadOnlyUserPrefs
 UserData .up.|> ReadOnlyUserData
 
-UserData --> "1" Person
+UserData --> "1" User
 AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
 Person *--> Name
@@ -55,6 +58,9 @@ Person *--> "*" Tag
 Person *--> "*" FreeTime
 FreeTime *--> "1" HalfHourBlocks
 FreeTime *--> "1" DayOfWeek
+
+User --> Person
+User *--> "*" DatedEvent
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
