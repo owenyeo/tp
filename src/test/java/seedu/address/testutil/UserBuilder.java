@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -23,11 +24,13 @@ public class UserBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_BIRTHDAY = "2000-01-01";
 
     private Name name;
     private Phone phone;
     private Email email;
     private Address address;
+    private Birthday birthday;
     private Set<FreeTime> freeTimes;
     private Set<Tag> tags;
     private ArrayList<DatedEvent> datedEvents;
@@ -40,6 +43,7 @@ public class UserBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        birthday = new Birthday(DEFAULT_BIRTHDAY);
         freeTimes = new HashSet<>();
         tags = new HashSet<>();
         datedEvents = new ArrayList<>();
@@ -53,6 +57,7 @@ public class UserBuilder {
         phone = userToCopy.getPhone();
         email = userToCopy.getEmail();
         address = userToCopy.getAddress();
+        birthday = userToCopy.getBirthday();
         freeTimes = new HashSet<>(userToCopy.getFreeTimes());
         tags = new HashSet<>(userToCopy.getTags());
         datedEvents = new ArrayList<>(userToCopy.getDatedEvents());
@@ -107,6 +112,14 @@ public class UserBuilder {
     }
 
     /**
+     * Sets the {@code Birthday} of the {@code Person} that we are building.
+     */
+    public UserBuilder withBirthday(String birthday) {
+        this.birthday = new Birthday(birthday);
+        return this;
+    }
+
+    /**
      * Sets the {@code datedEvents} of the {@code User} that we are building.
      */
     public UserBuilder withDatedEvents(ArrayList<DatedEvent> datedEvents) {
@@ -115,7 +128,7 @@ public class UserBuilder {
     }
 
     public User build() {
-        return new User(name, phone, email, address, freeTimes, tags, datedEvents);
+        return new User(name, phone, email, address, birthday, freeTimes, tags, datedEvents);
     }
 
 }

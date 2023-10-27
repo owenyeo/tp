@@ -27,6 +27,8 @@ public class UserCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label birthday;
+    @FXML
     private FlowPane freeTimes;
     @FXML
     private FlowPane tags;
@@ -42,6 +44,7 @@ public class UserCard extends UiPart<Region> {
         phone.setText(user.getPhone().value);
         address.setText(user.getAddress().value);
         email.setText(user.getEmail().value);
+        birthday.setText("Birthday: " + user.getBirthday().toString());
         user.getFreeTimes().stream()
                 .sorted(Comparator.comparing(freeTime -> freeTime.freeTimeString))
                 .forEach(freeTime -> freeTimes.getChildren().add(new Label(freeTime.freeTimeString)));

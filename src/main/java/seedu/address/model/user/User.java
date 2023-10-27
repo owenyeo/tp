@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -21,9 +22,9 @@ public class User extends Person {
     /**
      * Every field must be present and not null.
      */
-    public User(Name name, Phone phone, Email email, Address address,
+    public User(Name name, Phone phone, Email email, Address address, Birthday birthday,
             Set<FreeTime> freeTimes, Set<Tag> tags, ArrayList<DatedEvent> datedEvents) {
-        super(name, phone, email, address, freeTimes, tags);
+        super(name, phone, email, address, birthday, freeTimes, tags);
         this.datedEvents = datedEvents;
     };
 
@@ -35,7 +36,8 @@ public class User extends Person {
      * Constructor for User with a person and dated events.
      */
     public User(Person user, ArrayList<DatedEvent> datedEvents) {
-        super(user.getName(), user.getPhone(), user.getEmail(), user.getAddress(), user.getFreeTimes(), user.getTags());
+        super(user.getName(), user.getPhone(), user.getEmail(), user.getAddress(), user.getBirthday(),
+                user.getFreeTimes(), user.getTags());
         this.datedEvents = datedEvents;
     }
 
@@ -43,7 +45,8 @@ public class User extends Person {
      * Constructor for User with a person.
      */
     public User(User user) {
-        super(user.getName(), user.getPhone(), user.getEmail(), user.getAddress(), user.getFreeTimes(), user.getTags());
+        super(user.getName(), user.getPhone(), user.getEmail(), user.getAddress(), user.getBirthday(),
+                user.getFreeTimes(), user.getTags());
         this.datedEvents = user.getDatedEvents();
     }
 

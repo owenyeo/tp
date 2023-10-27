@@ -1,12 +1,7 @@
 package seedu.address.logic.commands.edit;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FREETIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -18,6 +13,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -42,6 +38,7 @@ public class EditUserCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_BIRTHDAY + "BIRTHDAY]...\n"
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "[" + PREFIX_FREETIME + "FREETIME]...\n"
             + "Example: " + COMMAND_WORD
@@ -88,11 +85,12 @@ public class EditUserCommand extends Command {
         Phone updatedPhone = editUserDescriptor.getPhone().orElse(userToEdit.getPhone());
         Email updatedEmail = editUserDescriptor.getEmail().orElse(userToEdit.getEmail());
         Address updatedAddress = editUserDescriptor.getAddress().orElse(userToEdit.getAddress());
+        Birthday updatedBirthday = editUserDescriptor.getBirthday().orElse(userToEdit.getBirthday());
         Set<FreeTime> updatedFreeTimes = editUserDescriptor.getFreeTimes().orElse(userToEdit.getFreeTimes());
         Set<Tag> updatedTags = editUserDescriptor.getTags().orElse(userToEdit.getTags());
         ArrayList<DatedEvent> updatedDatedEvents = editUserDescriptor.getDatedEvents()
                 .orElse(userToEdit.getDatedEvents());
-        return new User(updatedName, updatedPhone, updatedEmail, updatedAddress,
+        return new User(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBirthday,
                 updatedFreeTimes, updatedTags, updatedDatedEvents);
     }
 
