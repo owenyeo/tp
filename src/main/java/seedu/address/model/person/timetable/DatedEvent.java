@@ -106,7 +106,7 @@ public class DatedEvent implements Comparable<DatedEvent> {
                 + "}";
     }
 
-    /** 
+    /**
      * Compares this DatedEvent instance with another instance.
      * The comparison is primarily based on the event's date. If the dates are the same,
      * the comparison proceeds to the start time of the associated TimeBlock.
