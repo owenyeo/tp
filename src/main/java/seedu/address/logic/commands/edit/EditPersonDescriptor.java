@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -24,6 +25,7 @@ public class EditPersonDescriptor {
     private Phone phone;
     private Email email;
     private Address address;
+    private Birthday birthday;
     private Set<FreeTime> freeTimes;
     private Set<Tag> tags;
 
@@ -38,6 +40,7 @@ public class EditPersonDescriptor {
         setPhone(toCopy.phone);
         setEmail(toCopy.email);
         setAddress(toCopy.address);
+        setBirthday(toCopy.birthday);
         setFreeTimes(toCopy.freeTimes);
         setTags(toCopy.tags);
     }
@@ -46,7 +49,7 @@ public class EditPersonDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return !CollectionUtil.isAnyNonNull(name, phone, email, address, freeTimes, tags);
+        return !CollectionUtil.isAnyNonNull(name, phone, email, address, birthday, freeTimes, tags);
     }
 
     public void setName(Name name) {
@@ -79,6 +82,23 @@ public class EditPersonDescriptor {
 
     public Optional<Address> getAddress() {
         return Optional.ofNullable(address);
+    }
+
+    /**
+     * Sets {@code birthday} to this object's {@code birthday}.
+     * A defensive copy of {@code birthday} is used internally.
+     */
+    public void setBirthday(Birthday birthday) {
+        this.birthday = birthday;
+    }
+
+    /**
+     * Returns an unmodifiable birthday, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     * Returns {@code Optional#empty()} if {@code birthday} is null.
+     */
+    public Optional<Birthday> getBirthday() {
+        return Optional.ofNullable(birthday);
     }
 
     /**
@@ -131,6 +151,7 @@ public class EditPersonDescriptor {
                 && Objects.equals(phone, otherEditPersonDescriptor.phone)
                 && Objects.equals(email, otherEditPersonDescriptor.email)
                 && Objects.equals(address, otherEditPersonDescriptor.address)
+                && Objects.equals(birthday, otherEditPersonDescriptor.birthday)
                 && Objects.equals(freeTimes, otherEditPersonDescriptor.freeTimes)
                 && Objects.equals(tags, otherEditPersonDescriptor.tags);
     }
@@ -142,6 +163,7 @@ public class EditPersonDescriptor {
                 .add("phone", phone)
                 .add("email", email)
                 .add("address", address)
+                .add("birthday", birthday)
                 .add("free times", freeTimes)
                 .add("tags", tags)
                 .toString();

@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -30,6 +31,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String birthday;
     private final List<JsonAdaptedFreeTime> freeTimes = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
@@ -39,12 +41,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("birthday") String birthday,
             @JsonProperty("freeTimes") List<JsonAdaptedFreeTime> freeTimes,
             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.birthday = birthday;
         if (freeTimes != null) {
             this.freeTimes.addAll(freeTimes);
         }
@@ -61,6 +65,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        birthday = source.getBirthday().toString();
         freeTimes.addAll(source.getFreeTimes().stream()
                 .map(JsonAdaptedFreeTime::new)
                 .collect(Collectors.toList()));
@@ -117,9 +122,19 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (birthday == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Birthday"));
+        }
+        if (!Birthday.isValidBirthday(birthday)) {
+            throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
+        }
+        final Birthday modelBirthday = new Birthday(birthday);
+
         final Set<FreeTime> modelFreeTimes = new HashSet<>(personFreeTimes);
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelFreeTimes, modelTags);
+
+        System.out.println(modelBirthday);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelFreeTimes, modelTags);
     }
 
 }

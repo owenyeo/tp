@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FREETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -42,6 +43,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_FREETIME_MONDAY = "Monday 1200 1300";
     public static final String VALID_FREETIME_TUESDAY = "Tuesday 1330 1500";
+    public static final String VALID_BIRTHDAY_AMY = "2000-01-01";
+    public static final String VALID_BIRTHDAY_BOB = "2000-02-02";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -51,6 +54,8 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
+    public static final String BIRTHDAY_DESC_AMY = " " + PREFIX_BIRTHDAY + VALID_BIRTHDAY_AMY;
+    public static final String BIRTHDAY_DESC_BOB = " " + PREFIX_BIRTHDAY + VALID_BIRTHDAY_BOB;
     public static final String FREETIME_DESC_MONDAY = " " + PREFIX_FREETIME + VALID_FREETIME_MONDAY;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
@@ -59,6 +64,7 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_BIRTHDAY_DESC = " " + PREFIX_BIRTHDAY; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_FREETIME_DESC = " " + PREFIX_FREETIME
             + "2500"; //empty string not allowed for free times
@@ -74,16 +80,20 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withFreeTimes(VALID_FREETIME_MONDAY).withTags(VALID_TAG_FRIEND).build();
+                .withBirthday(VALID_BIRTHDAY_AMY).withFreeTimes(VALID_FREETIME_MONDAY)
+                .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withFreeTimes(VALID_FREETIME_TUESDAY).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withBirthday(VALID_BIRTHDAY_BOB).withFreeTimes(VALID_FREETIME_TUESDAY)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         DESC_USER_AMY = new EditUserDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withFreeTimes(VALID_FREETIME_MONDAY).withTags(VALID_TAG_FRIEND).build();
+                .withBirthday(VALID_BIRTHDAY_AMY).withFreeTimes(VALID_FREETIME_MONDAY)
+                .withTags(VALID_TAG_FRIEND).build();
         DESC_USER_BOB = new EditUserDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withFreeTimes(VALID_FREETIME_TUESDAY).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withBirthday(VALID_BIRTHDAY_BOB).withFreeTimes(VALID_FREETIME_TUESDAY)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**

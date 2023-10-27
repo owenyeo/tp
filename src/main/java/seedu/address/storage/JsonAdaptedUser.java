@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -31,6 +32,7 @@ class JsonAdaptedUser {
     private final String phone;
     private final String email;
     private final String address;
+    private final String birthday;
     private final List<JsonAdaptedFreeTime> freeTimes = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedDatedEvent> datedEvents = new ArrayList<>();
@@ -41,6 +43,7 @@ class JsonAdaptedUser {
     @JsonCreator
     public JsonAdaptedUser(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                           @JsonProperty("birthday") String birthday,
             @JsonProperty("freeTimes") List<JsonAdaptedFreeTime> freeTimes,
             @JsonProperty("tags") List<JsonAdaptedTag> tags,
             @JsonProperty("datedEvents") List<JsonAdaptedDatedEvent> datedEvents) {
@@ -48,6 +51,7 @@ class JsonAdaptedUser {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.birthday = birthday;
         if (freeTimes != null) {
             this.freeTimes.addAll(freeTimes);
         }
@@ -68,6 +72,7 @@ class JsonAdaptedUser {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        birthday = source.getBirthday().toString();
         freeTimes.addAll(source.getFreeTimes().stream()
                 .map(JsonAdaptedFreeTime::new)
                 .collect(Collectors.toList()));
@@ -132,10 +137,21 @@ class JsonAdaptedUser {
         }
         final Address modelAddress = new Address(address);
 
+        if (birthday == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Birthday.class.getSimpleName()));
+        }
+        if (!Birthday.isValidBirthday(birthday)) {
+            throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
+        }
+        final Birthday modelBirthday = new Birthday(birthday);
+
         final Set<FreeTime> modelFreeTimes = new HashSet<>(personFreeTimes);
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final ArrayList<DatedEvent> modelDatedEvents = new ArrayList<>(personDatedEvents);
-        return new User(modelName, modelPhone, modelEmail, modelAddress, modelFreeTimes, modelTags, modelDatedEvents);
+
+        return new User(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelFreeTimes,
+                modelTags, modelDatedEvents);
     }
 
 }

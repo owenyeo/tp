@@ -49,6 +49,10 @@ public class EditPersonDescriptorTest {
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
         assertNotEquals(DESC_AMY, editedAmy);
 
+        // different birthday -> return false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withBirthday("1990-01-01").build();
+        assertNotEquals(DESC_AMY, editedAmy);
+
         // different free times -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY)
                 .withFreeTimes(VALID_FREETIME_MONDAY, VALID_FREETIME_TUESDAY).build();
@@ -73,6 +77,7 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getName().orElse(null) + ", phone="
                 + editPersonDescriptor.getPhone().orElse(null) + ", email="
                 + editPersonDescriptor.getEmail().orElse(null) + ", address="
+                + editPersonDescriptor.getBirthday().orElse(null) + ", birthday="
                 + editPersonDescriptor.getAddress().orElse(null) + ", free times="
                 + editPersonDescriptor.getFreeTimes().orElse(null) + ", tags="
                 + editPersonDescriptor.getTags().orElse(null) + "}";
@@ -86,7 +91,8 @@ public class EditPersonDescriptorTest {
                 + editPersonDescriptor.getName().orElse(null) + ", phone="
                 + editPersonDescriptor.getPhone().orElse(null) + ", email="
                 + editPersonDescriptor.getEmail().orElse(null) + ", address="
-                + editPersonDescriptor.getAddress().orElse(null) + ", free times="
+                + editPersonDescriptor.getAddress().orElse(null) + ", birthday="
+                + editPersonDescriptor.getBirthday().orElse(null) + ", free times="
                 + editPersonDescriptor.getFreeTimes().orElse(null) + ", tags="
                 + editPersonDescriptor.getTags().orElse(null) + "}";
         assertEquals(expected, editPersonDescriptor.toString());
