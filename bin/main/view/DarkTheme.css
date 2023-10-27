@@ -350,3 +350,38 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#freeTimes {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#freeTimes .label {
+    -fx-text-fill: white;
+    -fx-background-color: #6b358c;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#userProfilePlaceholder .label {
+    -fx-text-fill: white;
+}
+
+.ListView {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-text-fill: #010504;
+}
+
+#selectedFriendPlaceholder .label {
+    -fx-text-fill: white;
+}
+
+.display_small_label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-text-fill: #010504;
+}
+

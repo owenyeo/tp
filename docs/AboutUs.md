@@ -35,7 +35,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/kristayeo)] [[portfolio](team/johndoe.md)]
 
-* Role: Developer
+* Role: UI
 * Responsibilities: Data
 
 ### Owen Yeo Le Yang

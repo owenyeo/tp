@@ -42,9 +42,9 @@ Given below is a quick overview of main components and how they interact with ea
 
 The bulk of the app's work is done by the following four components:
 
-* [**`UI`**](#ui-component): The UI of the App.
+* [**`UI`**](#ui-component): The UI of TimetaBRO.
 * [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
+* [**`Model`**](#model-component): Holds the data of TimetaBRO in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
@@ -70,11 +70,13 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+**Description:**
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The `UI` component manages the user interface of TimetaBRO so it responds to any command to user inputs or action accordingly.
+It uses the JavaFx Ui framework.
+The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+**Functionality:**
 
 The `UI` component,
 
@@ -82,6 +84,12 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+**Component Structure:**
+
+![Structure of the UI Component](images/UiClassDiagram.png)
+
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 ### Logic component
 
@@ -257,29 +265,46 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage university life, social interactions, and schedule
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage contacts & schedule faster than a typical mouse/GUI-driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​      | I want to …​                                                                       | So that I can…​                                                            |
+|----------|--------------|------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
+| `* * *`  | new user     | see a welcoming popup when i first open the app                                    | navigate the app easily and fill up my own details                         |
+| `* * *`  | user         | add contacts to my list of friends using information like name and contact details | identify them more easily                                                  |
+| `* * *`  | user         | view my list of friends                                                            | see all my friends in a glance                                             |  
+| `* * *`  | user         | edit details of my friends                                                         | keep their information up to date or change any wrongly filled information |
+| `* * *`  | user         | search for specific friend                                                         | find their information more easily                                         |
+| `* * *`  | user         | delete friends from my list of friends                                             | remove people who are no longer my friends and not needed in the list      |
+| `* * *`  | student      | add my timetable to the app                                                        | easily access and keep track of my own timetable                           |
+| `* * *`  | student      | add my friend's timetable to the app                                               | keep track of my friends                                                   |
+| `* * *`  | student      | identify common free time slots with friends                                       | organise meals or other social activities with them                        |
+| `* * *`  | student      | set reminders about events                                                         | be well-prepared and organised for all my commitments                      |
+| `* * *`  | student      | create events                                                                      | keep track of important commitments and activities                         |
+| `* * *`  | busy student | receive reminders about events                                                     | remember any upcoming events                                               |
+| `* * *`  | busy student | receive reminders about my friends' birthdays                                      | plan something for their birthday                                          |
+| `* *`    | student      | edit my timetable                                                                  | update changes in my timetable                                             |
+| `* *`    | student      | view my own timetable                                                              | plan my day and easily view my commitments                                 |
+| `* *`    | student      | view my friends' timetables                                                        | know more about their day                                                  |
+| `* *`    | student      | visually compare my timetable with that of my friends                              | quickly identify overlaps or free times                                    |
+| `* *`    | student      | identify common modules with my friends                                            | attend classes with them                                                   |
+| `* *`    | student      | edit events                                                                        | update any change in event details                                         |
+| `*`      | student      | give my friends nicknames and set their profile pictures in my list                | personalise and easily identify them                                       |
+| `*`      | student      | set my own profile picture                                                         | personalise my own profile                                                 |
+| `*`      | student      | add friends to events                                                              | remember who is attending events                                           |
+| `*`      | student      | create friend groups                                                               | easily manage and view schedules for specific circles of friends           |
+| `*`      | student      | see combined timetables of multiple friends                                        | find common free time visually                                             |
+| `*`      | student      | add notes to events                                                                | remember additional information about the event                            |
 
 ### Use cases
 
@@ -368,6 +393,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+
 **Use case: Check for common free times with friends**
 
 **MSS**
@@ -388,17 +414,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 5a. No contacts in User's address book has common free times with user
 
 
-
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse. 
+3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  Should not have a latency of more than 2 seconds to ensure optimal user experience
 5.  Should be able to hold up to 10 modules per person without noticeable detriments to the performance of the app
 6.  Should ensure the integrity of user data, preventing any data corruption or loss during normal usage.
 7.  Should implement appropriate security measures to protect user data from unauthorized access or tampering.
-8.  Should be designed with accessibility in mind, ensuring that it is usable by individuals with disabilities, including those who rely on screen readers or keyboard navigation. 
+8.  Should be designed with accessibility in mind, ensuring that it is usable by individuals with disabilities, including those who rely on screen readers or keyboard navigation.
 9.  Should be able to handle a growing number of contacts without a significant decrease in performance.
 
 *{More to be added}*
@@ -407,6 +432,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Performance**: Speed at which the app completes queries.
+* **Tampering**: Modifying data without permission from the owner of said data.
+* **normal usage**: Day-to-day usage of the app without any errors occurring.
+* **Optimal user experience**: User can utilise all functionality without bugs and lag.
 
 --------------------------------------------------------------------------------------------------------------------
 
