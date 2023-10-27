@@ -120,6 +120,34 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Finding common free times with friend(s) : `cft`
+
+Finds friend(s) with the same free times as you.
+
+Format: `cft [n/NAME]`
+
+* Finds common free times with friend of the specified `NAME`.
+* Finds common free times with **all friends** in the list if `NAME` is not included.
+
+Successful Command:
+
+Found common free time with friend. 
+`Here are the contacts with the same free time as you:` 
+- `Andre [Monday 1230 1300]`
+- `Owen [Sunday 1200 1400]`
+
+You have no free time: `You have no free time!`
+
+No common free times with friends: `You have no contacts with the same free time as you!`
+
+Unsuccessful Command:
+
+Displays an error message
+
+Examples:
+* `cft` lists all friends .
+* `cft n/Betsy` finds people with the name `Betsy` and displays the common free times with this list.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from TimetaBRO.
@@ -169,11 +197,12 @@ If your changes to the data file makes its format invalid, TimetaBRO will discar
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                                                                         |
-|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `​add n/NAME u/NICKNAME p/PHONE_NUMBER t/TELEGRAM_HANDLE e/EMAIL [m/MODULE /from START_TIME /to END_TIME /day DAY] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 t/johndoe e/johnd@example.com m/CS2103T /from 1200 /to 1300 /day Wednesday t/police` |
-| **Clear**  | `clear`                                                                                                                                                                                                                                                  |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                      |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [t/TELEGRAM_HANDLE] [e/EMAIL] [m/MODULE /from START_TIME /to END_TIME /day DAY] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                    |
-| **List**   | `list`                                                                                                                                                                                                                                                   |
-| **Help**   | `help`                                                                                                                                                                                                                                                   |
+| Action             | Format, Examples                                                                                                                                                                                                                                         |
+|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**            | `​add n/NAME u/NICKNAME p/PHONE_NUMBER t/TELEGRAM_HANDLE e/EMAIL [m/MODULE /from START_TIME /to END_TIME /day DAY] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 t/johndoe e/johnd@example.com m/CS2103T /from 1200 /to 1300 /day Wednesday t/police` |
+| **Clear**          | `clear`                                                                                                                                                                                                                                                  |
+| **Delete**         | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                      |
+| **Edit**           | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [t/TELEGRAM_HANDLE] [e/EMAIL] [m/MODULE /from START_TIME /to END_TIME /day DAY] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                    |
+| **List**           | `list`                                                                                                                                                                                                                                                   |
+| **Help**           | `help`                                                                                                                                                                                                                                                   |
+| **CommonFreeTime** | `cft [n/NAME]`                                                                                                                                                                                                                                           |
