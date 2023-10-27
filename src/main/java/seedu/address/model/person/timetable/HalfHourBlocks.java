@@ -57,6 +57,7 @@ public class HalfHourBlocks implements Comparable<HalfHourBlocks> {
 
     @Override
     public int compareTo(HalfHourBlocks other) {
+        assert(other.equals(other));
         return Integer.compare(this.startHalfHour, other.startHalfHour);
     }
 
