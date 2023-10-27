@@ -394,6 +394,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 
+**Use case: Check for common free times with friends**
+
+**MSS**
+
+1. User requests to list persons
+2. AddressBook shows a list of persons
+3. User requests for common free times either with a specific friend or entire address book
+4. If user requests for common free times with a specific friend, AddressBook shows the friend's free times.
+5. If user requests for common free times with entire address book, AddressBook shows list of friends with common free times, and their associated common free times
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty
+* 4a. Friend has no common free time with User
+* 4b. Friend name specified by user does not exist
+* 5a. No contacts in User's address book has common free times with user
+
 
 ### Non-Functional Requirements
 
