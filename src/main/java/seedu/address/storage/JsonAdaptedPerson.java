@@ -134,7 +134,7 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         System.out.println(modelBirthday);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelFreeTimes, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelTags);
     }
 
 }

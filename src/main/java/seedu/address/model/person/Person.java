@@ -27,19 +27,20 @@ public class Person {
     // Data fields
     private final Address address;
     private final Birthday birthday;
-    private final Schedule schedule = new Schedule();
+    private final Schedule schedule;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Birthday birthday, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Birthday birthday, Schedule schedule, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, birthday, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.birthday = birthday;
+        this.schedule = schedule;
         this.tags.addAll(tags);
     }
 
@@ -52,6 +53,7 @@ public class Person {
         this.email = new Email("me@example.com");
         this.address = new Address("Blk 436 Serangoon Gardens Street 26, #16-43");
         this.birthday = new Birthday("2000-01-01");
+        this.schedule = new Schedule();
     }
 
     public Name getName() {
@@ -71,6 +73,10 @@ public class Person {
     }
     public Birthday getBirthday() {
         return birthday;
+    }
+
+    public Schedule getSchedule() {
+        return schedule;
     }
 
     /**
