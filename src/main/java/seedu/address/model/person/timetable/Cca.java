@@ -3,13 +3,22 @@ package seedu.address.model.person.timetable;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-//guarantee immutability
+/**
+ * Represents a Co-Curricular Activity (CCA) in the address book.
+ * Guarantees: immutability.
+ */
 public class Cca extends TimeBlock {
     private static final String MESSAGE_CONSTRAINTS =
             "Cca name should only contain alphanumeric characters and spaces, and it should not be blank";
     private static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     private final String ccaName;
 
+    /**
+     * Constructs a CCA object.
+     *
+     * @param name Name of the CCA.
+     * @param timeBlockString String representation of the time block.
+     */
     public Cca(String name, String timeBlockString) {
         super(timeBlockString);
 
@@ -19,6 +28,12 @@ public class Cca extends TimeBlock {
         this.ccaName = name;
     }
 
+    /**
+     * Factory method to create a new CCA object.
+     *
+     * @param unparsedInput The input string containing CCA details.
+     * @return A new CCA object.
+     */
     public static Cca newCca(String unparsedInput) {
         requireNonNull(unparsedInput);
 
@@ -40,7 +55,7 @@ public class Cca extends TimeBlock {
         for (int i = 0; i < parts.length - 3; i++) {
             nameBuilder.append(parts[i]);
             if (i < parts.length - 4) {
-                nameBuilder.append(" ");  // Add space between words in the CCA name
+                nameBuilder.append(" "); // Add space between words in the CCA name
             }
         }
         String name = nameBuilder.toString();
@@ -56,11 +71,22 @@ public class Cca extends TimeBlock {
         return new Cca(name, timeBlockString);
     }
 
-    //@Override
+    /**
+     * Checks if the current TimeBlock object is a CCA.
+     *
+     * @return Always true for Cca objects.
+     */
+    @Override
     public boolean isCca() {
         return true;
     }
 
+    /**
+     * Validates if the given CCA name is in the correct format.
+     *
+     * @param test The CCA name to be tested.
+     * @return True if the name is valid, false otherwise.
+     */
     public static boolean isValidCcaName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
@@ -75,15 +101,19 @@ public class Cca extends TimeBlock {
         return ccaName + " " + super.toString();
     }
 
+    /**
+     * Converts the CCA object to its JSON string representation.
+     *
+     * @return JSON string representation of the CCA.
+     */
     public String toJsonString() {
-        StringBuilder jsonBuilder = new StringBuilder();
 
-        jsonBuilder.append("{");
-        jsonBuilder.append("\"ccaName\": \"").append(ccaName).append("\",");
-        jsonBuilder.append("\"timeBlock\": \"").append(super.toString()).append("\"");
-        jsonBuilder.append("}");
+        String jsonBuilder = "{" +
+                "\"ccaName\": \"" + ccaName + "\"," +
+                "\"timeBlock\": \"" + super.toString() + "\"" +
+                "}";
 
-        return jsonBuilder.toString();
+        return jsonBuilder;
     }
 
 }

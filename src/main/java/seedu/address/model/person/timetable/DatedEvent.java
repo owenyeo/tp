@@ -24,7 +24,7 @@ public class DatedEvent extends TimeBlock {
                     + "- The second 'HHMM' represents the ending time (e.g., '1730' for 05:30 PM).\n"
                     + "- y/n represents whether you want a reminder for this event.";
     public static final String DATE_TIME_VALIDATION_REGEX = "^\\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01])$";
-    protected static final String dateTimeFormatterPattern = "yyyy-MM-dd";
+    protected static final String DATE_TIME_FORMATTER_PATTERN = "yyyy-MM-dd";
     private final String name;
     private final LocalDate date;
     private final boolean hasReminder;
@@ -41,10 +41,28 @@ public class DatedEvent extends TimeBlock {
         requireNonNull(name);
         checkArgument(isValidDateTimeString(dateString), MESSAGE_CONSTRAINTS);
         this.name = name;
-        this.date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern(dateTimeFormatterPattern));
+        this.date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER_PATTERN));
         this.hasReminder = reminder;
     }
 
+    /**
+     * Factory method to create a new DatedEvent object from a given unparsed input string.
+     *
+     * The expected format for the input is: "EVENT_NAME DATE YYYY-MM-DD START_TIME END_TIME REMINDER_STATUS"
+     * Where:
+     * <ul>
+     *   <li>EVENT_NAME is the name of the event and can contain spaces.</li>
+     *   <li>DATE in 'YYYY-MM-DD' format represents the date of the event.</li>
+     *   <li>START_TIME and END_TIME in 'HHMM' format represent the start and end times of the event respectively.</li>
+     *   <li>REMINDER_STATUS is 'y' if a reminder is set for the event, 'n' otherwise.</li>
+     * </ul>
+     *
+     * Example input: "meet Andre 2023-10-10 1030 1130 y"
+     *
+     * @param unparsedInput The input string containing DatedEvent details.
+     * @return A new DatedEvent object.
+     * @throws IllegalArgumentException If the given input does not adhere to the expected format.
+     */
     public static DatedEvent newDatedEvent(String unparsedInput) { // e.g., "meet Andre 2023-10-10 1030 1130 y"
         requireNonNull(unparsedInput);
 
@@ -65,7 +83,7 @@ public class DatedEvent extends TimeBlock {
         checkArgument(isValidDateTimeString(dateString), MESSAGE_CONSTRAINTS);
 
         // Parse the date
-        LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern(dateTimeFormatterPattern));
+        LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER_PATTERN));
         String dayOfWeek = date.getDayOfWeek().name();
 
         // Create the time block
@@ -92,7 +110,7 @@ public class DatedEvent extends TimeBlock {
     public String toJsonString() {
         return "{"
                 + "\"name\": \"" + name + "\","
-                + "\"date\": \"" + date.format(DateTimeFormatter.ofPattern(dateTimeFormatterPattern)) + "\","
+                + "\"date\": \"" + date.format(DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER_PATTERN)) + "\","
                 + "\"timeBlock\": \"" + super.toString() + "\","
                 + "\"reminder\": " + hasReminder
                 + "}";
@@ -118,7 +136,7 @@ public class DatedEvent extends TimeBlock {
     @Override
     public String toString() {
         return "Event Name: " + name + "\n"
-                + "Date: " + date.format(DateTimeFormatter.ofPattern(dateTimeFormatterPattern)) + "\n"
+                + "Date: " + date.format(DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER_PATTERN)) + "\n"
                 + "Time: " + super.toString()
                 + "Reminder: " + (hasReminder ? "Yes" : "No");
     }

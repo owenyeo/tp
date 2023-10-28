@@ -3,8 +3,6 @@ package seedu.address.model.person.timetable;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.ArrayList;
-
 /**
  * Represents a Module in the application.
  * Contains information about the module name and its timings.
@@ -17,6 +15,12 @@ public class Module extends TimeBlock {
     private static final String VALIDATION_REGEX = "^[a-zA-Z]{2}\\d{4}$";
     private final String moduleName;
 
+    /**
+     * Constructs a {@code Module} with the specified name and time block.
+     *
+     * @param name The name of the module. Should follow the format described in MESSAGE_CONSTRAINTS.
+     * @param timeBlockString The time block for the module. Expected format: DAY HHMM HHMM.
+     */
     public Module(String name, String timeBlockString) { //name = name, timeBlockString = DAY HHMM HHMM
         super(timeBlockString);
         requireNonNull(name);
@@ -25,6 +29,14 @@ public class Module extends TimeBlock {
         this.moduleName = name;
     }
 
+    /**
+     * Factory method to create a new Module object from a given unparsed input string.
+     * Expected format for the input string: NAME DAY HHMM HHMM.
+     *
+     * @param unparsedInput The input string containing module details.
+     * @return A new Module object.
+     * @throws IllegalArgumentException If the given input does not adhere to the expected format.
+     */
     public static Module newModule(String unparsedInput) {
         requireNonNull(unparsedInput);
 
@@ -50,12 +62,24 @@ public class Module extends TimeBlock {
         return new Module(name, timeBlockString);
     }
 
+    /**
+     * Creates a new Module object with the given name while retaining the timings from the original module.
+     *
+     * @param newName The new name for the module.
+     * @return A new Module object with the updated name.
+     * @throws IllegalArgumentException If the given new name does not adhere to the module naming constraints.
+     */
     public Module editName(String newName) {
         requireNonNull(newName);
         checkArgument(isValidModuleName(newName), MESSAGE_CONSTRAINTS);
         return new Module(newName, timeBlockString);
     }
 
+    /**
+     * Returns the name of the module.
+     *
+     * @return The name of the module.
+     */
     public String getName() {
         return moduleName;
     }

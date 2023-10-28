@@ -1,15 +1,14 @@
 package seedu.address.model.person.timetable;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.model.person.Person;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a MeetUpEvent in the application.
@@ -33,6 +32,27 @@ public class MeetUpEvent extends DatedEvent {
         this.friend = friend;
     }
 
+    /**
+     * Factory method to create a new MeetUpEvent object from a given unparsed input string and a Person object
+     * representing a friend.
+     *
+     * The expected format for the input string is: "EVENT_NAME DATE YYYY-MM-DD START_TIME END_TIME REMINDER_STATUS"
+     * Where:
+     * <ul>
+     *   <li>EVENT_NAME is the name of the meetup event and can contain spaces.</li>
+     *   <li>DATE in 'YYYY-MM-DD' format represents the date of the meetup event.</li>
+     *   <li>START_TIME and END_TIME in 'HHMM' format represent the start and
+     *   end times of the meetup event respectively.</li>
+     *   <li>REMINDER_STATUS is 'y' if a reminder is set for the meetup event, 'n' otherwise.</li>
+     * </ul>
+     *
+     * Example input: "lunch with Alice 2023-11-10 1200 1330 y"
+     *
+     * @param unparsedInput The input string containing MeetUpEvent details.
+     * @param friend The Person object representing a friend for the meetup.
+     * @return A new MeetUpEvent object.
+     * @throws IllegalArgumentException If the given input does not adhere to the expected format.
+     */
     public static MeetUpEvent newMeetUpEvent(String unparsedInput, Person friend) {
         requireNonNull(unparsedInput);
 
@@ -53,7 +73,7 @@ public class MeetUpEvent extends DatedEvent {
         checkArgument(isValidDateTimeString(dateString), MESSAGE_CONSTRAINTS);
 
         // Parse the date
-        LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern(dateTimeFormatterPattern));
+        LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER_PATTERN));
         String dayOfWeek = date.getDayOfWeek().name();
 
         // Create the time block
@@ -64,10 +84,9 @@ public class MeetUpEvent extends DatedEvent {
 
     @Override
     public String toString() {
-        StringBuilder str = new StringBuilder();
-        str.append(super.toString()).append("\n");
-        str.append("Meeting: ").append(friend.getName());
+        String str = super.toString() + "\n" +
+                "Meeting: " + friend.getName();
 
-        return str.toString();
+        return str;
     }
 }
