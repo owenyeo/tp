@@ -46,6 +46,21 @@ public class DatedEvent extends TimeBlock {
     }
 
     /**
+     * Initializes a new DatedEvent with the provided details.
+     *
+     * @param name The name of the event.
+     * @param timeBlockString The time block for the event.
+     * @param date The date of the event.
+     */
+    public DatedEvent(String name, String timeBlockString, LocalDate date, boolean reminder) {
+        super(timeBlockString);
+        requireNonNull(name);
+        this.name = name;
+        this.date = date;
+        this.hasReminder = reminder;
+    }
+
+    /**
      * Factory method to create a new DatedEvent object from a given unparsed input string.
      *
      * The expected format for the input is: "EVENT_NAME DATE YYYY-MM-DD START_TIME END_TIME REMINDER_STATUS"
@@ -141,16 +156,12 @@ public class DatedEvent extends TimeBlock {
                 + "Reminder: " + (hasReminder ? "Yes" : "No");
     }
 
-    public String getName() {
-        return name;
+    public DatedEvent setReminder() {
+        return new DatedEvent(name, timeBlockString, date, true);
     }
 
-    public void setReminder() {
-        hasReminder = true;
-    }
-
-    public void removeReminder() {
-        hasReminder = false;
+    public DatedEvent removeReminder() {
+        return new DatedEvent(name, timeBlockString, date, false);
     }
 
 }
