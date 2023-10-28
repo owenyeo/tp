@@ -15,6 +15,7 @@ public class Schedule {
     private final List<Module> modulesList = new ArrayList<>();
     private final List<Cca> ccasList = new ArrayList<>();
     private final List<DatedEvent> datedEventsList = new ArrayList<>();
+    private final List<MeetUpEvent> meetUpEventsList = new ArrayList<>();
 
     public Schedule() {}
     
@@ -46,6 +47,12 @@ public class Schedule {
                 thisWeeksSchedule.add(event);
             }
         }
+        for (MeetUpEvent event : meetUpEventsList) {
+            if (event.getDate().isAfter(startOfThisWeek.minusDays(1))
+                    && event.getDate().isBefore(endOfThisWeek.plusDays(1))) {
+                thisWeeksSchedule.add(event);
+            }
+        }
         return thisWeeksSchedule;
     }
 
@@ -68,6 +75,27 @@ public class Schedule {
             }
         }
         return thisWeeksDatedEventsWithReminder;
+    }
+
+    /**
+     * Retrieves the list of meet up events scheduled for the current week that have reminders.
+     *
+     * @return A list of meet up events with reminders for the current week.
+     */
+    public List<MeetUpEvent> getThisWeeksMeetUpEventsWithReminder() {
+        LocalDate today = LocalDate.now();
+        LocalDate startOfThisWeek = today.minusDays(today.getDayOfWeek().getValue() - DayOfWeek.MONDAY.getValue());
+        LocalDate endOfThisWeek = startOfThisWeek.plusDays(6);
+
+        List<MeetUpEvent> thisWeeksMeetUpEventsWithReminder = new ArrayList<>();
+        for (MeetUpEvent event : meetUpEventsList) {
+            if (event.getDate().isAfter(startOfThisWeek.minusDays(1))
+                    && event.getDate().isBefore(endOfThisWeek.plusDays(1))
+                    && event.hasReminder()) { // This checks if the event has a reminder set.
+                thisWeeksMeetUpEventsWithReminder.add(event);
+            }
+        }
+        return thisWeeksMeetUpEventsWithReminder;
     }
 
     /**
@@ -181,6 +209,15 @@ public class Schedule {
     }
 
     /**
+     * Returns an unmodifiable list of meet up events in the schedule.
+     *
+     * @return List of meet up events.
+     */
+    public List<MeetUpEvent> getMeetUpEventsList() {
+        return Collections.unmodifiableList(meetUpEventsList);
+    }
+
+    /** 
      * Returns an unmodifiable list of modules in the schedule.
      *
      * @return List of modules.
@@ -323,8 +360,7 @@ public class Schedule {
      * @param meetUpEventString String representation of the meet-up event.
      */
     public void addMeetUpEvent(String meetUpEventString, Person friend) {
-        // Assuming you have a static factory method in MeetUpEvent similar to other classes
-        datedEventsList.add(MeetUpEvent.newMeetUpEvent(meetUpEventString, friend));
+        meetUpEventsList.add(MeetUpEvent.newMeetUpEvent(meetUpEventString, friend));
     }
 
     /**
@@ -333,6 +369,6 @@ public class Schedule {
      * @param meetUpEventName Name of the meet-up event to be removed.
      */
     public void deleteMeetUpEvent(String meetUpEventName) {
-        datedEventsList.removeIf(event -> event instanceof MeetUpEvent && event.getName().equals(meetUpEventName));
+        meetUpEventsList.removeIf(event -> event.getName().equals(meetUpEventName));
     }
 }
