@@ -23,9 +23,8 @@ public class User extends Person {
     /**
      * Every field must be present and not null.
      */
-    public User(Name name, Phone phone, Email email, Address address, Birthday birthday,
-            Set<FreeTime> freeTimes, Set<Tag> tags, ArrayList<DatedEvent> datedEvents) {
-        super(name, phone, email, address, birthday, freeTimes, tags);
+    public User(Name name, Phone phone, Email email, Address address, Birthday birthday, Set<Tag> tags, ArrayList<DatedEvent> datedEvents) {
+        super(name, phone, email, address, birthday, tags);
         this.datedEvents = datedEvents;
     };
 
@@ -37,8 +36,7 @@ public class User extends Person {
      * Constructor for User with a person and dated events.
      */
     public User(Person user, ArrayList<DatedEvent> datedEvents) {
-        super(user.getName(), user.getPhone(), user.getEmail(), user.getAddress(), user.getBirthday(),
-                user.getFreeTimes(), user.getTags());
+        super(user.getName(), user.getPhone(), user.getEmail(), user.getAddress(), user.getBirthday(), user.getTags());
         this.datedEvents = datedEvents;
     }
 
@@ -46,8 +44,7 @@ public class User extends Person {
      * Constructor for User with a person.
      */
     public User(User user) {
-        super(user.getName(), user.getPhone(), user.getEmail(), user.getAddress(), user.getBirthday(),
-                user.getFreeTimes(), user.getTags());
+        super(user.getName(), user.getPhone(), user.getEmail(), user.getAddress(), user.getBirthday(), user.getTags());
         this.datedEvents = user.getDatedEvents();
     }
 

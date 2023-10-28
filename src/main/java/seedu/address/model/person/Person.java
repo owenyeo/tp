@@ -4,11 +4,13 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.timetable.FreeTime;
+import seedu.address.model.person.timetable.Schedule;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,21 +27,19 @@ public class Person {
     // Data fields
     private final Address address;
     private final Birthday birthday;
-    private final Set<FreeTime> freeTimes = new HashSet<>();
+    private final Schedule schedule = new Schedule();
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Birthday birthday,
-                  Set<FreeTime> freeTimes, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, birthday, freeTimes, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Birthday birthday, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, birthday, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.birthday = birthday;
-        this.freeTimes.addAll(freeTimes);
         this.tags.addAll(tags);
     }
 
@@ -77,8 +77,8 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<FreeTime> getFreeTimes() throws NullPointerException {
-        return Collections.unmodifiableSet(freeTimes);
+    public List<FreeTime> getFreeTimes() throws NullPointerException {
+        return schedule.getThisWeeksFreeTime();
     }
 
     /**
@@ -125,14 +125,14 @@ public class Person {
                 && email.equals(otherPerson.email)
                 && address.equals(otherPerson.address)
                 && birthday.equals(otherPerson.birthday)
-                && freeTimes.equals(otherPerson.freeTimes)
+                && schedule.equals(otherPerson.schedule)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, birthday, freeTimes, tags);
+        return Objects.hash(name, phone, email, address, birthday, schedule, tags);
     }
 
     @Override
@@ -143,7 +143,7 @@ public class Person {
                 .add("email", email)
                 .add("address", address)
                 .add("birthday", birthday)
-                .add("free times", freeTimes)
+                .add("free times", schedule)
                 .add("tags", tags)
                 .toString();
     }
