@@ -42,7 +42,7 @@ public class JsonAdaptedDatedEvent {
         if (!DatedEvent.isValidDateTimeString(datedEvent)) {
             throw new IllegalValueException(DatedEvent.MESSAGE_CONSTRAINTS);
         }
-        return new DatedEvent(datedEvent);
+        return DatedEvent.newDatedEvent(datedEvent);
     }
 }
 

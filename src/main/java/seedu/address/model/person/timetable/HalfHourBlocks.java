@@ -90,19 +90,10 @@ public class HalfHourBlocks implements Comparable<HalfHourBlocks> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        int startIndex = 0;
-        int endIndex = 0;
-        for (int i = 0; i < BLOCKS_IN_DAY; i++) {
-            if ((blocks[i] && blocks[i - 1] == false) || blocks[i] && i == 0) {
-                startIndex = i;
-            }
-            if ((blocks[i] && blocks[i + 1] == false) || blocks[i] && i == BLOCKS_IN_DAY - 1) {
-                endIndex = i + 1;
-            }
-        }
-        String startTimeInt = String.format("%04d", startIndex / 2 * 100 + (startIndex % 2) * 30);
-        String endTimeInt = String.format("%04d", endIndex / 2 * 100 + (endIndex % 2) * 30);
+        String startTimeInt = String.format("%04d", startHalfHour / 2 * 100 + (startHalfHour % 2) * 30);
+        String endTimeInt = String.format("%04d", endHalfHour / 2 * 100 + (endHalfHour % 2) * 30);
         sb.append(startTimeInt).append(" ").append(endTimeInt);
+
         return sb.toString();
     }
 }

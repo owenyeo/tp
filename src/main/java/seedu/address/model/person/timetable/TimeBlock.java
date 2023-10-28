@@ -11,7 +11,7 @@ import java.time.DayOfWeek;
  */
 public class TimeBlock implements Comparable<TimeBlock> {
 
-    public static final String MESSAGE_CONSTRAINTS = "Input should be in the format 'DAY HHMM HHMM', \n"
+    public static final String MESSAGE_CONSTRAINTS = "Timing input should be in the format 'DAY HHMM HHMM', \n"
             + "where 'DAY' is a valid day of the week (e.g., Monday, tuesday, WEDNESDAY), \n"
             + "and 'HHMM' represents a valid 24-hour time format in half-hour blocks (e.g., 0000, 1230, 2300). \n"
             + "Day is case-insensitive. The start time must be before the end time.";
@@ -118,6 +118,44 @@ public class TimeBlock implements Comparable<TimeBlock> {
         }
 
         return this.timeBlocks.overlaps(other.timeBlocks);
+    }
+
+    public boolean isModule() {
+        return false;
+    }
+
+    public boolean isCca() {
+        return false;
+    }
+
+    public boolean isFreeTime() {
+        return false;
+    }
+
+    public boolean isDatedEvent() {
+        return false;
+    }
+
+    protected DayOfWeek getDay() {
+        return day;
+    }
+
+    /**
+     * Returns the start time of the TimeBlock in 24H format HHMM.
+     * @return A string representing the start time.
+     */
+    public String getStartTime() {
+        String[] parts = timeBlockString.split(" ");
+        return parts[1];
+    }
+
+    /**
+     * Returns the end time of the TimeBlock in 24H format HHMM.
+     * @return A string representing the end time.
+     */
+    public String getEndTime() {
+        String[] parts = timeBlockString.split(" ");
+        return parts[2];
     }
 
     /**
