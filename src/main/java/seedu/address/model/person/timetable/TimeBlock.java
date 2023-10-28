@@ -57,6 +57,10 @@ public class TimeBlock implements Comparable<TimeBlock> {
         return startTime < endTime;
     }
 
+    public String getTimeBlockString() {
+        return timeBlockString;
+    }
+
     /**
      * Compares this TimeBlock instance with another instance.
      * The comparison is primarily based on the day of the week, followed by the start time, and then the end time.

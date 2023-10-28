@@ -17,6 +17,17 @@ public class Schedule {
     private final List<DatedEvent> datedEventsList = new ArrayList<>();
     private final List<MeetUpEvent> meetUpEventsList = new ArrayList<>();
 
+    public Schedule() {}
+    
+    /**
+     * Creates a new Schedule object.
+     */
+    public Schedule(List<Module> modulesList, List<Cca> ccasList, List<DatedEvent> datedEventsList, List<MeetUpEvent> meetUpEventsList) {
+        this.modulesList.addAll(modulesList);
+        this.ccasList.addAll(ccasList);
+        this.datedEventsList.addAll(datedEventsList);
+        this.meetUpEventsList.addAll(meetUpEventsList);
+    }
     /**
      * Retrieves the list of time blocks scheduled for the current week.
      *
@@ -204,6 +215,24 @@ public class Schedule {
      */
     public List<MeetUpEvent> getMeetUpEventsList() {
         return Collections.unmodifiableList(meetUpEventsList);
+    }
+
+    /** 
+     * Returns an unmodifiable list of modules in the schedule.
+     *
+     * @return List of modules.
+     */
+    public List<Module> getModulesList() {
+        return Collections.unmodifiableList(modulesList);
+    }
+
+    /**
+     * Returns an unmodifiable list of CCAs in the schedule.
+     *
+     * @return List of CCAs.
+     */
+    public List<Cca> getCcasList() {
+        return Collections.unmodifiableList(ccasList);
     }
 
     /**

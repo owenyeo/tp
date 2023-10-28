@@ -17,7 +17,9 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.timetable.FreeTime;
+import seedu.address.model.person.timetable.Schedule;
 import seedu.address.model.tag.Tag;
+import seedu.address.storage.timetable.JsonAdaptedSchedule;
 
 
 /**
@@ -32,8 +34,8 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String birthday;
-    private final List<JsonAdaptedFreeTime> freeTimes = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final JsonAdaptedSchedule schedule;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -41,17 +43,15 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                             @JsonProperty("birthday") String birthday,
-            @JsonProperty("freeTimes") List<JsonAdaptedFreeTime> freeTimes,
+            @JsonProperty("birthday") String birthday,
+            @JsonProperty("schedule") JsonAdaptedSchedule schedule,
             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.birthday = birthday;
-        if (freeTimes != null) {
-            this.freeTimes.addAll(freeTimes);
-        }
+        this.schedule = schedule;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -66,9 +66,8 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         birthday = source.getBirthday().toString();
-        freeTimes.addAll(source.getFreeTimes().stream()
-                .map(JsonAdaptedFreeTime::new)
-                .collect(Collectors.toList()));
+        schedule = new JsonAdaptedSchedule(source.getSchedule());
+        
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -83,11 +82,6 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
-        }
-
-        final List<FreeTime> personFreeTimes = new ArrayList<>();
-        for (JsonAdaptedFreeTime freeTime : freeTimes) {
-            personFreeTimes.add(freeTime.toModelType());
         }
 
         if (name == null) {
@@ -129,12 +123,13 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
         }
         final Birthday modelBirthday = new Birthday(birthday);
-
-        final Set<FreeTime> modelFreeTimes = new HashSet<>(personFreeTimes);
+        if (schedule == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Schedule"));
+        }
+        final Schedule modelSchedule = schedule.toModelType();
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        System.out.println(modelBirthday);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelSchedule, modelTags);
     }
 
 }

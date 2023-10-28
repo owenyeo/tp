@@ -38,9 +38,9 @@ public class SetReminderCommand extends Command {
         if (event.isEmpty()) {
             throw new CommandException(MESSAGE_NO_EVENT);
         } else {
-            event.get().setReminder();
+            model.getUser().setReminder(event.get());
             StringBuilder sb = new StringBuilder(MESSAGE_SET_REMINDER_SUCCESS);
-            sb.append(event.get().getName());
+            sb.append(model.getUser().getDatedEvent(eventName).get().getName());
             return new CommandResult(sb.toString());
         }
     }
