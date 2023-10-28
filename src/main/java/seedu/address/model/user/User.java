@@ -1,6 +1,7 @@
 package seedu.address.model.user;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
@@ -56,6 +57,15 @@ public class User extends Person {
 
     public void setDatedEvents(ArrayList<DatedEvent> datedEvents) {
         this.datedEvents = datedEvents;
+    }
+
+    public Optional<DatedEvent> getDatedEvent(String name) {
+        for (DatedEvent event: datedEvents) {
+            if (event.getName().toLowerCase().equals(name.toLowerCase())) {
+                return Optional.of(event);
+            }
+        }
+        return Optional.empty();
     }
 
 }

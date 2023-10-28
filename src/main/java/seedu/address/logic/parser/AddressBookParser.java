@@ -18,6 +18,8 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RemoveReminderCommand;
+import seedu.address.logic.commands.SetReminderCommand;
 import seedu.address.logic.commands.edit.EditCommand;
 import seedu.address.logic.commands.edit.EditUserCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -82,6 +84,12 @@ public class AddressBookParser {
 
         case EditUserCommand.COMMAND_WORD:
             return new EditUserCommandParser().parse(arguments);
+
+        case SetReminderCommand.COMMAND_WORD:
+            return new SetReminderCommandParser().parse(arguments);
+
+        case RemoveReminderCommand.COMMAND_WORD:
+            return new RemoveReminderCommandParser().parse(arguments);
 
         case CommonFreetimeCommand.COMMAND_WORD:
             return arguments.contains(PREFIX_NAME.toString())

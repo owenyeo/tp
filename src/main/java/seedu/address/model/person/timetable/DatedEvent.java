@@ -135,4 +135,17 @@ public class DatedEvent implements Comparable<DatedEvent> {
                 + "Reminder: " + (hasReminder ? "Enabled" : "Disabled");
 
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setReminder() {
+        hasReminder = true;
+    }
+
+    public void removeReminder() {
+        hasReminder = false;
+    }
+
 }
