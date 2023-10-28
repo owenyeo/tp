@@ -28,6 +28,7 @@ public class DatedEvent extends TimeBlock {
     private final String name;
     private final LocalDate date;
     private final boolean hasReminder;
+    private final String timeBlockString;
 
     /**
      * Initializes a new DatedEvent with the provided details.
@@ -43,6 +44,7 @@ public class DatedEvent extends TimeBlock {
         this.name = name;
         this.date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER_PATTERN));
         this.hasReminder = reminder;
+        this.timeBlockString = timeBlockString;
     }
 
     /**
@@ -135,10 +137,6 @@ public class DatedEvent extends TimeBlock {
         return date;
     }
 
-    public String getName() {
-        return this.name;
-    }
-
     @Override
     public boolean isDatedEvent() {
         return true;
@@ -154,6 +152,14 @@ public class DatedEvent extends TimeBlock {
                 + "Date: " + date.format(DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER_PATTERN)) + "\n"
                 + "Time: " + super.toString()
                 + "Reminder: " + (hasReminder ? "Yes" : "No");
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getTimeBlockString() {
+        return timeBlockString;
     }
 
     public DatedEvent setReminder() {
