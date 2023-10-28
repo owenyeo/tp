@@ -84,8 +84,8 @@ public class MeetUpEvent extends DatedEvent {
 
     @Override
     public String toString() {
-        String str = super.toString() + "\n" +
-                "Meeting: " + friend.getName();
+        String str = super.toString() + "\n"
+                + "Meeting: " + friend.getName();
 
         return str;
     }

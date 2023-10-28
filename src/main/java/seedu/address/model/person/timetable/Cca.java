@@ -108,10 +108,10 @@ public class Cca extends TimeBlock {
      */
     public String toJsonString() {
 
-        String jsonBuilder = "{" +
-                "\"ccaName\": \"" + ccaName + "\"," +
-                "\"timeBlock\": \"" + super.toString() + "\"" +
-                "}";
+        String jsonBuilder = "{"
+                + "\"ccaName\": \"" + ccaName + "\","
+                + "\"timeBlock\": \"" + super.toString() + "\""
+                + "}";
 
         return jsonBuilder;
     }
