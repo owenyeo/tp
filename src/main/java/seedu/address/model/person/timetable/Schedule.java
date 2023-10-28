@@ -1,20 +1,20 @@
 package seedu.address.model.person.timetable;
 
-import seedu.address.model.person.Person;
-
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import seedu.address.model.person.Person;
+
 /**
  * Represents a schedule consisting of modules, CCAs (Co-Curricular Activities), and dated events.
  */
 public class Schedule {
-    List<Module> modulesList = new ArrayList<>();
-    List<Cca> ccasList = new ArrayList<>();
-    List<DatedEvent> datedEventsList = new ArrayList<>();
+    private final List<Module> modulesList = new ArrayList<>();
+    private final List<Cca> ccasList = new ArrayList<>();
+    private final List<DatedEvent> datedEventsList = new ArrayList<>();
 
     /**
      * Retrieves the list of time blocks scheduled for the current week.
@@ -30,7 +30,8 @@ public class Schedule {
         thisWeeksSchedule.addAll(modulesList);
         thisWeeksSchedule.addAll(ccasList);
         for (DatedEvent event : datedEventsList) {
-            if (event.getDate().isAfter(startOfThisWeek.minusDays(1)) && event.getDate().isBefore(endOfThisWeek.plusDays(1))) {
+            if (event.getDate().isAfter(startOfThisWeek.minusDays(1))
+                    && event.getDate().isBefore(endOfThisWeek.plusDays(1))) {
                 thisWeeksSchedule.add(event);
             }
         }

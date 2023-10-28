@@ -131,8 +131,8 @@ Format: `cft [n/NAME]`
 
 Successful Command:
 
-Found common free time with friend. 
-`Here are the contacts with the same free time as you:` 
+Found common free time with friend.
+`Here are the contacts with the same free time as you:`
 - `Andre [Monday 1230 1300]`
 - `Owen [Sunday 1200 1400]`
 
