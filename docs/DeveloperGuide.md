@@ -284,7 +284,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |----------|--------------|------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
 | `* * *`  | new user     | see a welcoming popup when i first open the app                                    | navigate the app easily and fill up my own details                         |
 | `* * *`  | user         | add contacts to my list of friends using information like name and contact details | identify them more easily                                                  |
-| `* * *`  | user         | view my list of friends                                                            | see all my friends in a glance                                             |  
+| `* * *`  | user         | view my list of friends                                                            | see all my friends in a glance                                             |
 | `* * *`  | user         | edit details of my friends                                                         | keep their information up to date or change any wrongly filled information |
 | `* * *`  | user         | search for specific friend                                                         | find their information more easily                                         |
 | `* * *`  | user         | delete friends from my list of friends                                             | remove people who are no longer my friends and not needed in the list      |

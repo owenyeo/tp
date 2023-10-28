@@ -3,77 +3,85 @@ package seedu.address.model.person.timetable;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.ArrayList;
-
 /**
  * Represents a Module in the application.
  * Contains information about the module name and its timings.
  */
-public class Module extends WeeklyEvent {
+public class Module extends TimeBlock {
     private static final String MESSAGE_CONSTRAINTS = "Module Name should be in the format 'AANNNN', \n"
             + "where 'AA' are any two alphabetic characters (e.g., CS, cS, Cs), \n"
             + "and 'NNNN' represents a four-digit number (e.g., 2100, 1001, 0001). \n"
             + "The alphabetic characters are case-insensitive.";
     private static final String VALIDATION_REGEX = "^[a-zA-Z]{2}\\d{4}$";
-    private ArrayList<TimeBlock> moduleTimings;
-    private String moduleName;
+    private final String moduleName;
+
     /**
-     * Initializes a new Module with the provided name and timings.
+     * Constructs a {@code Module} with the specified name and time block.
      *
-     * @param name The name of the module.
-     * @param timeBlocks A list of time blocks representing the module timings.
+     * @param name The name of the module. Should follow the format described in MESSAGE_CONSTRAINTS.
+     * @param timeBlockString The time block for the module. Expected format: DAY HHMM HHMM.
      */
-    public Module(String name, ArrayList<String> timeBlocks) {
+    public Module(String name, String timeBlockString) { //name = name, timeBlockString = DAY HHMM HHMM
+        super(timeBlockString);
         requireNonNull(name);
-        requireNonNull(timeBlocks);
         checkArgument(isValidModuleName(name), MESSAGE_CONSTRAINTS);
 
         this.moduleName = name;
-
-        // Initializing the moduleTimings list
-        this.moduleTimings = new ArrayList<>();
-
-        // Converting each string in timeBlocks to an instance of TimeBlock
-        // and adding it to moduleTimings
-        for (String timeBlockStr : timeBlocks) {
-            TimeBlock timeBlock = new TimeBlock(timeBlockStr);
-            this.moduleTimings.add(timeBlock);
-        }
     }
 
     /**
-     * Adds a new timing to the module's schedule.
+     * Factory method to create a new Module object from a given unparsed input string.
+     * Expected format for the input string: NAME DAY HHMM HHMM.
      *
-     * @param timeBlockString The time block to be added.
+     * @param unparsedInput The input string containing module details.
+     * @return A new Module object.
+     * @throws IllegalArgumentException If the given input does not adhere to the expected format.
      */
-    public void addTiming(String timeBlockString) {
-        requireNonNull(timeBlockString);
-        this.moduleTimings.add(new TimeBlock(timeBlockString));
-    }
+    public static Module newModule(String unparsedInput) {
+        requireNonNull(unparsedInput);
 
-    /**
-     * Removes a timing from the module's schedule.
-     *
-     * @param timeBlockString The time block to be removed.
-     */
-    public void removeTiming(String timeBlockString) {
-        requireNonNull(timeBlockString);
-        for (TimeBlock timeBlock: moduleTimings) {
-            if (timeBlock.toString().equals(timeBlockString)) {
-                this.moduleTimings.remove(timeBlock);
-            }
+        // Split the unparsed input string by whitespace
+        String[] parts = unparsedInput.split("\\s+");
+
+        // Check for valid number of parts
+        if (parts.length != 4) {
+            throw new IllegalArgumentException("Invalid module input format. Expected: NAME DAY HHMM HHMM");
         }
+
+        String name = parts[0];
+        String day = parts[1];
+        String startTime = parts[2];
+        String endTime = parts[3];
+        String timeBlockString = day + " " + startTime + " " + endTime;
+
+        // Check for valid module name format
+        if (!isValidModuleName(name)) {
+            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+        }
+
+        return new Module(name, timeBlockString);
     }
 
     /**
-     * Edits the name of the module.
+     * Creates a new Module object with the given name while retaining the timings from the original module.
      *
      * @param newName The new name for the module.
+     * @return A new Module object with the updated name.
+     * @throws IllegalArgumentException If the given new name does not adhere to the module naming constraints.
      */
-    public void editName(String newName) {
+    public Module editName(String newName) {
         requireNonNull(newName);
         checkArgument(isValidModuleName(newName), MESSAGE_CONSTRAINTS);
-        this.moduleName = newName;
+        return new Module(newName, timeBlockString);
+    }
+
+    /**
+     * Returns the name of the module.
+     *
+     * @return The name of the module.
+     */
+    public String getName() {
+        return moduleName;
     }
 
     /**
@@ -96,53 +104,9 @@ public class Module extends WeeklyEvent {
         return true;
     }
 
-    /**
-     * Checks if the current event is a CCA (Co-curricular activity).
-     *
-     * @return False since it is not a CCA.
-     */
-    @Override
-    public boolean isCca() {
-        return false;
-    }
-
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-
-        // Append the module name
-        builder.append(moduleName);
-        builder.append(": "); // separator between module name and timings
-
-        // Append each TimeBlock's toString value
-        for (TimeBlock timeBlock : moduleTimings) {
-            builder.append(timeBlock.toString());
-            builder.append(", "); // separator between timings
-        }
-
-        // Remove the last comma and space if there are any TimeBlocks
-        if (!moduleTimings.isEmpty()) {
-            builder.setLength(builder.length() - 2);
-        }
-
-        return builder.toString();
-    }
-
-    /**
-     * Retrieves the timings for the module on a specific day of the week.
-     *
-     * @param day The day of the week (e.g., 1 for Monday, 2 for Tuesday, etc.)
-     * @return A list of time blocks when the module takes place on the specified day.
-     */
-    @Override
-    public ArrayList<TimeBlock> getTimingsForDayOfWeek(int day) { //monday is 1, tues is 2, etc.
-        ArrayList<TimeBlock> dayTimings = new ArrayList<>();
-        for (TimeBlock timeBlock : moduleTimings) {
-            if (timeBlock.isOnDay(day)) {
-                dayTimings.add(timeBlock);
-            }
-        }
-        return dayTimings;
+        return moduleName + ": " + super.toString();
     }
 }
