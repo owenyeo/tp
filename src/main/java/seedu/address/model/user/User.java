@@ -68,4 +68,16 @@ public class User extends Person {
         return Optional.empty();
     }
 
+    public void setReminder(DatedEvent event) {
+        datedEvents.add(new DatedEvent(event.getName(), event.getTimeBlockString(),
+                event.getDate().toString(), true));
+        datedEvents.remove(event);
+    }
+
+    public void removeReminder(DatedEvent event) {
+        datedEvents.add(new DatedEvent(event.getName(), event.getTimeBlockString(),
+                event.getDate().toString(), false));
+        datedEvents.remove(event);
+    }
+
 }
