@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Contains information about the module name and its timings.
  */
 public class Module extends TimeBlock {
-    private static final String MESSAGE_CONSTRAINTS = "Module Name should be in the format 'AANNNN', \n"
+    public static final String MESSAGE_CONSTRAINTS = "Module Name should be in the format 'AANNNN', \n"
             + "where 'AA' are any two alphabetic characters (e.g., CS, cS, Cs), \n"
             + "and 'NNNN' represents a four-digit number (e.g., 2100, 1001, 0001). \n"
             + "The alphabetic characters are case-insensitive.";
@@ -90,7 +90,7 @@ public class Module extends TimeBlock {
      * @param test The module name to check.
      * @return true if the module name is valid, false otherwise.
      */
-    private static boolean isValidModuleName(String test) {
+    public static boolean isValidModuleName(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -104,6 +104,12 @@ public class Module extends TimeBlock {
         return true;
     }
 
+    public String toJsonString() {
+        return "{"
+                + "\"name\": \"" + moduleName + "\","
+                + "\"timeBlock\": \"" + super.toString() + "\""
+                + "}";
+    }
 
     @Override
     public String toString() {

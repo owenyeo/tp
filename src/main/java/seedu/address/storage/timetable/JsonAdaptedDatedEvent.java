@@ -1,37 +1,46 @@
-package seedu.address.storage;
+package seedu.address.storage.timetable;
+
+import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.timetable.DatedEvent;
+import seedu.address.model.person.timetable.TimeBlock;
 
 /**
  * Jackson-friendly version of {@link DatedEvent}.
  */
 public class JsonAdaptedDatedEvent {
 
-    private final String datedEvent;
+    private final String name;
+    private final String timeBlockString;
+    private final String localDateString;
+    private final boolean reminder;
 
     /**
      * Constructs a {@code JsonAdaptedDatedEvent} with the given {@code DatedEventName}.
      */
     @JsonCreator
-    public JsonAdaptedDatedEvent(String datedEventName) {
-        this.datedEvent = datedEventName;
+    public JsonAdaptedDatedEvent(String name, String timeBlockString, String localDateString, boolean reminder) {
+        this.name = name;
+        this.timeBlockString = timeBlockString;
+        this.localDateString = localDateString;
+        this.reminder = reminder;
     }
 
     /**
      * Converts a given {@code DatedEvent} into this class for Jackson use.
      */
     public JsonAdaptedDatedEvent(DatedEvent source) {
-        datedEvent = source.toJsonString();
+        name = source.getName();
+        timeBlockString = source.getTimeBlockString();
+        LocalDate date = source.getDate();
+        localDateString = date.toString();
+        reminder = source.hasReminder();
     }
 
-    @JsonValue
-    public String getFreeTime() {
-        return datedEvent;
-    }
 
     /**
      * Converts this Jackson-friendly adapted DatedEvent object into the model's {@code DatedEvent} object.
@@ -39,10 +48,11 @@ public class JsonAdaptedDatedEvent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted datedEvent.
      */
     public DatedEvent toModelType() throws IllegalValueException {
-        if (!DatedEvent.isValidDateTimeString(datedEvent)) {
+        if (!DatedEvent.isValidDateTimeString(localDateString) || !TimeBlock.isValidTimeBlock(timeBlockString)) {
             throw new IllegalValueException(DatedEvent.MESSAGE_CONSTRAINTS);
         }
-        return DatedEvent.newDatedEvent(datedEvent);
+        LocalDate date = LocalDate.parse(localDateString);
+        return new DatedEvent(name, timeBlockString, date, reminder);
     }
 }
 

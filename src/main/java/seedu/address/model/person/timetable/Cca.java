@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutability.
  */
 public class Cca extends TimeBlock {
-    private static final String MESSAGE_CONSTRAINTS =
+    public static final String MESSAGE_CONSTRAINTS =
             "Cca name should only contain alphanumeric characters and spaces, and it should not be blank";
     private static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     private final String ccaName;
