@@ -21,10 +21,11 @@ public class Schedule {
     /**
      * Creates a new Schedule object.
      */
-    public Schedule(List<Module> modulesList, List<Cca> ccasList, List<DatedEvent> datedEventsList) {
+    public Schedule(List<Module> modulesList, List<Cca> ccasList, List<DatedEvent> datedEventsList, List<MeetUpEvent> meetUpEventsList) {
         this.modulesList.addAll(modulesList);
         this.ccasList.addAll(ccasList);
         this.datedEventsList.addAll(datedEventsList);
+        this.meetUpEventsList.addAll(meetUpEventsList);
     }
     /**
      * Retrieves the list of time blocks scheduled for the current week.
