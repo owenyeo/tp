@@ -82,6 +82,15 @@ public class MeetUpEvent extends DatedEvent {
         return new MeetUpEvent(nameString, timeBlockString, dateString, reminder, friend);
     }
 
+    /**
+     * Returns the friend attending the meetup.
+     *
+     * @return The friend attending the meetup.
+     */
+    public Person getFriend() {
+        return friend;
+    }
+
     @Override
     public String toString() {
         String str = super.toString() + "\n"
