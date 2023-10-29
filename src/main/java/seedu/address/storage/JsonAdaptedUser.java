@@ -16,7 +16,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.timetable.DatedEvent;
-import seedu.address.model.person.timetable.FreeTime;
 import seedu.address.model.person.timetable.Schedule;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.user.User;
@@ -27,7 +26,7 @@ import seedu.address.storage.timetable.JsonAdaptedSchedule;
 /**
  * Jackson-friendly version of {@link User}.
  */
-class JsonAdaptedUser {
+public class JsonAdaptedUser {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "User's %s field is missing!";
 

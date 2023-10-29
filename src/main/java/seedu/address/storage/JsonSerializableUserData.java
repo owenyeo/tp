@@ -12,7 +12,7 @@ import seedu.address.model.user.UserData;
  * An Immutable UserData that is serializable to JSON format.
  */
 @JsonRootName(value = "userdata")
-class JsonSerializableUserData {
+public class JsonSerializableUserData {
     private final JsonAdaptedUser user;
 
     /**
