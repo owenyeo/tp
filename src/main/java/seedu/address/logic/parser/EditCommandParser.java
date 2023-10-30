@@ -5,9 +5,9 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FREETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
@@ -20,6 +20,7 @@ import seedu.address.logic.commands.edit.EditCommand;
 import seedu.address.logic.commands.edit.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.timetable.FreeTime;
+import seedu.address.model.person.timetable.Schedule;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,7 +37,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_BIRTHDAY, PREFIX_FREETIME, PREFIX_TAG);
+                        PREFIX_BIRTHDAY, PREFIX_SCHEDULE, PREFIX_TAG);
 
         Index index;
 
@@ -66,7 +67,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_BIRTHDAY).isPresent()) {
             editPersonDescriptor.setBirthday(ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).get()));
         }
-        parseFreeTimesForEdit(argMultimap.getAllValues(PREFIX_FREETIME)).ifPresent(editPersonDescriptor::setFreeTimes);
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (editPersonDescriptor.isAnyFieldEdited()) {
@@ -74,23 +74,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         return new EditCommand(index, editPersonDescriptor);
-    }
-
-    /**
-     * Parses {@code Collection<String> freetimes} into a {@code Set<FreeTime>} if {@code freetimes} is non-empty.
-     * If {@code freetimes} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<FreeTime>} containing zero tags.
-     */
-    private Optional<Set<FreeTime>> parseFreeTimesForEdit(Collection<String> freetimes) throws ParseException {
-        assert freetimes != null;
-
-        if (freetimes.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> freeTimeSet = freetimes.size() == 1 && freetimes.contains("")
-                ? Collections.emptySet()
-                : freetimes;
-        return Optional.of(ParserUtil.parseFreeTimes(freeTimeSet));
     }
 
     /**

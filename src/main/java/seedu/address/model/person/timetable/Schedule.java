@@ -134,6 +134,17 @@ public class Schedule {
 
         return freeTimes;
     }
+    
+
+    /**
+     * Returns true if there is free time in the schedule for the current week.
+     * A schedule has free time if there are any time slots that are not occupied by any events.
+     *
+     * @return True if there is free time in the schedule for the current week, false otherwise.
+     */
+    public boolean hasFreeTime() {
+        return !getThisWeeksFreeTime().isEmpty();
+    }
 
     /**
      * Marks the time slots corresponding to a given time block as occupied.

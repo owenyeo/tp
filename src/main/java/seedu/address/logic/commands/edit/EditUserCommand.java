@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FREETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -24,7 +23,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.timetable.DatedEvent;
-import seedu.address.model.person.timetable.FreeTime;
+import seedu.address.model.person.timetable.Schedule;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.user.User;
 
@@ -46,7 +45,6 @@ public class EditUserCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_BIRTHDAY + "BIRTHDAY]...\n"
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "[" + PREFIX_FREETIME + "FREETIME]...\n"
             + "Example: " + COMMAND_WORD
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -92,12 +90,12 @@ public class EditUserCommand extends Command {
         Email updatedEmail = editUserDescriptor.getEmail().orElse(userToEdit.getEmail());
         Address updatedAddress = editUserDescriptor.getAddress().orElse(userToEdit.getAddress());
         Birthday updatedBirthday = editUserDescriptor.getBirthday().orElse(userToEdit.getBirthday());
-        Set<FreeTime> updatedFreeTimes = editUserDescriptor.getFreeTimes().orElse(userToEdit.getFreeTimes());
+        Schedule schedule = userToEdit.getSchedule();
         Set<Tag> updatedTags = editUserDescriptor.getTags().orElse(userToEdit.getTags());
         ArrayList<DatedEvent> updatedDatedEvents = editUserDescriptor.getDatedEvents()
                 .orElse(userToEdit.getDatedEvents());
         return new User(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedBirthday,
-                updatedFreeTimes, updatedTags, updatedDatedEvents);
+                schedule, updatedTags, updatedDatedEvents);
     }
 
     @Override

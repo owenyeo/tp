@@ -5,7 +5,6 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FREETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -35,7 +34,7 @@ public class EditUserCommandParser implements Parser<EditUserCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_BIRTHDAY, PREFIX_FREETIME, PREFIX_TAG);
+                        PREFIX_BIRTHDAY, PREFIX_TAG);
 
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditUserCommand.MESSAGE_USAGE));
@@ -61,7 +60,6 @@ public class EditUserCommandParser implements Parser<EditUserCommand> {
         if (argMultimap.getValue(PREFIX_BIRTHDAY).isPresent()) {
             editPersonDescriptor.setBirthday(ParserUtil.parseBirthday(argMultimap.getValue(PREFIX_BIRTHDAY).get()));
         }
-        parseFreeTimesForEdit(argMultimap.getAllValues(PREFIX_FREETIME)).ifPresent(editPersonDescriptor::setFreeTimes);
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (editPersonDescriptor.isAnyFieldEdited()) {
@@ -69,23 +67,6 @@ public class EditUserCommandParser implements Parser<EditUserCommand> {
         }
 
         return new EditUserCommand(editPersonDescriptor);
-    }
-
-    /**
-     * Parses {@code Collection<String> freetimes} into a {@code Set<FreeTime>} if {@code freetimes} is non-empty.
-     * If {@code freetimes} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<FreeTime>} containing zero tags.
-     */
-    private Optional<Set<FreeTime>> parseFreeTimesForEdit(Collection<String> freetimes) throws ParseException {
-        assert freetimes != null;
-
-        if (freetimes.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> freeTimeSet = freetimes.size() == 1 && freetimes.contains("")
-                ? Collections.emptySet()
-                : freetimes;
-        return Optional.of(ParserUtil.parseFreeTimes(freeTimeSet));
     }
 
     /**
