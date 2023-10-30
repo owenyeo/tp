@@ -56,6 +56,22 @@ public class Schedule {
         return thisWeeksSchedule;
     }
 
+    public List<TimeBlock> getScheduleForDayOfWeek(int day) {
+        List<TimeBlock> weekSchedule = getThisWeeksSchedule();
+        List<TimeBlock> daySchedule = new ArrayList<>();
+        for (TimeBlock timeBlock : weekSchedule) {
+            if (timeBlock.isOnDay(day)) {
+                daySchedule.add(timeBlock);
+            }
+        }
+
+        //sort the list
+        Collections.sort(daySchedule, (tb1, tb2) -> tb1.compareByStartTime(tb2));
+
+        return daySchedule;
+    }
+
+
     /**
      * Retrieves the list of dated events scheduled for the current week that have reminders.
      *
