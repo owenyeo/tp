@@ -61,11 +61,13 @@
                     <Insets bottom="2" top="2" left="5" />
                 </padding>
             </Label>
+
             <Label fx:id="birthday" styleClass="display_small_label" text="\$birthday">
                 <padding>
                     <Insets bottom="2" top="2" left="5" />
                 </padding>
             </Label>
+
             <FlowPane fx:id="freeTimes">
                 <padding>
                     <Insets bottom="2" top="2" left="5" />

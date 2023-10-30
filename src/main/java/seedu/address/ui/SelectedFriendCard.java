@@ -27,6 +27,8 @@ public class SelectedFriendCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label birthday;
+    @FXML
     private FlowPane freeTimes;
     @FXML
     private FlowPane tags;
@@ -43,6 +45,7 @@ public class SelectedFriendCard extends UiPart<Region> {
         phone.setText(selectedFriend.getPhone().value);
         address.setText(selectedFriend.getAddress().value);
         email.setText(selectedFriend.getEmail().value);
+        birthday.setText("Birthday: " + selectedFriend.getBirthday().toString());
         selectedFriend.getFreeTimes().stream()
                 .sorted(Comparator.comparing(freeTime -> freeTime.freeTimeString))
                 .forEach(freeTime -> freeTimes.getChildren().add(new Label(freeTime.freeTimeString)));
