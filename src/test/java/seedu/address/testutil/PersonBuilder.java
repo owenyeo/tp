@@ -10,6 +10,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.timetable.FreeTime;
+import seedu.address.model.person.timetable.Schedule;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -30,8 +31,8 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Birthday birthday;
-    private Set<FreeTime> freeTimes;
     private Set<Tag> tags;
+    private Schedule schedule;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -42,7 +43,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         birthday = new Birthday(DEFAULT_BIRTHDAY);
-        freeTimes = new HashSet<>();
+        schedule = new Schedule();
         tags = new HashSet<>();
     }
 
@@ -55,7 +56,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         birthday = personToCopy.getBirthday();
-        freeTimes = new HashSet<>(personToCopy.getFreeTimes());
+        schedule = personToCopy.getSchedule();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -78,7 +79,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code freeTimes} into a {@code Set<FreeTime>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withFreeTimes(String ... freeTimes) {
+    public PersonBuilder withSchedule() {
         this.freeTimes = SampleDataUtil.getFreeTimeSet(freeTimes);
         return this;
     }
@@ -116,7 +117,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, birthday, freeTimes, tags);
+        return new Person(name, phone, email, address, birthday, schedule, tags);
     }
 
 }
