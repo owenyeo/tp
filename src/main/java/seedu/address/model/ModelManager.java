@@ -120,6 +120,10 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
+    public String getBirthdayList() {
+        return addressBook.getBirthdayList();
+    }
+
     //=========== UserData =============================================================
 
     @Override

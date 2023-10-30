@@ -2,10 +2,12 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -102,6 +104,16 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    public String getBirthdayList() {
+        StringBuilder sb = new StringBuilder();
+        for (Person person: persons) {
+            if (person.getBirthday().equals(new Birthday(LocalDate.now().toString()))) {
+                sb.append(person.getName() + "\n");
+            }
+        }
+        return sb.toString();
     }
 
     //// util methods
