@@ -3,6 +3,7 @@ package seedu.address.storage.timetable;
 import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.timetable.MeetUpEvent;
@@ -24,8 +25,11 @@ public class JsonAdaptedMeetUpEvent {
      * Constructs a {@code JsonAdaptedMeetUpEvent} with the given {@code MeetUpEventName}.
      */
     @JsonCreator
-    public JsonAdaptedMeetUpEvent(String name, String timeBlockString, String localDateString,
-            boolean reminder, JsonAdaptedPerson friend) {
+    public JsonAdaptedMeetUpEvent(@JsonProperty("name") String name,
+            @JsonProperty("timeblock") String timeBlockString,
+            @JsonProperty("date") String localDateString,
+            @JsonProperty("reminder") boolean reminder,
+            @JsonProperty("friend") JsonAdaptedPerson friend) {
         this.name = name;
         this.timeBlockString = timeBlockString;
         this.localDateString = localDateString;
