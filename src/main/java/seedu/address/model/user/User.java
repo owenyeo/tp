@@ -1,5 +1,6 @@
 package seedu.address.model.user;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Set;
@@ -23,7 +24,8 @@ public class User extends Person {
     /**
      * Every field must be present and not null.
      */
-    public User(Name name, Phone phone, Email email, Address address, Birthday birthday, Schedule schedule, Set<Tag> tags, ArrayList<DatedEvent> datedEvents) {
+    public User(Name name, Phone phone, Email email, Address address, Birthday birthday,
+                Schedule schedule, Set<Tag> tags, ArrayList<DatedEvent> datedEvents) {
         super(name, phone, email, address, birthday, schedule, tags);
         this.datedEvents = datedEvents;
     };
@@ -36,7 +38,8 @@ public class User extends Person {
      * Constructor for User with a person and dated events.
      */
     public User(Person user, ArrayList<DatedEvent> datedEvents) {
-        super(user.getName(), user.getPhone(), user.getEmail(), user.getAddress(), user.getBirthday(), user.getSchedule(), user.getTags());
+        super(user.getName(), user.getPhone(), user.getEmail(), user.getAddress(), user.getBirthday(),
+                user.getSchedule(), user.getTags());
         this.datedEvents = datedEvents;
     }
 
@@ -44,7 +47,8 @@ public class User extends Person {
      * Constructor for User with a person.
      */
     public User(User user) {
-        super(user.getName(), user.getPhone(), user.getEmail(), user.getAddress(), user.getBirthday(), user.getSchedule(), user.getTags());
+        super(user.getName(), user.getPhone(), user.getEmail(), user.getAddress(), user.getBirthday(),
+                user.getSchedule(), user.getTags());
         this.datedEvents = user.getDatedEvents();
     }
 
@@ -81,6 +85,19 @@ public class User extends Person {
         datedEvents.add(new DatedEvent(event.getName(), event.getTimeBlockString(),
                 event.getDate().toString(), false));
         datedEvents.remove(event);
+    }
+
+    /**
+     * Returns a string of the events that are happening today and have reminders.
+     */
+    public String returnRemindedEvent() {
+        StringBuilder sb = new StringBuilder();
+        for (DatedEvent event: datedEvents) {
+            if (event.hasReminder() && event.getDate().equals(LocalDate.now())) {
+                sb.append(event.getStringForReminder() + "\n");
+            }
+        }
+        return sb.toString();
     }
 
 }

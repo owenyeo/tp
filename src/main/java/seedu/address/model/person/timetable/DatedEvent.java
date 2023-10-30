@@ -163,6 +163,10 @@ public class DatedEvent extends TimeBlock {
         return timeBlockString;
     }
 
+    public String getStringForReminder() {
+        return name + " " + timeBlockString;
+    }
+
     public DatedEvent setReminder() {
         return new DatedEvent(name, timeBlockString, date, true);
     }
