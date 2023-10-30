@@ -28,7 +28,6 @@ public class DatedEvent extends TimeBlock {
     private final String name;
     private final LocalDate date;
     private final boolean hasReminder;
-    private final String timeBlockString;
 
     /**
      * Initializes a new DatedEvent with the provided details.
@@ -44,7 +43,6 @@ public class DatedEvent extends TimeBlock {
         this.name = name;
         this.date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER_PATTERN));
         this.hasReminder = reminder;
-        this.timeBlockString = timeBlockString;
     }
 
     /**
