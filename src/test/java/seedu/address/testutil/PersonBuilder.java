@@ -9,7 +9,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.timetable.FreeTime;
 import seedu.address.model.person.timetable.Schedule;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -80,7 +79,7 @@ public class PersonBuilder {
      * Parses the {@code freeTimes} into a {@code Set<FreeTime>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withSchedule() {
-        this.freeTimes = SampleDataUtil.getFreeTimeSet(freeTimes);
+        this.schedule = SampleDataUtil.getSampleSchedule();
         return this;
     }
 

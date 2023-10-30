@@ -10,7 +10,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.timetable.DatedEvent;
-import seedu.address.model.person.timetable.FreeTime;
+import seedu.address.model.person.timetable.Schedule;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.user.User;
 import seedu.address.model.util.SampleDataUtil;
@@ -31,8 +31,8 @@ public class UserBuilder {
     private Email email;
     private Address address;
     private Birthday birthday;
-    private Set<FreeTime> freeTimes;
     private Set<Tag> tags;
+    private Schedule schedule;
     private ArrayList<DatedEvent> datedEvents;
 
     /**
@@ -44,7 +44,7 @@ public class UserBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         birthday = new Birthday(DEFAULT_BIRTHDAY);
-        freeTimes = new HashSet<>();
+        schedule = SampleDataUtil.getSampleSchedule();
         tags = new HashSet<>();
         datedEvents = new ArrayList<>();
     }
@@ -58,13 +58,13 @@ public class UserBuilder {
         email = userToCopy.getEmail();
         address = userToCopy.getAddress();
         birthday = userToCopy.getBirthday();
-        freeTimes = new HashSet<>(userToCopy.getFreeTimes());
+        schedule = userToCopy.getSchedule();
         tags = new HashSet<>(userToCopy.getTags());
         datedEvents = new ArrayList<>(userToCopy.getDatedEvents());
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code User} that we are building.
      */
     public UserBuilder withName(String name) {
         this.name = new Name(name);
@@ -72,7 +72,7 @@ public class UserBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code User} that we are building.
      */
     public UserBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
@@ -80,15 +80,15 @@ public class UserBuilder {
     }
 
     /**
-     * Parses the {@code freeTimes} into a {@code Set<FreeTime>} and set it to the {@code Person} that we are building.
+     * Sets the {@code Schedule} of the {@code User} that we are building.
      */
-    public UserBuilder withFreeTimes(String ... freeTimes) {
-        this.freeTimes = SampleDataUtil.getFreeTimeSet(freeTimes);
+    public UserBuilder withSchedule() {
+        this.schedule = SampleDataUtil.getSampleSchedule();
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Address} of the {@code User} that we are building.
      */
     public UserBuilder withAddress(String address) {
         this.address = new Address(address);
@@ -96,7 +96,7 @@ public class UserBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} of the {@code User} that we are building.
      */
     public UserBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
@@ -104,7 +104,7 @@ public class UserBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Email} of the {@code User} that we are building.
      */
     public UserBuilder withEmail(String email) {
         this.email = new Email(email);
@@ -112,7 +112,7 @@ public class UserBuilder {
     }
 
     /**
-     * Sets the {@code Birthday} of the {@code Person} that we are building.
+     * Sets the {@code Birthday} of the {@code User} that we are building.
      */
     public UserBuilder withBirthday(String birthday) {
         this.birthday = new Birthday(birthday);
@@ -128,7 +128,7 @@ public class UserBuilder {
     }
 
     public User build() {
-        return new User(name, phone, email, address, birthday, freeTimes, tags, datedEvents);
+        return new User(name, phone, email, address, birthday, schedule, tags, datedEvents);
     }
 
 }

@@ -10,7 +10,7 @@ import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.timetable.FreeTime;
+import seedu.address.model.util.SampleDataUtil;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.user.User;
 
@@ -39,7 +39,7 @@ public class EditUserDescriptorBuilder {
         descriptor.setEmail(user.getEmail());
         descriptor.setAddress(user.getAddress());
         descriptor.setBirthday(user.getBirthday());
-        descriptor.setFreeTimes(user.getFreeTimes());
+        descriptor.setSchedule(user.getSchedule());
         descriptor.setTags(user.getTags());
     }
 
@@ -84,12 +84,10 @@ public class EditUserDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code freeTimes} into a {@code Set<FreeTime>} and set it to the {@code EditUserDescriptorBuilder}
-     * that we are building.
+     * Sets the {@code Schedule} of the {@code EditUserDescriptorBuilder} that we are building.
      */
-    public EditUserDescriptorBuilder withFreeTimes(String... freeTimes) {
-        Set<FreeTime> freeTimeSet = Stream.of(freeTimes).map(FreeTime::new).collect(Collectors.toSet());
-        descriptor.setFreeTimes(freeTimeSet);
+    public EditUserDescriptorBuilder withSchedule() {
+        descriptor.setSchedule(SampleDataUtil.getSampleSchedule());
         return this;
     }
 
