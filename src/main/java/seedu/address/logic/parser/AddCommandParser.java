@@ -8,13 +8,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import com.fasterxml.jackson.databind.Module;
-
-import javafx.scene.control.ListCell;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
@@ -23,9 +19,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.timetable.Cca;
-import seedu.address.model.person.timetable.DatedEvent;
-import seedu.address.model.person.timetable.MeetUpEvent;
 import seedu.address.model.person.timetable.Schedule;
 import seedu.address.model.tag.Tag;
 
