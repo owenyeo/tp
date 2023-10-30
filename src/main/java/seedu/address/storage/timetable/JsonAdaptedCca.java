@@ -1,6 +1,7 @@
 package seedu.address.storage.timetable;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.model.person.timetable.Cca;
 import seedu.address.model.person.timetable.TimeBlock;
@@ -11,7 +12,8 @@ public class JsonAdaptedCca {
     private final String timeBlockString;
 
     @JsonCreator
-    public JsonAdaptedCca(String name, String timeBlockString) {
+    public JsonAdaptedCca(@JsonProperty("name") String name,
+        @JsonProperty("timeblock") String timeBlockString) {
         this.name = name;
         this.timeBlockString = timeBlockString;
     }

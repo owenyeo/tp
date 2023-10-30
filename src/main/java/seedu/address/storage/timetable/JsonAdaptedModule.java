@@ -1,6 +1,7 @@
 package seedu.address.storage.timetable;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.model.person.timetable.Module;
 import seedu.address.model.person.timetable.TimeBlock;
@@ -11,7 +12,8 @@ public class JsonAdaptedModule {
     private final String timeBlockString;
 
     @JsonCreator
-    public JsonAdaptedModule(String name, String timeBlockString) {
+    public JsonAdaptedModule(@JsonProperty("name") String name,
+        @JsonProperty("timeblock") String timeBlockString) {
         this.name = name;
         this.timeBlockString = timeBlockString;
     }
