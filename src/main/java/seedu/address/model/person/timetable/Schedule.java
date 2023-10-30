@@ -362,6 +362,7 @@ public class Schedule {
      * Adds a meet-up event to the schedule.
      *
      * @param meetUpEventString String representation of the meet-up event.
+     * @param friend The friend to meet up with.
      */
     public void addMeetUpEvent(String meetUpEventString, Person friend) {
         meetUpEventsList.add(MeetUpEvent.newMeetUpEvent(meetUpEventString, friend));

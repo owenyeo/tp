@@ -1,0 +1,100 @@
+package seedu.address.logic.commands;
+
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.timetable.Schedule;
+
+public class AddEventCommand extends Command {
+
+    public static final String COMMAND_WORD = "addevent";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+        + ": Adds a non-recurring event to the calendar.\n"
+        + "Parameters: "
+        + "INDEX "
+        + "type/EVENT_TYPE "
+        + "en/EVENT_NAME "
+        + "h/[Date [YYYY-MM-DD] StarTime (HHMM) EndTime (HHMM)] "
+        + "r/[REMINDER: y/n] \n"
+        + "Example: " + COMMAND_WORD + " "
+        + "1 "
+        + "type/dated "
+        + "en/CS2103T Lecture "
+        + "h/2020-03-02 1400 1600 "
+        + "r/y \n"
+        + "\n\n Note: If you are adding a meetup event, "
+        + "then index refers to the index of the friend you are meeting with. \n"
+        + "If you are adding a dated event, then index should be the index of "
+        + "the friend you are adding the dated event to or 'user' "
+        + "if you would like to add the event to yourself \n";
+
+    private String eventName;
+    private String eventType;
+    private Index index;
+    private String schedule;
+    private String reminder;
+    private Person friend;
+
+    public static final String MESSAGE_SUCCESS = "New event added: ";
+
+    public AddEventCommand(String eventName, Index index, String schedule,
+        String reminder, String eventType) {
+        
+        requireAllNonNull(schedule);
+
+        this.eventName = eventName;
+        this.schedule = schedule;
+        this.index = index;
+        this.reminder = reminder;
+        this.eventType = eventType.toLowerCase();
+    }
+
+    public AddEventCommand(String eventName, String schedule,
+        String reminder, String eventType) {
+
+        this(eventName, null, schedule, reminder, eventType);
+    }
+
+    /**
+     * When successfully executed, it should add a new event to the user's timetable.
+     * @param model {@code Model} which the command should operate on.
+     * @return A command result in the form of a string.
+     * @throws CommandException If the command is invalid.
+     */
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        try {
+            if (this.index == null) {
+                friend = model.getUser();
+            } else {
+                friend = model.getFilteredPersonList().get(index.getZeroBased());
+            }
+
+            Schedule friendSchedule = friend.getSchedule();
+            
+            switch (eventType) {
+                case "dated":
+                    friendSchedule.addDatedEvent(eventName + " " + schedule + " " + reminder);
+                    return new CommandResult(MESSAGE_SUCCESS + "\nDated Event:\n" + eventName + " " + schedule + " to " + friend.getName());
+                case "meetup":
+                    if (friend.getName().toString().toLowerCase().equals("user")) {
+                        throw new CommandException("You cannot add a meetup event with yourself! \n"
+                            + "Please specify the friend you are meeting up with using the following format: \n"
+                            + "addevent [index of friend] ");
+                    }
+                    Schedule userSchedule = model.getUser().getSchedule();
+                    userSchedule.addMeetUpEvent(eventName + " " + schedule + " " + reminder, friend);
+                    return new CommandResult(MESSAGE_SUCCESS + "\nMeet up event\n" + eventName + " " + schedule + " with " + friend.getName());
+                default:
+                    throw new CommandException("Invalid event type!"
+                        + "\n Event type can only be 'Dated' or 'Meetup'" );
+            }
+        } catch (Exception e) {
+            throw new CommandException(e.getMessage());
+        }
+    }
+}
