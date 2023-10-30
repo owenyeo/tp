@@ -14,6 +14,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.timetable.FreeTime;
+import seedu.address.model.person.timetable.Schedule;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,7 +27,7 @@ public class EditPersonDescriptor {
     private Email email;
     private Address address;
     private Birthday birthday;
-    private Set<FreeTime> freeTimes;
+    private Schedule schedule;
     private Set<Tag> tags;
 
     public EditPersonDescriptor() {}
@@ -41,7 +42,7 @@ public class EditPersonDescriptor {
         setEmail(toCopy.email);
         setAddress(toCopy.address);
         setBirthday(toCopy.birthday);
-        setFreeTimes(toCopy.freeTimes);
+        setSchedule(toCopy.schedule);
         setTags(toCopy.tags);
     }
 
@@ -49,7 +50,7 @@ public class EditPersonDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return !CollectionUtil.isAnyNonNull(name, phone, email, address, birthday, freeTimes, tags);
+        return !CollectionUtil.isAnyNonNull(name, phone, email, address, birthday, schedule, tags);
     }
 
     public void setName(Name name) {
@@ -122,8 +123,8 @@ public class EditPersonDescriptor {
      * Sets {@code freeTimes} to this object's {@code freeTimes}.
      * A defensive copy of {@code freeTimes} is used internally.
      */
-    public void setFreeTimes(Set<FreeTime> freeTimes) {
-        this.freeTimes = (freeTimes != null) ? new HashSet<>(freeTimes) : null;
+    public void setSchedule(Schedule schedule) {
+        this.schedule = (schedule != null) ? new Schedule() : null;
     }
 
     /**
@@ -131,8 +132,8 @@ public class EditPersonDescriptor {
      * if modification is attempted.
      * Returns {@code Optional#empty()} if {@code freeTimes} is null.
      */
-    public Optional<Set<FreeTime>> getFreeTimes() {
-        return (freeTimes != null) ? Optional.of(Collections.unmodifiableSet(freeTimes)) : Optional.empty();
+    public Optional<Schedule> getSchedule() {
+        return (schedule != null) ? Optional.of(schedule) : Optional.empty();
     }
 
     @Override
@@ -152,7 +153,7 @@ public class EditPersonDescriptor {
                 && Objects.equals(email, otherEditPersonDescriptor.email)
                 && Objects.equals(address, otherEditPersonDescriptor.address)
                 && Objects.equals(birthday, otherEditPersonDescriptor.birthday)
-                && Objects.equals(freeTimes, otherEditPersonDescriptor.freeTimes)
+                && Objects.equals(schedule, otherEditPersonDescriptor.schedule)
                 && Objects.equals(tags, otherEditPersonDescriptor.tags);
     }
 
@@ -164,7 +165,7 @@ public class EditPersonDescriptor {
                 .add("email", email)
                 .add("address", address)
                 .add("birthday", birthday)
-                .add("free times", freeTimes)
+                .add("free times", schedule)
                 .add("tags", tags)
                 .toString();
     }

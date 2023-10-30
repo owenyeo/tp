@@ -135,6 +135,10 @@ public class Schedule {
         return freeTimes;
     }
 
+    public boolean hasFreeTime() {
+        return !getThisWeeksFreeTime().isEmpty();
+    }
+
     /**
      * Marks the time slots corresponding to a given time block as occupied.
      *
