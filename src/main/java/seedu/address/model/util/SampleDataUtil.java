@@ -60,7 +60,7 @@ public class SampleDataUtil {
 
     public static List<Module> getSampleModules() {
         List<Module> modules = new ArrayList<>();
-        modules.add(new Module("CS2103T", "Wednesday 1200 1300"));
+        modules.add(new Module("CS2103", "Wednesday 1200 1300"));
         modules.add(new Module("CS2101", "Tuesday 1200 1400"));
         modules.add(new Module("CS2100", "Monday 1400 1500"));
         return modules;
