@@ -54,8 +54,7 @@ public class EditPersonDescriptorTest {
         assertNotEquals(DESC_AMY, editedAmy);
 
         // different free times -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY)
-                .withFreeTimes(VALID_FREETIME_MONDAY, VALID_FREETIME_TUESDAY).build();
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).build();
         assertNotEquals(DESC_AMY, editedAmy);
 
         // different tags -> returns false
