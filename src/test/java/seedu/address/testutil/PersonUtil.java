@@ -13,7 +13,6 @@ import java.util.Set;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.edit.EditPersonDescriptor;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.timetable.FreeTime;
 import seedu.address.model.tag.Tag;
 
 /**
