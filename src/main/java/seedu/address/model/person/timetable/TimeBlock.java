@@ -1,4 +1,4 @@
-package seedu.address.model.person.timetable;
+    package seedu.address.model.person.timetable;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -19,7 +19,7 @@ public class TimeBlock implements Comparable<TimeBlock> {
     public static final String VALIDATION_REGEX = "^(?i)(monday|tuesday|wednesday|thursday|friday|saturday|sunday) "
             + "([01]?\\d|2[0-3])(00|30) ([01]?\\d|2[0-3])(00|30)$"; //format: (case-insensitive) day 2359 2359
 
-    public final String timeBlockString;
+    public String timeBlockString;
     private final DayOfWeek day;
     private final HalfHourBlocks timeBlocks;
 

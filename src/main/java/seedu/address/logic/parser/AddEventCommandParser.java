@@ -34,20 +34,20 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         }
         String indexString;
 
-            String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get();
-            String eventType = argMultimap.getValue(PREFIX_EVENTTYPE).get();
-            String schedule = argMultimap.getValue(PREFIX_SCHEDULE).get();
-            String reminder = argMultimap.getValue(PREFIX_REMINDER).get();
+        String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get();
+        String eventType = argMultimap.getValue(PREFIX_EVENTTYPE).get();
+        String schedule = argMultimap.getValue(PREFIX_SCHEDULE).get();
+        String reminder = argMultimap.getValue(PREFIX_REMINDER).get();
 
-            indexString = argMultimap.getPreamble().toLowerCase();
-            if (indexString.equals("user")) {
-                return new AddEventCommand(eventName, schedule, reminder, eventType);
-            } else if (Integer.parseInt(indexString) > 0) {
-                return new AddEventCommand(eventName, ParserUtil.parseIndex(indexString), schedule, reminder, eventType);
-            } else {
-                throw new ParseException("Invalid index!\n" 
-                    + AddEventCommand.MESSAGE_USAGE);
-            }
+        indexString = argMultimap.getPreamble().toLowerCase();
+        if (indexString.equals("user")) {
+            return new AddEventCommand(eventName, schedule, reminder, eventType);
+        } else if (Integer.parseInt(indexString) > 0) {
+            return new AddEventCommand(eventName, ParserUtil.parseIndex(indexString), schedule, reminder, eventType);
+        } else {
+            throw new ParseException("Invalid index!\n" 
+                + AddEventCommand.MESSAGE_USAGE);
+        }
     }
 
     /**
