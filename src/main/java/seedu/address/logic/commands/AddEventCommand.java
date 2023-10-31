@@ -8,6 +8,13 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.timetable.Schedule;
 
+/**
+ * Represents a command to add a non-recurring event to the calendar.
+ * The event can either be a dated event or a meetup event.
+ * A dated event is an event that is added to a friend's schedule or the user's schedule.
+ * A meetup event is an event that is added to the user's schedule and involves meeting up with a friend.
+ * Inherits from the Command class.
+ */
 public class AddEventCommand extends Command {
 
     public static final String COMMAND_WORD = "addevent";
@@ -32,12 +39,11 @@ public class AddEventCommand extends Command {
         + "the friend you are adding the dated event to or 'user' "
         + "if you would like to add the event to yourself \n";
 
-    private String eventName;
-    private String eventType;
-    private Index index;
-    private String schedule;
-    private String reminder;
-    private Person friend;
+    private final String eventName;
+    private final String eventType;
+    private final Index index;
+    private final String schedule;
+    private final String reminder;
 
     public static final String MESSAGE_SUCCESS = "New event added: ";
 
@@ -67,6 +73,8 @@ public class AddEventCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        Person friend;
+
         try {
             if (this.index == null) {
                 friend = model.getUser();

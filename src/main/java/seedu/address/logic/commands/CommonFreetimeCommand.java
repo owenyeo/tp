@@ -19,7 +19,6 @@ import seedu.address.model.person.timetable.Schedule;
  * If a name is specified, the command returns the user's common free time with the specified contact.
  * Inherits from the Command class and overrides its execute method.
  */
-
 public class CommonFreetimeCommand extends Command {
 
     public static final String COMMAND_WORD = "cft";
