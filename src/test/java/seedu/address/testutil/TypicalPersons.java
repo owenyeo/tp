@@ -12,6 +12,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.testutil.TypicalSchedule.NORMAL_SCHEDULE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,49 +27,41 @@ import seedu.address.model.person.Person;
 public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withBirthday("2000-01-01")
-            .withTags("friends").build();
+            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com").withPhone("94351253")
+            .withBirthday("2000-01-01").withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432").withBirthday("2000-01-01")
-            .withTags("owesMoney", "friends").build();
+            .withAddress("311, Clementi Ave 2, #02-25").withEmail("johnd@example.com").withPhone("98765432")
+            .withBirthday("2000-01-01").withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withBirthday("2000-01-01")
-            .withSchedule().withAddress("wall street").build();
+            .withEmail("heinz@example.com").withBirthday("2000-01-01").withAddress("wall street").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withSchedule().withAddress("10th street")
+            .withEmail("cornelia@example.com").withAddress("10th street").withSchedule(NORMAL_SCHEDULE)
             .withBirthday("2000-01-01").withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withBirthday("2000-01-01")
-            .withSchedule().withAddress("michegan ave").build();
+            .withEmail("werner@example.com").withAddress("michegan ave").withSchedule(NORMAL_SCHEDULE)
+            .withBirthday("2000-01-01").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withBirthday("2000-01-01")
-            .withSchedule().withAddress("little tokyo").build();
+            .withEmail("lydia@example.com").withAddress("little tokyo").withSchedule(NORMAL_SCHEDULE)
+            .withBirthday("2000-01-01").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withBirthday("2000-01-01")
-            .withSchedule().withAddress("4th street").build();
+            .withEmail("anna@example.com").withAddress("4th street").withSchedule(NORMAL_SCHEDULE)
+            .withBirthday("2000-01-01").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withBirthday("2000-01-01")
-            .withSchedule().withAddress("little india").build();
+            .withEmail("stefan@example.com").withAddress("little india").withSchedule(NORMAL_SCHEDULE)
+            .withBirthday("2000-01-01").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withBirthday("2000-01-01")
-            .withSchedule().withAddress("chicago ave").build();
-
-    public static final Person JAMES = new PersonBuilder().withName("James Tan").withPhone("99999999")
-            .withEmail("james@example.com").withBirthday("2000-01-01")
-            .withSchedule().withAddress("utown").build();
+            .withEmail("hans@example.com").withAddress("chicago ave").withSchedule(NORMAL_SCHEDULE)
+            .withBirthday("2000-01-01").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withBirthday(VALID_BIRTHDAY_AMY)
-            .withSchedule().withTags(VALID_TAG_FRIEND).build();
+            .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withSchedule().withBirthday(VALID_BIRTHDAY_AMY)
+            .withTags(VALID_TAG_FRIEND).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withBirthday(VALID_BIRTHDAY_BOB)
-            .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .build();
+            .withEmail(VALID_EMAIL_BOB).withBirthday(VALID_BIRTHDAY_BOB).withAddress(VALID_ADDRESS_BOB)
+            .withSchedule(NORMAL_SCHEDULE).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

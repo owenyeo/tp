@@ -459,4 +459,18 @@ public class Schedule {
         }
         return sb.toString();
     }
+  
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof Schedule)) {
+            return false;
+        }
+        Schedule otherSchedule = (Schedule) other;
+        return modulesList.equals(otherSchedule.modulesList)
+                && ccasList.equals(otherSchedule.ccasList)
+                && datedEventsList.equals(otherSchedule.datedEventsList)
+                && meetUpEventsList.equals(otherSchedule.meetUpEventsList);
+    }
 }
