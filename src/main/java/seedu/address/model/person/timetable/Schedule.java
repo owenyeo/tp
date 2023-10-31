@@ -18,11 +18,11 @@ public class Schedule {
     private final List<MeetUpEvent> meetUpEventsList = new ArrayList<>();
 
     public Schedule() {}
-    
     /**
      * Creates a new Schedule object.
      */
-    public Schedule(List<Module> modulesList, List<Cca> ccasList, List<DatedEvent> datedEventsList, List<MeetUpEvent> meetUpEventsList) {
+    public Schedule(List<Module> modulesList, List<Cca> ccasList,
+                    List<DatedEvent> datedEventsList, List<MeetUpEvent> meetUpEventsList) {
         this.modulesList.addAll(modulesList);
         this.ccasList.addAll(ccasList);
         this.datedEventsList.addAll(datedEventsList);
@@ -237,7 +237,7 @@ public class Schedule {
         return Collections.unmodifiableList(meetUpEventsList);
     }
 
-    /** 
+    /**
      * Returns an unmodifiable list of modules in the schedule.
      *
      * @return List of modules.
@@ -427,5 +427,36 @@ public class Schedule {
      */
     public void deleteMeetUpEvent(String meetUpEventName) {
         meetUpEventsList.removeIf(event -> event.getName().equals(meetUpEventName));
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Schedule:\n");
+        if (!modulesList.isEmpty()) {
+            sb.append("- Modules:\n");
+            for (Module module : modulesList) {
+                sb.append("  ").append(module.toString()).append("\n");
+            }
+        }
+        if (!ccasList.isEmpty()) {
+            sb.append("- CCAs:\n");
+            for (Cca cca : ccasList) {
+                sb.append("  ").append(cca.toString()).append("\n");
+            }
+        }
+        if (!datedEventsList.isEmpty()) {
+            sb.append("- Dated Events:\n");
+            for (DatedEvent event : datedEventsList) {
+                sb.append("  ").append(event.toString()).append("\n");
+            }
+        }
+        if (!meetUpEventsList.isEmpty()) {
+            sb.append("- MeetUp Events:\n");
+            for (MeetUpEvent event : meetUpEventsList) {
+                sb.append("  ").append(event.toString()).append("\n");
+            }
+        }
+        return sb.toString();
     }
 }
