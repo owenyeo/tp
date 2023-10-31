@@ -32,4 +32,21 @@ public class EditUserDescriptor extends EditPersonDescriptor {
     public void setDatedEvents(ArrayList<DatedEvent> datedEvents) {
         this.datedEvents = (datedEvents != null) ? new ArrayList<>(datedEvents) : null;
     }
+
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof EditUserDescriptor)) {
+            return false;
+        }
+
+        // state check
+        EditUserDescriptor e = (EditUserDescriptor) other;
+
+        return super.equals(e)
+                && datedEvents.equals(e.datedEvents);
+    }
 }

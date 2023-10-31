@@ -8,7 +8,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new RemoveReminderCommand object
  */
-public class RemoveReminderCommandParser {
+public class RemoveReminderCommandParser implements Parser<RemoveReminderCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the RemoveReminderCommand
      * and returns a RemoveReminderCommand object for execution.

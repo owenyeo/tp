@@ -4,17 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalUsers.ALICE;
-import static seedu.address.testutil.TypicalUsers.AMY;
-import static seedu.address.testutil.TypicalUsers.BENSON;
-import static seedu.address.testutil.TypicalUsers.BOB;
-import static seedu.address.testutil.TypicalUsers.CARL;
-import static seedu.address.testutil.TypicalUsers.DANIEL;
-import static seedu.address.testutil.TypicalUsers.ELLE;
-import static seedu.address.testutil.TypicalUsers.FIONA;
-import static seedu.address.testutil.TypicalUsers.GEORGE;
-import static seedu.address.testutil.TypicalUsers.JAMES;
-import static seedu.address.testutil.TypicalUsers.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.*;
+import static seedu.address.testutil.TypicalPersons.AMY;
+import static seedu.address.testutil.TypicalUsers.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,13 +25,14 @@ public class CommonFreetimeCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model.setUser(AMY);
-        expectedModel.setUser(AMY);
+        model.setUser(JANE);
+        expectedModel.setUser(JANE);
     }
 
     @Test
     public void execute_userNoFreetime_failure() {
-        model.setUser(BOB);
+        model.setUser(JAMES);
+        expectedModel.setUser(JAMES);
         CommonFreetimeCommand commonFreetimeCommand = new CommonFreetimeCommand();
         assertCommandFailure(commonFreetimeCommand, model, CommonFreetimeCommand.MESSAGE_NO_FREE_TIME);
     }
@@ -68,16 +61,12 @@ public class CommonFreetimeCommandTest {
 
     @Test
     public void execute_noOverlapContact_failure() {
-        model.setUser(JAMES);
-        expectedModel.setUser(JAMES);
         CommonFreetimeCommand commonFreetimeCommand = new CommonFreetimeCommand();
         assertCommandFailure(commonFreetimeCommand, model, CommonFreetimeCommand.MESSAGE_NO_CONTACTS);
     }
 
     @Test
     public void execute_noOverlapFriend_failure() {
-        model.setUser(JAMES);
-        expectedModel.setUser(JAMES);
         CommonFreetimeCommand commonFreetimeCommand = new CommonFreetimeCommand(ALICE.getName());
         assertCommandFailure(commonFreetimeCommand, model, CommonFreetimeCommand.createNoOverlapFriendMessage(ALICE));
     }

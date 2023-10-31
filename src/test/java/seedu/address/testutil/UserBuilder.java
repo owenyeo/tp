@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import static seedu.address.testutil.TypicalDatedEvents.NORMAL_DATEDEVENTS;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -44,9 +46,9 @@ public class UserBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         birthday = new Birthday(DEFAULT_BIRTHDAY);
-        schedule = SampleDataUtil.getSampleSchedule();
+        schedule = new Schedule();
         tags = new HashSet<>();
-        datedEvents = new ArrayList<>();
+        datedEvents = NORMAL_DATEDEVENTS;
     }
 
     /**
@@ -83,9 +85,28 @@ public class UserBuilder {
      * Sets the {@code Schedule} of the {@code User} that we are building.
      */
     public UserBuilder withSchedule() {
-        this.schedule = SampleDataUtil.getSampleSchedule();
+        this.schedule = new Schedule();
         return this;
     }
+
+    public UserBuilder withSchedule(Schedule schedule) {
+        this.schedule = schedule;
+        return this;
+    }
+
+    public UserBuilder withDatedEvents() {
+        this.datedEvents = new ArrayList<DatedEvent>();
+        return this;
+    }
+
+    /**
+     * Sets the {@code datedEvents} of the {@code User} that we are building.
+     */
+    public UserBuilder withDatedEvents(ArrayList<DatedEvent> datedEvents) {
+        this.datedEvents = datedEvents;
+        return this;
+    }
+
 
     /**
      * Sets the {@code Address} of the {@code User} that we are building.
@@ -116,14 +137,6 @@ public class UserBuilder {
      */
     public UserBuilder withBirthday(String birthday) {
         this.birthday = new Birthday(birthday);
-        return this;
-    }
-
-    /**
-     * Sets the {@code datedEvents} of the {@code User} that we are building.
-     */
-    public UserBuilder withDatedEvents(ArrayList<DatedEvent> datedEvents) {
-        this.datedEvents = datedEvents;
         return this;
     }
 
