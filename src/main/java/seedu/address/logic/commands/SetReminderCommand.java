@@ -3,7 +3,9 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Optional;
+import java.util.Set;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.timetable.DatedEvent;
@@ -19,7 +21,7 @@ public class SetReminderCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Set reminders of events in user's timetable"
             + " that will be sent to user.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " cs2103t lesson";
+            + "Example: " + COMMAND_WORD + " cs2103 lesson";
 
     public static final String MESSAGE_NO_EVENT = "No such event exists!";
 
@@ -43,5 +45,27 @@ public class SetReminderCommand extends Command {
             sb.append(model.getUser().getDatedEvent(eventName).get().getName());
             return new CommandResult(sb.toString());
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof SetReminderCommand)) {
+            return false;
+        }
+
+        SetReminderCommand otherSetCommand = (SetReminderCommand) other;
+        return eventName.equals(otherSetCommand.eventName);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("Set Reminder for", eventName)
+                .toString();
     }
 }

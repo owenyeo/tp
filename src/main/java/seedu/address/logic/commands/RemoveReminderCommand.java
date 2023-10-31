@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Optional;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.timetable.DatedEvent;
@@ -41,5 +42,26 @@ public class RemoveReminderCommand extends Command {
             sb.append(model.getUser().getDatedEvent(eventName).get().getName());
             return new CommandResult(sb.toString());
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof RemoveReminderCommand)) {
+            return false;
+        }
+
+        RemoveReminderCommand otherRemoveCommand = (RemoveReminderCommand) other;
+        return eventName.equals(otherRemoveCommand.eventName);
+    }
+
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("Remove Reminder for", eventName)
+                .toString();
     }
 }

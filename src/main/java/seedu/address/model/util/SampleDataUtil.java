@@ -74,8 +74,8 @@ public class SampleDataUtil {
         return ccas;
     }
 
-    public static List<DatedEvent> getSampleDatedEvents() {
-        List<DatedEvent> datedEvents = new ArrayList<>();
+    public static ArrayList<DatedEvent> getSampleDatedEvents() {
+        ArrayList<DatedEvent> datedEvents = new ArrayList<>();
         datedEvents.add(DatedEvent.newDatedEvent("CS2103 Meeting 2023-10-10 1030 1130 y"));
         datedEvents.add(DatedEvent.newDatedEvent("Walk Dog 2023-10-10 1030 1130 n"));
         datedEvents.add(DatedEvent.newDatedEvent("Competitive sleeping 2023-10-10 1030 1130 y"));

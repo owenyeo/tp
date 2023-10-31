@@ -11,6 +11,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.timetable.Schedule;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.model.tag.Tag;
 
@@ -83,11 +84,16 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    public EditPersonDescriptorBuilder withSchedule(Schedule schedule) {
+        descriptor.setSchedule(schedule);
+        return this;
+    }
+
     /**
      * Sets the {@code Schedule} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withSchedule() {
-        descriptor.setSchedule(SampleDataUtil.getSampleSchedule());
+        descriptor.setSchedule(new Schedule());
         return this;
     }
 
