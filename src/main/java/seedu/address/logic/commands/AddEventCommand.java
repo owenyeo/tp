@@ -96,8 +96,8 @@ public class AddEventCommand extends Command {
                     }
                     Schedule userSchedule = model.getUser().getSchedule();
                     Schedule friendScedule = friend.getSchedule();
-                    userSchedule.addMeetUpEvent(eventName + " " + schedule + " " + reminder, friend);
-                    friendScedule.addMeetUpEvent(eventName + " " + schedule + " " + reminder, model.getUser());
+                    userSchedule.addMeetUpEvent(eventName.toLowerCase() + " " + schedule + " " + reminder, friend);
+                    friendScedule.addMeetUpEvent(eventName.toLowerCase() + " " + schedule + " " + reminder, model.getUser());
                     return new CommandResult(MESSAGE_SUCCESS + "\nMeet up event\n" + eventName + " " + schedule + " with " + friend.getName());
                 default:
                     throw new CommandException("Invalid event type!"

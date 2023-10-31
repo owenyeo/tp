@@ -9,7 +9,14 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.timetable.DatedEvent;
 import seedu.address.model.person.timetable.Schedule;
 
-public class DeleteEventCommand extends Command {
+
+/**
+ * Represents a command to remove an event from a contact's calendar.
+ * The event can either be a dated event or a meetup event.
+ * If the index is "user", the event will be removed from the user's calendar.
+ * Otherwise, the event will be removed from the specified contact's calendar.
+ */
+public class RemoveEventCommand extends Command {
 
     public static final String COMMAND_WORD = "rmevent";
     public static final String MESSAGE_USAGE = 
@@ -21,7 +28,7 @@ public class DeleteEventCommand extends Command {
             + "Example: " + COMMAND_WORD
             + " 1"
             + " type/dated"
-            + " en/CS2103T Lecture"
+            + " en/CS2103T Lecture\n"
             + "NOTE: If you want to remove an event from yourself, use index user\n"
             + "Example: " + COMMAND_WORD
             + " user"
@@ -32,7 +39,7 @@ public class DeleteEventCommand extends Command {
     private final String eventType;
     private final Index index;
 
-    public DeleteEventCommand(String eventName, String eventType, Index index) {
+    public RemoveEventCommand(String eventName, String eventType, Index index) {
         this.eventName = eventName;
         this.eventType = eventType;
         this.index = index;
@@ -46,24 +53,45 @@ public class DeleteEventCommand extends Command {
                 case "dated":
                     if (index == null) {
                         userSchedule.deleteDatedEvent(eventName);
+                        return new CommandResult("Dated Event '" + eventName + "'' deleted from your calendar!");
                     } else {
                         Person friend = model.getFilteredPersonList().get(index.getZeroBased());
                         friend.getSchedule().deleteDatedEvent(eventName);
+                        return new CommandResult("Dated Event '" + eventName + "'' deleted from "
+                            + friend.getName().toString() + "'s calendar!");
                     }
                 case "meetup":
                     if (index == null) {
                         userSchedule.deleteMeetUpEvent(eventName);
+                        return new CommandResult("Meetup Event '" + eventName + "'' deleted from your calendar!");
                     } else {
                         Person friend = model.getFilteredPersonList().get(index.getZeroBased());
                         friend.getSchedule().deleteMeetUpEvent(eventName);
+                        return new CommandResult("Meetup Event '" + eventName + "'' deleted from "
+                            + friend.getName().toString() + "'s calendar!");
                     }
                 default:
                     throw new CommandException("Invalid event type!\n"
                         + "Event type must either be 'dated' or 'meetup'!\n");
             }
         } catch (Exception e) {
-            throw new CommandException("Event does not exist!\n"
+            throw new CommandException("Event " + eventName + " does not exist!\n"
                 + "Please check that you have entered the correct event name!\n");
         }
+    }
+
+    /**
+     * Returns a string representation of the given list of DatedEvents.
+     * Each event's string representation is separated by a newline character.
+     *
+     * @param events The list of DatedEvents to be converted to a string.
+     * @return A string representation of the given list of DatedEvents.
+     */
+    public String listEvents(List<DatedEvent> events) {
+        String result = "";
+        for (DatedEvent event : events) {
+            result += event.toString() + "\n";
+        }
+        return result;
     }
 }
