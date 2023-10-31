@@ -5,10 +5,8 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.FREETIME_DESC_MONDAY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_FREETIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
@@ -27,7 +25,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FREETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -49,7 +46,6 @@ import seedu.address.testutil.EditUserDescriptorBuilder;
 public class EditUserCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
-    private static final String FREETIME_EMPTY = " " + PREFIX_FREETIME;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditUserCommand.MESSAGE_USAGE);
@@ -80,7 +76,6 @@ public class EditUserCommandParserTest {
         assertParseFailure(parser, INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
-        assertParseFailure(parser, INVALID_FREETIME_DESC, FreeTime.MESSAGE_CONSTRAINTS); // invalid freetime
         assertParseFailure(parser, INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
@@ -99,11 +94,11 @@ public class EditUserCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         String userInput = PHONE_DESC_BOB + TAG_DESC_HUSBAND
-                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND + FREETIME_DESC_MONDAY;
+                + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
         EditUserDescriptor descriptor = new EditUserDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withFreeTimes(VALID_FREETIME_MONDAY).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditUserCommand expectedCommand = new EditUserCommand(descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -142,12 +137,6 @@ public class EditUserCommandParserTest {
         // address
         userInput = ADDRESS_DESC_AMY;
         descriptor = new EditUserDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
-        expectedCommand = new EditUserCommand(descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
-        // freetime
-        userInput = FREETIME_DESC_MONDAY;
-        descriptor = new EditUserDescriptorBuilder().withFreeTimes(VALID_FREETIME_MONDAY).build();
         expectedCommand = new EditUserCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -199,14 +188,4 @@ public class EditUserCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
-    @Test
-    public void parse_resetFreeTimes_success() {
-        String userInput = FREETIME_EMPTY;
-
-        EditUserDescriptor descriptor = new EditUserDescriptorBuilder().withFreeTimes()
-                .build();
-        EditUserCommand expectedCommand = new EditUserCommand(descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
 }

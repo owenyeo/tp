@@ -6,7 +6,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTHDAY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_BIRTHDAY_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_FREETIME_MONDAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
@@ -28,46 +27,46 @@ public class TypicalUsers {
 
     public static final User ALICE = new UserBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withBirthday("1998-01-01").withFreeTimes("Monday 1200 1300")
+            .withPhone("94351253").withBirthday("1998-01-01").withSchedule()
             .withTags("friends").build();
     public static final User BENSON = new UserBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withBirthday("1998-01-01")
-            .withFreeTimes("Monday 1200 1300")
+            .withSchedule()
             .withTags("owesMoney", "friends").build();
     public static final User CARL = new UserBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withBirthday("1998-01-01")
-            .withFreeTimes("Monday 1200 1300").withAddress("wall street").build();
+            .withSchedule().withAddress("wall street").build();
     public static final User DANIEL = new UserBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withBirthday("1998-01-01")
-            .withFreeTimes("Monday 1200 1300").withAddress("10th street")
+            .withSchedule().withAddress("10th street")
             .withTags("friends").build();
     public static final User ELLE = new UserBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withBirthday("1998-01-01")
-            .withFreeTimes("Monday 1200 1300").withAddress("michegan ave").build();
+            .withSchedule().withAddress("michegan ave").build();
     public static final User FIONA = new UserBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withBirthday("1998-01-01")
-            .withFreeTimes("Monday 1200 1300").withAddress("little tokyo").build();
+            .withSchedule().withAddress("little tokyo").build();
     public static final User GEORGE = new UserBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withBirthday("1998-01-01")
-            .withFreeTimes("Monday 1200 1300").withAddress("4th street").build();
+            .withSchedule().withAddress("4th street").build();
 
     // Manually added
     public static final User HOON = new UserBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withBirthday("1998-01-01")
-            .withFreeTimes("Monday 1200 1300").withAddress("little india").build();
+            .withSchedule().withAddress("little india").build();
     public static final User IDA = new UserBuilder().withName("Ida Mueller").withPhone("8482131")
             .withEmail("hans@example.com").withBirthday("1998-01-01")
-            .withFreeTimes("Monday 1200 1300").withAddress("chicago ave").build();
+            .withSchedule().withAddress("chicago ave").build();
 
     public static final User JAMES = new UserBuilder().withName("James Tan").withPhone("99999999")
             .withEmail("james@example.com").withBirthday("1998-01-01")
-            .withFreeTimes("Wednesday 1200 1600").withAddress("utown").build();
+            .withSchedule().withAddress("utown").build();
 
     // Manually added - User's details found in {@code CommandTestUtil}
     public static final User AMY = new UserBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withBirthday(VALID_BIRTHDAY_AMY)
-            .withFreeTimes(VALID_FREETIME_MONDAY).withTags(VALID_TAG_FRIEND).build();
+            .withSchedule().withTags(VALID_TAG_FRIEND).build();
     public static final User BOB = new UserBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withBirthday(VALID_BIRTHDAY_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
