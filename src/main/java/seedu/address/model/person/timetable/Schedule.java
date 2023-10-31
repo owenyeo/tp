@@ -1,5 +1,6 @@
 package seedu.address.model.person.timetable;
 
+import java.sql.Date;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -316,7 +317,18 @@ public class Schedule {
      * @param moduleName Name of the module to be removed.
      */
     public void deleteModule(String moduleName) {
-        modulesList.removeIf(module -> module.getName().equals(moduleName));
+        boolean isFound = false;
+        for (Module module : modulesList) {
+            if (module.getName().equals(moduleName)) {
+                modulesList.remove(module);
+                isFound = true;
+                break;  // Exit the loop after the first matching module is removed
+            }
+        }
+
+        if (!isFound) {
+            throw new IllegalArgumentException("Module " + moduleName + " does not exist!");
+        }
     }
 
     /**
@@ -357,7 +369,18 @@ public class Schedule {
      * @param ccaName Name of the CCA to be removed.
      */
     public void deleteCca(String ccaName) {
-        ccasList.removeIf(cca -> cca.getCcaName().equals(ccaName));
+        boolean isFound = false;
+        for (Cca cca : ccasList) {
+            if (cca.getCcaName().equals(ccaName)) {
+                ccasList.remove(cca);
+                isFound = true;
+                break;  // Exit the loop after the first matching CCA is removed
+            }
+        }
+
+        if (!isFound) {
+            throw new IllegalArgumentException("CCA " + ccaName + " does not exist!");
+        }
     }
 
     /**
@@ -397,8 +420,19 @@ public class Schedule {
      *
      * @param eventName Name of the dated event to be removed.
      */
-    public void deleteDatedEvent(String eventName) {
-        datedEventsList.removeIf(event -> event.getName().equals(eventName));
+    public void deleteDatedEvent(String eventName) throws Exception{
+            boolean isFound = false;
+        for (DatedEvent event : datedEventsList) {
+            if (event.getName().equals(eventName)) {
+                datedEventsList.remove(event);
+                isFound = true;
+                break;  // Exit the loop after the first matching event is removed
+            }
+        }
+
+        if (!isFound) {
+            throw new Exception("Meet-up event " + eventName + " does not exist!");
+        }
     }
 
     /**
@@ -425,7 +459,18 @@ public class Schedule {
      *
      * @param meetUpEventName Name of the meet-up event to be removed.
      */
-    public void deleteMeetUpEvent(String meetUpEventName) {
-        meetUpEventsList.removeIf(event -> event.getName().equals(meetUpEventName));
+    public void deleteMeetUpEvent(String meetUpEventName) throws Exception {
+        boolean isFound = false;
+        for (MeetUpEvent event : meetUpEventsList) {
+            if (event.getName().equals(meetUpEventName)) {
+                meetUpEventsList.remove(event);
+                isFound = true;
+                break;  // Exit the loop after the first matching event is removed
+            }
+        }
+
+        if (!isFound) {
+            throw new Exception("Meet-up event " + meetUpEventName + " does not exist!");
+        }
     }
 }
