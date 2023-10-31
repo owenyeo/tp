@@ -288,6 +288,15 @@ public class Schedule {
     }
 
     /**
+     * Adds a module to the schedule.
+     *
+     * @param module Module to be added.
+     */
+    public void addModule(Module module) {
+        modulesList.add(module);
+    }
+
+    /**
      * Edits a module in the schedule.
      *
      * @param moduleName Name of the module to be edited.
@@ -302,12 +311,30 @@ public class Schedule {
     }
 
     /**
+     * Removes a module from the schedule.
+     *
+     * @param moduleName Name of the module to be removed.
+     */
+    public void deleteModule(String moduleName) {
+        modulesList.removeIf(module -> module.getName().equals(moduleName));
+    }
+
+    /**
      * Adds a CCA to the schedule.
      *
      * @param ccaString String representation of the CCA.
      */
     public void addCca(String ccaString) {
         ccasList.add(Cca.newCca(ccaString));
+    }
+
+    /**
+     * Adds a CCA in the schedule.
+     *
+     * @param cca CCA to be added.
+     */
+    public void addCca(Cca cca) {
+        ccasList.add(cca);
     }
 
     /**
@@ -334,21 +361,21 @@ public class Schedule {
     }
 
     /**
-     * Removes a module from the schedule.
-     *
-     * @param moduleName Name of the module to be removed.
-     */
-    public void deleteModule(String moduleName) {
-        modulesList.removeIf(module -> module.getName().equals(moduleName));
-    }
-
-    /**
      * Adds a dated event to the schedule.
      *
      * @param eventString String representation of the dated event.
      */
     public void addDatedEvent(String eventString) {
         datedEventsList.add(DatedEvent.newDatedEvent(eventString));
+    }
+
+    /**
+     * Adds a dated event to the schedule.
+     *
+     * @param event Dated event to be added.
+     */
+    public void addDatedEvent(DatedEvent event) {
+        datedEventsList.add(event);
     }
 
     /**
@@ -382,6 +409,15 @@ public class Schedule {
      */
     public void addMeetUpEvent(String meetUpEventString, Person friend) {
         meetUpEventsList.add(MeetUpEvent.newMeetUpEvent(meetUpEventString, friend));
+    }
+
+    /**
+     * Adds a meet-up event to the schedule.
+     *
+     * @param meetUpEvent Meet-up event to be added.
+     */
+    public void addMeetUpEvent(MeetUpEvent meetUpEvent) {
+        meetUpEventsList.add(meetUpEvent);
     }
 
     /**

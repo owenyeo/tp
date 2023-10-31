@@ -16,7 +16,6 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.timetable.Schedule;
 import seedu.address.storage.timetable.JsonAdaptedSchedule;
 
 public class JsonAdaptedPersonTest {
@@ -25,7 +24,6 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_BIRTHDAY = "";
-    private static final String INVALID_FREETIME = "monday";
     private static final String INVALID_TAG = "#friend";
 
 
