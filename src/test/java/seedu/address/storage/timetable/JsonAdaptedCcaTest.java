@@ -2,10 +2,12 @@ package seedu.address.storage.timetable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.address.testutil.TypicalSchedule.NORMAL_CCA;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.timetable.Cca;
 import seedu.address.model.person.timetable.Module;
 import seedu.address.model.person.timetable.TimeBlock;
 import seedu.address.model.util.SampleDataUtil;
@@ -18,29 +20,29 @@ public class JsonAdaptedCcaTest {
     private static final String VALID_TIMEBLOCK = "Monday 1200 1300";
 
     @Test
-    public void toModelType_validModuleDetails_returnsModule() throws Exception {
-        JsonAdaptedCca module = new JsonAdaptedCca(SampleDataUtil.getSampleCcas().get(0));
-        assertEquals(SampleDataUtil.getSampleModules().get(0), module.toModelType());
+    public void toModelType_validCcaDetails_returnsModule() throws Exception {
+        JsonAdaptedCca cca = new JsonAdaptedCca(NORMAL_CCA);
+        assertEquals(NORMAL_CCA, cca.toModelType());
     }
 
     @Test
-    public void toModelType_nullModuleName_throwsException() {
-        JsonAdaptedCca module = new JsonAdaptedCca(null, VALID_TIMEBLOCK);
-        String expectedMessage = Module.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, module::toModelType, expectedMessage);
+    public void toModelType_nullCcaName_throwsException() {
+        JsonAdaptedCca cca = new JsonAdaptedCca(null, VALID_TIMEBLOCK);
+        String expectedMessage = Cca.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, cca::toModelType, expectedMessage);
     }
 
     @Test
     public void toModelType_invalidTimeBlock_throwsException() {
-        JsonAdaptedCca module = new JsonAdaptedCca(VALID_NAME, INVALID_TIMEBLOCK);
+        JsonAdaptedCca cca = new JsonAdaptedCca(VALID_NAME, INVALID_TIMEBLOCK);
         String expectedMessage = TimeBlock.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, module::toModelType, expectedMessage);
+        assertThrows(IllegalArgumentException.class, cca::toModelType, expectedMessage);
     }
 
     @Test
     public void toModelType_nullTimeBlock_throwsException() {
-        JsonAdaptedCca module = new JsonAdaptedCca(VALID_NAME, null);
+        JsonAdaptedCca cca = new JsonAdaptedCca(VALID_NAME, null);
         String expectedMessage = TimeBlock.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, module::toModelType, expectedMessage);
+        assertThrows(IllegalValueException.class, cca::toModelType, expectedMessage);
     }
 }

@@ -113,4 +113,18 @@ public class Cca extends TimeBlock {
                 + "}";
     }
 
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Cca)) {
+            return false;
+        }
+
+        Cca otherCca = (Cca) other;
+        return otherCca.getCcaName().equals(getCcaName())
+                && otherCca.getTimeBlockString().equals(getTimeBlockString());
+    }
+
 }

@@ -3,6 +3,8 @@ package seedu.address.storage.timetable;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.timetable.Cca;
 import seedu.address.model.person.timetable.Module;
 import seedu.address.model.person.timetable.TimeBlock;
 
@@ -23,9 +25,12 @@ public class JsonAdaptedModule {
         timeBlockString = source.getTimeBlockString();
     }
     
-    public Module toModelType() {
-        if (!Module.isValidModuleName(name) || !TimeBlock.isValidTimeBlock(timeBlockString)) {
-            throw new IllegalArgumentException(Module.MESSAGE_CONSTRAINTS);
+    public Module toModelType() throws IllegalValueException {
+        if (name == null) {
+            throw new IllegalValueException("Module name should not be null");
+        }
+        if (timeBlockString == null) {
+            throw new IllegalValueException("Time block should not be null");
         }
 
         return new Module(name, timeBlockString);

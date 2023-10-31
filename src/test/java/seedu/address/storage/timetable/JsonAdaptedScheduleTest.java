@@ -29,7 +29,7 @@ public class JsonAdaptedScheduleTest {
         schedule.addCca(newCca);
 
         JsonAdaptedSchedule jsonSchedule = new JsonAdaptedSchedule(schedule);
-        assertThrows(IllegalValueException.class, jsonSchedule::toModelType);
+        assertThrows(IllegalArgumentException.class, jsonSchedule::toModelType);
     }
 
     @Test
@@ -39,7 +39,7 @@ public class JsonAdaptedScheduleTest {
         schedule.addDatedEvent(testDatedEvent);
 
         JsonAdaptedSchedule jsonSchedule = new JsonAdaptedSchedule(schedule);
-        assertThrows(IllegalValueException.class, jsonSchedule::toModelType);
+        assertThrows(IllegalArgumentException.class, jsonSchedule::toModelType);
     }
 
     @Test
@@ -49,7 +49,7 @@ public class JsonAdaptedScheduleTest {
         schedule.addModule(module);
 
         JsonAdaptedSchedule jsonSchedule = new JsonAdaptedSchedule(schedule);
-        assertThrows(IllegalValueException.class, jsonSchedule::toModelType);
+        assertThrows(IllegalArgumentException.class, jsonSchedule::toModelType);
     }
 
     @Test
@@ -60,6 +60,6 @@ public class JsonAdaptedScheduleTest {
         schedule.addMeetUpEvent(meetUpEvent);
 
         JsonAdaptedSchedule jsonSchedule = new JsonAdaptedSchedule(schedule);
-        assertThrows(IllegalValueException.class, jsonSchedule::toModelType);
+        assertThrows(IllegalArgumentException.class, jsonSchedule::toModelType);
     }
 }

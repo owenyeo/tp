@@ -2,6 +2,7 @@ package seedu.address.storage.timetable;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static seedu.address.testutil.TypicalSchedule.NORMAL_MODULE;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,15 +21,15 @@ public class JsonAdaptedModuleTest {
 
     @Test
     public void toModelType_validModuleDetails_returnsModule() throws Exception {
-        JsonAdaptedModule module = new JsonAdaptedModule(SampleDataUtil.getSampleModules().get(0));
-        assertEquals(SampleDataUtil.getSampleModules().get(0), module.toModelType());
+        JsonAdaptedModule module = new JsonAdaptedModule(NORMAL_MODULE);
+        assertEquals(NORMAL_MODULE, module.toModelType());
     }
 
     @Test
     public void toModelType_invalidModuleName_throwsException() {
         JsonAdaptedModule module = new JsonAdaptedModule(INVALID_NAME, VALID_TIMEBLOCK);
         String expectedMessage = Module.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, module::toModelType, expectedMessage);
+        assertThrows(IllegalArgumentException.class, module::toModelType, expectedMessage);
     }
 
     @Test
@@ -42,7 +43,7 @@ public class JsonAdaptedModuleTest {
     public void toModelType_invalidTimeBlock_throwsException() {
         JsonAdaptedModule module = new JsonAdaptedModule(VALID_NAME, INVALID_TIMEBLOCK);
         String expectedMessage = TimeBlock.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, module::toModelType, expectedMessage);
+        assertThrows(IllegalArgumentException.class, module::toModelType, expectedMessage);
     }
 
     @Test
