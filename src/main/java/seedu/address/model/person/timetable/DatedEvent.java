@@ -56,7 +56,6 @@ public class DatedEvent extends TimeBlock {
         super(timeBlockString);
         requireNonNull(name);
         this.name = name;
-        this.timeBlockString = timeBlockString;
         this.date = date;
         this.hasReminder = reminder;
     }
