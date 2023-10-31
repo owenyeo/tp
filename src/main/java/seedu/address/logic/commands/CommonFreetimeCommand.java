@@ -19,7 +19,6 @@ import seedu.address.model.person.timetable.Schedule;
  * If a name is specified, the command returns the user's common free time with the specified contact.
  * Inherits from the Command class and overrides its execute method.
  */
-
 public class CommonFreetimeCommand extends Command {
 
     public static final String COMMAND_WORD = "cft";
@@ -108,6 +107,25 @@ public class CommonFreetimeCommand extends Command {
 
     public static String createNoOverlapFriendMessage(Person friend) {
         return "You and " + friend.getName().toString() + " have no common free time!";
+    }
+
+    /**
+     * Returns a List<FreeTime> of common free times with specified contact
+     * @param model {@code Model} which the command should operate on.
+     * @param contactName Name of contact to find common free time with
+     * @return List<FreeTime> of common free times with specified contact
+     * @throws CommandException if an error occurs during command execution.
+     */
+    public List<FreeTime> getCommonFreeTimeWith(Model model, Name contactName) throws CommandException {
+        Person friend = model.getPersonWithName(contactName);
+        Schedule friendSchedule = friend.getSchedule();
+        Schedule userSchedule = model.getUser().getSchedule();
+        List<FreeTime> commonFreeTime = userSchedule.getThisWeeksFreeTimesWith(friendSchedule);
+        if (commonFreeTime.isEmpty()) {
+            throw new CommandException(createNoOverlapFriendMessage(friend));
+        } else {
+            return commonFreeTime;
+        }
     }
 
     @Override

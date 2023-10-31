@@ -15,4 +15,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_EVENTNAME = new Prefix("en/");
     public static final Prefix PREFIX_EVENTTYPE = new Prefix("type/");
+    public static final Prefix PREFIX_REMINDER = new Prefix("r/");
 }
