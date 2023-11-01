@@ -14,17 +14,17 @@ import seedu.address.model.person.timetable.Module;
 import seedu.address.model.person.timetable.Schedule;
 
 /**
- * Represents a JSON adapted schedule.
- * A JSON adapted schedule contains lists of JSON adapted dated events, modules, CCAs and meet-up events.
- * This class provides methods to convert the JSON adapted schedule to a list of model type dated events, modules, CCAs and meet-up events,
- * as well as to convert the JSON adapted schedule to a model type schedule.
+ * Jackson-friendly version of {@link Schedule}.
  */
 public class JsonAdaptedSchedule {
-    List<JsonAdaptedDatedEvent> datedEvents = new ArrayList<>();
-    List<JsonAdaptedModule> modules = new ArrayList<>();
-    List<JsonAdaptedCca> ccas = new ArrayList<>();
-    List<JsonAdaptedMeetUpEvent> meetUpEvents = new ArrayList<>();
+    private List<JsonAdaptedDatedEvent> datedEvents = new ArrayList<>();
+    private List<JsonAdaptedModule> modules = new ArrayList<>();
+    private List<JsonAdaptedCca> ccas = new ArrayList<>();
+    private List<JsonAdaptedMeetUpEvent> meetUpEvents = new ArrayList<>();
 
+    /**
+     * Constructs a {@code JsonAdaptedSchedule} with the given {@code DatedEvent}.
+     */
     @JsonCreator
     public JsonAdaptedSchedule(@JsonProperty("datedEvents") List<JsonAdaptedDatedEvent> datedEvents,
                                @JsonProperty("modules") List<JsonAdaptedModule> modules,
@@ -36,6 +36,9 @@ public class JsonAdaptedSchedule {
         this.meetUpEvents = meetUpEvents;
     }
 
+    /**
+     * Converts a given {@code Schedule} into this class for Jackson use.
+     */
     public JsonAdaptedSchedule(Schedule source) {
         List<DatedEvent> datedEventList = source.getDatedEventsList();
         List<Module> modulesList = source.getModulesList();
@@ -59,6 +62,11 @@ public class JsonAdaptedSchedule {
         }
     }
 
+    /**
+     * Converts this Jackson-friendly adapted Schedule object into the model's {@code Schedule} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted schedule.
+     */
     public List<DatedEvent> toModelTypeDatedEventList() throws IllegalValueException {
         List<DatedEvent> datedEventList = new ArrayList<>();
         for (JsonAdaptedDatedEvent datedEvent : datedEvents) {
@@ -67,6 +75,11 @@ public class JsonAdaptedSchedule {
         return datedEventList;
     }
 
+    /**
+     * Converts this Jackson-friendly adapted Schedule object into the model's {@code Schedule} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted schedule.
+     */
     public List<Module> toModelTypeModuleList() throws IllegalValueException {
         List<Module> modulesList = new ArrayList<>();
         for (JsonAdaptedModule module : modules) {
@@ -75,6 +88,11 @@ public class JsonAdaptedSchedule {
         return modulesList;
     }
 
+    /**
+     * Converts this Jackson-friendly adapted Schedule object into the model's {@code Schedule} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted schedule.
+     */
     public List<Cca> toModelTypeCcaList() throws IllegalValueException {
         List<Cca> ccaList = new ArrayList<>();
         for (JsonAdaptedCca cca : ccas) {
@@ -83,6 +101,11 @@ public class JsonAdaptedSchedule {
         return ccaList;
     }
 
+    /**
+     * Converts this Jackson-friendly adapted Schedule object into the model's {@code Schedule} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted schedule.
+     */
     public List<MeetUpEvent> toModelTypeMeetUpEventList() throws IllegalValueException {
         List<MeetUpEvent> meetUpEventList = new ArrayList<>();
         for (JsonAdaptedMeetUpEvent meetUpEvent : meetUpEvents) {
@@ -91,7 +114,11 @@ public class JsonAdaptedSchedule {
         return meetUpEventList;
     }
 
-
+    /**
+     * Converts this Jackson-friendly adapted Schedule object into the model's {@code Schedule} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted schedule.
+     */
     public Schedule toModelType() throws IllegalValueException {
         List<DatedEvent> datedEventList = toModelTypeDatedEventList();
         List<Module> modulesList = toModelTypeModuleList();

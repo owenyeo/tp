@@ -56,9 +56,14 @@ public class JsonAdaptedMeetUpEvent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted MeetUpEvent.
      */
     public MeetUpEvent toModelType() throws IllegalValueException {
-        if (!MeetUpEvent.isValidDateTimeString(localDateString) || !TimeBlock.isValidTimeBlock(timeBlockString)) {
+        if (!MeetUpEvent.isValidDateTimeString(localDateString)) {
             throw new IllegalValueException(MeetUpEvent.MESSAGE_CONSTRAINTS);
         }
+
+        if (!TimeBlock.isValidTimeBlock(timeBlockString)) {
+            throw new IllegalValueException(TimeBlock.MESSAGE_CONSTRAINTS);
+        }
+
         LocalDate date = LocalDate.parse(localDateString);
         return new MeetUpEvent(name, timeBlockString, date.toString(), reminder, friend.toModelType());
     }
