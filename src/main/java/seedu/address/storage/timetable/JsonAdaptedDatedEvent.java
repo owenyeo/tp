@@ -51,9 +51,14 @@ public class JsonAdaptedDatedEvent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted datedEvent.
      */
     public DatedEvent toModelType() throws IllegalValueException {
-        if (!DatedEvent.isValidDateTimeString(localDateString) || !TimeBlock.isValidTimeBlock(timeBlockString)) {
+        if (!DatedEvent.isValidDateTimeString(localDateString)) {
             throw new IllegalValueException(DatedEvent.MESSAGE_CONSTRAINTS);
         }
+
+        if (!TimeBlock.isValidTimeBlock(timeBlockString)) {
+            throw new IllegalValueException(TimeBlock.MESSAGE_CONSTRAINTS);
+        }
+
         LocalDate date = LocalDate.parse(localDateString);
         return new DatedEvent(name, timeBlockString, date, reminder);
     }

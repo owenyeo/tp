@@ -3,9 +3,13 @@ package seedu.address.storage.timetable;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.timetable.Module;
 import seedu.address.model.person.timetable.TimeBlock;
 
+/**
+ * Jackson-friendly version of {@link Module}.
+ */
 public class JsonAdaptedModule {
 
     private final String name;
@@ -23,9 +27,18 @@ public class JsonAdaptedModule {
         timeBlockString = source.getTimeBlockString();
     }
     
-    public Module toModelType() {
-        if (!Module.isValidModuleName(name) || !TimeBlock.isValidTimeBlock(timeBlockString)) {
-            throw new IllegalArgumentException(Module.MESSAGE_CONSTRAINTS);
+    /**
+     * Converts this Jackson-friendly adapted Module object into the model's {@code Module} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted module.
+     */
+    public Module toModelType() throws IllegalValueException {
+        if (!Module.isValidModuleName(name)) {
+            throw new IllegalValueException(Module.MESSAGE_CONSTRAINTS);
+        }
+
+        if(!TimeBlock.isValidTimeBlock(timeBlockString)) {
+            throw new IllegalValueException(TimeBlock.MESSAGE_CONSTRAINTS);
         }
 
         return new Module(name, timeBlockString);

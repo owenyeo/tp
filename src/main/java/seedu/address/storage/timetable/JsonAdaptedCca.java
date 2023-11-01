@@ -3,6 +3,7 @@ package seedu.address.storage.timetable;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.timetable.Cca;
 import seedu.address.model.person.timetable.TimeBlock;
 
@@ -23,9 +24,13 @@ public class JsonAdaptedCca {
         timeBlockString = source.getTimeBlockString();
     }
     
-    public Cca toModelType() {
-        if (!Cca.isValidCcaName(name) || !TimeBlock.isValidTimeBlock(timeBlockString)) {
-            throw new IllegalArgumentException(Cca.MESSAGE_CONSTRAINTS);
+    public Cca toModelType() throws IllegalValueException {
+        if (!Cca.isValidCcaName(name)) {
+            throw new IllegalValueException(Cca.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!TimeBlock.isValidTimeBlock(timeBlockString)) {
+            throw new IllegalValueException(TimeBlock.MESSAGE_CONSTRAINTS);
         }
 
         return new Cca(name, timeBlockString);

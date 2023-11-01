@@ -6,6 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.timetable.Cca;
 import seedu.address.model.person.timetable.DatedEvent;
 import seedu.address.model.person.timetable.MeetUpEvent;
@@ -52,7 +53,7 @@ public class JsonAdaptedSchedule {
         }
     }
 
-    public Schedule toModelType() {
+    public Schedule toModelType() throws IllegalValueException {
         List<DatedEvent> datedEventList = new ArrayList<>();
         List<Module> modulesList = new ArrayList<>();
         List<Cca> ccaList = new ArrayList<>();
