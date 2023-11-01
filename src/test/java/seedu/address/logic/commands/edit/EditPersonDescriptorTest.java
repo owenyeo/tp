@@ -6,14 +6,14 @@ import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_FREETIME_MONDAY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_FREETIME_TUESDAY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.testutil.TypicalSchedule.NORMAL_SCHEDULE;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditPersonDescriptorTest {
@@ -54,7 +54,7 @@ public class EditPersonDescriptorTest {
         assertNotEquals(DESC_AMY, editedAmy);
 
         // different free times -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).build();
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withSchedule(NORMAL_SCHEDULE).build();
         assertNotEquals(DESC_AMY, editedAmy);
 
         // different tags -> returns false
@@ -85,7 +85,7 @@ public class EditPersonDescriptorTest {
 
     @Test
     public void toStringMethod_filled() {
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor(DESC_AMY);
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor(DESC_BOB);
         String expected = EditPersonDescriptor.class.getCanonicalName() + "{name="
                 + editPersonDescriptor.getName().orElse(null) + ", phone="
                 + editPersonDescriptor.getPhone().orElse(null) + ", email="

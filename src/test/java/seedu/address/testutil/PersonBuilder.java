@@ -79,7 +79,12 @@ public class PersonBuilder {
      * Parses the {@code freeTimes} into a {@code Set<FreeTime>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withSchedule() {
-        this.schedule = SampleDataUtil.getSampleSchedule();
+        this.schedule = new Schedule();
+        return this;
+    }
+
+    public PersonBuilder withSchedule(Schedule schedule) {
+        this.schedule = schedule;
         return this;
     }
 

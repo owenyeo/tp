@@ -60,7 +60,7 @@ public class SampleDataUtil {
 
     public static List<Module> getSampleModules() {
         List<Module> modules = new ArrayList<>();
-        modules.add(new Module("CS2103T", "Wednesday 1200 1300"));
+        modules.add(new Module("CS2103", "Wednesday 1200 1300"));
         modules.add(new Module("CS2101", "Tuesday 1200 1400"));
         modules.add(new Module("CS2100", "Monday 1400 1500"));
         return modules;
@@ -74,8 +74,8 @@ public class SampleDataUtil {
         return ccas;
     }
 
-    public static List<DatedEvent> getSampleDatedEvents() {
-        List<DatedEvent> datedEvents = new ArrayList<>();
+    public static ArrayList<DatedEvent> getSampleDatedEvents() {
+        ArrayList<DatedEvent> datedEvents = new ArrayList<>();
         datedEvents.add(DatedEvent.newDatedEvent("CS2103 Meeting 2023-10-10 1030 1130 y"));
         datedEvents.add(DatedEvent.newDatedEvent("Walk Dog 2023-10-10 1030 1130 n"));
         datedEvents.add(DatedEvent.newDatedEvent("Competitive sleeping 2023-10-10 1030 1130 y"));

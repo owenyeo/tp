@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -10,6 +11,8 @@ import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.timetable.DatedEvent;
+import seedu.address.model.person.timetable.Schedule;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.user.User;
@@ -41,6 +44,7 @@ public class EditUserDescriptorBuilder {
         descriptor.setBirthday(user.getBirthday());
         descriptor.setSchedule(user.getSchedule());
         descriptor.setTags(user.getTags());
+        descriptor.setDatedEvents(user.getDatedEvents());
     }
 
     /**
@@ -87,7 +91,22 @@ public class EditUserDescriptorBuilder {
      * Sets the {@code Schedule} of the {@code EditUserDescriptorBuilder} that we are building.
      */
     public EditUserDescriptorBuilder withSchedule() {
-        descriptor.setSchedule(SampleDataUtil.getSampleSchedule());
+        descriptor.setSchedule(new Schedule());
+        return this;
+    }
+
+    public EditUserDescriptorBuilder withSchedule(Schedule schedule) {
+        descriptor.setSchedule(schedule);
+        return this;
+    }
+
+    public EditUserDescriptorBuilder withDatedEvents(){
+        descriptor.setDatedEvents(new ArrayList<DatedEvent>());
+        return this;
+    }
+
+    public EditUserDescriptorBuilder withDatedEvents(ArrayList<DatedEvent> datedEvents) {
+        descriptor.setDatedEvents(datedEvents);
         return this;
     }
 

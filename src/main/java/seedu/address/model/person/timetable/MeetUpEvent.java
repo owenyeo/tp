@@ -93,9 +93,8 @@ public class MeetUpEvent extends DatedEvent {
 
     @Override
     public String toString() {
-        String str = super.toString() + "\n"
-                + "Meeting: " + friend.getName();
-
-        return str;
+        return "MeetUpEvent: [" + super.getName() + "] with " + friend.getName()
+                + " on " + super.getDate().format(DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER_PATTERN))
+                + " " + super.toString() + " Reminder: " + (super.hasReminder() ? "Yes" : "No");
     }
 }

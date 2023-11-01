@@ -146,30 +146,24 @@ public class DatedEvent extends TimeBlock {
 
     @Override
     public String toString() {
-        return "Event Name: " + name + "\n"
-                + "Date: " + date.format(DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER_PATTERN)) + "\n"
-                + "Time: " + super.toString()
-                + "Reminder: " + (hasReminder ? "Yes" : "No");
+        return "DatedEvent: [" + name + "] on " + date.format(DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER_PATTERN))
+                + " " + super.toString() + " Reminder: " + (hasReminder ? "Yes" : "No");
     }
 
     public String getName() {
         return name;
     }
 
-    public String getTimeBlockString() {
-        return timeBlockString;
-    }
-
     public String getStringForReminder() {
-        return name + " " + timeBlockString;
+        return name + " " + super.getTimeBlockString();
     }
 
     public DatedEvent setReminder() {
-        return new DatedEvent(name, timeBlockString, date, true);
+        return new DatedEvent(name, super.getTimeBlockString(), date, true);
     }
 
     public DatedEvent removeReminder() {
-        return new DatedEvent(name, timeBlockString, date, false);
+        return new DatedEvent(name, super.getTimeBlockString(), date, false);
     }
 
 }

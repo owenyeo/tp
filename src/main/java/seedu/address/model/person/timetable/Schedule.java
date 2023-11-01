@@ -1,5 +1,6 @@
 package seedu.address.model.person.timetable;
 
+import java.sql.Date;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,11 +19,11 @@ public class Schedule {
     private final List<MeetUpEvent> meetUpEventsList = new ArrayList<>();
 
     public Schedule() {}
-    
     /**
      * Creates a new Schedule object.
      */
-    public Schedule(List<Module> modulesList, List<Cca> ccasList, List<DatedEvent> datedEventsList, List<MeetUpEvent> meetUpEventsList) {
+    public Schedule(List<Module> modulesList, List<Cca> ccasList,
+                    List<DatedEvent> datedEventsList, List<MeetUpEvent> meetUpEventsList) {
         this.modulesList.addAll(modulesList);
         this.ccasList.addAll(ccasList);
         this.datedEventsList.addAll(datedEventsList);
@@ -237,7 +238,7 @@ public class Schedule {
         return Collections.unmodifiableList(meetUpEventsList);
     }
 
-    /** 
+    /**
      * Returns an unmodifiable list of modules in the schedule.
      *
      * @return List of modules.
@@ -316,7 +317,18 @@ public class Schedule {
      * @param moduleName Name of the module to be removed.
      */
     public void deleteModule(String moduleName) {
-        modulesList.removeIf(module -> module.getName().equals(moduleName));
+        boolean isFound = false;
+        for (Module module : modulesList) {
+            if (module.getName().equals(moduleName)) {
+                modulesList.remove(module);
+                isFound = true;
+                break;  // Exit the loop after the first matching module is removed
+            }
+        }
+
+        if (!isFound) {
+            throw new IllegalArgumentException("Module " + moduleName + " does not exist!");
+        }
     }
 
     /**
@@ -357,7 +369,18 @@ public class Schedule {
      * @param ccaName Name of the CCA to be removed.
      */
     public void deleteCca(String ccaName) {
-        ccasList.removeIf(cca -> cca.getCcaName().equals(ccaName));
+        boolean isFound = false;
+        for (Cca cca : ccasList) {
+            if (cca.getCcaName().equals(ccaName)) {
+                ccasList.remove(cca);
+                isFound = true;
+                break;  // Exit the loop after the first matching CCA is removed
+            }
+        }
+
+        if (!isFound) {
+            throw new IllegalArgumentException("CCA " + ccaName + " does not exist!");
+        }
     }
 
     /**
@@ -397,8 +420,19 @@ public class Schedule {
      *
      * @param eventName Name of the dated event to be removed.
      */
-    public void deleteDatedEvent(String eventName) {
-        datedEventsList.removeIf(event -> event.getName().equals(eventName));
+    public void deleteDatedEvent(String eventName) throws Exception{
+            boolean isFound = false;
+        for (DatedEvent event : datedEventsList) {
+            if (event.getName().equals(eventName)) {
+                datedEventsList.remove(event);
+                isFound = true;
+                break;  // Exit the loop after the first matching event is removed
+            }
+        }
+
+        if (!isFound) {
+            throw new Exception("Meet-up event " + eventName + " does not exist!");
+        }
     }
 
     /**
@@ -425,7 +459,63 @@ public class Schedule {
      *
      * @param meetUpEventName Name of the meet-up event to be removed.
      */
-    public void deleteMeetUpEvent(String meetUpEventName) {
-        meetUpEventsList.removeIf(event -> event.getName().equals(meetUpEventName));
+    public void deleteMeetUpEvent(String meetUpEventName) throws Exception {
+        boolean isFound = false;
+        for (MeetUpEvent event : meetUpEventsList) {
+            if (event.getName().equals(meetUpEventName)) {
+                meetUpEventsList.remove(event);
+                isFound = true;
+                break;  // Exit the loop after the first matching event is removed
+            }
+        }
+
+        if (!isFound) {
+            throw new Exception("Meet-up event " + meetUpEventName + " does not exist!");
+        }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Schedule:\n");
+        if (!modulesList.isEmpty()) {
+            sb.append("- Modules:\n");
+            for (Module module : modulesList) {
+                sb.append("  ").append(module.toString()).append("\n");
+            }
+        }
+        if (!ccasList.isEmpty()) {
+            sb.append("- CCAs:\n");
+            for (Cca cca : ccasList) {
+                sb.append("  ").append(cca.toString()).append("\n");
+            }
+        }
+        if (!datedEventsList.isEmpty()) {
+            sb.append("- Dated Events:\n");
+            for (DatedEvent event : datedEventsList) {
+                sb.append("  ").append(event.toString()).append("\n");
+            }
+        }
+        if (!meetUpEventsList.isEmpty()) {
+            sb.append("- MeetUp Events:\n");
+            for (MeetUpEvent event : meetUpEventsList) {
+                sb.append("  ").append(event.toString()).append("\n");
+            }
+        }
+        return sb.toString();
+    }
+  
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof Schedule)) {
+            return false;
+        }
+        Schedule otherSchedule = (Schedule) other;
+        return modulesList.equals(otherSchedule.modulesList)
+                && ccasList.equals(otherSchedule.ccasList)
+                && datedEventsList.equals(otherSchedule.datedEventsList)
+                && meetUpEventsList.equals(otherSchedule.meetUpEventsList);
     }
 }
