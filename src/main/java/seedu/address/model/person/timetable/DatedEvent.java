@@ -158,12 +158,18 @@ public class DatedEvent extends TimeBlock {
         return name + " " + super.getTimeBlockString();
     }
 
-    public DatedEvent setReminder() {
-        return new DatedEvent(name, super.getTimeBlockString(), date, true);
-    }
-
-    public DatedEvent removeReminder() {
-        return new DatedEvent(name, super.getTimeBlockString(), date, false);
+    public boolean equals(Object e) {
+        if (e == this) {
+            return true;
+        } else if (!(e instanceof DatedEvent)) {
+            return false;
+        } else {
+            DatedEvent other = (DatedEvent) e;
+            return other.getName().equals(getName())
+                    && other.getDate().equals(getDate())
+                    && other.getTimeBlockString().equals(getTimeBlockString())
+                    && other.hasReminder() == hasReminder();
+        }
     }
 
 }

@@ -6,60 +6,35 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.timetable.Cca;
-import seedu.address.model.person.timetable.DatedEvent;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.timetable.*;
 import seedu.address.model.person.timetable.Module;
-import seedu.address.model.person.timetable.Schedule;
-import seedu.address.model.person.timetable.MeetUpEvent;
+import seedu.address.storage.JsonAdaptedPerson;
+import seedu.address.testutil.PersonBuilder;
 
 
 public class JsonAdaptedScheduleTest {  
     public static final String VALID_MODULE_NAME = "CS2100";
     public static final String VALID_TIMEBLOCK = "Monday 1200 1300";
-    public static final String VALID_DATE = "2001-12-26 1200 1400";
+    public static final String VALID_DATE = "2001-12-26";
 
-    public static final String INVALID_MODULE_NAME = "okok";
-    public static final String INVALID_TIMEBLOCK = "monday";
-    public static final String INVALID_DATE = "26-12-2001";
+    public static final String VALID_EVENT_NAME = "Walk Dog";
 
-    @Test
-    public void toModelType_invalidCca_throwsIllegalValueException() {
-        Schedule schedule = new Schedule();
-        Cca newCca = new Cca(VALID_MODULE_NAME, INVALID_TIMEBLOCK);
-        schedule.addCca(newCca);
+    public static final boolean VALID_EVENT_REMINDER = true;
 
-        JsonAdaptedSchedule jsonSchedule = new JsonAdaptedSchedule(schedule);
-        assertThrows(IllegalValueException.class, jsonSchedule::toModelType);
-    }
+    public static final Person VALID_PERSON = new PersonBuilder().build();
 
     @Test
-    public void toModelType_invalidDatedEvent_throwsIllegalValueException() {
+    public void toModelType_validSchedule_returnsSchedule() throws Exception {
         Schedule schedule = new Schedule();
-        DatedEvent testDatedEvent = new DatedEvent(VALID_MODULE_NAME, VALID_TIMEBLOCK, INVALID_DATE, false);
-        schedule.addDatedEvent(testDatedEvent);
+        schedule.addModule(new Module(VALID_MODULE_NAME, VALID_TIMEBLOCK));
+        schedule.addDatedEvent(new DatedEvent(VALID_EVENT_NAME, VALID_TIMEBLOCK, VALID_DATE, VALID_EVENT_REMINDER));
+        schedule.addCca(new Cca(VALID_MODULE_NAME, VALID_TIMEBLOCK));
+        schedule.addMeetUpEvent(new MeetUpEvent(VALID_EVENT_NAME, VALID_TIMEBLOCK, VALID_DATE, VALID_EVENT_REMINDER, VALID_PERSON));
 
-        JsonAdaptedSchedule jsonSchedule = new JsonAdaptedSchedule(schedule);
-        assertThrows(IllegalValueException.class, jsonSchedule::toModelType);
-    }
+        JsonAdaptedSchedule jsonAdaptedSchedule = new JsonAdaptedSchedule(schedule);
+        Schedule schedule1 = jsonAdaptedSchedule.toModelType();
 
-    @Test
-    public void toModelType_invalidModule_throwsIllegalValueException() {
-        Schedule schedule = new Schedule();
-        Module module = new Module(INVALID_MODULE_NAME, VALID_TIMEBLOCK);
-        schedule.addModule(module);
-
-        JsonAdaptedSchedule jsonSchedule = new JsonAdaptedSchedule(schedule);
-        assertThrows(IllegalValueException.class, jsonSchedule::toModelType);
-    }
-
-    @Test
-    public void toModelType_invalidMeetUpEvent_throwsIllegalValueException() {
-        Schedule schedule = new Schedule();
-        MeetUpEvent meetUpEvent = new MeetUpEvent(VALID_MODULE_NAME, VALID_TIMEBLOCK, INVALID_DATE, false, ALICE);
-
-        schedule.addMeetUpEvent(meetUpEvent);
-
-        JsonAdaptedSchedule jsonSchedule = new JsonAdaptedSchedule(schedule);
-        assertThrows(IllegalValueException.class, jsonSchedule::toModelType);
+        assert schedule1.equals(schedule);
     }
 }

@@ -4,10 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -109,7 +109,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String getBirthdayList() {
         StringBuilder sb = new StringBuilder();
         for (Person person: persons) {
-            if (person.getBirthday().equals(new Birthday(LocalDate.now().toString()))) {
+            if (person.getBirthday().date.getMonth().equals(LocalDate.now().getMonth()) &&
+                    Objects.equals(person.getBirthday().date.getDayOfYear(), LocalDate.now().getDayOfYear())) {
                 sb.append(person.getName() + "\n");
             }
         }

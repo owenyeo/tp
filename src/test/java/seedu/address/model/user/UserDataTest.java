@@ -51,12 +51,6 @@ public class UserDataTest {
     }
 
     @Test
-    public void testHashCode() {
-        UserData userData = new UserData(new UserBuilder().build());
-        assertEquals(userData.hashCode(), new UserData(new UserBuilder().build()).hashCode());
-    }
-
-    @Test
     public void testToString() {
         UserData userData = new UserData(new UserBuilder().build());
         String expected = "User : " + userData.getUser().toString();

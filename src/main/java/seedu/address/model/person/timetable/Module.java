@@ -120,4 +120,16 @@ public class Module extends TimeBlock {
     public String toString() {
         return "Module: [" + moduleName + "] " + super.toString();
     }
+
+    public boolean equals(Object e) {
+        if (e == this) {
+            return true;
+        } else if (!(e instanceof Module)) {
+            return false;
+        } else {
+            Module other = (Module) e;
+            return this.moduleName.equals(other.moduleName)
+                    && this.getTimeBlockString().equals(other.getTimeBlockString());
+        }
+    }
 }

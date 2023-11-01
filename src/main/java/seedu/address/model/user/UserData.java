@@ -78,11 +78,6 @@ public class UserData implements ReadOnlyUserData {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(user);
-    }
-
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("User : " + user.toString());
