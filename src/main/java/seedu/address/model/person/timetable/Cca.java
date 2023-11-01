@@ -91,9 +91,9 @@ public class Cca extends TimeBlock {
         return test.matches(VALIDATION_REGEX);
     }
 
-    public String getCcaName() {
-        String name = ccaName;
-        return name;
+    @Override
+    public String getName() {
+        return this.ccaName;
     }
 
     @Override
@@ -113,6 +113,7 @@ public class Cca extends TimeBlock {
                 + "}";
     }
 
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -123,8 +124,12 @@ public class Cca extends TimeBlock {
         }
 
         Cca otherCca = (Cca) other;
-        return otherCca.getCcaName().equals(getCcaName())
+        return otherCca.getName().equals(getName())
                 && otherCca.getTimeBlockString().equals(getTimeBlockString());
     }
 
+    @Override
+    public int hashCode() {
+        return toString().hashCode();
+    }
 }

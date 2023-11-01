@@ -150,6 +150,7 @@ public class DatedEvent extends TimeBlock {
                 + " " + super.toString() + " Reminder: " + (hasReminder ? "Yes" : "No");
     }
 
+    @Override
     public String getName() {
         return name;
     }
@@ -158,6 +159,7 @@ public class DatedEvent extends TimeBlock {
         return name + " " + super.getTimeBlockString();
     }
 
+    @Override
     public boolean equals(Object e) {
         if (e == this) {
             return true;
@@ -170,6 +172,11 @@ public class DatedEvent extends TimeBlock {
                     && other.getTimeBlockString().equals(getTimeBlockString())
                     && other.hasReminder() == hasReminder();
         }
+    }
+
+    @Override
+    public int hashCode() {
+        return toString().hashCode();
     }
 
 }

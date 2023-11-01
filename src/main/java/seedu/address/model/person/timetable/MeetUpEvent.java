@@ -98,6 +98,7 @@ public class MeetUpEvent extends DatedEvent {
                 + " " + super.toString() + " Reminder: " + (super.hasReminder() ? "Yes" : "No");
     }
 
+    @Override
     public boolean equals(Object e) {
         if (e == this) {
             return true;
@@ -109,4 +110,8 @@ public class MeetUpEvent extends DatedEvent {
         }
     }
 
+    @Override
+    public int hashCode() {
+        return toString().hashCode();
+    }
 }

@@ -1,6 +1,35 @@
-# User Guide
+# TimetaBRO User Guide
 
-Welcome to TimetaBRO, your ultimate companion for managing your university life, social interactions, and schedules. This comprehensive user guide will walk you through all the exciting features TimetaBRO has to offer.
+## Introduction
+
+Welcome to TimetaBRO, your ultimate companion for managing your university life, social interactions, and schedules. It is dedicated to **NUS students who have many things on their plate, and have trouble arranging meetings with friends and teammates**.
+
+In the past, NUS students had to tediously save their friend’s timetables, and compare them to their own. Most of the time, students do not even have the time to compare timetables, and have to go through the hassle of coordination through messaging apps.
+
+However, with TimetaBRO, you can now **save your friends’ timetables**, and ask it when your friends are free! Make scheduling meetups and meetings slick and easy, and while you’re busy scheduling the best dates, you can also save important details about your friends! No more forgetting birthdays or favourite foods, be the best friend you can be!
+
+## About the user guide
+This comprehensive user guide will walk you through all the exciting features TimetaBRO has to offer. New to TimetaBRO? Fret not! This guide will walk you through a quickstart to start using TimetaBRO.
+
+This user guide will also provide information about its amazing functionalities in the features section, optimising your use of TimetaBRO even further. Included is a command summary for your perusal.
+
+Additionally, we included FAQs and a glossary in case you have any additional questions after reading this user guide.
+
+## Quickstart
+Before we jump into it, let's make sure that your TimetaBRO is working properly!
+1. Ensure you have Java 11 installed on your computer.
+    * To check if Java 11 is currently installed, you may follow this short guide. 
+    * If Java 11 is not installed, you may follow the installation instructions over here. 
+2. Next, download the latest 'timetabro.jar' from [here](https://github.com/AY2324S1-CS2103T-W12-4/tp).
+3. Copy the file to the folder you want to use as a home folder for TimetaBRO. 
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
+    * add n/Owen p/91792309 s/CS2101 Tuesday 1200 1400 b/ 2001-12-26:
+    adds a friend named Owen, with phone number 91792309 and birthday on 26 December 2001. He is taking a class on Tuesday 1200-1400 for module CS2101
+    * cft Friday 1200 1400:
+    Filters your friend list to people who are free on these timings
+
+
+Nice! Now you know the basic commands and have launched TimetaBRO, lets get into the finer details.
 
 
 ## Features

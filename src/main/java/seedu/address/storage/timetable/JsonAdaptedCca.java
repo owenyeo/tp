@@ -21,7 +21,7 @@ public class JsonAdaptedCca {
     }
 
     public JsonAdaptedCca(Cca source) {
-        name = source.getCcaName();
+        name = source.getName();
         timeBlockString = source.getTimeBlockString();
     }
     
