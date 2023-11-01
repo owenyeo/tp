@@ -93,9 +93,20 @@ public class MeetUpEvent extends DatedEvent {
 
     @Override
     public String toString() {
-        String str = super.toString() + "\n"
-                + "Meeting: " + friend.getName();
-
-        return str;
+        return "MeetUpEvent: [" + super.getName() + "] with " + friend.getName()
+                + " on " + super.getDate().format(DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER_PATTERN))
+                + " " + super.toString() + " Reminder: " + (super.hasReminder() ? "Yes" : "No");
     }
+
+    public boolean equals(Object e) {
+        if (e == this) {
+            return true;
+        } else if (!(e instanceof MeetUpEvent)) {
+            return false;
+        } else {
+            MeetUpEvent other = (MeetUpEvent) e;
+            return super.equals(other) && friend.equals(other.friend);
+        }
+    }
+
 }

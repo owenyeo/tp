@@ -6,6 +6,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.timetable.Cca;
 import seedu.address.model.person.timetable.DatedEvent;
 import seedu.address.model.person.timetable.MeetUpEvent;
@@ -52,35 +53,44 @@ public class JsonAdaptedSchedule {
         }
     }
 
-    public Schedule toModelType() {
+    public List<DatedEvent> toModelTypeDatedEventList() throws IllegalValueException {
         List<DatedEvent> datedEventList = new ArrayList<>();
-        List<Module> modulesList = new ArrayList<>();
-        List<Cca> ccaList = new ArrayList<>();
-        List<MeetUpEvent> meetUpEventList = new ArrayList<>();
-
         for (JsonAdaptedDatedEvent datedEvent : datedEvents) {
-            try {
-                datedEventList.add(datedEvent.toModelType());
-            } catch (Exception e) {
-                continue;
-            }
+            datedEventList.add(datedEvent.toModelType());
         }
+        return datedEventList;
+    }
 
+    public List<Module> toModelTypeModuleList() throws IllegalValueException {
+        List<Module> modulesList = new ArrayList<>();
         for (JsonAdaptedModule module : modules) {
             modulesList.add(module.toModelType());
         }
+        return modulesList;
+    }
 
+    public List<Cca> toModelTypeCcaList() throws IllegalValueException {
+        List<Cca> ccaList = new ArrayList<>();
         for (JsonAdaptedCca cca : ccas) {
             ccaList.add(cca.toModelType());
         }
+        return ccaList;
+    }
 
+    public List<MeetUpEvent> toModelTypeMeetUpEventList() throws IllegalValueException {
+        List<MeetUpEvent> meetUpEventList = new ArrayList<>();
         for (JsonAdaptedMeetUpEvent meetUpEvent : meetUpEvents) {
-            try {
-                meetUpEventList.add(meetUpEvent.toModelType());
-            } catch (Exception e) {
-                continue;
-            }
+            meetUpEventList.add(meetUpEvent.toModelType());
         }
+        return meetUpEventList;
+    }
+
+
+    public Schedule toModelType() throws IllegalValueException {
+        List<DatedEvent> datedEventList = toModelTypeDatedEventList();
+        List<Module> modulesList = toModelTypeModuleList();
+        List<Cca> ccaList = toModelTypeCcaList();
+        List<MeetUpEvent> meetUpEventList = toModelTypeMeetUpEventList();
 
         return new Schedule(modulesList, ccaList, datedEventList, meetUpEventList);
     }

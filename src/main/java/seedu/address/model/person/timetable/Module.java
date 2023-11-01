@@ -72,7 +72,7 @@ public class Module extends TimeBlock {
     public Module editName(String newName) {
         requireNonNull(newName);
         checkArgument(isValidModuleName(newName), MESSAGE_CONSTRAINTS);
-        return new Module(newName, timeBlockString);
+        return new Module(newName, super.getTimeBlockString());
     }
 
     /**
@@ -104,6 +104,11 @@ public class Module extends TimeBlock {
         return true;
     }
 
+    /**
+     * Returns a Json readable string representation of the instance of the module.
+     *
+     * @return String that is readable by JsonAdaptableModule.
+     */
     public String toJsonString() {
         return "{"
                 + "\"name\": \"" + moduleName + "\","
@@ -113,6 +118,18 @@ public class Module extends TimeBlock {
 
     @Override
     public String toString() {
-        return moduleName + ": " + super.toString();
+        return "Module: [" + moduleName + "] " + super.toString();
+    }
+
+    public boolean equals(Object e) {
+        if (e == this) {
+            return true;
+        } else if (!(e instanceof Module)) {
+            return false;
+        } else {
+            Module other = (Module) e;
+            return this.moduleName.equals(other.moduleName)
+                    && this.getTimeBlockString().equals(other.getTimeBlockString());
+        }
     }
 }

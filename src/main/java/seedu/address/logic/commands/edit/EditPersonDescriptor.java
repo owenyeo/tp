@@ -123,7 +123,7 @@ public class EditPersonDescriptor {
      * A defensive copy of {@code freeTimes} is used internally.
      */
     public void setSchedule(Schedule schedule) {
-        this.schedule = (schedule != null) ? new Schedule() : null;
+        this.schedule = schedule;
     }
 
     /**
@@ -168,5 +168,6 @@ public class EditPersonDescriptor {
                 .add("tags", tags)
                 .toString();
     }
+
 }
 

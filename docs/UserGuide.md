@@ -129,9 +129,11 @@ Format: `cft [n/NAME]`
 * Finds common free times with friend of the specified `NAME`.
 * Finds common free times with **all friends** in the list if `NAME` is not included.
 
-Successful Command:
-
-Found common free time with friend.
+Successful Command:\
+**Input:** \
+`cft`\
+**Output:**\
+Found common free time with friend.\
 `Here are the contacts with the same free time as you:`
 - `Andre [Monday 1230 1300]`
 - `Owen [Sunday 1200 1400]`
@@ -142,11 +144,196 @@ No common free times with friends: `You have no contacts with the same free time
 
 Unsuccessful Command:
 
-Displays an error message
+If user inputs a friend that does not exist, the app will display\
+`There is no such contact in your contacts!`
 
 Examples:
 * `cft` lists all friends .
 * `cft n/Betsy` finds people with the name `Betsy` and displays the common free times with this list.
+
+### Add events to you/your friend's schedule : `addevent`
+This command adds a dated, non-recurring event to you or your friend's schedule. 
+
+Format: `addevent`\
+To add event to yourself, use \
+`addevent user type/[TYPE] en/[EVENT NAME] h/[DATE TIME] r/[REMINDER]` \
+To add event for friend, use \
+`addevent INDEX type/[TYPE] en/[EVENT NAME] h/[DATE TIME] r/[REMINDER]`
+
+- Adds an event titled `EVENT_NAME` to either user or 
+the specified friend and `INDEX`
+- Event date and time will be equal to `DATE TIME`
+where `DATE TIME` must be entered in the format `YYYY-MM-DD HHMM [start time] HHMM [end time]`
+- Users can set whether they want to enable reminders for this event by inputting `y/n` under `[REMINDER]`
+
+Successful Command:\
+**Input:** \
+addevent 1 type/dated en/CS2030 Finals h/2023-10-31 1000 1400 r/y\
+**Output:**\
+`New event added:`\
+`Dated Event:`\
+`CS2030 Finals 2023-10-31 1000 1400 to [Friend Name]`
+
+**Input:**\
+addevent user type/dated en/CS2101 OP2 h/2023-10-31 1500 1600 r/y\
+**Output:**\
+`New event added:` \
+`Dated Event:`\
+`CS2101 OP2 2023-10-31 1500 1600 to Me`
+
+Unsuccessful Command:\
+If a user puts an invalid index,
+this error message will be shown
+
+`Invalid index!`\
+`addevent: Adds a non-recurring event to the calendar.`\
+`Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME h/[Date [YYYY-MM-DD] StarTime (HHMM) EndTime (HHMM)] r/[REMINDER: y/n]`\
+`Example: addevent 1 type/dated en/CS2103T Lecture h/2020-03-02 1400 1600 r/y`\ 
+
+`Note: If you are adding a meetup event, then index refers to the index of the friend you are meeting with.`\
+ `If you are adding a dated event, then index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself`
+
+ If a user uses the wrong format (i.e missing prefix, wrong event type),
+this error message will be shown\
+`Input should be in the format 'name YYYY-MM-DD HHMM HHMM yes/no', where:`\
+`'name' represents the name and should not contain spaces.`\
+`'YYYY-MM-DD' represents a date (e.g., '2023-10-24').`
+`'HHMM' represents a valid 24-hour time format in half-hour blocks (e.g., 0000, 1230, 2300).`\
+`The first 'HHMM' represents the starting time (e.g., '0830' for 08:30 AM).`\
+`The second 'HHMM' represents the ending time (e.g., '1730' for 05:30 PM).`\
+`y/n represents whether you want a reminder for this event.`\
+
+### Removing an event: `rmevent`
+
+Removes the specified event from the specified Person
+
+**Format:**\
+To remove an event, you can use the rmevent command with the following parameters:
+
+`rmevent [INDEX] type/[EVENT_TYPE] en/[EVENT_NAME]`
+
+INDEX (Index of the friend or 'user')
+type/EVENT_TYPE (Event type, either 'dated' or 'meetup')
+en/EVENT_NAME (Event name)
+
+Successful commands:
+
+Remove an event from a friend's calendar:\
+`rmevent 1 type/dated en/CS2103T Lecture`
+Remove an event from your own calendar:\
+`rmevent user type/dated en/CS2103T Lecture`
+
+
+**Unsuccessful commands:**\
+If an invalid index is used:\
+`Invalid index!`\
+`Parameters: INDEX`\
+`type/EVENT_TYPE`\
+`en/EVENT_NAME`\
+`Example: rmevent 1 type/dated en/CS2103T Lecture`\
+`NOTE: If you want to remove an event from yourself, use index user`\
+`Example: rmevent user type/dated en/CS2103T Lecture`\
+
+If wrong command format is used (i.e missing prefixes, wrong event name):\
+`Command format is invalid!`\
+`Parameters: INDEX`\
+`type/EVENT_TYPE`\
+`en/EVENT_NAME`\
+`Example: rmevent 1 type/dated en/CS2103T Lecture`\
+`NOTE: If you want to remove an event from yourself, use index user`\
+`Example: rmevent user type/dated en/CS2103T Lecture`\
+
+### Add recurring events to you/your friend's schedule : `addschedule`
+This command adds a recurring event to you or your friend's schedule. 
+
+Format: `addschedule`\
+To add event to yourself, use \
+`addschedule user type/[TYPE] en/[EVENT NAME] h/[DAY TIME]` \
+To add event for friend, use \
+`addschedule INDEX type/[TYPE] en/[EVENT NAME] h/[DAY TIME]`
+
+- Adds an event titled `EVENT_NAME` to either user or 
+the specified friend and `INDEX`
+- Event date and time will be equal to `DAY TIME`
+where `DAY TIME` must be entered in the format `[monday/tuesday/wednesday/thursday/friday/saturday/sunday] HHMM [start time] HHMM [end time]`
+
+Successful Command:\
+**Input:** \
+`addschedule 1 type/module en/CS2030 h/Monday 1000 1400`\
+**Output:**\
+`New event added:`\
+`Module:`\
+`CS2030 Monday 1000 1400 to [Friend Name]`
+
+**Input:**\
+`addschedule user type/CCA en/CS2101 h/Tuesday 1500 1600`\
+**Output:**\
+`New event added:` \
+`CCA:`\
+`CS2101 Tuesday 1500 1600 to Me`
+
+Unsuccessful Command:\
+If a user puts an invalid index,
+this error message will be shown
+
+`Invalid index!`\
+`addevent: Adds a non-recurring event to the calendar.`\
+`Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME h/[Day [Day of week] StarTime (HHMM) EndTime (HHMM)]`\
+`Example: addschedule 1 type/dated en/CS2103T Lecture h/Wednesday 1400 1600`\ 
+
+`Note: If you are adding a meetup event, then index refers to the index of the friend you are meeting with.`\
+ `If you are adding a dated event, then index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself`
+
+ If a user uses the wrong format (i.e missing prefix, wrong event type),
+this error message will be shown\
+`Input should be in the format 'name [Day] HHMM HHMM yes/no', where:`\
+`'name' represents the name and should not contain spaces.`\
+`'Day' represents a day of the week (e.g. Monday).`
+`'HHMM' represents a valid 24-hour time format in half-hour blocks (e.g., 0000, 1230, 2300).`\
+`The first 'HHMM' represents the starting time (e.g., '0830' for 08:30 AM).`\
+`The second 'HHMM' represents the ending time (e.g., '1730' for 05:30 PM).`\
+`y/n represents whether you want a reminder for this event.`\
+
+### Removing a recurring scheduled event: `rmschedule`
+
+Removes the specified recurring item from the specified Person's schedule
+
+**Format:**\
+To remove a scheduled event, you can use the rmschedule command with the following parameters:
+
+`rmevent [INDEX] type/[EVENT_TYPE] en/[EVENT_NAME]`
+
+INDEX (Index of the friend or 'user')
+type/EVENT_TYPE (Event type, either 'dated' or 'meetup')
+en/EVENT_NAME (Event name)
+
+Successful commands:
+
+Remove an event from a friend's calendar:\
+`rmschedule 1 type/CCA en/CS2103T Lecture`\
+`CS2103T Lecture has been removed from [Friend]!`
+Remove an event from your own calendar:\
+`rmschedule user type/module en/CS2103T Lecture`\
+`CS2103T Lecture has been removed from Me!`
+
+**Unsuccessful commands:**\
+If an invalid index is used:\
+`Invalid index!`\
+`Parameters: INDEX`\
+`type/EVENT_TYPE`\
+`en/EVENT_NAME`\
+`Example: rmschedule 1 type/module en/CS2103T Lecture`\
+`NOTE: If you want to remove an event from yourself, use index user`\
+`Example: rmschedule user type/module en/CS2103T Lecture`\
+
+If wrong command format is used (i.e missing prefixes, wrong event name):\
+`Command format is invalid!`\
+`Parameters: INDEX`\
+`type/EVENT_TYPE`\
+`en/EVENT_NAME`\
+`Example: rmschedule 1 type/cca en/CS2103T Lecture`\
+`NOTE: If you want to remove an event from yourself, use index user`\
+`Example: rmschedule user type/cca en/CS2103T Lecture`\
 
 ### Clearing all entries : `clear`
 

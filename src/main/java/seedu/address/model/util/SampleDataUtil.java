@@ -32,11 +32,11 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"), new Birthday("2023-10-30"),
+                new Address("Blk 30 Geylang Street 29, #06-40"), new Birthday("2001-11-01"),
                 new Schedule(),
                  getTagSet("friends")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Birthday("2023-10-30"),
+                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new Birthday("2001-11-01"),
                 new Schedule(),
                 getTagSet("colleagues", "friends")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
@@ -60,7 +60,7 @@ public class SampleDataUtil {
 
     public static List<Module> getSampleModules() {
         List<Module> modules = new ArrayList<>();
-        modules.add(new Module("CS2103T", "Wednesday 1200 1300"));
+        modules.add(new Module("CS2103", "Wednesday 1200 1300"));
         modules.add(new Module("CS2101", "Tuesday 1200 1400"));
         modules.add(new Module("CS2100", "Monday 1400 1500"));
         return modules;
@@ -74,8 +74,8 @@ public class SampleDataUtil {
         return ccas;
     }
 
-    public static List<DatedEvent> getSampleDatedEvents() {
-        List<DatedEvent> datedEvents = new ArrayList<>();
+    public static ArrayList<DatedEvent> getSampleDatedEvents() {
+        ArrayList<DatedEvent> datedEvents = new ArrayList<>();
         datedEvents.add(DatedEvent.newDatedEvent("CS2103 Meeting 2023-10-10 1030 1130 y"));
         datedEvents.add(DatedEvent.newDatedEvent("Walk Dog 2023-10-10 1030 1130 n"));
         datedEvents.add(DatedEvent.newDatedEvent("Competitive sleeping 2023-10-10 1030 1130 y"));

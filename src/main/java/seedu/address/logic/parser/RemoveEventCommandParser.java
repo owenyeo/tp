@@ -3,36 +3,32 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTTYPE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 
 import java.util.stream.Stream;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
-
-import seedu.address.logic.commands.AddEventCommand;
-import seedu.address.logic.commands.DeleteEventCommand;
+import seedu.address.logic.commands.RemoveEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new DeleteEventCommand object
  */
-public class DeleteEventCommandParser implements Parser<DeleteEventCommand> {
+public class RemoveEventCommandParser implements Parser<RemoveEventCommand> {
 
     private static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n"
-            + DeleteEventCommand.MESSAGE_USAGE;
+            + RemoveEventCommand.MESSAGE_USAGE;
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteEventCommand
      * and returns a DeleteEventCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public DeleteEventCommand parse(String args) throws ParseException {
+    public RemoveEventCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_EVENTNAME, PREFIX_EVENTTYPE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_EVENTNAME, PREFIX_EVENTTYPE)) {
-            throw new ParseException(String.format("Command format is invalid! \n" + AddEventCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format("Command format is invalid! \n" + RemoveEventCommand.MESSAGE_USAGE));
         }
 
         try {
@@ -40,16 +36,16 @@ public class DeleteEventCommandParser implements Parser<DeleteEventCommand> {
             String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get().toLowerCase();
             String eventType = argMultimap.getValue(PREFIX_EVENTTYPE).get().toLowerCase();
             if (indexString.equals("user")) {
-                return new DeleteEventCommand(eventName, eventType, null);
+                return new RemoveEventCommand(eventName, eventType, null);
             } else if (Integer.parseInt(indexString) > 0) {
-                return new DeleteEventCommand(eventName, eventType, ParserUtil.parseIndex(indexString));
+                return new RemoveEventCommand(eventName, eventType, ParserUtil.parseIndex(indexString));
             } else {
                 throw new ParseException("Invalid index!\n"
                         + "Index must either be 'user' or a positive integer!\n");
             }
         } catch (Exception pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteEventCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveEventCommand.MESSAGE_USAGE), pe);
         }
     }
 

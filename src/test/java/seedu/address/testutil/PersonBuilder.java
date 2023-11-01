@@ -22,7 +22,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_BIRTHDAY = "2000-01-01";
+    public static final String DEFAULT_BIRTHDAY = "2000-12-01";
 
 
     private Name name;
@@ -79,7 +79,12 @@ public class PersonBuilder {
      * Parses the {@code freeTimes} into a {@code Set<FreeTime>} and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withSchedule() {
-        this.schedule = SampleDataUtil.getSampleSchedule();
+        this.schedule = new Schedule();
+        return this;
+    }
+
+    public PersonBuilder withSchedule(Schedule schedule) {
+        this.schedule = schedule;
         return this;
     }
 

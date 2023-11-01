@@ -98,7 +98,7 @@ public class Cca extends TimeBlock {
 
     @Override
     public String toString() {
-        return ccaName + " " + super.toString();
+        return "Cca: [" + ccaName + "] " + super.toString();
     }
 
     /**
@@ -107,13 +107,24 @@ public class Cca extends TimeBlock {
      * @return JSON string representation of the CCA.
      */
     public String toJsonString() {
-
-        String jsonBuilder = "{"
+        return "{"
                 + "\"ccaName\": \"" + ccaName + "\","
                 + "\"timeBlock\": \"" + super.toString() + "\""
                 + "}";
+    }
 
-        return jsonBuilder;
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Cca)) {
+            return false;
+        }
+
+        Cca otherCca = (Cca) other;
+        return otherCca.getCcaName().equals(getCcaName())
+                && otherCca.getTimeBlockString().equals(getTimeBlockString());
     }
 
 }

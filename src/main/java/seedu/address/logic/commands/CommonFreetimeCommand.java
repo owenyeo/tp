@@ -60,7 +60,7 @@ public class CommonFreetimeCommand extends Command {
         // If no name is specified, return the user's common free time with all contacts
         if (this.name == null) {
             ObservableList<Person> contacts = model.getAddressBook().getPersonList();
-            ArrayList<List<FreeTime>> commonFreeTime = new ArrayList<>();
+            ArrayList<FreeTime> commonFreeTime = new ArrayList<>();
 
             for (Person contact : contacts) {
                 Schedule contactSchedule = contact.getSchedule();
@@ -68,7 +68,7 @@ public class CommonFreetimeCommand extends Command {
                     continue;
                 } else {
                     overlappingContacts.add(contact);
-                    commonFreeTime.add(userSchedule.getThisWeeksFreeTimesWith(contactSchedule));
+                    commonFreeTime.addAll(userSchedule.getThisWeeksFreeTimesWith(contactSchedule));
                 }
             }
 
@@ -76,32 +76,34 @@ public class CommonFreetimeCommand extends Command {
                 throw new CommandException(MESSAGE_NO_CONTACTS);
             } else {
                 StringBuilder sb = new StringBuilder(MESSAGE_COMMON_FREETIME_SUCCESS);
-                int i = 0;
                 for (Person contactName : overlappingContacts) {
                     Name nameOfContact = contactName.getName();
                     sb.append(nameOfContact).append(" is free at ");
-                    for (FreeTime freeTime : commonFreeTime.get(i)) {
+                    for (FreeTime freeTime : commonFreeTime) {
                         sb.append(freeTime.toString()).append("\n");
                     }
-                    i++;
                 }
                 return new CommandResult(sb.toString());
             }
-        } else {            
-            Person friend = model.getPersonWithName(this.name);
-            Schedule friendSchedule = friend.getSchedule();
-            List<FreeTime> commonFreeTime = userSchedule.getThisWeeksFreeTimesWith(friendSchedule);
-            if (commonFreeTime.isEmpty()) {
-                throw new CommandException(createNoOverlapFriendMessage(friend));
-            } else {
-            StringBuilder sb = new StringBuilder("You have common free times with "
-                + friend.getName().toString()
-                + " at:\n");
-            for (FreeTime cft : commonFreeTime) {
-                sb.append(cft.toString()).append("\n");
-            }
-                return new CommandResult(sb.toString(), true);
-            }
+        } else {   
+            try {         
+                Person friend = model.getPersonWithName(this.name);
+                Schedule friendSchedule = friend.getSchedule();
+                List<FreeTime> commonFreeTime = userSchedule.getThisWeeksFreeTimesWith(friendSchedule);
+                if (commonFreeTime.isEmpty()) {
+                    throw new CommandException(createNoOverlapFriendMessage(friend));
+                } else {
+                StringBuilder sb = new StringBuilder("You have common free times with "
+                    + friend.getName().toString()
+                    + " at:\n");
+                for (FreeTime cft : commonFreeTime) {
+                    sb.append(cft.toString()).append("\n");
+                }
+                    return new CommandResult(sb.toString(), true);
+                }
+            } catch (NullPointerException e) {
+                 throw new CommandException("There is no such contact in your contacts!");
+            } 
         }
     }
 
