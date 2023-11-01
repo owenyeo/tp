@@ -9,7 +9,7 @@ import java.time.DayOfWeek;
  * Represents a block of time in a day, with a day of the week and start and end times.
  * Guarantees: immutable; is valid as declared in {@link #isValidTimeBlock(String)}}
  */
-public class TimeBlock implements Comparable<TimeBlock> {
+public abstract class TimeBlock implements Comparable<TimeBlock> {
 
     public static final String MESSAGE_CONSTRAINTS = "Timing input should be in the format 'DAY HHMM HHMM', \n"
             + "where 'DAY' is a valid day of the week (e.g., Monday, tuesday, WEDNESDAY), \n"
@@ -84,26 +84,6 @@ public class TimeBlock implements Comparable<TimeBlock> {
     public int compareByStartTime(TimeBlock other) {
         return this.timeBlocks.compareTo(other.timeBlocks);
     }
-    /**
-     * Checks if the current TimeBlock overlaps with another TimeBlock.
-     * If there's an overlap, returns a new TimeBlock representing the overlapping period.
-     *
-     * @param other The other TimeBlock to check against.
-     * @return An Optional containing the overlapping TimeBlock if it exists, or an empty Optional otherwise.
-     */
-    public TimeBlock overlap(TimeBlock other) {
-        if (this.day != other.day) {
-            return null;
-        }
-
-        if (this.timeBlocks.overlaps(other.timeBlocks)) {
-            HalfHourBlocks overlapBlocks = this.timeBlocks.getOverlap(other.timeBlocks);
-            // You can convert overlapBlocks back to a string representation if needed
-            return new TimeBlock(day + " " + overlapBlocks.toString());
-        }
-
-        return null;
-    }
 
     /**
      * Checks if the current {@code TimeBlock} overlaps with the specified {@code TimeBlock}.
@@ -119,6 +99,8 @@ public class TimeBlock implements Comparable<TimeBlock> {
 
         return this.timeBlocks.overlaps(other.timeBlocks);
     }
+
+    public abstract String getName();
 
     public boolean isModule() {
         return false;
