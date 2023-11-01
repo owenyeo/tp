@@ -25,7 +25,7 @@ public class AddEventCommand extends Command {
         + "INDEX "
         + "type/EVENT_TYPE "
         + "en/EVENT_NAME "
-        + "h/[Date [YYYY-MM-DD] StarTime (HHMM) EndTime (HHMM)] "
+        + "h/[Date [YYYY-MM-DD] StartTime (HHMM) EndTime (HHMM)] "
         + "r/[REMINDER: y/n] \n"
         + "Example: " + COMMAND_WORD + " "
         + "1 "
@@ -85,26 +85,68 @@ public class AddEventCommand extends Command {
             Schedule friendSchedule = friend.getSchedule();
             
             switch (eventType) {
-                case "dated":
-                    friendSchedule.addDatedEvent(eventName + " " + schedule + " " + reminder);
-                    return new CommandResult(MESSAGE_SUCCESS + "\nDated Event:\n" + eventName + " " + schedule + " to " + friend.getName(), false, false, true, false);
-                case "meetup":
-                    if (friend.getName().toString().toLowerCase().equals("user")) {
-                        throw new CommandException("You cannot add a meetup event with yourself! \n"
-                            + "Please specify the friend you are meeting up with using the following format: \n"
-                            + "addevent [index of friend] ");
-                    }
-                    Schedule userSchedule = model.getUser().getSchedule();
-                    Schedule friendScedule = friend.getSchedule();
-                    userSchedule.addMeetUpEvent(eventName.toLowerCase() + " " + schedule + " " + reminder, friend);
-                    friendScedule.addMeetUpEvent(eventName.toLowerCase() + " " + schedule + " " + reminder, model.getUser());
-                    return new CommandResult(MESSAGE_SUCCESS + "\nMeet up event\n" + eventName + " " + schedule + " with " + friend.getName(), false, false, true, false);
-                default:
-                    throw new CommandException("Invalid event type!"
-                        + "\n Event type can only be 'Dated' or 'Meetup'" );
+            // If the event is a dated event, add it to the friend's schedule.
+            case "dated":
+                friendSchedule.addDatedEvent(eventName + " " + schedule + " " + reminder);
+                return new CommandResult(MESSAGE_SUCCESS
+                    + "\nDated Event:\n"
+                    + eventName
+                    + " "
+                    + schedule
+                    + " to "
+                    + friend.getName(), false, false, true, false);
+            // If the event is a meetup event, add it to the user's schedule and the friend's schedule.
+            case "meetup":
+                if (friend.getName().toString().toLowerCase().equals("user")) {
+                    throw new CommandException("You cannot add a meetup event with yourself! \n"
+                        + "Please specify the friend you are meeting up with using the following format: \n"
+                        + "addevent [index of friend] ");
+                }
+                Schedule userSchedule = model.getUser().getSchedule();
+                Schedule friendScedule = friend.getSchedule();
+
+                addMeetupEvents(userSchedule, friendScedule, eventName,
+                    schedule, reminder, friend, model.getUser());
+
+                return new CommandResult(MESSAGE_SUCCESS
+                    + "\nMeet up event\n"
+                    + eventName
+                    + " "
+                    + schedule
+                    + " with "
+                    + friend.getName(), false, false, true, false);
+            // If the event is neither a dated event nor a meetup event, throw an exception.
+            default:
+                throw new CommandException("Invalid event type!"
+                    + "\n Event type can only be 'Dated' or 'Meetup'" );
             }
         } catch (Exception e) {
             throw new CommandException(e.getMessage());
         }
+    }
+
+    /**
+     * Adds a meetup event to the schedules of both the user and their friend.
+     *
+     * @param userSchedule The schedule of the user.
+     * @param friendSchedule The schedule of the friend.
+     * @param eventName The name of the event.
+     * @param schedule The schedule of the event.
+     * @param reminder The reminder for the event.
+     * @param friend The friend of the user.
+     * @param user The user.
+     */
+    public void addMeetupEvents(Schedule userSchedule, Schedule friendSchedule,
+        String eventName, String schedule, String reminder, Person friend, Person user) {
+        userSchedule.addMeetUpEvent(eventName.toLowerCase()
+            + " "
+            + schedule
+            + " "
+            + reminder, friend);
+        friendSchedule.addMeetUpEvent(eventName.toLowerCase()
+            + " "
+            + schedule
+            + " "
+            + reminder, user);
     }
 }

@@ -13,6 +13,12 @@ import seedu.address.model.person.timetable.MeetUpEvent;
 import seedu.address.model.person.timetable.Module;
 import seedu.address.model.person.timetable.Schedule;
 
+/**
+ * Represents a JSON adapted schedule.
+ * A JSON adapted schedule contains lists of JSON adapted dated events, modules, CCAs and meet-up events.
+ * This class provides methods to convert the JSON adapted schedule to a list of model type dated events, modules, CCAs and meet-up events,
+ * as well as to convert the JSON adapted schedule to a model type schedule.
+ */
 public class JsonAdaptedSchedule {
     List<JsonAdaptedDatedEvent> datedEvents = new ArrayList<>();
     List<JsonAdaptedModule> modules = new ArrayList<>();

@@ -28,7 +28,8 @@ public class RemoveEventCommandParser implements Parser<RemoveEventCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_EVENTNAME, PREFIX_EVENTTYPE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_EVENTNAME, PREFIX_EVENTTYPE)) {
-            throw new ParseException(String.format("Command format is invalid! \n" + RemoveEventCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format("Command format is invalid! \n"
+                + RemoveEventCommand.MESSAGE_USAGE));
         }
 
         try {

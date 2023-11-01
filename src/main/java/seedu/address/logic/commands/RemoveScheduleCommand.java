@@ -52,29 +52,40 @@ public class RemoveScheduleCommand extends Command {
         Schedule userSchedule = model.getUser().getSchedule();
         try {
             switch (eventType) {
-                case "cca":
-                    if (index == null) {
-                        userSchedule.deleteCca(eventName);
-                        return new CommandResult("CCA '" + eventName + "'' deleted from your calendar!", false, false, true, false);
-                    } else {
-                        Person friend = model.getFilteredPersonList().get(index.getZeroBased());
-                        friend.getSchedule().deleteCca(eventName);
-                        return new CommandResult("Dated Event '" + eventName + "'' deleted from "
-                            + friend.getName().toString() + "'s calendar!", false, false, true, false);
-                    }
-                case "module":
-                    if (index == null) {
-                        userSchedule.deleteModule(eventName);
-                        return new CommandResult("Module" + eventName + "'' deleted from your calendar!", false, false, true, false);
-                    } else {
-                        Person friend = model.getFilteredPersonList().get(index.getZeroBased());
-                        friend.getSchedule().deleteModule(eventName);
-                        return new CommandResult("Meetup Event '" + eventName + "'' deleted from "
-                            + friend.getName().toString() + "'s calendar!", false, false, true, false);
-                    }
-                default:
-                    throw new CommandException("Invalid event type!\n"
-                        + "Event type must either be 'cca' or 'module'!\n");
+            // If the event is a cca event, remove it from the specified contact's calendar.
+            case "cca":
+                if (index == null) {
+                    userSchedule.deleteCca(eventName);
+                    return new CommandResult("CCA '"
+                        + eventName
+                        + "'' deleted from your calendar!", false, false, true, false);
+                } else {
+                    Person friend = model.getFilteredPersonList().get(index.getZeroBased());
+                    friend.getSchedule().deleteCca(eventName);
+                    return new CommandResult("Dated Event '"
+                        + eventName
+                        + "'' deleted from "
+                        + friend.getName().toString()
+                        + "'s calendar!", false, false, true, false);
+                }
+            // If the event is a module event, remove it from the specified contact's calendar.
+            case "module":
+                if (index == null) {
+                    userSchedule.deleteModule(eventName);
+                    return new CommandResult("Module" + eventName + "'' deleted from your calendar!", false, false, true, false);
+                } else {
+                    Person friend = model.getFilteredPersonList().get(index.getZeroBased());
+                    friend.getSchedule().deleteModule(eventName);
+                    return new CommandResult("Meetup Event '"
+                        + eventName
+                        + "'' deleted from "
+                        + friend.getName().toString()
+                        + "'s calendar!", false, false, true, false);
+                }
+            // If the event type is invalid, throw an exception.
+            default:
+                throw new CommandException("Invalid event type!\n"
+                    + "Event type must either be 'cca' or 'module'!\n");
             }
         } catch (Exception e) {
             throw new CommandException(e.getMessage());
