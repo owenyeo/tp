@@ -66,7 +66,6 @@ public class JsonAdaptedPerson {
         address = source.getAddress().value;
         birthday = source.getBirthday().toString();
         schedule = new JsonAdaptedSchedule(source.getSchedule());
-        
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));

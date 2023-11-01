@@ -336,7 +336,7 @@ public class Schedule {
      *
      * @param ccaString String representation of the CCA.
      */
-    public void addCca(String ccaString) throws IllegalValueException{
+    public void addCca(String ccaString) throws IllegalValueException {
         ccasList.add(Cca.newCca(ccaString));
     }
 

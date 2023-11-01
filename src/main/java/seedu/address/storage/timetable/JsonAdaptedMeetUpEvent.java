@@ -63,7 +63,7 @@ public class JsonAdaptedMeetUpEvent {
         if (!TimeBlock.isValidTimeBlock(timeBlockString)) {
             throw new IllegalValueException(TimeBlock.MESSAGE_CONSTRAINTS);
         }
-        
+
         LocalDate date = LocalDate.parse(localDateString);
         return new MeetUpEvent(name, timeBlockString, date.toString(), reminder, friend.toModelType());
     }
