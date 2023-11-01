@@ -72,101 +72,111 @@ public class SelectedFriendCard extends UiPart<Region> {
                     mondaySchedule.getChildren().add(label);
 
                     switch (timeBlock.getType()) {
-                        case "CCA":
-                            label.getStyleClass().add("cca-time-block");
-                            break;
-                        case "Module":
-                            label.getStyleClass().add("module-time-block");
-                            break;
-                        case "Event":
-                            label.getStyleClass().add("event-time-block");
-                            break;
+                    case "CCA":
+                        label.getStyleClass().add("cca-time-block");
+                        break;
+                    case "Module":
+                        label.getStyleClass().add("module-time-block");
+                        break;
+                    case "Event":
+                        label.getStyleClass().add("event-time-block");
+                        break;
+                    default:
+                        break;
                     }
                 });
 
         selectedFriend.getSchedule().getScheduleForDayOfWeek(2).stream()
-                .sorted(Comparator.comparing(timeBlock -> timeBlock.getTimeBlockString()))
-                .forEach(timeBlock -> {
-                    Label label = new Label(timeBlock.getName() + "\n"
-                            + timeBlock.getStartTime() + "-" + timeBlock.getEndTime());
+            .sorted(Comparator.comparing(timeBlock -> timeBlock.getTimeBlockString()))
+            .forEach(timeBlock -> {
+                Label label = new Label(timeBlock.getName() + "\n"
+                    + timeBlock.getStartTime() + "-" + timeBlock.getEndTime());
 
-                    tuesdaySchedule.getChildren().add(label);
+                tuesdaySchedule.getChildren().add(label);
 
-                    switch (timeBlock.getType()) {
-                        case "CCA":
-                            label.getStyleClass().add("cca-time-block");
-                            break;
-                        case "Module":
-                            label.getStyleClass().add("module-time-block");
-                            break;
-                        case "Event":
-                            label.getStyleClass().add("event-time-block");
-                            break;
-                    }
-                });
+                switch (timeBlock.getType()) {
+                case "CCA":
+                    label.getStyleClass().add("cca-time-block");
+                    break;
+                case "Module":
+                    label.getStyleClass().add("module-time-block");
+                    break;
+                case "Event":
+                    label.getStyleClass().add("event-time-block");
+                    break;
+                default:
+                    break;
+                }
+            });
 
         selectedFriend.getSchedule().getScheduleForDayOfWeek(3).stream()
-                .sorted(Comparator.comparing(timeBlock -> timeBlock.getTimeBlockString()))
-                .forEach(timeBlock -> {
-                    Label label = new Label(timeBlock.getName() + "\n"
-                            + timeBlock.getStartTime() + "-" + timeBlock.getEndTime());
+            .sorted(Comparator.comparing(timeBlock -> timeBlock.getTimeBlockString()))
+            .forEach(timeBlock -> {
+                Label label = new Label(timeBlock.getName() + "\n"
+                        + timeBlock.getStartTime() + "-" + timeBlock.getEndTime());
 
-                    wednesdaySchedule.getChildren().add(label);
+                wednesdaySchedule.getChildren().add(label);
 
-                    switch (timeBlock.getType()) {
-                        case "CCA":
-                            label.getStyleClass().add("cca-time-block");
-                            break;
-                        case "Module":
-                            label.getStyleClass().add("module-time-block");
-                            break;
-                        case "Event":
-                            label.getStyleClass().add("event-time-block");
-                            break;
-                    }
-                });
+                switch (timeBlock.getType()) {
+                case "CCA":
+                    label.getStyleClass().add("cca-time-block");
+                    break;
+                case "Module":
+                    label.getStyleClass().add("module-time-block");
+                    break;
+                case "Event":
+                    label.getStyleClass().add("event-time-block");
+                    break;
+                default:
+                    break;
+                }
+            });
 
         selectedFriend.getSchedule().getScheduleForDayOfWeek(4).stream()
-                .sorted(Comparator.comparing(timeBlock -> timeBlock.getTimeBlockString()))
-                .forEach(timeBlock -> {
-                    Label label = new Label(timeBlock.getName() + "\n"
-                            + timeBlock.getStartTime() + "-" + timeBlock.getEndTime());
+            .sorted(Comparator.comparing(timeBlock -> timeBlock.getTimeBlockString()))
+            .forEach(timeBlock -> {
+                Label label = new Label(timeBlock.getName() + "\n"
+                        + timeBlock.getStartTime() + "-" + timeBlock.getEndTime());
 
-                    thursdaySchedule.getChildren().add(label);
+                thursdaySchedule.getChildren().add(label);
 
-                    switch (timeBlock.getType()) {
-                        case "CCA":
-                            label.getStyleClass().add("cca-time-block");
-                            break;
-                        case "Module":
-                            label.getStyleClass().add("module-time-block");
-                            break;
-                        case "Event":
-                            label.getStyleClass().add("event-time-block");
-                            break;
-                    }
-                });
+                switch (timeBlock.getType()) {
+                case "CCA":
+                    label.getStyleClass().add("cca-time-block");
+                    break;
+                case "Module":
+                    label.getStyleClass().add("module-time-block");
+                    break;
+                case "Event":
+                    label.getStyleClass().add("event-time-block");
+                    break;
+                default:
+                    break;
+                }
+            });
 
         selectedFriend.getSchedule().getScheduleForDayOfWeek(5).stream()
-                .sorted(Comparator.comparing(timeBlock -> timeBlock.getTimeBlockString()))
-                .forEach(timeBlock -> {
-                    Label label = new Label(timeBlock.getName() + "\n"
-                            + timeBlock.getStartTime() + "-" + timeBlock.getEndTime());
+            .sorted(Comparator.comparing(timeBlock -> timeBlock.getTimeBlockString()))
+            .forEach(timeBlock -> {
+                Label label = new Label(timeBlock.getName() + "\n"
+                        + timeBlock.getStartTime() + "-" + timeBlock.getEndTime());
 
-                    fridaySchedule.getChildren().add(label);
+                fridaySchedule.getChildren().add(label);
 
-                    switch (timeBlock.getType()) {
-                        case "CCA":
-                            label.getStyleClass().add("cca-time-block");
-                            break;
-                        case "Module":
-                            label.getStyleClass().add("module-time-block");
-                            break;
-                        case "Event":
-                            label.getStyleClass().add("event-time-block");
-                            break;
-                    }
-                });
+                switch (timeBlock.getType()) {
+                case "CCA":
+                    label.getStyleClass().add("cca-time-block");
+                    break;
+                case "Module":
+                    label.getStyleClass().add("module-time-block");
+                    break;
+                case "Event":
+                    label.getStyleClass().add("event-time-block");
+                    break;
+                default:
+                    break;
+                }
+            });
 
         selectedFriend.getSchedule().getScheduleForDayOfWeek(6).stream()
                 .sorted(Comparator.comparing(timeBlock -> timeBlock.getTimeBlockString()))
@@ -177,37 +187,41 @@ public class SelectedFriendCard extends UiPart<Region> {
                     saturdaySchedule.getChildren().add(label);
 
                     switch (timeBlock.getType()) {
-                        case "CCA":
-                            label.getStyleClass().add("cca-time-block");
-                            break;
-                        case "Module":
-                            label.getStyleClass().add("module-time-block");
-                            break;
-                        case "Event":
-                            label.getStyleClass().add("event-time-block");
-                            break;
+                    case "CCA":
+                        label.getStyleClass().add("cca-time-block");
+                        break;
+                    case "Module":
+                        label.getStyleClass().add("module-time-block");
+                        break;
+                    case "Event":
+                        label.getStyleClass().add("event-time-block");
+                        break;
+                    default:
+                        break;
                     }
                 });
 
         selectedFriend.getSchedule().getScheduleForDayOfWeek(7).stream()
-                .sorted(Comparator.comparing(timeBlock -> timeBlock.getTimeBlockString()))
-                .forEach(timeBlock -> {
-                    Label label = new Label(timeBlock.getName() + "\n"
-                            + timeBlock.getStartTime() + "-" + timeBlock.getEndTime());
+            .sorted(Comparator.comparing(timeBlock -> timeBlock.getTimeBlockString()))
+            .forEach(timeBlock -> {
+                Label label = new Label(timeBlock.getName() + "\n"
+                        + timeBlock.getStartTime() + "-" + timeBlock.getEndTime());
 
-                    sundaySchedule.getChildren().add(label);
+                sundaySchedule.getChildren().add(label);
 
-                    switch (timeBlock.getType()) {
-                        case "CCA":
-                            label.getStyleClass().add("cca-time-block");
-                            break;
-                        case "Module":
-                            label.getStyleClass().add("module-time-block");
-                            break;
-                        case "Event":
-                            label.getStyleClass().add("event-time-block");
-                            break;
-                    }
-                });
+                switch (timeBlock.getType()) {
+                case "CCA":
+                    label.getStyleClass().add("cca-time-block");
+                    break;
+                case "Module":
+                    label.getStyleClass().add("module-time-block");
+                    break;
+                case "Event":
+                    label.getStyleClass().add("event-time-block");
+                    break;
+                default:
+                    break;
+                }
+            });
     }
 }

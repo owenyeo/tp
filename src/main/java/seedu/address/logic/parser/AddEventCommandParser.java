@@ -27,11 +27,15 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
     public AddEventCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_EVENTNAME, PREFIX_EVENTTYPE, PREFIX_SCHEDULE, PREFIX_REMINDER);
+                ArgumentTokenizer.tokenize(args, PREFIX_EVENTNAME, PREFIX_EVENTTYPE,
+                    PREFIX_SCHEDULE, PREFIX_REMINDER);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_EVENTNAME, PREFIX_EVENTTYPE, PREFIX_SCHEDULE, PREFIX_REMINDER)) {
-            throw new ParseException(String.format("Command format is invalid! \n" + AddEventCommand.MESSAGE_USAGE));
+        if (!arePrefixesPresent(argMultimap, PREFIX_EVENTNAME, PREFIX_EVENTTYPE,
+            PREFIX_SCHEDULE, PREFIX_REMINDER)) {
+            throw new ParseException(String.format("Command format is invalid! \n"
+                + AddEventCommand.MESSAGE_USAGE));
         }
+
         String indexString;
 
         String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get();
@@ -43,7 +47,8 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         if (indexString.equals("user")) {
             return new AddEventCommand(eventName, schedule, reminder, eventType);
         } else if (Integer.parseInt(indexString) > 0) {
-            return new AddEventCommand(eventName, ParserUtil.parseIndex(indexString), schedule, reminder, eventType);
+            return new AddEventCommand(eventName, ParserUtil.parseIndex(indexString),
+                schedule, reminder, eventType);
         } else {
             throw new ParseException("Invalid index!\n" 
                 + "Index can only be 'user' or a 'positive integer!' \n");

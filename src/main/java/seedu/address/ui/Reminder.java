@@ -1,19 +1,28 @@
 package seedu.address.ui;
 
-import javafx.collections.ObservableList;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 
-import java.util.List;
-
+/**
+ * Reminder class that displays a dialog box with the user's reminded events and birthdays.
+ * The dialog box contains two sections, one for birthdays and one for schedule events.
+ * The dialog box is positioned at the bottom right corner of the primary screen.
+ */
 public class Reminder {
+    /**
+     * Displays a dialog box with reminders for birthdays and scheduled events.
+     *
+     * @param model The model containing the user's data.
+     * @param primaryStage The primary stage of the application.
+     */
     public static void showReminder(Model model, Stage primaryStage) {
 
         Dialog<ButtonType> dialog = new Dialog<>();
@@ -30,7 +39,7 @@ public class Reminder {
         content1.setStyle("-fx-font-size: 12px;");
         content1.setEditable(false);
         content1.setPrefColumnCount(25); // Adjust the preferred column count
-        content1.setPrefRowCount(3);    // Adjust the preferred row count
+        content1.setPrefRowCount(3); // Adjust the preferred row count
 
         // Create the second header label and content
         Label header2 = new Label("Schedule");
@@ -39,7 +48,7 @@ public class Reminder {
         content2.setStyle("-fx-font-size: 12px;");
         content2.setEditable(false);
         content2.setPrefColumnCount(25); // Adjust the preferred column count
-        content2.setPrefRowCount(8);    // Adjust the preferred row count
+        content2.setPrefRowCount(8); // Adjust the preferred row count
 
         // Create a VBox to hold the components
         VBox dialogVBox = new VBox(header1, content1, header2, content2);
