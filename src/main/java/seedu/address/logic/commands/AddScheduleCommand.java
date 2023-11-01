@@ -18,7 +18,7 @@ public class AddScheduleCommand extends Command {
             + "INDEX\n"
             + "type/EVENT_TYPE\n"
             + "en/EVENT_NAME\n"
-            + "h/[DAY OF WEEK START_TIME [HHMM] END_TIME [HHMM]]\n"
+            + "h/[DAY_OF_WEEK START_TIME [HHMM] END_TIME [HHMM]]\n"
             + "Example: " + COMMAND_WORD
             + " 1"
             + " type/cca"
@@ -79,3 +79,4 @@ public class AddScheduleCommand extends Command {
         }
     }
 }
+
