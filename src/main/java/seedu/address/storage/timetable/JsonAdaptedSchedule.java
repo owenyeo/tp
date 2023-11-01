@@ -17,10 +17,10 @@ import seedu.address.model.person.timetable.Schedule;
  * Jackson-friendly version of {@link Schedule}.
  */
 public class JsonAdaptedSchedule {
-    private final List<JsonAdaptedDatedEvent> datedEvents = new ArrayList<>();
-    private final List<JsonAdaptedModule> modules = new ArrayList<>();
-    private final List<JsonAdaptedCca> ccas = new ArrayList<>();
-    private final List<JsonAdaptedMeetUpEvent> meetUpEvents = new ArrayList<>();
+    private List<JsonAdaptedDatedEvent> datedEvents = new ArrayList<>();
+    private List<JsonAdaptedModule> modules = new ArrayList<>();
+    private List<JsonAdaptedCca> ccas = new ArrayList<>();
+    private List<JsonAdaptedMeetUpEvent> meetUpEvents = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedSchedule} with the given {@code DatedEvent}.
@@ -30,10 +30,10 @@ public class JsonAdaptedSchedule {
                                @JsonProperty("modules") List<JsonAdaptedModule> modules,
                                @JsonProperty("cca") List<JsonAdaptedCca> cca,
                                @JsonProperty("meetupevents") List<JsonAdaptedMeetUpEvent> meetUpEvents) {
-        this.datedEvents.addAll(datedEvents);
-        this.modules.addAll(modules);
-        this.ccas.addAll(cca);
-        this.meetUpEvents.addAll(meetUpEvents);
+        this.datedEvents = datedEvents;
+        this.modules = modules;
+        this.ccas = cca;
+        this.meetUpEvents = meetUpEvents;
     }
 
     /**
