@@ -385,3 +385,47 @@
     -fx-text-fill: #010504;
 }
 
+.gridPane_display {
+    -fx-grid-lines-visible: true;
+    -fx-stroke: white;
+    -fx-max-width: 100%;
+}
+
+.gridPane_display Line {
+    -fx-stroke: white;
+}
+
+.timetable_heading {
+    -fx-font-size: 14px;
+}
+
+.timetable-timeslot .label {
+    -fx-label-padding: 3 5;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-font-size: 13px;
+    -fx-text-alignment: center;
+    -fx-overrun: ellipsis;
+}
+
+.card-display {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-border-color: derive(#1d1d1d, 10%);
+    -fx-border-top-width: 1px;
+}
+
+.cca-time-block {
+    -fx-background-color: #9e4f4f;
+}
+
+.module-time-block {
+    -fx-background-color: #3866b0;
+}
+
+.event-time-block {
+    -fx-background-color: #488263;
+}
+
+
+
+

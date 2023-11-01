@@ -14,6 +14,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.skin.TableHeaderRow?>
 <?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.layout.RowConstraints?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS" >
         <columnConstraints>
@@ -21,7 +22,7 @@
         </columnConstraints>
         <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
             <padding>
-                <Insets top="5" right="5" bottom="5" left="15" />
+                <Insets top="10" right="5" bottom="5" left="15" />
             </padding>
 
             <Label styleClass="cell_big_label">My Profile</Label>
@@ -68,11 +69,112 @@
                 </padding>
             </Label>
 
-            <FlowPane fx:id="freeTimes">
+            <GridPane styleClass="gridPane_display" maxWidth="${cardPane.width}">
+                <rowConstraints>
+                    <RowConstraints minHeight="25"/>
+                    <RowConstraints minHeight="200"/>
+                </rowConstraints>
+
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="14.28"/>
+                    <ColumnConstraints percentWidth="14.29"/>
+                    <ColumnConstraints percentWidth="14.28"/>
+                    <ColumnConstraints percentWidth="14.29"/>
+                    <ColumnConstraints percentWidth="14.28"/>
+                    <ColumnConstraints percentWidth="14.29"/>
+                    <ColumnConstraints percentWidth="14.29"/>
+                </columnConstraints>
+
                 <padding>
-                    <Insets bottom="2" top="2" left="5" />
+                    <Insets top="10" right="10"/>
                 </padding>
-            </FlowPane>
+
+                <Label GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="timetable_heading"
+                       GridPane.halignment="CENTER">
+                    Monday
+                </Label>
+                <FlowPane fx:id="mondaySchedule" GridPane.rowIndex="1" GridPane.columnIndex="0"
+                          alignment="TOP_CENTER" orientation="VERTICAL" columnHalignment="CENTER"
+                          styleClass="timetable-timeslot" vgap="3">
+                    <padding>
+                        <Insets top="5" left="5" right="5"/>
+                    </padding>
+                </FlowPane>
+
+                <Label GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="timetable_heading"
+                       GridPane.halignment="CENTER">
+                    Tuesday
+                </Label>
+                <FlowPane fx:id="tuesdaySchedule" GridPane.rowIndex="1" GridPane.columnIndex="1"
+                          alignment="TOP_CENTER" orientation="VERTICAL" columnHalignment="CENTER"
+                          styleClass="timetable-timeslot" vgap="3">
+                    <padding>
+                        <Insets top="5" left="5" right="5"/>
+                    </padding>
+                </FlowPane>
+
+                <Label GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="timetable_heading"
+                       GridPane.halignment="CENTER">
+                    Wednesday
+                </Label>
+                <FlowPane fx:id="wednesdaySchedule" GridPane.rowIndex="1" GridPane.columnIndex="2"
+                          alignment="TOP_CENTER" orientation="VERTICAL" columnHalignment="CENTER"
+                          styleClass="timetable-timeslot" vgap="3">
+                    <padding>
+                        <Insets top="5" left="5" right="5"/>
+                    </padding>
+                </FlowPane>
+
+                <Label GridPane.rowIndex="0" GridPane.columnIndex="3" styleClass="timetable_heading"
+                       GridPane.halignment="CENTER">
+                    Thursday
+                </Label>
+                <FlowPane fx:id="thursdaySchedule" GridPane.rowIndex="1" GridPane.columnIndex="3"
+                          alignment="TOP_CENTER" orientation="VERTICAL" columnHalignment="CENTER"
+                          styleClass="timetable-timeslot" vgap="3">
+                    <padding>
+                        <Insets top="5" left="5" right="5"/>
+                    </padding>
+                </FlowPane>
+
+                <Label GridPane.rowIndex="0" GridPane.columnIndex="4" styleClass="timetable_heading"
+                       GridPane.halignment="CENTER">
+                    Friday
+                </Label>
+                <FlowPane fx:id="fridaySchedule" GridPane.rowIndex="1" GridPane.columnIndex="4"
+                          alignment="TOP_CENTER" orientation="VERTICAL" columnHalignment="CENTER"
+                          styleClass="timetable-timeslot" vgap="3">
+                    <padding>
+                        <Insets top="5" left="5" right="5"/>
+                    </padding>
+                </FlowPane>
+
+                <Label GridPane.rowIndex="0" GridPane.columnIndex="5" styleClass="timetable_heading"
+                       GridPane.halignment="CENTER">
+                    Saturday
+                </Label>
+                <FlowPane fx:id="saturdaySchedule" GridPane.rowIndex="1" GridPane.columnIndex="5"
+                          alignment="TOP_CENTER" orientation="VERTICAL" columnHalignment="CENTER"
+                          styleClass="timetable-timeslot" vgap="3">
+                    <padding>
+                        <Insets top="5" left="5" right="5"/>
+                    </padding>
+                </FlowPane>
+
+                <Label GridPane.rowIndex="0" GridPane.columnIndex="6" styleClass="timetable_heading"
+                       GridPane.halignment="CENTER">
+                    Sunday
+                </Label>
+                <FlowPane fx:id="sundaySchedule" GridPane.rowIndex="1" GridPane.columnIndex="6"
+                          alignment="TOP_CENTER" orientation="VERTICAL" columnHalignment="CENTER"
+                          styleClass="timetable-timeslot" vgap="3">
+                    <padding>
+                        <Insets top="5" left="5" right="5"/>
+                    </padding>
+                </FlowPane>
+
+            </GridPane>
+
 
         </VBox>
     </GridPane>

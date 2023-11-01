@@ -65,11 +65,11 @@ public class AddScheduleCommand extends Command {
             switch (eventType) {
                 case "cca":
                     friendSchedule.addCca(eventName + " " + schedule);
-                    return new CommandResult(MESSAGE_SUCCESS + "\nCCA:\n" + eventName + " " + schedule + " to " + friend.getName());
+                    return new CommandResult(MESSAGE_SUCCESS + "\nCCA:\n" + eventName + " " + schedule + " to " + friend.getName(), false, false, true, false);
                 case "module":
                     Schedule friendScedule = friend.getSchedule();
                     friendScedule.addModule(eventName + " " + schedule);
-                    return new CommandResult(MESSAGE_SUCCESS + "\nModule:\n" + eventName + " " + schedule + " to " + friend.getName());
+                    return new CommandResult(MESSAGE_SUCCESS + "\nModule:\n" + eventName + " " + schedule + " to " + friend.getName(), false, false, true, false);
                 default:
                     throw new CommandException("Invalid event type!"
                         + "\n Event type can only be 'Module' or 'CCA'" );
