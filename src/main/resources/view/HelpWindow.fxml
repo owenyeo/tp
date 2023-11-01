@@ -9,6 +9,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.stage.Stage?>
 
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Separator?>
 <fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
@@ -19,24 +21,87 @@
         <URL value="@HelpWindow.css" />
       </stylesheets>
 
-      <HBox alignment="CENTER" fx:id="helpMessageContainer">
+      <HBox fx:id="helpMessageContainer" alignment="CENTER">
         <children>
-          <Label fx:id="helpMessage" text="Label">
-            <HBox.margin>
-              <Insets right="5.0" />
-            </HBox.margin>
-          </Label>
-          <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL">
-            <HBox.margin>
-              <Insets left="5.0" />
-            </HBox.margin>
-          </Button>
+          <VBox minWidth="535" minHeight="600" maxWidth="535" maxHeight="600">
+
+            <Label styleClass="help_heading" >Welcome to TimetaBRO!</Label>
+
+            <Separator>
+              <padding>
+                <Insets top="5" bottom="10" />
+              </padding>
+            </Separator>
+
+            <VBox styleClass="user_guide_prompt" maxWidth="530">
+              <padding>
+                <Insets left="10" right="10"/>
+              </padding>
+
+              <Label fx:id="helpMessage" text="Label" styleClass="normal_text">
+                <HBox.margin>
+                  <Insets right="10" top="10" bottom="10"/>
+                </HBox.margin>
+                <padding>
+                  <Insets left="10" top="10" bottom="5" />
+                </padding>
+              </Label>
+
+              <HBox>
+                <padding>
+                  <Insets bottom="10"/>
+                </padding>
+
+                <Label fx:id="userGuideUrl" styleClass="normal_text" alignment="BASELINE_LEFT">
+                  <padding>
+                    <Insets top="3" left="20"/>
+                  </padding>
+                </Label>
+
+                <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL" alignment="BASELINE_RIGHT">
+                  <HBox.margin>
+                    <Insets left="20" />
+                  </HBox.margin>
+                </Button>
+              </HBox>
+            </VBox>
+
+            <Label styleClass="normal_text">
+              Here are the commands available to you:
+              <padding>
+                <Insets top="10"/>
+              </padding>
+            </Label>
+
+            <Label styleClass="help_sub_heading">
+              list
+              <padding>
+                <Insets top="10"/>
+              </padding>
+            </Label>
+
+            <Label styleClass="normal_text">
+              This command will list all the friends in your friend list.
+              <padding>
+                <Insets left="10"/>
+              </padding>
+            </Label>
+
+            <Label styleClass="normal_text">
+              eg: list
+              <padding>
+                <Insets left="20"/>
+              </padding>
+            </Label>
+
+          </VBox>
+
         </children>
         <opaqueInsets>
           <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
         </opaqueInsets>
         <padding>
-          <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
+          <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
         </padding>
       </HBox>
     </Scene>

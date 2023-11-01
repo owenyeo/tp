@@ -62,5 +62,6 @@ public class JsonAdaptedDatedEvent {
         LocalDate date = LocalDate.parse(localDateString);
         return new DatedEvent(name, timeBlockString, date, reminder);
     }
+
 }
 

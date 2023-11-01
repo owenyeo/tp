@@ -150,20 +150,38 @@ public class DatedEvent extends TimeBlock {
                 + " " + super.toString() + " Reminder: " + (hasReminder ? "Yes" : "No");
     }
 
+    @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String getType() {
+        return "Event";
     }
 
     public String getStringForReminder() {
         return name + " " + super.getTimeBlockString();
     }
 
-    public DatedEvent setReminder() {
-        return new DatedEvent(name, super.getTimeBlockString(), date, true);
+    @Override
+    public boolean equals(Object e) {
+        if (e == this) {
+            return true;
+        } else if (!(e instanceof DatedEvent)) {
+            return false;
+        } else {
+            DatedEvent other = (DatedEvent) e;
+            return other.getName().equals(getName())
+                    && other.getDate().equals(getDate())
+                    && other.getTimeBlockString().equals(getTimeBlockString())
+                    && other.hasReminder() == hasReminder();
+        }
     }
 
-    public DatedEvent removeReminder() {
-        return new DatedEvent(name, super.getTimeBlockString(), date, false);
+    @Override
+    public int hashCode() {
+        return toString().hashCode();
     }
 
 }

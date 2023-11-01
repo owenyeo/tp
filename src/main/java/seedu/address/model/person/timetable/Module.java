@@ -77,13 +77,14 @@ public class Module extends TimeBlock {
         return new Module(newName, super.getTimeBlockString());
     }
 
-    /**
-     * Returns the name of the module.
-     *
-     * @return The name of the module.
-     */
+    @Override
     public String getName() {
         return moduleName;
+    }
+
+    @Override
+    public String getType() {
+        return "Module";
     }
 
     /**
@@ -121,5 +122,23 @@ public class Module extends TimeBlock {
     @Override
     public String toString() {
         return "Module: [" + moduleName + "] " + super.toString();
+    }
+
+    @Override
+    public boolean equals(Object e) {
+        if (e == this) {
+            return true;
+        } else if (!(e instanceof Module)) {
+            return false;
+        } else {
+            Module other = (Module) e;
+            return this.moduleName.equals(other.moduleName)
+                    && this.getTimeBlockString().equals(other.getTimeBlockString());
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return toString().hashCode();
     }
 }

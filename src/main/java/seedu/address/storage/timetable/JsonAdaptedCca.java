@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.timetable.Cca;
 import seedu.address.model.person.timetable.TimeBlock;
 
@@ -20,17 +21,16 @@ public class JsonAdaptedCca {
     }
 
     public JsonAdaptedCca(Cca source) {
-        name = source.getCcaName();
+        name = source.getName();
         timeBlockString = source.getTimeBlockString();
     }
     
     public Cca toModelType() throws IllegalValueException {
-        if (!Cca.isValidCcaName(name)) {
-            throw new IllegalValueException(Cca.MESSAGE_CONSTRAINTS);
+        if (name == null) {
+            throw new IllegalValueException("CCA name should not be null");
         }
-
-        if (!TimeBlock.isValidTimeBlock(timeBlockString)) {
-            throw new IllegalValueException(TimeBlock.MESSAGE_CONSTRAINTS);
+        if (timeBlockString == null) {
+            throw new IllegalValueException("Time block should not be null");
         }
 
         return new Cca(name, timeBlockString);

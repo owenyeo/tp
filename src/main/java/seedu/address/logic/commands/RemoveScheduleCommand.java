@@ -55,22 +55,22 @@ public class RemoveScheduleCommand extends Command {
                 case "cca":
                     if (index == null) {
                         userSchedule.deleteCca(eventName);
-                        return new CommandResult("CCA '" + eventName + "'' deleted from your calendar!");
+                        return new CommandResult("CCA '" + eventName + "'' deleted from your calendar!", false, false, true, false);
                     } else {
                         Person friend = model.getFilteredPersonList().get(index.getZeroBased());
                         friend.getSchedule().deleteCca(eventName);
                         return new CommandResult("Dated Event '" + eventName + "'' deleted from "
-                            + friend.getName().toString() + "'s calendar!");
+                            + friend.getName().toString() + "'s calendar!", false, false, true, false);
                     }
                 case "module":
                     if (index == null) {
                         userSchedule.deleteModule(eventName);
-                        return new CommandResult("Module" + eventName + "'' deleted from your calendar!");
+                        return new CommandResult("Module" + eventName + "'' deleted from your calendar!", false, false, true, false);
                     } else {
                         Person friend = model.getFilteredPersonList().get(index.getZeroBased());
                         friend.getSchedule().deleteModule(eventName);
                         return new CommandResult("Meetup Event '" + eventName + "'' deleted from "
-                            + friend.getName().toString() + "'s calendar!");
+                            + friend.getName().toString() + "'s calendar!", false, false, true, false);
                     }
                 default:
                     throw new CommandException("Invalid event type!\n"

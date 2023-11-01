@@ -97,4 +97,21 @@ public class MeetUpEvent extends DatedEvent {
                 + " on " + super.getDate().format(DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER_PATTERN))
                 + " " + super.toString() + " Reminder: " + (super.hasReminder() ? "Yes" : "No");
     }
+
+    @Override
+    public boolean equals(Object e) {
+        if (e == this) {
+            return true;
+        } else if (!(e instanceof MeetUpEvent)) {
+            return false;
+        } else {
+            MeetUpEvent other = (MeetUpEvent) e;
+            return super.equals(other) && friend.equals(other.friend);
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return toString().hashCode();
+    }
 }

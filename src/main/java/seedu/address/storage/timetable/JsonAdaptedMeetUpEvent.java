@@ -67,5 +67,6 @@ public class JsonAdaptedMeetUpEvent {
         LocalDate date = LocalDate.parse(localDateString);
         return new MeetUpEvent(name, timeBlockString, date.toString(), reminder, friend.toModelType());
     }
+
 }
 

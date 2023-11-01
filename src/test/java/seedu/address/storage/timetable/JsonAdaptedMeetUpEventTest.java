@@ -5,12 +5,14 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.HOON;
 import static seedu.address.testutil.TypicalPersons.IDA;
+import static seedu.address.testutil.TypicalSchedule.NORMAL_MEETUP_EVENT;
 
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.timetable.DatedEvent;
+import seedu.address.model.person.timetable.MeetUpEvent;
 import seedu.address.model.person.timetable.TimeBlock;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.JsonAdaptedPerson;
@@ -32,14 +34,14 @@ public class JsonAdaptedMeetUpEventTest {
     @Test
     public void toModelType_invalidTimeBlock_throwsIllegalValueException() {
         JsonAdaptedMeetUpEvent datedEvent = new JsonAdaptedMeetUpEvent(VALID_NAME, INVALID_TIMEBLOCK, VALID_DATE, false, new JsonAdaptedPerson(ALICE));
-        String expectedMessage = TimeBlock.MESSAGE_CONSTRAINTS;
+        String expectedMessage = MeetUpEvent.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, datedEvent::toModelType);
     }
 
     @Test
     public void toModelType_nullTimeBlock_throwsIllegalValueException() {
         JsonAdaptedMeetUpEvent datedEvent = new JsonAdaptedMeetUpEvent(VALID_NAME, null, VALID_DATE, false, new JsonAdaptedPerson(HOON));
-        String expectedMessage = TimeBlock.MESSAGE_CONSTRAINTS;
+        String expectedMessage = MeetUpEvent.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, datedEvent::toModelType);
     }
 
@@ -58,8 +60,8 @@ public class JsonAdaptedMeetUpEventTest {
 
     @Test
     public void toModelType_validDatedEvent_success() throws IllegalValueException {
-        JsonAdaptedMeetUpEvent datedEvent = new JsonAdaptedMeetUpEvent(SampleDataUtil.getSampleMeetUpEvents().get(0));
-        assertEquals(SampleDataUtil.getSampleDatedEvents().get(0), datedEvent.toModelType());
+        JsonAdaptedMeetUpEvent datedEvent = new JsonAdaptedMeetUpEvent(NORMAL_MEETUP_EVENT);
+        assertEquals(NORMAL_MEETUP_EVENT, datedEvent.toModelType());
     }
 
 

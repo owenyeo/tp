@@ -1,6 +1,5 @@
 package seedu.address.model.person.timetable;
 
-import java.sql.Date;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -323,7 +322,7 @@ public class Schedule {
             if (module.getName().equals(moduleName)) {
                 modulesList.remove(module);
                 isFound = true;
-                break;  // Exit the loop after the first matching module is removed
+                break; // Exit the loop after the first matching module is removed
             }
         }
 
@@ -358,7 +357,7 @@ public class Schedule {
      */
     public void editCca(String ccaName, String unparsedInput) throws IllegalValueException {
         // Remove all instances of the CCA with the given name
-        ccasList.removeIf(cca -> cca.getCcaName().equals(ccaName));
+        ccasList.removeIf(cca -> cca.getName().equals(ccaName));
 
         // Add the new CCA
         ccasList.add(Cca.newCca(unparsedInput));
@@ -372,10 +371,10 @@ public class Schedule {
     public void deleteCca(String ccaName) {
         boolean isFound = false;
         for (Cca cca : ccasList) {
-            if (cca.getCcaName().equals(ccaName)) {
+            if (cca.getName().equals(ccaName)) {
                 ccasList.remove(cca);
                 isFound = true;
-                break;  // Exit the loop after the first matching CCA is removed
+                break; // Exit the loop after the first matching CCA is removed
             }
         }
 
@@ -421,13 +420,13 @@ public class Schedule {
      *
      * @param eventName Name of the dated event to be removed.
      */
-    public void deleteDatedEvent(String eventName) throws Exception{
-            boolean isFound = false;
+    public void deleteDatedEvent(String eventName) throws Exception {
+        boolean isFound = false;
         for (DatedEvent event : datedEventsList) {
             if (event.getName().equals(eventName)) {
                 datedEventsList.remove(event);
                 isFound = true;
-                break;  // Exit the loop after the first matching event is removed
+                break; // Exit the loop after the first matching event is removed
             }
         }
 
@@ -466,7 +465,7 @@ public class Schedule {
             if (event.getName().equals(meetUpEventName)) {
                 meetUpEventsList.remove(event);
                 isFound = true;
-                break;  // Exit the loop after the first matching event is removed
+                break; // Exit the loop after the first matching event is removed
             }
         }
 
@@ -505,7 +504,8 @@ public class Schedule {
         }
         return sb.toString();
     }
-  
+
+    @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
@@ -518,5 +518,10 @@ public class Schedule {
                 && ccasList.equals(otherSchedule.ccasList)
                 && datedEventsList.equals(otherSchedule.datedEventsList)
                 && meetUpEventsList.equals(otherSchedule.meetUpEventsList);
+    }
+
+    @Override
+    public int hashCode() {
+        return toString().hashCode();
     }
 }

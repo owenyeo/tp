@@ -76,7 +76,7 @@ public class EditUserCommand extends Command {
         }
 
         model.setUser(editedUser);
-        return new CommandResult(String.format(MESSAGE_EDIT_USER_SUCCESS, Messages.format(editedUser)));
+        return new CommandResult(String.format(MESSAGE_EDIT_USER_SUCCESS, Messages.format(editedUser)), false, false, true, false);
     }
 
     /**
