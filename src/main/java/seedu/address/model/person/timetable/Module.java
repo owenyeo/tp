@@ -80,6 +80,11 @@ public class Module extends TimeBlock {
         return moduleName;
     }
 
+    @Override
+    public String getType() {
+        return "Module";
+    }
+
     /**
      * Checks if the given module name is valid.
      *

@@ -216,10 +216,19 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (selectedPerson != null && commandResult.isEdit()) {
+            if (selectedPerson != null && commandResult.isRefresh()) {
                 friendProfile = new SelectedFriendCard(logic.getFilteredPersonList().get(selectedPersonPos));
                 selectedFriendPlaceholder.getChildren().clear();
                 selectedFriendPlaceholder.getChildren().add(friendProfile.getRoot());
+
+                userProfile = new UserCard(logic.getUser());
+                userProfilePlaceholder.getChildren().clear();
+                userProfilePlaceholder.getChildren().add(userProfile.getRoot());
+
+            } else if (commandResult.isRefresh()) {
+                userProfile = new UserCard(logic.getUser());
+                userProfilePlaceholder.getChildren().clear();
+                userProfilePlaceholder.getChildren().add(userProfile.getRoot());
             }
 
             return commandResult;

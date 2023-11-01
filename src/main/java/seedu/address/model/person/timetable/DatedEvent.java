@@ -155,6 +155,11 @@ public class DatedEvent extends TimeBlock {
         return name;
     }
 
+    @Override
+    public String getType() {
+        return "Event";
+    }
+
     public String getStringForReminder() {
         return name + " " + super.getTimeBlockString();
     }

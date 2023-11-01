@@ -97,6 +97,11 @@ public class Cca extends TimeBlock {
     }
 
     @Override
+    public String getType() {
+        return "CCA";
+    }
+
+    @Override
     public String toString() {
         return "Cca: [" + ccaName + "] " + super.toString();
     }
