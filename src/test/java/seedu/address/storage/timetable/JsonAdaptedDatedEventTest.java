@@ -8,13 +8,10 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.timetable.DatedEvent;
-import seedu.address.model.person.timetable.TimeBlock;
-import seedu.address.model.util.SampleDataUtil;
 
 public class JsonAdaptedDatedEventTest {
     private static final String INVALID_TIMEBLOCK = "monday";
     private static final String INVALID_DATE = "26-12-2001";
-    
     private static final String VALID_NAME = "CS2100";
     private static final String VALID_TIMEBLOCK = "Monday 1200 1300";
     private static final String VALID_DATE = "2001-12-26 1200 1400";

@@ -3,6 +3,7 @@ package seedu.address.logic.commands.edit;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.timetable.DatedEvent;
 
 /**
@@ -10,10 +11,11 @@ import seedu.address.model.person.timetable.DatedEvent;
  * corresponding field value of the user.
  */
 public class EditUserDescriptor extends EditPersonDescriptor {
-    private ArrayList<DatedEvent> datedEvents = new ArrayList<>();
+    private ArrayList<DatedEvent> datedEvents;
 
     public EditUserDescriptor() {
         super();
+        datedEvents = new ArrayList<>();
     }
 
     /**
@@ -30,7 +32,7 @@ public class EditUserDescriptor extends EditPersonDescriptor {
     }
 
     public void setDatedEvents(ArrayList<DatedEvent> datedEvents) {
-        this.datedEvents = (datedEvents != null) ? new ArrayList<>(datedEvents) : null;
+        this.datedEvents = datedEvents;
     }
 
     public boolean equals(Object other) {
@@ -48,5 +50,18 @@ public class EditUserDescriptor extends EditPersonDescriptor {
 
         return super.equals(e)
                 && datedEvents.equals(e.datedEvents);
+    }
+
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("name", super.getName())
+                .add("phone", super.getPhone())
+                .add("email", super.getEmail())
+                .add("address", super.getAddress())
+                .add("birthday", super.getBirthday())
+                .add("free times", super.getSchedule())
+                .add("tags", super.getTags())
+                .add("dated events", datedEvents)
+                .toString();
     }
 }
