@@ -6,7 +6,12 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "birthday": "2000-01-01",
-    "freeTimes" : [ "Monday 1200 1300" ],
+    "schedule" : {
+      "datedEvents" : [ ],
+      "modules" : [ ],
+      "ccas" : [ ],
+      "meetUpEvents" : [ ]
+    },
     "tags" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -14,7 +19,12 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "birthday": "2000-01-01",
-    "freeTimes" : [ "Monday 1200 1300" ],
+    "schedule" : {
+      "datedEvents" : [ ],
+      "modules" : [ ],
+      "ccas" : [ ],
+      "meetUpEvents" : [ ]
+    },
     "tags" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -22,7 +32,12 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "birthday": "2000-01-01",
-    "freeTimes" : [ "Monday 1200 1300" ],
+    "schedule" : {
+      "datedEvents" : [ ],
+      "modules" : [ ],
+      "ccas" : [ ],
+      "meetUpEvents" : [ ]
+    },
     "tags" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -30,7 +45,12 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "birthday": "2000-01-01",
-    "freeTimes" : [ "Monday 1200 1300" ],
+    "schedule" : {
+      "datedEvents" : [ "CS2103 Meeting 2023-10-10 1030 1130 y", "Walk Dog 2023-10-10 1030 1130 n", "Competitive sleeping 2023-10-10 1030 1130 y"],
+      "modules" : ["CS2103 Wednesday 1200 1300", "CS2101 Tuesday 1200 1400", "CS2100 Monday 1400 1500" ],
+      "ccas" : [ "Basketball Monday 1800 2000", "Soccer Tuesday 1800 2000", "Tennis Wednesday 1800 2000" ],
+      "meetUpEvents" : [ "CS2103 Meeting 2023-10-10 1030 1130 y Alice Pauline", "Walk Dog 2023-10-10 1030 1130 n Benson Meier", "Competitive sleeping 2023-10-10 1030 1130 y Carl Kurz"]
+    },
     "tags" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -38,7 +58,12 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "birthday": "2000-01-01",
-    "freeTimes" : [ "Monday 1200 1300" ],
+    "schedule" : {
+      "datedEvents" : [ ],
+      "modules" : [ ],
+      "ccas" : [ ],
+      "meetUpEvents" : [ ]
+    },
     "tags" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -46,7 +71,12 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "birthday": "2000-01-01",
-    "freeTimes" : [ "Monday 1200 1300" ],
+    "schedule" : {
+      "datedEvents" : [ ],
+      "modules" : [ ],
+      "ccas" : [ ],
+      "meetUpEvents" : [ ]
+    },
     "tags" : [ ]
   }, {
     "name" : "George Best",
@@ -54,7 +84,12 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "birthday": "2000-01-01",
-    "freeTimes" : [ "Monday 1200 1300" ],
+    "schedule" : {
+      "datedEvents" : [ ],
+      "modules" : [ ],
+      "ccas" : [ ],
+      "meetUpEvents" : [ ]
+    },
     "tags" : [ ]
   } ]
 }

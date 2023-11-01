@@ -42,8 +42,6 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_FREETIME_MONDAY = "Monday 1200 1300";
-    public static final String VALID_FREETIME_TUESDAY = "Tuesday 1330 1500";
     public static final String VALID_BIRTHDAY_AMY = "2000-01-01";
     public static final String VALID_BIRTHDAY_BOB = "2000-02-02";
 
