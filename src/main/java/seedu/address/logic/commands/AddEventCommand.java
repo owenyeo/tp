@@ -39,17 +39,26 @@ public class AddEventCommand extends Command {
         + "the friend you are adding the dated event to or 'user' "
         + "if you would like to add the event to yourself \n";
 
+    public static final String MESSAGE_SUCCESS = "New event added: ";
+
     private final String eventName;
     private final String eventType;
     private final Index index;
     private final String schedule;
     private final String reminder;
 
-    public static final String MESSAGE_SUCCESS = "New event added: ";
-
+    /**
+     * Constructs an AddEventCommand object with the specified event name, index, schedule,
+     * reminder and event type.
+     * @param eventName
+     * @param index
+     * @param schedule
+     * @param reminder
+     * @param eventType
+     */
     public AddEventCommand(String eventName, Index index, String schedule,
         String reminder, String eventType) {
-        
+
         requireAllNonNull(schedule);
 
         this.eventName = eventName;
@@ -59,6 +68,14 @@ public class AddEventCommand extends Command {
         this.eventType = eventType.toLowerCase();
     }
 
+    /**
+     * Constructs an AddEventCommand object with the specified event name, schedule,
+     * reminder and event type.
+     * @param eventName
+     * @param schedule
+     * @param reminder
+     * @param eventType
+     */
     public AddEventCommand(String eventName, String schedule,
         String reminder, String eventType) {
 
@@ -83,7 +100,7 @@ public class AddEventCommand extends Command {
             }
 
             Schedule friendSchedule = friend.getSchedule();
-            
+
             switch (eventType) {
             // If the event is a dated event, add it to the friend's schedule.
             case "dated":
@@ -118,7 +135,7 @@ public class AddEventCommand extends Command {
             // If the event is neither a dated event nor a meetup event, throw an exception.
             default:
                 throw new CommandException("Invalid event type!"
-                    + "\n Event type can only be 'Dated' or 'Meetup'" );
+                    + "\n Event type can only be 'Dated' or 'Meetup'");
             }
         } catch (Exception e) {
             throw new CommandException(e.getMessage());

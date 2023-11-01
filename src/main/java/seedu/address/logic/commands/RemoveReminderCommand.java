@@ -59,6 +59,12 @@ public class RemoveReminderCommand extends Command {
         return eventName.equals(otherRemoveCommand.eventName);
     }
 
+    /**
+     * Returns a string representation of the RemoveReminderCommand object.
+     * Includes the event name for which the reminder is to be removed.
+     *
+     * @return String representation of the RemoveReminderCommand object.
+     */
     public String toString() {
         return new ToStringBuilder(this)
                 .add("Remove Reminder for", eventName)

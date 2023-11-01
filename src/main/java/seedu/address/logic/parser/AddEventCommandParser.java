@@ -3,11 +3,10 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTTYPE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 
 import java.util.stream.Stream;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
 
 import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -50,7 +49,7 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
             return new AddEventCommand(eventName, ParserUtil.parseIndex(indexString),
                 schedule, reminder, eventType);
         } else {
-            throw new ParseException("Invalid index!\n" 
+            throw new ParseException("Invalid index!\n"
                 + "Index can only be 'user' or a 'positive integer!' \n");
         }
     }

@@ -13,13 +13,6 @@ import seedu.address.model.person.timetable.FreeTime;
 import seedu.address.model.person.timetable.Schedule;
 
 /**
- * Represents a command that finds all contacts with the same free time as the User.
- * A CommonFreetimeCommand object can be created with or without a specified contact name.
- * If no name is specified, the command returns the user's common free time with all contacts.
- * If a name is specified, the command returns the user's common free time with the specified contact.
- * Inherits from the Command class and overrides its execute method.
- */
-/**
  * Represents a command to find all contacts with the same free time as the User.
  * If no name is specified, the command returns the user's common free time with all contacts.
  * If a name is specified, the command returns the user's common free time with the specified contact.
@@ -74,13 +67,13 @@ public class CommonFreetimeCommand extends Command {
             } else {
                 return new CommandResult(createCommonFreeTimeMessage(commonFreeTime, overlappingContacts).toString());
             }
-        } else {   
-            try {         
+        } else {
+            try {
                 Person friend = model.getPersonWithName(this.name);
                 return new CommandResult(createCommonFreeTimeMessage(model.getUser(), friend).toString());
             } catch (NullPointerException e) {
-                 throw new CommandException("There is no such contact in your contacts!");
-            } 
+                throw new CommandException("There is no such contact in your contacts!");
+            }
         }
     }
 
@@ -95,14 +88,15 @@ public class CommonFreetimeCommand extends Command {
     }
 
     /**
-     * Retrieves the contacts that have free time in common with the user's schedule, and adds their overlapping free times
-     * to the commonFreeTime list.
+     * Retrieves the contacts that have free time in common with the user's schedule,
+     * and adds their overlapping free times to the commonFreeTime list.
      * @param contacts The list of contacts to check for overlapping free times.
      * @param commonFreeTime The list to add the overlapping free times to.
      * @param overlappingContacts The list to add the contacts with overlapping free times to.
      * @param userSchedule The user's schedule to compare with the contacts' schedules.
      */
-    public void getContactsWithFreeTime(ObservableList<Person> contacts, ArrayList<FreeTime> commonFreeTime, ArrayList<Person> overlappingContacts, Schedule userSchedule) {
+    public void getContactsWithFreeTime(ObservableList<Person> contacts,
+        ArrayList<FreeTime> commonFreeTime, ArrayList<Person> overlappingContacts, Schedule userSchedule) {
         for (Person contact : contacts) {
             Schedule contactSchedule = contact.getSchedule();
             if (userSchedule.getThisWeeksFreeTimesWith(contactSchedule).equals(null)) {
@@ -143,9 +137,11 @@ public class CommonFreetimeCommand extends Command {
      * Creates a message containing the common free time slots for a list of overlapping contacts.
      * @param commonFreeTime An ArrayList of FreeTime objects representing the common free time slots.
      * @param overlappingContacts An ArrayList of Person objects representing the overlapping contacts.
-     * @return A StringBuilder object containing the message with the common free time slots for the overlapping contacts.
+     * @return A StringBuilder object containing the message with the common free time slots
+     *     for the overlapping contacts.
      */
-    public StringBuilder createCommonFreeTimeMessage(ArrayList<FreeTime> commonFreeTime, ArrayList<Person> overlappingContacts) {
+    public StringBuilder createCommonFreeTimeMessage(ArrayList<FreeTime> commonFreeTime,
+                                                     ArrayList<Person> overlappingContacts) {
         StringBuilder sb = new StringBuilder(MESSAGE_COMMON_FREETIME_SUCCESS);
         for (Person contactName : overlappingContacts) {
             Name nameOfContact = contactName.getName();
@@ -158,10 +154,11 @@ public class CommonFreetimeCommand extends Command {
     }
 
     /**
-     * Returns a List<FreeTime> of common free times with specified contact
+     * Returns a List of common free times with specified contact.
+     *
      * @param model {@code Model} which the command should operate on.
-     * @param contactName Name of contact to find common free time with
-     * @return List<FreeTime> of common free times with specified contact
+     * @param contactName Name of contact to find common free time with.
+     * @return List of common free times with specified contact.
      * @throws CommandException if an error occurs during command execution.
      */
     public List<FreeTime> getCommonFreeTimeWith(Model model, Name contactName) throws CommandException {
