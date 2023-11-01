@@ -8,9 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.timetable.Cca;
-import seedu.address.model.person.timetable.Module;
 import seedu.address.model.person.timetable.TimeBlock;
-import seedu.address.model.util.SampleDataUtil;
 
 public class JsonAdaptedCcaTest {
     private static final String INVALID_TIMEBLOCK = "monday";

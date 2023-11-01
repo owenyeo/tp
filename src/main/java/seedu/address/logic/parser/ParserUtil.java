@@ -106,7 +106,7 @@ public class ParserUtil {
         if (!Birthday.isValidBirthday(trimmedDate)) {
             throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
         }
-        return new Birthday(trimmedDate);
+        return new Birthday(date);
     }
 
     /**

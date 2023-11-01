@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.timetable.Module;
 import seedu.address.model.person.timetable.TimeBlock;
-import seedu.address.model.util.SampleDataUtil;
 
 public class JsonAdaptedModuleTest {
     private static final String INVALID_NAME = "woohoo";

@@ -6,8 +6,10 @@ import seedu.address.model.person.timetable.MeetUpEvent;
 import seedu.address.model.person.timetable.Module;
 import seedu.address.model.person.timetable.Schedule;
 
-import java.util.ArrayList;
 
+/**
+ * A utility class containing a list of {@code Schedule} objects to be used in tests.
+ */
 public class TypicalSchedule {
 
     public static final Schedule NORMAL_SCHEDULE = new ScheduleBuilder()
@@ -40,7 +42,8 @@ public class TypicalSchedule {
 
     public static final Cca NORMAL_CCA = new Cca("Basketball", "Monday 1800 2000");
     public static final Module NORMAL_MODULE = new Module("CS2103", "Wednesday 1200 1300");
-    public static final DatedEvent NORMAL_DATED_EVENT = DatedEvent.newDatedEvent("CS2103 Meeting 2023-10-10 1030 1130 y");
-    public static final MeetUpEvent NORMAL_MEETUP_EVENT = MeetUpEvent.newMeetUpEvent("CS2103 Meeting 2023-10-10 1030 1130 y",
-            TypicalPersons.ALICE);
+    public static final DatedEvent NORMAL_DATED_EVENT = DatedEvent
+            .newDatedEvent("CS2103 Meeting 2023-10-10 1030 1130 y");
+    public static final MeetUpEvent NORMAL_MEETUP_EVENT = MeetUpEvent
+            .newMeetUpEvent("CS2103 Meeting 2023-10-10 1030 1130 y", TypicalPersons.ALICE);
 }

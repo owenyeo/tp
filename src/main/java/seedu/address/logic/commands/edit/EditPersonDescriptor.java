@@ -29,7 +29,9 @@ public class EditPersonDescriptor {
     private Schedule schedule;
     private Set<Tag> tags;
 
-    public EditPersonDescriptor() {}
+    public EditPersonDescriptor() {
+        schedule = new Schedule();
+    }
 
     /**
      * Copy constructor.
@@ -49,7 +51,7 @@ public class EditPersonDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return !CollectionUtil.isAnyNonNull(name, phone, email, address, birthday, schedule, tags);
+        return CollectionUtil.isAnyNonNull(name, phone, email, address, birthday, tags);
     }
 
     public void setName(Name name) {

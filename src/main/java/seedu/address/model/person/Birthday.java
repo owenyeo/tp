@@ -13,8 +13,8 @@ public class Birthday {
     public static final String MESSAGE_CONSTRAINTS =
             "Birthday should be in the format of YYYY-MM-DD OR YYYY-M-D and should be a valid date.";
     public static final String VALIDATION_REGEX =
-            "^\\d{4}\\-(0?[1-9]|1[012])\\-(0?[1-9]|[12][0-9]|3[01])$";
-    public final LocalDate date;
+            "^\\d{4}-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9]|3[01])$";
+    public final String date;
 
     /**
      * Constructs a {@code Birthday}.
@@ -24,7 +24,7 @@ public class Birthday {
     public Birthday(String birthday) {
         requireNonNull(birthday);
         checkArgument(isValidBirthday(birthday), MESSAGE_CONSTRAINTS);
-        date = LocalDate.parse(birthday);
+        date = birthday;
     }
 
     public static Boolean isValidBirthday(String test) {
@@ -33,7 +33,11 @@ public class Birthday {
 
     @Override
     public String toString() {
-        return date.toString();
+        return date;
+    }
+
+    public LocalDate getDate() {
+        return LocalDate.parse(date);
     }
 
     @Override
