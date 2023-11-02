@@ -408,6 +408,7 @@
     -fx-overrun: ellipsis;
 }
 
+
 .card-display {
     -fx-background-color: derive(#1d1d1d, 20%);
     -fx-border-color: derive(#1d1d1d, 10%);
@@ -425,6 +426,17 @@
 .event-time-block {
     -fx-background-color: #488263;
 }
+
+.background-needed {
+    -fx-background-color: #1d1d1d;
+}
+
+
+
+
+
+
+
 
 
 
