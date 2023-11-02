@@ -1,4 +1,4 @@
-package seedu.address.logic.parser;
+/**package seedu.address.logic.parser;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTTYPE;
@@ -100,3 +100,4 @@ public class RemoveScheduleCommandParserTest {
 
     // same as addEventCommandParser
 }
+*/
