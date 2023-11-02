@@ -36,7 +36,7 @@ public class JsonAdaptedPersonTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
-        private static final JsonAdaptedSchedule VALID_SCHEDULE = new JsonAdaptedSchedule(BENSON.getSchedule());
+    private static final JsonAdaptedSchedule VALID_SCHEDULE = new JsonAdaptedSchedule(BENSON.getSchedule());
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {

@@ -29,7 +29,8 @@ public class RemoveScheduleCommandParser implements Parser<RemoveScheduleCommand
                 ArgumentTokenizer.tokenize(args, PREFIX_EVENTNAME, PREFIX_EVENTTYPE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_EVENTNAME, PREFIX_EVENTTYPE)) {
-            throw new ParseException(String.format("Command format is invalid! \n" + RemoveScheduleCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format("Command format is invalid! \n"
+                + RemoveScheduleCommand.MESSAGE_USAGE));
         }
 
         try {
@@ -39,7 +40,8 @@ public class RemoveScheduleCommandParser implements Parser<RemoveScheduleCommand
             if (indexString.equals("user")) {
                 return new RemoveScheduleCommand(eventName, eventType, null);
             } else if (Integer.parseInt(indexString) > 0) {
-                return new RemoveScheduleCommand(eventName, eventType, ParserUtil.parseIndex(indexString));
+                return new RemoveScheduleCommand(eventName, eventType,
+                    ParserUtil.parseIndex(indexString));
             } else {
                 throw new ParseException("Invalid index!\n"
                         + "Index must either be 'user' or a positive integer!\n");

@@ -25,7 +25,7 @@ public class AddEventCommand extends Command {
         + "INDEX "
         + "type/EVENT_TYPE "
         + "en/EVENT_NAME "
-        + "h/[Date [YYYY-MM-DD] StarTime (HHMM) EndTime (HHMM)] "
+        + "h/[Date [YYYY-MM-DD] StartTime (HHMM) EndTime (HHMM)] "
         + "r/[REMINDER: y/n] \n"
         + "Example: " + COMMAND_WORD + " "
         + "1 "
@@ -95,5 +95,30 @@ public class AddEventCommand extends Command {
         } catch (Exception e) {
             throw new CommandException(e.getMessage());
         }
+    }
+
+    /**
+     * Adds a meetup event to the schedules of both the user and their friend.
+     *
+     * @param userSchedule The schedule of the user.
+     * @param friendSchedule The schedule of the friend.
+     * @param eventName The name of the event.
+     * @param schedule The schedule of the event.
+     * @param reminder The reminder for the event.
+     * @param friend The friend of the user.
+     * @param user The user.
+     */
+    public void addMeetupEvents(Schedule userSchedule, Schedule friendSchedule,
+        String eventName, String schedule, String reminder, Person friend, Person user) {
+        userSchedule.addMeetUpEvent(eventName.toLowerCase()
+            + " "
+            + schedule
+            + " "
+            + reminder, friend);
+        friendSchedule.addMeetUpEvent(eventName.toLowerCase()
+            + " "
+            + schedule
+            + " "
+            + reminder, user);
     }
 }

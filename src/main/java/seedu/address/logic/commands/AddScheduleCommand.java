@@ -63,16 +63,31 @@ public class AddScheduleCommand extends Command {
             Schedule friendSchedule = friend.getSchedule();
             
             switch (eventType) {
-                case "cca":
-                    friendSchedule.addCca(eventName + " " + schedule);
-                    return new CommandResult(MESSAGE_SUCCESS + "\nCCA:\n" + eventName + " " + schedule + " to " + friend.getName(), false, false, true, false);
-                case "module":
-                    Schedule friendScedule = friend.getSchedule();
-                    friendScedule.addModule(eventName + " " + schedule);
-                    return new CommandResult(MESSAGE_SUCCESS + "\nModule:\n" + eventName + " " + schedule + " to " + friend.getName(), false, false, true, false);
-                default:
-                    throw new CommandException("Invalid event type!"
-                        + "\n Event type can only be 'Module' or 'CCA'" );
+            // If the event type is cca, add the event to the friend's cca schedule
+            case "cca":
+                friendSchedule.addCca(eventName + " " + schedule);
+                return new CommandResult(MESSAGE_SUCCESS
+                    + "\nCCA:\n"
+                    + eventName
+                    + " "
+                    + schedule
+                    + " to "
+                    + friend.getName(), false, false, true, false);
+            case "module":
+            // If the event type is module, add the event to the friend's module schedule
+                Schedule friendScedule = friend.getSchedule();
+                friendScedule.addModule(eventName + " " + schedule);
+                return new CommandResult(MESSAGE_SUCCESS
+                    + "\nModule:\n"
+                    + eventName
+                    + " "
+                    + schedule
+                    + " to "
+                    + friend.getName(), false, false, true, false);
+            // If the event type is invalid, throw an exception
+            default:
+                throw new CommandException("Invalid event type!"
+                    + "\n Event type can only be 'Module' or 'CCA'" );
             }
         } catch (Exception e) {
             throw new CommandException(e.getMessage());

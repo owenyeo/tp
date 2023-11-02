@@ -401,7 +401,6 @@ public class Schedule {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Schedule:\n");
         if (!modulesList.isEmpty()) {
             sb.append("- Modules:\n");
             for (Module module : modulesList) {

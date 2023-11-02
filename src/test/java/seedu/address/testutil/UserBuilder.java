@@ -89,11 +89,17 @@ public class UserBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Schedule} of the {@code User} that we are building.
+     */
     public UserBuilder withSchedule(Schedule schedule) {
         this.schedule = schedule;
         return this;
     }
 
+    /**
+     * Sets the {@code datedEvents} of the {@code User} that we are building.
+     */
     public UserBuilder withDatedEvents() {
         this.datedEvents = new ArrayList<DatedEvent>();
         return this;

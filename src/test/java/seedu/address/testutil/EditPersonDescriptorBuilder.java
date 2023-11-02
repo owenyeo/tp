@@ -83,6 +83,9 @@ public class EditPersonDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Schedule} of the {@code EditPersonDescriptor} that we are building.
+     */
     public EditPersonDescriptorBuilder withSchedule(Schedule schedule) {
         descriptor.setSchedule(schedule);
         return this;

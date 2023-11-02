@@ -1,9 +1,12 @@
 package seedu.address.testutil;
 
-import seedu.address.model.person.timetable.DatedEvent;
-
 import java.util.ArrayList;
 
+import seedu.address.model.person.timetable.DatedEvent;
+
+/**
+ * A utility class containing a list of {@code DatedEvent} objects to be used in tests.
+ */
 public class TypicalDatedEvents {
 
     public static final ArrayList<DatedEvent> NORMAL_DATEDEVENTS = new DatedEventsBuilder()

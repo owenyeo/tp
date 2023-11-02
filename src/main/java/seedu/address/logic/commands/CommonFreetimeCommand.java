@@ -19,6 +19,11 @@ import seedu.address.model.person.timetable.Schedule;
  * If a name is specified, the command returns the user's common free time with the specified contact.
  * Inherits from the Command class and overrides its execute method.
  */
+/**
+ * Represents a command to find all contacts with the same free time as the User.
+ * If no name is specified, the command returns the user's common free time with all contacts.
+ * If a name is specified, the command returns the user's common free time with the specified contact.
+ */
 public class CommonFreetimeCommand extends Command {
 
     public static final String COMMAND_WORD = "cft";
@@ -79,10 +84,24 @@ public class CommonFreetimeCommand extends Command {
         }
     }
 
+    /**
+     * Returns a message indicating that the user and the given friend have no common free time.
+     *
+     * @param friend the friend to check for common free time
+     * @return a message indicating that the user and the given friend have no common free time
+     */
     public static String createNoOverlapFriendMessage(Person friend) {
         return "You and " + friend.getName().toString() + " have no common free time!";
     }
 
+    /**
+     * Retrieves the contacts that have free time in common with the user's schedule, and adds their overlapping free times
+     * to the commonFreeTime list.
+     * @param contacts The list of contacts to check for overlapping free times.
+     * @param commonFreeTime The list to add the overlapping free times to.
+     * @param overlappingContacts The list to add the contacts with overlapping free times to.
+     * @param userSchedule The user's schedule to compare with the contacts' schedules.
+     */
     public void getContactsWithFreeTime(ObservableList<Person> contacts, ArrayList<FreeTime> commonFreeTime, ArrayList<Person> overlappingContacts, Schedule userSchedule) {
         for (Person contact : contacts) {
             Schedule contactSchedule = contact.getSchedule();
@@ -95,6 +114,14 @@ public class CommonFreetimeCommand extends Command {
         }
     }
 
+    /**
+     * Creates a message containing the common free times between two persons.
+     *
+     * @param user the first person
+     * @param friend the second person
+     * @return a StringBuilder containing the common free times between the two persons
+     * @throws CommandException if there are no common free times between the two persons
+     */
     public StringBuilder createCommonFreeTimeMessage(Person user, Person friend) throws CommandException {
         Schedule userSchedule = user.getSchedule();
         Schedule friendSchedule = friend.getSchedule();
@@ -112,6 +139,12 @@ public class CommonFreetimeCommand extends Command {
         }
     }
 
+    /**
+     * Creates a message containing the common free time slots for a list of overlapping contacts.
+     * @param commonFreeTime An ArrayList of FreeTime objects representing the common free time slots.
+     * @param overlappingContacts An ArrayList of Person objects representing the overlapping contacts.
+     * @return A StringBuilder object containing the message with the common free time slots for the overlapping contacts.
+     */
     public StringBuilder createCommonFreeTimeMessage(ArrayList<FreeTime> commonFreeTime, ArrayList<Person> overlappingContacts) {
         StringBuilder sb = new StringBuilder(MESSAGE_COMMON_FREETIME_SUCCESS);
         for (Person contactName : overlappingContacts) {
