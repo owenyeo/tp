@@ -1,16 +1,17 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.AddEventCommand;
-import seedu.address.logic.commands.AddScheduleCommand;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTTYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.AddEventCommand;
+import seedu.address.logic.commands.AddScheduleCommand;
 
 public class AddScheduleCommandParserTest {
     private AddScheduleCommandParser parser = new AddScheduleCommandParser();
@@ -78,8 +79,8 @@ public class AddScheduleCommandParserTest {
 
     @Test
     public void parse_fieldMissing_failure() {
-        String expectedMessage = String.format("Command format is invalid! \n" +
-                AddEventCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format("Command format is invalid! \n"
+                + AddEventCommand.MESSAGE_USAGE);
 
         String expectedMessage2 = String.format("Invalid index!\n"
                 + "Index can only be 'user' or a 'positive integer!' \n");

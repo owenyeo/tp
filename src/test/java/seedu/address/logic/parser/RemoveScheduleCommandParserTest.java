@@ -1,16 +1,16 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.AddEventCommand;
-import seedu.address.logic.commands.RemoveEventCommand;
-import seedu.address.logic.commands.RemoveScheduleCommand;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTTYPE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.AddEventCommand;
+import seedu.address.logic.commands.RemoveScheduleCommand;
 
 public class RemoveScheduleCommandParserTest {
     private RemoveScheduleCommandParser parser = new RemoveScheduleCommandParser();
@@ -28,11 +28,11 @@ public class RemoveScheduleCommandParserTest {
 
         // module in user
         assertParseSuccess(parser, "user type/module en/CS2103",
-                new RemoveScheduleCommand("CS2103","module", Index.fromOneBased(1)));
+                new RemoveScheduleCommand("CS2103", "module", Index.fromOneBased(1)));
 
         // module in friend
         assertParseSuccess(parser, "1 type/module en/CS2103",
-                new RemoveScheduleCommand("CS2103","module", Index.fromOneBased(1)));
+                new RemoveScheduleCommand("CS2103", "module", Index.fromOneBased(1)));
     }
 
     @Test
@@ -75,8 +75,8 @@ public class RemoveScheduleCommandParserTest {
 
     @Test
     public void parse_fieldMissing_failure() {
-        String expectedMessage = String.format("Command format is invalid! \n" +
-                AddEventCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format("Command format is invalid! \n"
+                + AddEventCommand.MESSAGE_USAGE);
 
         String expectedMessage2 = String.format("Invalid index!\n"
                 + "Index can only be 'user' or a 'positive integer!' \n");

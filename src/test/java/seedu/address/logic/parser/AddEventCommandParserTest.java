@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddEventCommand;
@@ -89,8 +90,8 @@ public class AddEventCommandParserTest {
 
     @Test
     public void parse_fieldMissing_failure() {
-        String expectedMessage = String.format("Command format is invalid! \n" +
-                AddEventCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format("Command format is invalid! \n"
+                + AddEventCommand.MESSAGE_USAGE);
 
         String expectedMessage2 = String.format("Invalid index!\n"
                 + "Index can only be 'user' or a 'positive integer!' \n");

@@ -1,15 +1,16 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Messages;
-import seedu.address.logic.commands.AddEventCommand;
-import seedu.address.logic.commands.RemoveEventCommand;
-
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTTYPE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
+import seedu.address.logic.commands.AddEventCommand;
+import seedu.address.logic.commands.RemoveEventCommand;
 
 public class RemoveEventCommandParserTest {
     private RemoveEventCommandParser parser = new RemoveEventCommandParser();
@@ -27,7 +28,8 @@ public class RemoveEventCommandParserTest {
 
         // meetup event in user
         assertParseSuccess(parser, "1 type/meetup en/CS2103 Meeting",
-                new RemoveEventCommand("CS2103 Meeting","meetup", Index.fromOneBased(1)));
+                new RemoveEventCommand("CS2103 Meeting", "meetup",
+                        Index.fromOneBased(1)));
     }
 
     @Test
@@ -70,8 +72,8 @@ public class RemoveEventCommandParserTest {
 
     @Test
     public void parse_fieldMissing_failure() {
-        String expectedMessage = String.format("Command format is invalid! \n" +
-                AddEventCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format("Command format is invalid! \n"
+                + AddEventCommand.MESSAGE_USAGE);
 
         String expectedMessage2 = String.format("Invalid index!\n"
                 + "Index can only be 'user' or a 'positive integer!' \n");

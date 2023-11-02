@@ -1,6 +1,14 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -12,13 +20,6 @@ import seedu.address.model.user.User;
 import seedu.address.model.user.UserData;
 import seedu.address.model.user.UserPrefs;
 import seedu.address.testutil.UserBuilder;
-
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 public class RemoveScheduleCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new UserData());
@@ -40,7 +41,7 @@ public class RemoveScheduleCommandTest {
     }
 
     @Test
-    public void execute_validCca_friend_success() {
+    public void execute_validCca_friendSuccess() {
         User newUser = new UserBuilder().build();
         model.setUser(newUser);
         Person friend = model.getFilteredPersonList().get(0);
@@ -74,7 +75,7 @@ public class RemoveScheduleCommandTest {
     }
 
     @Test
-    public void execute_validModule_friend_success() {
+    public void execute_validModule_friendSuccess() {
         User newUser = new UserBuilder().build();
         model.setUser(newUser);
         Person friend = model.getFilteredPersonList().get(0);
