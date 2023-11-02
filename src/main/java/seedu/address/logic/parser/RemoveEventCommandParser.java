@@ -31,6 +31,11 @@ public class RemoveEventCommandParser implements Parser<RemoveEventCommand> {
                 + RemoveEventCommand.MESSAGE_USAGE));
         }
 
+        if (!arePrefixesUnique(argMultimap, PREFIX_EVENTNAME)) {
+            throw new ParseException(String.format("You can only have 1 of each prefix!\n"
+                + RemoveEventCommand.MESSAGE_USAGE));
+        }
+
         try {
             String indexString = argMultimap.getPreamble().toLowerCase();
             String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get().toLowerCase();
@@ -54,5 +59,14 @@ public class RemoveEventCommandParser implements Parser<RemoveEventCommand> {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if there are duplicate prefixes
+     * @param argumentMultimap
+     * @param prefixes
+     */
+    private static boolean arePrefixesUnique(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getAllValues(prefix).size() == 1);
     }
 }

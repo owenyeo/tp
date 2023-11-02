@@ -62,12 +62,6 @@ public class RemoveEventCommand extends Command {
         requireNonNull(model);
         Person friend;
 
-        List<Person> lastShownList = model.getFilteredPersonList();
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX + "\n"
-                + "Index can be max " + lastShownList.size() + "!");
-        }
-
         Schedule userSchedule = model.getUser().getSchedule();
         try {
             if (index == null) {
@@ -76,6 +70,11 @@ public class RemoveEventCommand extends Command {
                     + eventName
                     + "' deleted from your calendar!", false, false, true, false);
             } else {
+                List<Person> lastShownList = model.getFilteredPersonList();
+                if (index.getZeroBased() >= lastShownList.size()) {
+                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX + "\n"
+                        + "Index can be max " + lastShownList.size() + "!");
+                }
                 friend = model.getFilteredPersonList().get(index.getZeroBased());
                 friend.getSchedule().deleteDatedEvent(eventName);
                 return new CommandResult("Dated Event '"
