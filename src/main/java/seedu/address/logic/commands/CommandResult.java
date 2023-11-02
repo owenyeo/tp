@@ -68,6 +68,10 @@ public class CommandResult {
         return refresh;
     }
 
+    public boolean isCommonFreetime() {
+        return commonFreetime;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

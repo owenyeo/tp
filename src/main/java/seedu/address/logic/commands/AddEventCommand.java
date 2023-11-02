@@ -23,18 +23,15 @@ public class AddEventCommand extends Command {
         + ": Adds a non-recurring event to the calendar.\n"
         + "Parameters: "
         + "INDEX "
-        + "type/EVENT_TYPE "
         + "en/EVENT_NAME "
         + "h/[Date [YYYY-MM-DD] StartTime (HHMM) EndTime (HHMM)] "
         + "r/[REMINDER: y/n] \n"
         + "Example: " + COMMAND_WORD + " "
         + "1 "
-        + "type/dated "
         + "en/CS2103T Lecture "
         + "h/2020-03-02 1400 1600 "
         + "r/y \n"
-        + "Note: If you are adding a meetup event, "
-        + "then index refers to the index of the friend you are meeting with. \n"
+        + "Note: "
         + "If you are adding a dated event, then index should be the index of "
         + "the friend you are adding the dated event to or 'user' "
         + "if you would like to add the event to yourself \n";
@@ -42,7 +39,6 @@ public class AddEventCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New event added: ";
 
     private final String eventName;
-    private final String eventType;
     private final Index index;
     private final String schedule;
     private final String reminder;
@@ -54,10 +50,9 @@ public class AddEventCommand extends Command {
      * @param index
      * @param schedule
      * @param reminder
-     * @param eventType
      */
-    public AddEventCommand(String eventName, Index index, String schedule,
-        String reminder, String eventType) {
+    public AddEventCommand(String eventName, Index index,
+        String schedule, String reminder) {
 
         requireAllNonNull(schedule);
 
@@ -65,7 +60,6 @@ public class AddEventCommand extends Command {
         this.schedule = schedule;
         this.index = index;
         this.reminder = reminder;
-        this.eventType = eventType.toLowerCase();
     }
 
     /**
@@ -77,9 +71,9 @@ public class AddEventCommand extends Command {
      * @param eventType
      */
     public AddEventCommand(String eventName, String schedule,
-        String reminder, String eventType) {
+        String reminder) {
 
-        this(eventName, null, schedule, reminder, eventType);
+        this(eventName, null, schedule, reminder);
     }
 
     /**
@@ -100,16 +94,9 @@ public class AddEventCommand extends Command {
             }
 
             Schedule friendSchedule = friend.getSchedule();
-
-            switch (eventType) {
-            case "dated":
-                friendSchedule.addDatedEvent(eventName + " " + schedule + " " + reminder);
-                return new CommandResult(MESSAGE_SUCCESS + "\nDated Event:\n" + eventName + " "
-                        + schedule + " to " + friend.getName(), false, false, true, false);
-            default:
-                throw new CommandException("Invalid event type!"
-                    + "\n Event type can only be 'Dated' or 'Meetup'");
-            }
+            friendSchedule.addDatedEvent(eventName + " " + schedule + " " + reminder);
+            return new CommandResult(MESSAGE_SUCCESS + "\nDated Event:\n" + eventName + " "
+                    + schedule + " to " + friend.getName(), false, false, true, false);
         } catch (Exception e) {
             throw new CommandException(e.getMessage());
         }

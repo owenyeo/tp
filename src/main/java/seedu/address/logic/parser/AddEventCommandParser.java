@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTNAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTTYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 
@@ -26,10 +25,10 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
     public AddEventCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_EVENTNAME, PREFIX_EVENTTYPE,
+                ArgumentTokenizer.tokenize(args, PREFIX_EVENTNAME,
                     PREFIX_SCHEDULE, PREFIX_REMINDER);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_EVENTNAME, PREFIX_EVENTTYPE,
+        if (!arePrefixesPresent(argMultimap, PREFIX_EVENTNAME,
             PREFIX_SCHEDULE, PREFIX_REMINDER)) {
             throw new ParseException(String.format("Command format is invalid! \n"
                 + AddEventCommand.MESSAGE_USAGE));
@@ -38,17 +37,16 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         String indexString;
 
         String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get();
-        String eventType = argMultimap.getValue(PREFIX_EVENTTYPE).get();
         String schedule = argMultimap.getValue(PREFIX_SCHEDULE).get();
         String reminder = argMultimap.getValue(PREFIX_REMINDER).get();
 
         try {
             indexString = argMultimap.getPreamble().toLowerCase();
             if (indexString.equals("user")) {
-                return new AddEventCommand(eventName, schedule, reminder, eventType);
+                return new AddEventCommand(eventName, schedule, reminder);
             } else if (Integer.parseInt(indexString) > 0) {
                 return new AddEventCommand(eventName, ParserUtil.parseIndex(indexString),
-                    schedule, reminder, eventType);
+                    schedule, reminder);
             } else {
                 throw new ParseException(String.format("Invalid index!" + "\n"
                     + "Index can only be 'user' or a positive integer! \n"));

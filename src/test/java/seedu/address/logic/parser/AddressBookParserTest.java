@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CommonFreetimeCommand;
@@ -82,8 +83,8 @@ public class AddressBookParserTest {
     public void parseCommand_commonFreetime_validArgs() throws Exception {
         Person person = new PersonBuilder().build();
         CommonFreetimeCommand command = (CommonFreetimeCommand) parser.parseCommand(
-                CommonFreetimeCommand.COMMAND_WORD + " " + "n/" + person.getName());
-        assertEquals(new CommonFreetimeCommand(person.getName()), command);
+                CommonFreetimeCommand.COMMAND_WORD + " " + "1");
+        assertEquals(new CommonFreetimeCommand(Index.fromOneBased(1)), command);
     }
 
     @Test
