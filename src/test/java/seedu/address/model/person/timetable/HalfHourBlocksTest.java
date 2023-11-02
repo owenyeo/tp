@@ -19,6 +19,18 @@ public class HalfHourBlocksTest {
     }
 
     @Test
+    public void compareTo() {
+        HalfHourBlocks halfHourBlocks1 = new HalfHourBlocks(16, 32);
+        HalfHourBlocks halfHourBlocks2 = new HalfHourBlocks(24, 40);
+        HalfHourBlocks halfHourBlocks3 = new HalfHourBlocks(0, 8);
+
+        // Test compareTo
+        assertTrue(halfHourBlocks1.compareTo(halfHourBlocks2) < 0);
+        assertTrue(halfHourBlocks2.compareTo(halfHourBlocks1) > 0);
+        assertTrue(halfHourBlocks1.compareTo(halfHourBlocks3) > 0);
+    }
+
+    @Test
     public void overlaps() {
         HalfHourBlocks halfHourBlocks1 = new HalfHourBlocks(16, 32);
         HalfHourBlocks halfHourBlocks2 = new HalfHourBlocks(24, 40);
