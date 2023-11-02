@@ -23,7 +23,7 @@
 
       <HBox fx:id="helpMessageContainer" alignment="CENTER">
         <children>
-          <VBox minWidth="535" minHeight="600" maxWidth="535" maxHeight="600">
+          <VBox minWidth="535" maxWidth="535">
 
             <Label styleClass="help_heading" >Welcome to TimetaBRO!</Label>
 
@@ -65,34 +65,6 @@
                 </Button>
               </HBox>
             </VBox>
-
-            <Label styleClass="normal_text">
-              Here are the commands available to you:
-              <padding>
-                <Insets top="10"/>
-              </padding>
-            </Label>
-
-            <Label styleClass="help_sub_heading">
-              list
-              <padding>
-                <Insets top="10"/>
-              </padding>
-            </Label>
-
-            <Label styleClass="normal_text">
-              This command will list all the friends in your friend list.
-              <padding>
-                <Insets left="10"/>
-              </padding>
-            </Label>
-
-            <Label styleClass="normal_text">
-              eg: list
-              <padding>
-                <Insets left="20"/>
-              </padding>
-            </Label>
 
           </VBox>
 
