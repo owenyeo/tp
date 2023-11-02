@@ -1,8 +1,11 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -56,6 +59,15 @@ public class RemoveEventCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
+        Person friend;
+
+        List<Person> lastShownList = model.getFilteredPersonList();
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX + "\n"
+                + "Index can be max " + lastShownList.size() + "!");
+        }
+
         Schedule userSchedule = model.getUser().getSchedule();
         try {
             if (index == null) {
@@ -64,7 +76,7 @@ public class RemoveEventCommand extends Command {
                     + eventName
                     + "' deleted from your calendar!", false, false, true, false);
             } else {
-                Person friend = model.getFilteredPersonList().get(index.getZeroBased());
+                friend = model.getFilteredPersonList().get(index.getZeroBased());
                 friend.getSchedule().deleteDatedEvent(eventName);
                 return new CommandResult("Dated Event '"
                     + eventName
