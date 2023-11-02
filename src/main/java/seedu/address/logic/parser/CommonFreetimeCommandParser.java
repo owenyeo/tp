@@ -23,7 +23,7 @@ public class CommonFreetimeCommandParser implements Parser<CommonFreetimeCommand
     public CommonFreetimeCommand parse(String userInput) throws ParseException {
         requireNonNull(userInput);
 
-        ArgumentMultimap argMultimap = 
+        ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(userInput, PREFIX_NAME);
 
         Index index;

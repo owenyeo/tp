@@ -23,29 +23,24 @@ public class RemoveEventCommand extends Command {
         "rmevent: Removes an event from the specified contact's calendar.\n"
             + "Parameters: "
             + "INDEX\n"
-            + "type/EVENT_TYPE\n"
             + "en/EVENT_NAME\n"
             + "Example: " + COMMAND_WORD
             + " 1"
-            + " type/dated"
             + " en/CS2103T Lecture\n"
             + "NOTE: If you want to remove an event from yourself, use index user\n"
             + "Example: " + COMMAND_WORD
             + " user"
-            + " type/dated"
             + " en/CS2103T Lecture";
 
     private final String eventName;
-    private final String eventType;
     private final Index index;
 
     /**
      * Represents a command that removes an event from the address book.
      * The event to be removed is specified by its name, type and index in the list.
      */
-    public RemoveEventCommand(String eventName, String eventType, Index index) {
+    public RemoveEventCommand(String eventName, Index index) {
         this.eventName = eventName;
-        this.eventType = eventType;
         this.index = index;
     }
 
@@ -63,25 +58,19 @@ public class RemoveEventCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         Schedule userSchedule = model.getUser().getSchedule();
         try {
-            switch (eventType) {
-            case "dated":
-                if (index == null) {
-                    userSchedule.deleteDatedEvent(eventName);
-                    return new CommandResult("Dated Event '"
-                        + eventName
-                        + "' deleted from your calendar!", false, false, true, false);
-                } else {
-                    Person friend = model.getFilteredPersonList().get(index.getZeroBased());
-                    friend.getSchedule().deleteDatedEvent(eventName);
-                    return new CommandResult("Dated Event '"
-                        + eventName
-                        + "' deleted from "
-                        + friend.getName().toString()
-                        + "'s calendar!", false, false, true, false);
-                }
-            default:
-                throw new CommandException("Invalid event type!\n"
-                    + "Event type must either be 'dated' or 'meetup'!\n");
+            if (index == null) {
+                userSchedule.deleteDatedEvent(eventName);
+                return new CommandResult("Dated Event '"
+                    + eventName
+                    + "' deleted from your calendar!", false, false, true, false);
+            } else {
+                Person friend = model.getFilteredPersonList().get(index.getZeroBased());
+                friend.getSchedule().deleteDatedEvent(eventName);
+                return new CommandResult("Dated Event '"
+                    + eventName
+                    + "' deleted from "
+                    + friend.getName().toString()
+                    + "'s calendar!", false, false, true, false);
             }
         } catch (Exception e) {
             throw new CommandException("Event " + eventName + " does not exist!\n"

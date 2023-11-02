@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTNAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTTYPE;
 
 import java.util.stream.Stream;
 
@@ -25,9 +24,9 @@ public class RemoveEventCommandParser implements Parser<RemoveEventCommand> {
     public RemoveEventCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_EVENTNAME, PREFIX_EVENTTYPE);
+                ArgumentTokenizer.tokenize(args, PREFIX_EVENTNAME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_EVENTNAME, PREFIX_EVENTTYPE)) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_EVENTNAME)) {
             throw new ParseException(String.format("Command format is invalid! \n"
                 + RemoveEventCommand.MESSAGE_USAGE));
         }
@@ -35,11 +34,10 @@ public class RemoveEventCommandParser implements Parser<RemoveEventCommand> {
         try {
             String indexString = argMultimap.getPreamble().toLowerCase();
             String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get().toLowerCase();
-            String eventType = argMultimap.getValue(PREFIX_EVENTTYPE).get().toLowerCase();
             if (indexString.equals("user")) {
-                return new RemoveEventCommand(eventName, eventType, null);
+                return new RemoveEventCommand(eventName, null);
             } else if (Integer.parseInt(indexString) > 0) {
-                return new RemoveEventCommand(eventName, eventType, ParserUtil.parseIndex(indexString));
+                return new RemoveEventCommand(eventName, ParserUtil.parseIndex(indexString));
             } else {
                 throw new ParseException("Invalid index!\n"
                         + "Index must either be 'user' or a positive integer!\n");
