@@ -19,6 +19,7 @@ import static seedu.address.testutil.TypicalUsers.JANE;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.user.UserData;
@@ -61,7 +62,7 @@ public class CommonFreetimeCommandTest {
 
     @Test
     public void execute_nameFriend_success() {
-        CommonFreetimeCommand commonFreetimeCommand = new CommonFreetimeCommand(ALICE.getName());
+        CommonFreetimeCommand commonFreetimeCommand = new CommonFreetimeCommand(Index.fromOneBased(1));
         String expectedMessage = CommonFreetimeCommand.MESSAGE_COMMON_FREETIME_SUCCESS
                 + ALICE.getName().toString() + " is free at " + "[Monday 1200 1300]" + "\n";
         assertCommandSuccess(commonFreetimeCommand, model, expectedMessage, expectedModel);
@@ -75,17 +76,17 @@ public class CommonFreetimeCommandTest {
 
     @Test
     public void execute_noOverlapFriend_failure() {
-        CommonFreetimeCommand commonFreetimeCommand = new CommonFreetimeCommand(ALICE.getName());
+        CommonFreetimeCommand commonFreetimeCommand = new CommonFreetimeCommand(Index.fromOneBased(1));
         assertCommandFailure(commonFreetimeCommand, model, CommonFreetimeCommand.createNoOverlapFriendMessage(ALICE));
     }
 
     @Test
     public void equals() {
-        final CommonFreetimeCommand standardCommand = new CommonFreetimeCommand(AMY.getName());
+        final CommonFreetimeCommand standardCommand = new CommonFreetimeCommand(Index.fromOneBased(1));
 
         final CommonFreetimeCommand standardAllCommand = new CommonFreetimeCommand();
         // same values -> returns true
-        CommonFreetimeCommand commandWithSameValues = new CommonFreetimeCommand(AMY.getName());
+        CommonFreetimeCommand commandWithSameValues = new CommonFreetimeCommand(Index.fromOneBased(1));
         assertEquals(standardCommand, commandWithSameValues);
 
         // same object -> returns true
@@ -100,12 +101,12 @@ public class CommonFreetimeCommandTest {
         assertNotEquals(standardCommand, new ClearCommand());
 
         // different descriptor -> returns false
-        assertNotEquals(standardCommand, new CommonFreetimeCommand(ALICE.getName()));
+        assertNotEquals(standardCommand, new CommonFreetimeCommand(Index.fromOneBased(2)));
     }
 
     @Test
     public void toStringMethod() {
-        CommonFreetimeCommand commonFreetimeCommandAlice = new CommonFreetimeCommand(ALICE.getName());
+        CommonFreetimeCommand commonFreetimeCommandAlice = new CommonFreetimeCommand(Index.fromOneBased(1));
         String expected = CommonFreetimeCommand.class.getCanonicalName() + "{name=" + ALICE.getName() + "}";
         assertEquals(expected, commonFreetimeCommandAlice.toString());
     }
