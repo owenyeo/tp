@@ -52,6 +52,7 @@ public class CommonFreetimeCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         ArrayList<Person> overlappingContacts = new ArrayList<>();
         Schedule userSchedule = model.getUser().getSchedule();
+        Person user = model.getUser();
 
         // If user has no free time, return error message
         if (!model.getUser().getSchedule().hasFreeTime()) {
@@ -67,7 +68,7 @@ public class CommonFreetimeCommand extends Command {
             if (commonFreeTime.isEmpty()) {
                 throw new CommandException(MESSAGE_NO_CONTACTS);
             } else {
-                return new CommandResult(createCommonFreeTimeMessage(commonFreeTime, overlappingContacts).toString());
+                return new CommandResult(createCommonFreeTimeMessage(overlappingContacts, user).toString());
             }
         } else {
             try {
@@ -78,9 +79,9 @@ public class CommonFreetimeCommand extends Command {
 
                 Person friend = lastShownList.get(index.getZeroBased());
 
-                return new CommandResult(createCommonFreeTimeMessage(model.getUser(), friend).toString());
-            } catch (NullPointerException e) {
-                throw new CommandException("There is no such contact in your contacts!");
+                return new CommandResult(createCommonFreeTimeMessage(user, friend).toString());
+            } catch (Exception e) {
+                throw new CommandException("You do not have common free times with this contact!");
             }
         }
     }
@@ -143,22 +144,21 @@ public class CommonFreetimeCommand extends Command {
 
     /**
      * Creates a message containing the common free time slots for a list of overlapping contacts.
-     * @param commonFreeTime An ArrayList of FreeTime objects representing the common free time slots.
+     * @param user The user to check for common free time slots.
      * @param overlappingContacts An ArrayList of Person objects representing the overlapping contacts.
      * @return A StringBuilder object containing the message with the common free time slots
      *     for the overlapping contacts.
      */
-    public StringBuilder createCommonFreeTimeMessage(ArrayList<FreeTime> commonFreeTime,
-                                                     ArrayList<Person> overlappingContacts) {
-        StringBuilder sb = new StringBuilder(MESSAGE_COMMON_FREETIME_SUCCESS);
-        for (Person contactName : overlappingContacts) {
-            Name nameOfContact = contactName.getName();
-            sb.append(nameOfContact).append(" is free at ");
-            for (FreeTime freeTime : commonFreeTime) {
-                sb.append(freeTime.toString()).append("\n");
+    public StringBuilder createCommonFreeTimeMessage(ArrayList<Person> overlappingContacts, Person user) {
+        try {
+            StringBuilder sb = new StringBuilder(MESSAGE_COMMON_FREETIME_SUCCESS);
+            for (Person contactName : overlappingContacts) {
+                sb.append(createCommonFreeTimeMessage(user, contactName).toString());
             }
+            return sb;
+        } catch (CommandException e) {
+            return new StringBuilder(e.getMessage());
         }
-        return sb;
     }
 
     /**

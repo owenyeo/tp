@@ -1,5 +1,7 @@
 package seedu.address.model.person.timetable;
 
+import static java.util.Objects.isNull;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -7,8 +9,6 @@ import java.util.Collections;
 import java.util.List;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-
-import static java.util.Objects.isNull;
 
 /**
  * Represents a schedule consisting of modules, CCAs (Co-Curricular Activities), and dated events.
@@ -123,6 +123,12 @@ public class Schedule {
         return freeTimes;
     }
 
+    /**
+     * Returns true if there is any free time in the schedule for the current week.
+     * A free time is a time slot where there are no scheduled activities.
+     *
+     * @return true if there is any free time in the schedule for the current week, false otherwise.
+     */
     public boolean hasFreeTime() {
         List<FreeTime> freeTimes = getThisWeeksFreeTime();
         for (FreeTime freeTime : freeTimes) {
