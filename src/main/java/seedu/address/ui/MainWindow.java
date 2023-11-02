@@ -2,14 +2,20 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -60,6 +66,12 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane userProfilePlaceholder;
     @FXML
     private StackPane selectedFriendPlaceholder;
+    @FXML
+    private ScrollPane userCardScrollPane;
+    @FXML
+    private VBox input1;
+    @FXML
+    private VBox input2;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -139,6 +151,17 @@ public class MainWindow extends UiPart<Stage> {
 
         Scene scene = primaryStage.getScene();
 
+        input1.setMinHeight(scene.getHeight() / 2);
+        input2.setMinHeight(scene.getHeight() / 2);
+
+        scene.heightProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldSceneHeight, Number newSceneHeight) {
+                input1.setMinHeight((double) newSceneHeight / 2);
+                input2.setMinHeight((double) newSceneHeight / 2);
+            }
+        });
+
         if (scene != null) {
             scene.addEventFilter(ListCellSelectedEvent.LIST_CELL_SELECTED, event -> {
                 selectedPerson = event.getSelectedPerson();
@@ -214,6 +237,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isCommonFreetime()) {
+
             }
 
             if (selectedPerson != null && commandResult.isRefresh()) {

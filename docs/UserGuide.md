@@ -195,42 +195,58 @@ the specified friend and `INDEX`
 where `DATE TIME` must be entered in the format `YYYY-MM-DD HHMM [start time] HHMM [end time]`
 - Users can set whether they want to enable reminders for this event by inputting `y/n` under `[REMINDER]`
 
-Successful Command:\
-**Input:** \
+Successful Command:
+
+**Input:** 
+````
 addevent 1 type/dated en/CS2030 Finals h/2023-10-31 1000 1400 r/y\
-**Output:**\
-`New event added:`\
-`Dated Event:`\
-`CS2030 Finals 2023-10-31 1000 1400 to [Friend Name]`
+````
+**Output:**
+````
+New event added:
+Dated Event:
+CS2030 Finals 2023-10-31 1000 1400 to [Friend Name]
+````
 
-**Input:**\
-addevent user type/dated en/CS2101 OP2 h/2023-10-31 1500 1600 r/y\
-**Output:**\
-`New event added:` \
-`Dated Event:`\
-`CS2101 OP2 2023-10-31 1500 1600 to Me`
+**Input:**
+````
+addevent user type/dated en/CS2101 OP2 h/2023-10-31 1500 1600 r/y
+````
 
-Unsuccessful Command:\
+**Output:**
+````
+New event added:
+Dated Event:
+CS2101 OP2 2023-10-31 1500 1600 to Me
+````
+
+Unsuccessful Command:
+
 If a user puts an invalid index,
 this error message will be shown
 
-`Invalid index!`\
-`addevent: Adds a non-recurring event to the calendar.`\
-`Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME h/[Date [YYYY-MM-DD] StarTime (HHMM) EndTime (HHMM)] r/[REMINDER: y/n]`\
-`Example: addevent 1 type/dated en/CS2103T Lecture h/2020-03-02 1400 1600 r/y`\
+````
+Invalid index!
+addevent: Adds a non-recurring event to the calendar.
+Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME h/[Date [YYYY-MM-DD] StarTime (HHMM) EndTime (HHMM)] r/[REMINDER: y/n]`\
+Example: addevent 1 type/dated en/CS2103T Lecture h/2020-03-02 1400 1600 r/y`\ 
 
-`Note: If you are adding a meetup event, then index refers to the index of the friend you are meeting with.`\
- `If you are adding a dated event, then index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself`
+Note: If you are adding a meetup event, then index refers to the index of the friend you are meeting with.
+If you are adding a dated event, then index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself
+````
 
  If a user uses the wrong format (i.e missing prefix, wrong event type),
-this error message will be shown\
-`Input should be in the format 'name YYYY-MM-DD HHMM HHMM yes/no', where:`\
-`'name' represents the name and should not contain spaces.`\
-`'YYYY-MM-DD' represents a date (e.g., '2023-10-24').`
-`'HHMM' represents a valid 24-hour time format in half-hour blocks (e.g., 0000, 1230, 2300).`\
-`The first 'HHMM' represents the starting time (e.g., '0830' for 08:30 AM).`\
-`The second 'HHMM' represents the ending time (e.g., '1730' for 05:30 PM).`\
-`y/n represents whether you want a reminder for this event.`\
+this error message will be shown
+````
+Input should be in the format 'name YYYY-MM-DD HHMM HHMM yes/no', where:
+'name' represents the name and should not contain spaces.
+'YYYY-MM-DD' represents a date (e.g., '2023-10-24').
+'HHMM' represents a valid 24-hour time format in half-hour blocks (e.g., 0000, 1230, 2300).
+The first 'HHMM' represents the starting time (e.g., '0830' for 08:30 AM).
+The second 'HHMM' represents the ending time (e.g., '1730' for 05:30 PM).
+y/n represents whether you want a reminder for this event.
+````
+
 
 ### Removing an event: `rmevent`
 
@@ -253,24 +269,31 @@ Remove an event from your own calendar:\
 `rmevent user type/dated en/CS2103T Lecture`
 
 
-**Unsuccessful commands:**\
-If an invalid index is used:\
-`Invalid index!`\
-`Parameters: INDEX`\
-`type/EVENT_TYPE`\
-`en/EVENT_NAME`\
-`Example: rmevent 1 type/dated en/CS2103T Lecture`\
-`NOTE: If you want to remove an event from yourself, use index user`\
-`Example: rmevent user type/dated en/CS2103T Lecture`\
+Unsuccessful commands:
 
-If wrong command format is used (i.e missing prefixes, wrong event name):\
-`Command format is invalid!`\
-`Parameters: INDEX`\
-`type/EVENT_TYPE`\
-`en/EVENT_NAME`\
-`Example: rmevent 1 type/dated en/CS2103T Lecture`\
-`NOTE: If you want to remove an event from yourself, use index user`\
-`Example: rmevent user type/dated en/CS2103T Lecture`\
+If an invalid index is used:
+````
+Invalid index!
+Parameters: INDEX
+type/EVENT_TYPE
+en/EVENT_NAME
+Example: rmevent 1 type/dated en/CS2103T Lecture
+NOTE: If you want to remove an event from yourself, use index user
+Example: rmevent user type/dated en/CS2103T Lecture
+````
+
+
+If wrong command format is used (i.e missing prefixes, wrong event name):
+````
+Command format is invalid!
+Parameters: INDEX
+type/EVENT_TYPE
+en/EVENT_NAME
+Example: rmevent 1 type/dated en/CS2103T Lecture
+NOTE: If you want to remove an event from yourself, use index user
+Example: rmevent user type/dated en/CS2103T Lecture
+````
+
 
 ### Add recurring events to you/your friend's schedule : `addschedule`
 This command adds a recurring event to you or your friend's schedule.
