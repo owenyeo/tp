@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.timetable.Cca;
 import seedu.address.model.person.timetable.DatedEvent;
-import seedu.address.model.person.timetable.MeetUpEvent;
 import seedu.address.model.person.timetable.Module;
 import seedu.address.model.person.timetable.Schedule;
 import seedu.address.testutil.PersonBuilder;

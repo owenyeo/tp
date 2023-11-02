@@ -47,9 +47,7 @@ public class User extends Person {
      * Constructor for User with a person.
      */
     public User(User user) {
-        super(user.getName(), user.getPhone(), user.getEmail(), user.getAddress(), user.getBirthday(),
-                user.getSchedule(), user.getTags());
-        this.datedEvents = user.getDatedEvents();
+        this(user, user.getDatedEvents());
     }
 
     public ArrayList<DatedEvent> getDatedEvents() {

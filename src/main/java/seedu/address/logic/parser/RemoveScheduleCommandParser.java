@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTTYPE;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.RemoveScheduleCommand;
-import seedu.address.logic.commands.RemoveScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

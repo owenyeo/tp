@@ -7,7 +7,6 @@ import java.util.Collections;
 import java.util.List;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Person;
 
 /**
  * Represents a schedule consisting of modules, CCAs (Co-Curricular Activities), and dated events.

@@ -109,8 +109,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     public String getBirthdayList() {
         StringBuilder sb = new StringBuilder();
         for (Person person: persons) {
-            if (person.getBirthday().getDate().getMonth().equals(LocalDate.now().getMonth()) &&
-                    Objects.equals(person.getBirthday().getDate().getDayOfYear(), LocalDate.now().getDayOfYear())) {
+            if (person.getBirthday().getDate().getMonth().equals(LocalDate.now().getMonth())
+                && Objects.equals(person.getBirthday().getDate().getDayOfYear(), LocalDate.now().getDayOfYear())) {
                 sb.append(person.getName() + "\n");
             }
         }
