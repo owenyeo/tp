@@ -91,15 +91,15 @@ public class AddEventCommand extends Command {
         requireNonNull(model);
         Person friend;
 
-        List<Person> lastShownList = model.getFilteredPersonList();
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX + "\n"
-                + "Index can be max " + lastShownList.size() + "!");
-        }
         try {
             if (this.index == null) {
                 friend = model.getUser();
             } else {
+                List<Person> lastShownList = model.getFilteredPersonList();
+                if (index.getZeroBased() >= lastShownList.size()) {
+                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX + "\n"
+                        + "Index can be max " + lastShownList.size() + "!");
+                }
                 friend = model.getFilteredPersonList().get(index.getZeroBased());
             }
 
