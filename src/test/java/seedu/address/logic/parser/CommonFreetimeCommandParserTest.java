@@ -21,7 +21,7 @@ public class CommonFreetimeCommandParserTest {
     @Test
     public void parse_validArgs_returnsCommonFreetimeCommand() throws ParseException {
         assertParseSuccess(parser, " n/Alice Pauline",
-                new CommonFreetimeCommand(ParserUtil.parseName("Alice Pauline")));
+                new CommonFreetimeCommand(ParserUtil.parseIndex("1")));
     }
 
 }
