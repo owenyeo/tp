@@ -22,12 +22,6 @@ public class TypicalSchedule {
             .withDatedEvent(DatedEvent.newDatedEvent("CS2103 Meeting 2023-10-10 1030 1130 y"))
             .withDatedEvent(DatedEvent.newDatedEvent("Walk Dog 2023-10-10 1030 1130 n"))
             .withDatedEvent(DatedEvent.newDatedEvent("Competitive sleeping 2023-10-10 1030 1130 y"))
-            .withMeetUpEvent(MeetUpEvent.newMeetUpEvent("CS2103 Meeting 2023-10-10 1030 1130 y",
-                    TypicalPersons.ALICE))
-            .withMeetUpEvent(MeetUpEvent.newMeetUpEvent("Walk Dog 2023-10-10 1030 1130 n",
-                    TypicalPersons.BENSON))
-            .withMeetUpEvent(MeetUpEvent.newMeetUpEvent("Competitive sleeping 2023-10-10 1030 1130 y",
-                    TypicalPersons.CARL))
             .build();
 
     public static final Schedule FULL_SCHEDULE = new ScheduleBuilder()
