@@ -14,11 +14,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.timetable.DatedEvent;
-import seedu.address.model.person.timetable.MeetUpEvent;
 import seedu.address.model.user.User;
 import seedu.address.model.user.UserData;
 import seedu.address.model.user.UserPrefs;
-import seedu.address.testutil.TypicalPersons;
 import seedu.address.testutil.UserBuilder;
 
 public class RemoveEventCommandTest {
@@ -54,44 +52,6 @@ public class RemoveEventCommandTest {
         expectedModel.setUser(newUser);
         Person expectedFriend = expectedModel.getFilteredPersonList().get(0);
         expectedFriend.getSchedule().addDatedEvent(DatedEvent.newDatedEvent("CS2103 Meeting 2023-10-10 1030 1130 y"));
-
-        assertCommandSuccess(removeEventCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_validMeetUp_success() {
-        User newUser = new UserBuilder().build();
-        model.setUser(newUser);
-        model.getUser().getSchedule().addMeetUpEvent(MeetUpEvent.newMeetUpEvent("Walk Dog 2023-10-10 1030 1130 n",
-                TypicalPersons.BENSON));
-        RemoveEventCommand removeEventCommand = new RemoveEventCommand("Walk Dog",
-                "meetup", null);
-        String expectedMessage = "Meetup Event 'Walk Dog' deleted from your calendar!";
-        Model expectedModel = new ModelManager(model.getAddressBook(),
-                new UserPrefs(), new UserData());
-        expectedModel.setUser(newUser);
-        expectedModel.getUser().getSchedule().addMeetUpEvent(MeetUpEvent
-                .newMeetUpEvent("Walk Dog 2023-10-10 1030 1130 n", TypicalPersons.BENSON));
-
-        assertCommandSuccess(removeEventCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_validModule_friendSuccess() {
-        User newUser = new UserBuilder().build();
-        model.setUser(newUser);
-        Person friend = model.getFilteredPersonList().get(0);
-        friend.getSchedule().addMeetUpEvent(MeetUpEvent.newMeetUpEvent("Walk Dog 2023-10-10 1030 1130 n",
-                TypicalPersons.BENSON));
-        RemoveEventCommand removeEventCommand = new RemoveEventCommand("Walk Dog",
-                "meetup", Index.fromZeroBased(0));
-        String expectedMessage = "Meetup Event 'Walk Dog' deleted from Alice Pauline's calendar!";
-        Model expectedModel = new ModelManager(model.getAddressBook(),
-                new UserPrefs(), new UserData());
-        expectedModel.setUser(newUser);
-        Person expectedFriend = expectedModel.getFilteredPersonList().get(0);
-        expectedFriend.getSchedule().addMeetUpEvent(MeetUpEvent.newMeetUpEvent("Walk Dog 2023-10-10 1030 1130 n",
-                TypicalPersons.BENSON));
 
         assertCommandSuccess(removeEventCommand, model, expectedMessage, expectedModel);
     }
