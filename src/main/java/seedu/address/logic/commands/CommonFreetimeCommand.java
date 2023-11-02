@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Name;
@@ -28,13 +30,13 @@ public class CommonFreetimeCommand extends Command {
     public static final String MESSAGE_NO_FREE_TIME = "You have no free time!";
     public static final String MESSAGE_NO_CONTACTS = "You have no contacts with the same free time as you!";
 
-    private Name name = null; // name of person (user) to find common free time with
+    private Index index = null; // name of person (user) to find common free time with
 
     public CommonFreetimeCommand() {
     }
 
-    public CommonFreetimeCommand(Name name) {
-        this.name = name;
+    public CommonFreetimeCommand(Index index) {
+        this.index = index;
     }
 
     /**
@@ -56,7 +58,7 @@ public class CommonFreetimeCommand extends Command {
             throw new CommandException(MESSAGE_NO_FREE_TIME);
         }
         // If no name is specified, return the user's common free time with all contacts
-        if (this.name == null) {
+        if (this.index == null) {
             ObservableList<Person> contacts = model.getAddressBook().getPersonList();
             ArrayList<FreeTime> commonFreeTime = new ArrayList<>();
 
@@ -69,7 +71,13 @@ public class CommonFreetimeCommand extends Command {
             }
         } else {
             try {
-                Person friend = model.getPersonWithName(this.name);
+                List<Person> lastShownList = model.getFilteredPersonList();
+                if (index.getZeroBased() >= lastShownList.size()) {
+                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                }
+
+                Person friend = lastShownList.get(index.getZeroBased());
+
                 return new CommandResult(createCommonFreeTimeMessage(model.getUser(), friend).toString());
             } catch (NullPointerException e) {
                 throw new CommandException("There is no such contact in your contacts!");
@@ -185,14 +193,14 @@ public class CommonFreetimeCommand extends Command {
         }
 
         CommonFreetimeCommand otherCommonFreetimeCommand = (CommonFreetimeCommand) other;
-        return (name == null && otherCommonFreetimeCommand.name == null)
-                || name.equals(otherCommonFreetimeCommand.name);
+        return (index == null && otherCommonFreetimeCommand.index == null)
+                || index.equals(otherCommonFreetimeCommand.index);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("name", name)
+                .add("index", index)
                 .toString();
     }
 }
