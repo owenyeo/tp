@@ -33,7 +33,7 @@ public class AddEventCommand extends Command {
         + "en/CS2103T Lecture "
         + "h/2020-03-02 1400 1600 "
         + "r/y \n"
-        + "\n\n Note: If you are adding a meetup event, "
+        + "Note: If you are adding a meetup event, "
         + "then index refers to the index of the friend you are meeting with. \n"
         + "If you are adding a dated event, then index should be the index of "
         + "the friend you are adding the dated event to or 'user' "

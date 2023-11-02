@@ -42,15 +42,20 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         String schedule = argMultimap.getValue(PREFIX_SCHEDULE).get();
         String reminder = argMultimap.getValue(PREFIX_REMINDER).get();
 
-        indexString = argMultimap.getPreamble().toLowerCase();
-        if (indexString.equals("user")) {
-            return new AddEventCommand(eventName, schedule, reminder, eventType);
-        } else if (Integer.parseInt(indexString) > 0) {
-            return new AddEventCommand(eventName, ParserUtil.parseIndex(indexString),
-                schedule, reminder, eventType);
-        } else {
-            throw new ParseException("Invalid index!\n"
-                + "Index can only be 'user' or a 'positive integer!' \n");
+        try {
+            indexString = argMultimap.getPreamble().toLowerCase();
+            if (indexString.equals("user")) {
+                return new AddEventCommand(eventName, schedule, reminder, eventType);
+            } else if (Integer.parseInt(indexString) > 0) {
+                return new AddEventCommand(eventName, ParserUtil.parseIndex(indexString),
+                    schedule, reminder, eventType);
+            } else {
+                throw new ParseException(String.format("Invalid index!" + "\n"
+                    + "Index can only be 'user' or a positive integer! \n"));
+            }
+        } catch (Exception pe) {
+            throw new ParseException(String.format("Please input an index!" + "\n"
+                + "Message Usage:\n" + AddEventCommand.MESSAGE_USAGE));
         }
     }
 
