@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
@@ -107,7 +106,8 @@ public class CommonFreetimeCommandTest {
     @Test
     public void toStringMethod() {
         CommonFreetimeCommand commonFreetimeCommandAlice = new CommonFreetimeCommand(Index.fromOneBased(1));
-        String expected = CommonFreetimeCommand.class.getCanonicalName() + "{name=" + ALICE.getName() + "}";
+        String expected = CommonFreetimeCommand.class.getCanonicalName()
+                + "{index=" + Index.class.getCanonicalName() + "{zeroBasedIndex=" + 0 + "}}";
         assertEquals(expected, commonFreetimeCommandAlice.toString());
     }
 }

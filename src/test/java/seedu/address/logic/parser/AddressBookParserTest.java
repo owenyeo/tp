@@ -83,7 +83,7 @@ public class AddressBookParserTest {
     public void parseCommand_commonFreetime_validArgs() throws Exception {
         Person person = new PersonBuilder().build();
         CommonFreetimeCommand command = (CommonFreetimeCommand) parser.parseCommand(
-                CommonFreetimeCommand.COMMAND_WORD + " " + "n/" + person.getName());
+                CommonFreetimeCommand.COMMAND_WORD + " " + "1");
         assertEquals(new CommonFreetimeCommand(Index.fromOneBased(1)), command);
     }
 
