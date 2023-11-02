@@ -16,18 +16,16 @@ public class Schedule {
     private final List<Module> modulesList = new ArrayList<>();
     private final List<Cca> ccasList = new ArrayList<>();
     private final List<DatedEvent> datedEventsList = new ArrayList<>();
-    private final List<MeetUpEvent> meetUpEventsList = new ArrayList<>();
 
     public Schedule() {}
     /**
      * Creates a new Schedule object.
      */
     public Schedule(List<Module> modulesList, List<Cca> ccasList,
-                    List<DatedEvent> datedEventsList, List<MeetUpEvent> meetUpEventsList) {
+                    List<DatedEvent> datedEventsList) {
         this.modulesList.addAll(modulesList);
         this.ccasList.addAll(ccasList);
         this.datedEventsList.addAll(datedEventsList);
-        this.meetUpEventsList.addAll(meetUpEventsList);
     }
     /**
      * Retrieves the list of time blocks scheduled for the current week.
@@ -43,12 +41,6 @@ public class Schedule {
         thisWeeksSchedule.addAll(modulesList);
         thisWeeksSchedule.addAll(ccasList);
         for (DatedEvent event : datedEventsList) {
-            if (event.getDate().isAfter(startOfThisWeek.minusDays(1))
-                    && event.getDate().isBefore(endOfThisWeek.plusDays(1))) {
-                thisWeeksSchedule.add(event);
-            }
-        }
-        for (MeetUpEvent event : meetUpEventsList) {
             if (event.getDate().isAfter(startOfThisWeek.minusDays(1))
                     && event.getDate().isBefore(endOfThisWeek.plusDays(1))) {
                 thisWeeksSchedule.add(event);
@@ -92,27 +84,6 @@ public class Schedule {
             }
         }
         return thisWeeksDatedEventsWithReminder;
-    }
-
-    /**
-     * Retrieves the list of meet up events scheduled for the current week that have reminders.
-     *
-     * @return A list of meet up events with reminders for the current week.
-     */
-    public List<MeetUpEvent> getThisWeeksMeetUpEventsWithReminder() {
-        LocalDate today = LocalDate.now();
-        LocalDate startOfThisWeek = today.minusDays(today.getDayOfWeek().getValue() - DayOfWeek.MONDAY.getValue());
-        LocalDate endOfThisWeek = startOfThisWeek.plusDays(6);
-
-        List<MeetUpEvent> thisWeeksMeetUpEventsWithReminder = new ArrayList<>();
-        for (MeetUpEvent event : meetUpEventsList) {
-            if (event.getDate().isAfter(startOfThisWeek.minusDays(1))
-                    && event.getDate().isBefore(endOfThisWeek.plusDays(1))
-                    && event.hasReminder()) { // This checks if the event has a reminder set.
-                thisWeeksMeetUpEventsWithReminder.add(event);
-            }
-        }
-        return thisWeeksMeetUpEventsWithReminder;
     }
 
     /**
@@ -229,14 +200,6 @@ public class Schedule {
         return Collections.unmodifiableList(datedEventsList);
     }
 
-    /**
-     * Returns an unmodifiable list of meet up events in the schedule.
-     *
-     * @return List of meet up events.
-     */
-    public List<MeetUpEvent> getMeetUpEventsList() {
-        return Collections.unmodifiableList(meetUpEventsList);
-    }
 
     /**
      * Returns an unmodifiable list of modules in the schedule.
@@ -435,45 +398,6 @@ public class Schedule {
         }
     }
 
-    /**
-     * Adds a meet-up event to the schedule.
-     *
-     * @param meetUpEventString String representation of the meet-up event.
-     * @param friend The friend to meet up with.
-     */
-    public void addMeetUpEvent(String meetUpEventString, Person friend) {
-        meetUpEventsList.add(MeetUpEvent.newMeetUpEvent(meetUpEventString, friend));
-    }
-
-    /**
-     * Adds a meet-up event to the schedule.
-     *
-     * @param meetUpEvent Meet-up event to be added.
-     */
-    public void addMeetUpEvent(MeetUpEvent meetUpEvent) {
-        meetUpEventsList.add(meetUpEvent);
-    }
-
-    /**
-     * Removes a meet-up event from the schedule.
-     *
-     * @param meetUpEventName Name of the meet-up event to be removed.
-     */
-    public void deleteMeetUpEvent(String meetUpEventName) throws Exception {
-        boolean isFound = false;
-        for (MeetUpEvent event : meetUpEventsList) {
-            if (event.getName().equals(meetUpEventName)) {
-                meetUpEventsList.remove(event);
-                isFound = true;
-                break; // Exit the loop after the first matching event is removed
-            }
-        }
-
-        if (!isFound) {
-            throw new Exception("Meet-up event " + meetUpEventName + " does not exist!");
-        }
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -496,12 +420,6 @@ public class Schedule {
                 sb.append("  ").append(event.toString()).append("\n");
             }
         }
-        if (!meetUpEventsList.isEmpty()) {
-            sb.append("- MeetUp Events:\n");
-            for (MeetUpEvent event : meetUpEventsList) {
-                sb.append("  ").append(event.toString()).append("\n");
-            }
-        }
         return sb.toString();
     }
 
@@ -516,8 +434,7 @@ public class Schedule {
         Schedule otherSchedule = (Schedule) other;
         return modulesList.equals(otherSchedule.modulesList)
                 && ccasList.equals(otherSchedule.ccasList)
-                && datedEventsList.equals(otherSchedule.datedEventsList)
-                && meetUpEventsList.equals(otherSchedule.meetUpEventsList);
+                && datedEventsList.equals(otherSchedule.datedEventsList);
     }
 
     @Override

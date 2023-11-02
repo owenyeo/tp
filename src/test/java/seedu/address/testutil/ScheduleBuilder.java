@@ -2,7 +2,6 @@ package seedu.address.testutil;
 
 import seedu.address.model.person.timetable.Cca;
 import seedu.address.model.person.timetable.DatedEvent;
-import seedu.address.model.person.timetable.MeetUpEvent;
 import seedu.address.model.person.timetable.Module;
 import seedu.address.model.person.timetable.Schedule;
 
@@ -42,13 +41,6 @@ public class ScheduleBuilder {
         return this;
     }
 
-    /**
-     * Adds a new {@code MeetUpEvent} to the {@code Schedule} that we are building.
-     */
-    public ScheduleBuilder withMeetUpEvent(MeetUpEvent meetUpEvent) {
-        schedule.addMeetUpEvent(meetUpEvent);
-        return this;
-    }
 
     public Schedule build() {
         return schedule;

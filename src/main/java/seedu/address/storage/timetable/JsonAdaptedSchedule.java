@@ -3,6 +3,7 @@ package seedu.address.storage.timetable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -20,7 +21,6 @@ public class JsonAdaptedSchedule {
     private List<JsonAdaptedDatedEvent> datedEvents = new ArrayList<>();
     private List<JsonAdaptedModule> modules = new ArrayList<>();
     private List<JsonAdaptedCca> ccas = new ArrayList<>();
-    private List<JsonAdaptedMeetUpEvent> meetUpEvents = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedSchedule} with the given {@code DatedEvent}.
@@ -28,12 +28,10 @@ public class JsonAdaptedSchedule {
     @JsonCreator
     public JsonAdaptedSchedule(@JsonProperty("datedEvents") List<JsonAdaptedDatedEvent> datedEvents,
                                @JsonProperty("modules") List<JsonAdaptedModule> modules,
-                               @JsonProperty("cca") List<JsonAdaptedCca> cca,
-                               @JsonProperty("meetupevents") List<JsonAdaptedMeetUpEvent> meetUpEvents) {
+                               @JsonProperty("cca") List<JsonAdaptedCca> cca) {
         this.datedEvents = datedEvents;
         this.modules = modules;
         this.ccas = cca;
-        this.meetUpEvents = meetUpEvents;
     }
 
     /**
@@ -43,7 +41,6 @@ public class JsonAdaptedSchedule {
         List<DatedEvent> datedEventList = source.getDatedEventsList();
         List<Module> modulesList = source.getModulesList();
         List<Cca> ccaList = source.getCcasList();
-        List<MeetUpEvent> meetUpEventList = source.getMeetUpEventsList();
 
         for (DatedEvent datedEvent : datedEventList) {
             datedEvents.add(new JsonAdaptedDatedEvent(datedEvent));
@@ -55,10 +52,6 @@ public class JsonAdaptedSchedule {
 
         for (Cca cca : ccaList) {
             ccas.add(new JsonAdaptedCca(cca));
-        }
-
-        for (MeetUpEvent meetUpEvent : meetUpEventList) {
-            meetUpEvents.add(new JsonAdaptedMeetUpEvent(meetUpEvent));
         }
     }
 
@@ -106,25 +99,11 @@ public class JsonAdaptedSchedule {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted schedule.
      */
-    public List<MeetUpEvent> toModelTypeMeetUpEventList() throws IllegalValueException {
-        List<MeetUpEvent> meetUpEventList = new ArrayList<>();
-        for (JsonAdaptedMeetUpEvent meetUpEvent : meetUpEvents) {
-            meetUpEventList.add(meetUpEvent.toModelType());
-        }
-        return meetUpEventList;
-    }
-
-    /**
-     * Converts this Jackson-friendly adapted Schedule object into the model's {@code Schedule} object.
-     *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted schedule.
-     */
     public Schedule toModelType() throws IllegalValueException {
         List<DatedEvent> datedEventList = toModelTypeDatedEventList();
         List<Module> modulesList = toModelTypeModuleList();
         List<Cca> ccaList = toModelTypeCcaList();
-        List<MeetUpEvent> meetUpEventList = toModelTypeMeetUpEventList();
 
-        return new Schedule(modulesList, ccaList, datedEventList, meetUpEventList);
+        return new Schedule(modulesList, ccaList, datedEventList);
     }
 }

@@ -92,7 +92,7 @@ public class SampleDataUtil {
     }
 
     public static Schedule getSampleSchedule() {
-        return new Schedule(getSampleModules(), getSampleCcas(), getSampleDatedEvents(), getSampleMeetUpEvents());
+        return new Schedule(getSampleModules(), getSampleCcas(), getSampleDatedEvents());
     }
 
     public static User getSampleUser() {

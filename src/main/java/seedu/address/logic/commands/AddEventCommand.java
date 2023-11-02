@@ -88,17 +88,6 @@ public class AddEventCommand extends Command {
                 case "dated":
                     friendSchedule.addDatedEvent(eventName + " " + schedule + " " + reminder);
                     return new CommandResult(MESSAGE_SUCCESS + "\nDated Event:\n" + eventName + " " + schedule + " to " + friend.getName(), false, false, true, false);
-                case "meetup":
-                    if (friend.getName().toString().toLowerCase().equals("user")) {
-                        throw new CommandException("You cannot add a meetup event with yourself! \n"
-                            + "Please specify the friend you are meeting up with using the following format: \n"
-                            + "addevent [index of friend] ");
-                    }
-                    Schedule userSchedule = model.getUser().getSchedule();
-                    Schedule friendScedule = friend.getSchedule();
-                    userSchedule.addMeetUpEvent(eventName.toLowerCase() + " " + schedule + " " + reminder, friend);
-                    friendScedule.addMeetUpEvent(eventName.toLowerCase() + " " + schedule + " " + reminder, model.getUser());
-                    return new CommandResult(MESSAGE_SUCCESS + "\nMeet up event\n" + eventName + " " + schedule + " with " + friend.getName(), false, false, true, false);
                 default:
                     throw new CommandException("Invalid event type!"
                         + "\n Event type can only be 'Dated' or 'Meetup'" );

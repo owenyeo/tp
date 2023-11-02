@@ -30,7 +30,6 @@ public class JsonAdaptedScheduleTest {
         schedule.addModule(new Module(VALID_MODULE_NAME, VALID_TIMEBLOCK));
         schedule.addDatedEvent(new DatedEvent(VALID_EVENT_NAME, VALID_TIMEBLOCK, VALID_DATE, VALID_EVENT_REMINDER));
         schedule.addCca(new Cca(VALID_MODULE_NAME, VALID_TIMEBLOCK));
-        schedule.addMeetUpEvent(new MeetUpEvent(VALID_EVENT_NAME, VALID_TIMEBLOCK, VALID_DATE, VALID_EVENT_REMINDER, VALID_PERSON));
 
         JsonAdaptedSchedule jsonAdaptedSchedule = new JsonAdaptedSchedule(schedule);
         Schedule schedule1 = jsonAdaptedSchedule.toModelType();
