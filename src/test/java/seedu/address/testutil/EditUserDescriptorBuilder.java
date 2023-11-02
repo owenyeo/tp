@@ -13,7 +13,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.timetable.DatedEvent;
 import seedu.address.model.person.timetable.Schedule;
-import seedu.address.model.util.SampleDataUtil;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.user.User;
 
@@ -95,16 +94,25 @@ public class EditUserDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Schedule} of the {@code EditUserDescriptorBuilder} that we are building.
+     */
     public EditUserDescriptorBuilder withSchedule(Schedule schedule) {
         descriptor.setSchedule(schedule);
         return this;
     }
 
-    public EditUserDescriptorBuilder withDatedEvents(){
+    /**
+     * Sets the {@code Schedule} of the {@code EditUserDescriptorBuilder} that we are building.
+     */
+    public EditUserDescriptorBuilder withDatedEvents() {
         descriptor.setDatedEvents(new ArrayList<DatedEvent>());
         return this;
     }
 
+    /**
+     * Sets the {@code Schedule} of the {@code EditUserDescriptorBuilder} that we are building.
+     */
     public EditUserDescriptorBuilder withDatedEvents(ArrayList<DatedEvent> datedEvents) {
         descriptor.setDatedEvents(datedEvents);
         return this;

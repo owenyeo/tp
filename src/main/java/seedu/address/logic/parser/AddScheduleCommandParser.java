@@ -13,7 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new AddScheduleCommand object.
  */
-public class AddScheduleCommandParser implements Parser<AddScheduleCommand>{
+public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddScheduleCommand
@@ -28,8 +28,10 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand>{
                 ArgumentTokenizer.tokenize(args, PREFIX_EVENTNAME, PREFIX_EVENTTYPE, PREFIX_SCHEDULE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_EVENTNAME, PREFIX_EVENTTYPE, PREFIX_SCHEDULE)) {
-            throw new ParseException(String.format("Command format is invalid! \n" + AddScheduleCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format("Command format is invalid! \n"
+                + AddScheduleCommand.MESSAGE_USAGE));
         }
+
         String indexString;
 
         String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get();
@@ -40,9 +42,10 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand>{
         if (indexString.equals("user")) {
             return new AddScheduleCommand(eventName, eventType, schedule);
         } else if (Integer.parseInt(indexString) > 0) {
-            return new AddScheduleCommand(eventName, eventType, ParserUtil.parseIndex(indexString), schedule);
+            return new AddScheduleCommand(eventName, eventType,
+                ParserUtil.parseIndex(indexString), schedule);
         } else {
-            throw new ParseException("Invalid index!\n" 
+            throw new ParseException("Invalid index!\n"
                 + "Index can only be 'user' or a 'positive integer!' \n");
         }
     }

@@ -8,13 +8,26 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class CommandResultTest {
+
+    @Test
+    public void isRefresh() {
+        CommandResult commandResult = new CommandResult("feedback");
+        CommandResult commandResultWithRefresh = new CommandResult("feedback", false, false, true, false);
+
+        assertTrue(commandResultWithRefresh.isRefresh());
+        assertFalse(commandResult.isRefresh());
+    }
+
     @Test
     public void equals() {
         CommandResult commandResult = new CommandResult("feedback");
+        CommandResult commandResultWithCft = new CommandResult("feedback", true);
 
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
         assertTrue(commandResult.equals(new CommandResult("feedback", false, false, false, false)));
+        assertTrue(commandResultWithCft.equals(new CommandResult("feedback", true)));
+        assertTrue(commandResultWithCft.equals(new CommandResult("feedback", false, false, false, true)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -33,6 +46,9 @@ public class CommandResultTest {
 
         // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, true, false, false)));
+
+        // different cft value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", false, false, false, true)));
     }
 
     @Test

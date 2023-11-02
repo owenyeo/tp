@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -33,7 +34,8 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Birthday birthday, Schedule schedule, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address,
+            Birthday birthday, Schedule schedule, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, birthday, tags);
         this.name = name;
         this.phone = phone;
@@ -84,7 +86,7 @@ public class Person {
      * if modification is attempted.
      */
     public List<FreeTime> getFreeTimes() throws NullPointerException {
-        return schedule.getThisWeeksFreeTime();
+        return schedule.getThisWeeksFreeTime() == null ? new ArrayList<FreeTime>() : schedule.getThisWeeksFreeTime();
     }
 
     /**

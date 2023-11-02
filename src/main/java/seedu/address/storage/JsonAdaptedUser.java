@@ -91,7 +91,7 @@ public class JsonAdaptedUser {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             personTags.add(tag.toModelType());
-        }       
+        }
 
         final List<DatedEvent> personDatedEvents = new ArrayList<>();
         for (JsonAdaptedDatedEvent datedEvent : datedEvents) {

@@ -6,6 +6,11 @@ import seedu.address.model.person.timetable.MeetUpEvent;
 import seedu.address.model.person.timetable.Module;
 import seedu.address.model.person.timetable.Schedule;
 
+/**
+ * A utility class to help with building Schedule objects.
+ * Example usage: <br>
+ *     {@code Schedule ab = new ScheduleBuilder().withModule("CS2103T").build();}
+ */
 public class ScheduleBuilder {
 
     private Schedule schedule;
@@ -53,5 +58,4 @@ public class ScheduleBuilder {
     public Schedule build() {
         return schedule;
     }
-    
 }

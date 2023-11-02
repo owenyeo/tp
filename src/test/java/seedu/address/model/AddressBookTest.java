@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -104,6 +105,15 @@ public class AddressBookTest {
         AddressBook addressBook = new AddressBook();
         AddressBook addressBook2 = new AddressBook();
         assertEquals(addressBook.hashCode(), addressBook2.hashCode());
+    }
+
+    @Test
+    public void getBirthdayList() {
+        AddressBook addressBook = new AddressBook();
+        assertEquals("", addressBook.getBirthdayList());
+        addressBook.addPerson(new PersonBuilder().withName("Alice Pauline")
+                .withBirthday(LocalDate.now().toString()).build());
+        assertEquals("Alice Pauline\n", addressBook.getBirthdayList());
     }
 
     /**

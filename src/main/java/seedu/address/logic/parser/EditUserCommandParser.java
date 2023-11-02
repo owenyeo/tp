@@ -17,7 +17,6 @@ import java.util.Set;
 import seedu.address.logic.commands.edit.EditUserCommand;
 import seedu.address.logic.commands.edit.EditUserDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.timetable.FreeTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -62,7 +61,7 @@ public class EditUserCommandParser implements Parser<EditUserCommand> {
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
-        if (editPersonDescriptor.isAnyFieldEdited()) {
+        if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditUserCommand.MESSAGE_NOT_EDITED);
         }
 

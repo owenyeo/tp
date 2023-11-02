@@ -19,12 +19,12 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    /** 
+    /**
      * The application should check if it is editable.
      */
-    private final boolean edit;
+    private final boolean refresh;
 
-    /** 
+    /**
      * The application should check if it is a commonfreetime.
      */
     private final boolean commonFreetime;
@@ -32,11 +32,11 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean edit, boolean cft) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean refresh, boolean cft) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.edit = edit;
+        this.refresh = refresh;
         this.commonFreetime = cft;
     }
 
@@ -64,8 +64,8 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isEdit() {
-        return edit;
+    public boolean isRefresh() {
+        return refresh;
     }
 
     @Override

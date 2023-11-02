@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Person;
 
 import static java.util.Objects.isNull;
@@ -287,7 +288,7 @@ public class Schedule {
      *
      * @param moduleString String representation of the module.
      */
-    public void addModule(String moduleString) {
+    public void addModule(String moduleString) throws IllegalValueException {
         modulesList.add(Module.newModule(moduleString));
     }
 
@@ -306,7 +307,7 @@ public class Schedule {
      * @param moduleName Name of the module to be edited.
      * @param timeBlockString String representation of the new module time block.
      */
-    public void editModule(String moduleName, String timeBlockString) {
+    public void editModule(String moduleName, String timeBlockString) throws IllegalValueException {
         // Remove all instances of the module with the given name
         modulesList.removeIf(module -> module.getName().equals(moduleName));
 
@@ -339,7 +340,7 @@ public class Schedule {
      *
      * @param ccaString String representation of the CCA.
      */
-    public void addCca(String ccaString) {
+    public void addCca(String ccaString) throws IllegalValueException {
         ccasList.add(Cca.newCca(ccaString));
     }
 
@@ -358,7 +359,7 @@ public class Schedule {
      * @param ccaName Name of the CCA to be edited.
      * @param unparsedInput String representation of the new CCA.
      */
-    public void editCca(String ccaName, String unparsedInput) {
+    public void editCca(String ccaName, String unparsedInput) throws IllegalValueException {
         // Remove all instances of the CCA with the given name
         ccasList.removeIf(cca -> cca.getName().equals(ccaName));
 
@@ -480,7 +481,6 @@ public class Schedule {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Schedule:\n");
         if (!modulesList.isEmpty()) {
             sb.append("- Modules:\n");
             for (Module module : modulesList) {

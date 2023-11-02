@@ -46,10 +46,10 @@
     "address" : "10th street",
     "birthday": "2000-01-01",
     "schedule" : {
-      "datedEvents" : [ "CS2103 Meeting 2023-10-10 1030 1130 y", "Walk Dog 2023-10-10 1030 1130 n", "Competitive sleeping 2023-10-10 1030 1130 y"],
-      "modules" : ["CS2103 Wednesday 1200 1300", "CS2101 Tuesday 1200 1400", "CS2100 Monday 1400 1500" ],
-      "ccas" : [ "Basketball Monday 1800 2000", "Soccer Tuesday 1800 2000", "Tennis Wednesday 1800 2000" ],
-      "meetUpEvents" : [ "CS2103 Meeting 2023-10-10 1030 1130 y Alice Pauline", "Walk Dog 2023-10-10 1030 1130 n Benson Meier", "Competitive sleeping 2023-10-10 1030 1130 y Carl Kurz"]
+      "datedEvents" : [ ],
+      "modules" : [ ],
+      "ccas" : [ ],
+      "meetUpEvents" : [ ]
     },
     "tags" : [ "friends" ]
   }, {

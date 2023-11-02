@@ -36,7 +36,7 @@ public class JsonAdaptedPersonTest {
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
-        private static final JsonAdaptedSchedule VALID_SCHEDULE = new JsonAdaptedSchedule(BENSON.getSchedule());
+    private static final JsonAdaptedSchedule VALID_SCHEDULE = new JsonAdaptedSchedule(BENSON.getSchedule());
 
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
@@ -129,6 +129,14 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, null,
                 VALID_SCHEDULE, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "Birthday");
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullSchedule_throwsIllegalValueException() {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
+                VALID_BIRTHDAY, null, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "Schedule");
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

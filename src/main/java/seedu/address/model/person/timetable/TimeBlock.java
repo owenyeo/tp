@@ -101,6 +101,7 @@ public abstract class TimeBlock implements Comparable<TimeBlock> {
     }
 
     public abstract String getName();
+    public abstract String getType();
 
     public boolean isModule() {
         return false;

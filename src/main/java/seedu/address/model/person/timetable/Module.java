@@ -3,6 +3,8 @@ package seedu.address.model.person.timetable;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.commons.exceptions.IllegalValueException;
+
 /**
  * Represents a Module in the application.
  * Contains information about the module name and its timings.
@@ -37,7 +39,7 @@ public class Module extends TimeBlock {
      * @return A new Module object.
      * @throws IllegalArgumentException If the given input does not adhere to the expected format.
      */
-    public static Module newModule(String unparsedInput) {
+    public static Module newModule(String unparsedInput) throws IllegalValueException {
         requireNonNull(unparsedInput);
 
         // Split the unparsed input string by whitespace
@@ -56,7 +58,7 @@ public class Module extends TimeBlock {
 
         // Check for valid module name format
         if (!isValidModuleName(name)) {
-            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(MESSAGE_CONSTRAINTS);
         }
 
         return new Module(name, timeBlockString);
@@ -78,6 +80,11 @@ public class Module extends TimeBlock {
     @Override
     public String getName() {
         return moduleName;
+    }
+
+    @Override
+    public String getType() {
+        return "Module";
     }
 
     /**

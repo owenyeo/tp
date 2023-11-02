@@ -13,7 +13,6 @@ import static seedu.address.testutil.TypicalSchedule.NORMAL_SCHEDULE;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditPersonDescriptorTest {

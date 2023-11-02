@@ -3,6 +3,8 @@ package seedu.address.model.person.timetable;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.commons.exceptions.IllegalValueException;
+
 /**
  * Represents a Co-Curricular Activity (CCA) in the address book.
  * Guarantees: immutability.
@@ -34,7 +36,7 @@ public class Cca extends TimeBlock {
      * @param unparsedInput The input string containing CCA details.
      * @return A new CCA object.
      */
-    public static Cca newCca(String unparsedInput) {
+    public static Cca newCca(String unparsedInput) throws IllegalValueException {
         requireNonNull(unparsedInput);
 
         // Split the unparsed input string based on the last three whitespace occurrences
@@ -63,7 +65,7 @@ public class Cca extends TimeBlock {
 
         // Check for valid CCA name format
         if (!isValidCcaName(name)) {
-            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(MESSAGE_CONSTRAINTS);
         }
 
         // Further validations can be added (e.g., for valid day, startTime, endTime) if necessary
@@ -94,6 +96,11 @@ public class Cca extends TimeBlock {
     @Override
     public String getName() {
         return this.ccaName;
+    }
+
+    @Override
+    public String getType() {
+        return "CCA";
     }
 
     @Override
