@@ -38,7 +38,13 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
         String eventType = argMultimap.getValue(PREFIX_EVENTTYPE).get().toLowerCase();
         String schedule = argMultimap.getValue(PREFIX_SCHEDULE).get();
 
-        indexString = argMultimap.getPreamble().toLowerCase();
+        try {
+            indexString = argMultimap.getPreamble().toLowerCase();
+        } catch (Exception pe) {
+            throw new ParseException(String.format("Please input an index!" + "\n"
+                + "Message Usage:\n" + AddScheduleCommand.MESSAGE_USAGE));
+        }
+
         if (indexString.equals("user")) {
             return new AddScheduleCommand(eventName, eventType, schedule);
         } else if (Integer.parseInt(indexString) > 0) {

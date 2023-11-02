@@ -12,10 +12,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -156,7 +154,8 @@ public class MainWindow extends UiPart<Stage> {
 
         scene.heightProperty().addListener(new ChangeListener<Number>() {
             @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldSceneHeight, Number newSceneHeight) {
+            public void changed(ObservableValue<? extends Number> observable,
+                Number oldSceneHeight, Number newSceneHeight) {
                 input1.setMinHeight((double) newSceneHeight / 2);
                 input2.setMinHeight((double) newSceneHeight / 2);
             }
