@@ -30,7 +30,7 @@ public class AddScheduleCommand extends Command {
             + " type/cca"
             + " en/CS2103T Lecture"
             + " h/Monday 1400 1600";
-            
+
     public static final String MESSAGE_SUCCESS = "New event added: ";
 
     private final String eventName;
@@ -38,6 +38,13 @@ public class AddScheduleCommand extends Command {
     private final Index index;
     private final String schedule;
 
+    /**
+     * Constructs an AddScheduleCommand object with the specified event name, index, schedule and event type.
+     * @param eventName
+     * @param eventType
+     * @param index
+     * @param schedule
+     */
     public AddScheduleCommand(String eventName, String eventType, Index index, String schedule) {
         this.eventName = eventName;
         this.eventType = eventType;
@@ -45,10 +52,25 @@ public class AddScheduleCommand extends Command {
         this.schedule = schedule;
     }
 
+    /**
+     * Constructs an AddScheduleCommand object with the specified event name, schedule and event type.
+     * @param eventName
+     * @param eventType
+     * @param schedule
+     */
     public AddScheduleCommand(String eventName, String eventType, String schedule) {
         this(eventName, eventType, null, schedule);
     }
-    
+
+    /**
+     * Executes the AddScheduleCommand and adds the specified event to the contact's calendar.
+     * If the index is not null, the event will be added to the friend's calendar.
+     * Otherwise, the event will be added to the user's calendar.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return Feedback message of the operation result, along with other information.
+     * @throws CommandException If the event to be added already exists or the event type is invalid.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         Person friend;
@@ -61,7 +83,7 @@ public class AddScheduleCommand extends Command {
             }
 
             Schedule friendSchedule = friend.getSchedule();
-            
+
             switch (eventType) {
             // If the event type is cca, add the event to the friend's cca schedule
             case "cca":
@@ -74,7 +96,7 @@ public class AddScheduleCommand extends Command {
                     + " to "
                     + friend.getName(), false, false, true, false);
             case "module":
-            // If the event type is module, add the event to the friend's module schedule
+                // If the event type is module, add the event to the friend's module schedule
                 Schedule friendScedule = friend.getSchedule();
                 friendScedule.addModule(eventName + " " + schedule);
                 return new CommandResult(MESSAGE_SUCCESS
@@ -87,7 +109,7 @@ public class AddScheduleCommand extends Command {
             // If the event type is invalid, throw an exception
             default:
                 throw new CommandException("Invalid event type!"
-                    + "\n Event type can only be 'Module' or 'CCA'" );
+                    + "\n Event type can only be 'Module' or 'CCA'");
             }
         } catch (Exception e) {
             throw new CommandException(e.getMessage());

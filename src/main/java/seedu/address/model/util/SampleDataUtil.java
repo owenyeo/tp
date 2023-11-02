@@ -2,7 +2,6 @@ package seedu.address.model.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -14,11 +13,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.timetable.Cca;
 import seedu.address.model.person.timetable.DatedEvent;
 import seedu.address.model.person.timetable.FreeTime;
-import seedu.address.model.person.timetable.MeetUpEvent;
-import seedu.address.model.person.timetable.Module;
 import seedu.address.model.person.timetable.Schedule;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.user.ReadOnlyUserData;
@@ -56,43 +52,6 @@ public class SampleDataUtil {
                 new Schedule(),
                 getTagSet("colleagues"))
         };
-    }
-
-    public static List<Module> getSampleModules() {
-        List<Module> modules = new ArrayList<>();
-        modules.add(new Module("CS2103", "Wednesday 1200 1300"));
-        modules.add(new Module("CS2101", "Tuesday 1200 1400"));
-        modules.add(new Module("CS2100", "Monday 1400 1500"));
-        return modules;
-    }
-
-    public static List<Cca> getSampleCcas() {
-        List<Cca> ccas = new ArrayList<>();
-        ccas.add(new Cca("Basketball", "Monday 1800 2000"));
-        ccas.add(new Cca("Soccer", "Tuesday 1800 2000"));
-        ccas.add(new Cca("Tennis", "Wednesday 1800 2000"));
-        return ccas;
-    }
-
-    public static ArrayList<DatedEvent> getSampleDatedEvents() {
-        ArrayList<DatedEvent> datedEvents = new ArrayList<>();
-        datedEvents.add(DatedEvent.newDatedEvent("CS2103 Meeting 2023-10-10 1030 1130 y"));
-        datedEvents.add(DatedEvent.newDatedEvent("Walk Dog 2023-10-10 1030 1130 n"));
-        datedEvents.add(DatedEvent.newDatedEvent("Competitive sleeping 2023-10-10 1030 1130 y"));
-        return datedEvents;
-    }
-
-    public static List<MeetUpEvent> getSampleMeetUpEvents() {
-        List<MeetUpEvent> meetUpEvents = new ArrayList<>();
-        meetUpEvents.add(MeetUpEvent.newMeetUpEvent("CS2103 Meeting 2023-10-10 1030 1130 y", getSamplePersons()[0]));
-        meetUpEvents.add(MeetUpEvent.newMeetUpEvent("Walk Dog 2023-10-10 1030 1130 n", getSamplePersons()[1]));
-        meetUpEvents.add(MeetUpEvent.newMeetUpEvent("Competitive sleeping 2023-10-10 1030 1130 y",
-                getSamplePersons()[2]));
-        return meetUpEvents;
-    }
-
-    public static Schedule getSampleSchedule() {
-        return new Schedule(getSampleModules(), getSampleCcas(), getSampleDatedEvents(), getSampleMeetUpEvents());
     }
 
     public static User getSampleUser() {

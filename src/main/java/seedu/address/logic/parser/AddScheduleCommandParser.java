@@ -13,7 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new AddScheduleCommand object.
  */
-public class AddScheduleCommandParser implements Parser<AddScheduleCommand>{
+public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddScheduleCommand
@@ -45,7 +45,7 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand>{
             return new AddScheduleCommand(eventName, eventType,
                 ParserUtil.parseIndex(indexString), schedule);
         } else {
-            throw new ParseException("Invalid index!\n" 
+            throw new ParseException("Invalid index!\n"
                 + "Index can only be 'user' or a 'positive integer!' \n");
         }
     }

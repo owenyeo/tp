@@ -4,9 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommonFreetimeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Name;
 
 /**
  * Parses input arguments and creates a new CommonFreetimeCommand object.
@@ -23,16 +23,21 @@ public class CommonFreetimeCommandParser implements Parser<CommonFreetimeCommand
     public CommonFreetimeCommand parse(String userInput) throws ParseException {
         requireNonNull(userInput);
 
-        Name name;
+        ArgumentMultimap argMultimap = 
+            ArgumentTokenizer.tokenize(userInput, PREFIX_NAME);
+
+        Index index;
         try {
-            ArgumentMultimap argMultimap =
-                    ArgumentTokenizer.tokenize(userInput, PREFIX_NAME);
-            name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+            if (userInput.equalsIgnoreCase("")) {
+                return new CommonFreetimeCommand();
+            } else {
+                index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            }
         } catch (Exception e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     CommonFreetimeCommand.MESSAGE_USAGE));
         }
 
-        return new CommonFreetimeCommand(name);
+        return new CommonFreetimeCommand(index);
     }
 }

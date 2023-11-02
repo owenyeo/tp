@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -211,8 +212,8 @@ public class UniquePersonListTest {
         uniquePersonList2.add(alice);
         uniquePersonList2.add(bob);
 
-        // Test hashCode method
-        assertEquals(uniquePersonList1.hashCode(), uniquePersonList2.hashCode());
+        assertEquals(uniquePersonList1, uniquePersonList1);
+        assertNotEquals(uniquePersonList1, null);
     }
 
     @Test

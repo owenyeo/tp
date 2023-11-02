@@ -19,12 +19,12 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    /** 
+    /**
      * The application should check if it is editable.
      */
     private final boolean refresh;
 
-    /** 
+    /**
      * The application should check if it is a commonfreetime.
      */
     private final boolean commonFreetime;
