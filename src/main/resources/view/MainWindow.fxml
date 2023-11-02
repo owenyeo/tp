@@ -76,7 +76,7 @@
 
           <ScrollPane fitToWidth="true" styleClass="card-display" GridPane.rowIndex="0">
             <content>
-              <VBox styleClass="background-needed" minHeight="${personList.height}">
+              <VBox styleClass="background-needed" fx:id="input1">
                 <StackPane VBox.vgrow="ALWAYS" fx:id="userProfilePlaceholder"
                            styleClass="pane-with-border">
                 </StackPane>
@@ -86,7 +86,7 @@
 
           <ScrollPane fitToWidth="true" styleClass="card-display" GridPane.rowIndex="1">
             <content>
-              <VBox styleClass="background-needed" minHeight="${personList.height}">
+              <VBox styleClass="background-needed" fx:id="input2">
                 <StackPane VBox.vgrow="ALWAYS" fx:id="selectedFriendPlaceholder" styleClass="pane-with-border">
                 </StackPane>
               </VBox>

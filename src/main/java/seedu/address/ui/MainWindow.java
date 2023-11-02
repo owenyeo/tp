@@ -2,6 +2,8 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -66,6 +68,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane selectedFriendPlaceholder;
     @FXML
     private ScrollPane userCardScrollPane;
+    @FXML
+    private VBox input1;
+    @FXML
+    private VBox input2;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -144,6 +150,17 @@ public class MainWindow extends UiPart<Stage> {
         userProfilePlaceholder.getChildren().add(userProfile.getRoot());
 
         Scene scene = primaryStage.getScene();
+
+        input1.setMinHeight(scene.getHeight() / 2);
+        input2.setMinHeight(scene.getHeight() / 2);
+
+        scene.heightProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldSceneHeight, Number newSceneHeight) {
+                input1.setMinHeight((double) newSceneHeight / 2);
+                input2.setMinHeight((double) newSceneHeight / 2);
+            }
+        });
 
         if (scene != null) {
             scene.addEventFilter(ListCellSelectedEvent.LIST_CELL_SELECTED, event -> {
