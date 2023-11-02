@@ -11,6 +11,7 @@ import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
@@ -22,6 +23,7 @@ import seedu.address.model.user.User;
 import seedu.address.model.user.UserData;
 import seedu.address.model.user.UserPrefs;
 import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 public class ModelManagerTest {
 
@@ -151,5 +153,13 @@ public class ModelManagerTest {
         ModelManager modelManager = new ModelManager();
         modelManager.setUserData(userData);
         assertEquals(modelManager.getUserData(), userData);
+    }
+
+    @Test
+    public void getBirthdayList() {
+        ModelManager modelManager = new ModelManager();
+        modelManager.addPerson(new PersonBuilder().withName("Alice Pauline")
+                .withBirthday(LocalDate.now().toString()).build());
+        assertEquals("Alice Pauline\n", modelManager.getBirthdayList());
     }
 }
