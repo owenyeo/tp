@@ -115,6 +115,9 @@ public class Schedule {
                     startSlot = -1;
                 }
             }
+            if (startSlot != -1) {
+                freeTimes.add(createFreeTime(day, startSlot, 47)); // The entire day is free.
+            }
         }
 
         return freeTimes;
