@@ -18,10 +18,10 @@ Additionally, we included FAQs and a glossary in case you have any additional qu
 ## Quickstart
 Before we jump into it, let's make sure that your TimetaBRO is working properly!
 1. Ensure you have Java 11 installed on your computer.
-    * To check if Java 11 is currently installed, you may follow this short guide. 
-    * If Java 11 is not installed, you may follow the installation instructions over here. 
+    * To check if Java 11 is currently installed, you may follow this short guide.
+    * If Java 11 is not installed, you may follow the installation instructions over here.
 2. Next, download the latest 'timetabro.jar' from [here](https://github.com/AY2324S1-CS2103T-W12-4/tp).
-3. Copy the file to the folder you want to use as a home folder for TimetaBRO. 
+3. Copy the file to the folder you want to use as a home folder for TimetaBRO.
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
     * add n/Owen p/91792309 s/CS2101 Tuesday 1200 1400 b/ 2001-12-26:
     adds a friend named Owen, with phone number 91792309 and birthday on 26 December 2001. He is taking a class on Tuesday 1200-1400 for module CS2101
@@ -181,7 +181,7 @@ Examples:
 * `cft n/Betsy` finds people with the name `Betsy` and displays the common free times with this list.
 
 ### Add events to you/your friend's schedule : `addevent`
-This command adds a dated, non-recurring event to you or your friend's schedule. 
+This command adds a dated, non-recurring event to you or your friend's schedule.
 
 Format: `addevent`\
 To add event to yourself, use \
@@ -189,7 +189,7 @@ To add event to yourself, use \
 To add event for friend, use \
 `addevent INDEX type/[TYPE] en/[EVENT NAME] h/[DATE TIME] r/[REMINDER]`
 
-- Adds an event titled `EVENT_NAME` to either user or 
+- Adds an event titled `EVENT_NAME` to either user or
 the specified friend and `INDEX`
 - Event date and time will be equal to `DATE TIME`
 where `DATE TIME` must be entered in the format `YYYY-MM-DD HHMM [start time] HHMM [end time]`
@@ -217,7 +217,7 @@ this error message will be shown
 `Invalid index!`\
 `addevent: Adds a non-recurring event to the calendar.`\
 `Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME h/[Date [YYYY-MM-DD] StarTime (HHMM) EndTime (HHMM)] r/[REMINDER: y/n]`\
-`Example: addevent 1 type/dated en/CS2103T Lecture h/2020-03-02 1400 1600 r/y`\ 
+`Example: addevent 1 type/dated en/CS2103T Lecture h/2020-03-02 1400 1600 r/y`\
 
 `Note: If you are adding a meetup event, then index refers to the index of the friend you are meeting with.`\
  `If you are adding a dated event, then index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself`
@@ -273,7 +273,7 @@ If wrong command format is used (i.e missing prefixes, wrong event name):\
 `Example: rmevent user type/dated en/CS2103T Lecture`\
 
 ### Add recurring events to you/your friend's schedule : `addschedule`
-This command adds a recurring event to you or your friend's schedule. 
+This command adds a recurring event to you or your friend's schedule.
 
 Format: `addschedule`\
 To add event to yourself, use \
@@ -281,7 +281,7 @@ To add event to yourself, use \
 To add event for friend, use \
 `addschedule INDEX type/[TYPE] en/[EVENT NAME] h/[DAY TIME]`
 
-- Adds an event titled `EVENT_NAME` to either user or 
+- Adds an event titled `EVENT_NAME` to either user or
 the specified friend and `INDEX`
 - Event date and time will be equal to `DAY TIME`
 where `DAY TIME` must be entered in the format `[monday/tuesday/wednesday/thursday/friday/saturday/sunday] HHMM [start time] HHMM [end time]`
@@ -308,7 +308,7 @@ this error message will be shown
 `Invalid index!`\
 `addevent: Adds a non-recurring event to the calendar.`\
 `Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME h/[Day [Day of week] StarTime (HHMM) EndTime (HHMM)]`\
-`Example: addschedule 1 type/dated en/CS2103T Lecture h/Wednesday 1400 1600`\ 
+`Example: addschedule 1 type/dated en/CS2103T Lecture h/Wednesday 1400 1600`\
 
 `Note: If you are adding a meetup event, then index refers to the index of the friend you are meeting with.`\
  `If you are adding a dated event, then index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself`
