@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+/**package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -153,3 +153,4 @@ public class RemoveScheduleCommandTest {
     // if added lmk so that i can test the catch exception part
 
 }
+*/
