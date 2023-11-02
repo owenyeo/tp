@@ -153,10 +153,10 @@ Examples:
 
 Finds friend(s) with the same free times as you.
 
-Format: `cft [n/NAME]`
+Format: `cft [INDEX]`
 
-* Finds common free times with friend of the specified `NAME`.
-* Finds common free times with **all friends** in the list if `NAME` is not included.
+* Finds common free times with friend of the specified `INDEX`.
+* Finds common free times with **all friends** in the list if `INDEX` is not included.
 
 Successful Command:\
 **Input:** \
@@ -403,6 +403,30 @@ If your changes to the data file makes its format invalid, TimetaBRO will discar
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TimetaBRO home folder.
 
+**Q**: Is TimetaBRO compatible with Mac and Linux operating systems, or is it Windows-specific?
+**A**: TimetaBRO is compatible with multiple operating systems, including Windows, Mac, and Linux. It runs on systems that support Java 11, so you can use it on your preferred platform.
+
+**Q:** Can I import my friend's schedule from a different calendar application into TimetaBRO?
+**A:** Currently, TimetaBRO does not offer a direct import feature for schedules from other calendar applications. You'll need to manually add your friends' schedules to TimetaBRO using the add command.
+
+**Q:** Is there a way to set recurring events for specific dates or weekdays, like every Tuesday, without manually adding them one by one?
+**A:** Yes, you can add recurring events for specific weekdays in TimetaBRO using the addschedule command. This feature allows you to set events for particular days of the week, making it easier to input recurring events.
+
+**Q:** What happens if I accidentally delete a friend or event in TimetaBRO? Is there a way to recover deleted data?
+**A:** Unfortunately, TimetaBRO does not have a built-in data recovery feature. When you delete a friend or event, the data is permanently removed from the application. It's essential to double-check your actions to avoid accidental deletions.
+
+**Q:** How can I customize the reminder settings for events added to TimetaBRO?
+**A:** You can customize the reminder settings for events when adding them using the addevent command. The r/y or r/n option allows you to enable or disable reminders for specific events.
+
+**Q:** Is there a way to share my TimetaBRO schedule with others or export it to a different format, such as a calendar file?
+**A:** TimetaBRO currently does not support sharing schedules with others or exporting them to external formats. It primarily functions as a personal scheduling tool.
+
+**Q:** What sets TimetaBRO apart from other scheduling tools?
+**A:** TimetaBRO's unique feature of saving your friends' schedules and finding common free times makes it stand out. It's a powerful tool for enhancing social connections and simplifying event planning, which many users find highly valuable.
+
+**Q:** What are the advantages of saving my friends' schedules in TimetaBRO?
+**A:** Saving your friends' schedules in TimetaBRO allows you to easily coordinate meetups and group activities, making it simpler to find a time that works for everyone. It strengthens your social connections and helps you stay connected with friends.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
@@ -411,14 +435,19 @@ If your changes to the data file makes its format invalid, TimetaBRO will discar
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
-| Action             | Format, Examples                                                                                                                                                                                                                                         |
-|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**            | `​add n/NAME u/NICKNAME p/PHONE_NUMBER t/TELEGRAM_HANDLE e/EMAIL [m/MODULE /from START_TIME /to END_TIME /day DAY] [t/TAG]…​` <br> e.g., `add n/John Doe p/98765432 t/johndoe e/johnd@example.com m/CS2103T /from 1200 /to 1300 /day Wednesday t/police` |
-| **Clear**          | `clear`                                                                                                                                                                                                                                                  |
-| **Delete**         | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                                                                      |
-| **Edit**           | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [t/TELEGRAM_HANDLE] [e/EMAIL] [m/MODULE /from START_TIME /to END_TIME /day DAY] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                    |
-| **List**           | `list`                                                                                                                                                                                                                                                   |
-| **Help**           | `help`                                                                                                                                                                                                                                                   |
-| **CommonFreeTime** | `cft [n/NAME]`                                                                                                                                                                                                                                           |
+| Action                 | Format and Examples                                                                                                              |
+|------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| **Add a Friend**       | `add n/NAME [u/NICKNAME] p/PHONE_NUMBER t/TELEGRAM_HANDLE e/EMAIL [m/MODULE /from START_TIME /to END_TIME /day DAY] [t/TAG]…​`<br> Example: `add n/John Doe p/98765432 t/johndoe e/johnd@example.com m/CS2103T /from 1200 /to 1300 /day Wednesday t/police` |
+| **Add an Event**       | `addevent [INDEX] type/[EVENT_TYPE] en/[EVENT NAME] h/[DATE TIME] r/[REMINDER]`<br> Example: `addevent 1 type/dated en/CS2030 Finals h/2023-10-31 1000 1400 r/y`                            |
+| **Remove an Event**    | `rmevent [INDEX] type/[EVENT_TYPE] en/[EVENT NAME]`<br> Example: `rmevent 1 type/dated en/CS2103T Lecture`                                                                  |
+| **Add a Recurring Event** | `addschedule [INDEX] type/[EVENT_TYPE] en/[EVENT NAME] h/[DAY TIME]`<br> Example: `addschedule 1 type/module en/CS2030 h/Monday 1000 1400`                                |
+| **Remove a Recurring Event** | `rmschedule [INDEX] type/[EVENT_TYPE] en/[EVENT NAME]`<br> Example: `rmschedule 1 type/CCA en/CS2103T Lecture`                                                           |
+| **Clear All Entries**  | `clear`                                                                                                                                                                                  |
+| **Delete a Friend**    | `delete INDEX`<br> Example: `delete 3`                                                                                                                                                  |
+| **Edit Friend Info**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [t/TELEGRAM_HANDLE] [e/EMAIL] [m/MODULE /from START_TIME /to END_TIME /day DAY] [t/TAG]…​`<br> Example: `edit 2 n/James Lee e/jameslee@example.com` |
+| **List All Friends**   | `list`                                                                                                                                                                                   |
+| **View Help**          | `help`                                                                                                                                                                                   |
+| **Find Common Free Times** | `cft [INDEX]`<br>NOTE: To check common free times with entire friends list, use `cft` without any index.<br>Example: `cft`                                                                                                                                                                          |
+

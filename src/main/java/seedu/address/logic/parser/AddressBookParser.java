@@ -96,9 +96,7 @@ public class AddressBookParser {
             return new RemoveReminderCommandParser().parse(arguments);
 
         case CommonFreetimeCommand.COMMAND_WORD:
-            return arguments.contains(PREFIX_NAME.toString())
-                    ? new CommonFreetimeCommandParser().parse(arguments)
-                    : new CommonFreetimeCommand();
+            return new CommonFreetimeCommandParser().parse(arguments);
 
         case AddEventCommand.COMMAND_WORD:
             return new AddEventCommandParser().parse(arguments);
