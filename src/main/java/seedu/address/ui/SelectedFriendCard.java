@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.person.Person;
 
 /**
@@ -31,19 +32,19 @@ public class SelectedFriendCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private FlowPane mondaySchedule;
+    private VBox mondaySchedule;
     @FXML
-    private FlowPane tuesdaySchedule;
+    private VBox tuesdaySchedule;
     @FXML
-    private FlowPane wednesdaySchedule;
+    private VBox wednesdaySchedule;
     @FXML
-    private FlowPane thursdaySchedule;
+    private VBox thursdaySchedule;
     @FXML
-    private FlowPane fridaySchedule;
+    private VBox fridaySchedule;
     @FXML
-    private FlowPane saturdaySchedule;
+    private VBox saturdaySchedule;
     @FXML
-    private FlowPane sundaySchedule;
+    private VBox sundaySchedule;
 
     /**
      * Constructs a new {@code SelectedFriendCard} with the specified selected friend.

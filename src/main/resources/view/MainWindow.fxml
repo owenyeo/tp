@@ -66,23 +66,32 @@
 
         <GridPane HBox.hgrow="ALWAYS" styleClass="pane-with-border">
           <rowConstraints>
-            <RowConstraints percentHeight="50" />
-            <RowConstraints percentHeight="50" />
+            <RowConstraints percentHeight="50" vgrow="ALWAYS"/>
+            <RowConstraints percentHeight="50" vgrow="ALWAYS"/>
           </rowConstraints>
 
           <columnConstraints>
-            <ColumnConstraints percentWidth="100" />
+            <ColumnConstraints percentWidth="100" hgrow="ALWAYS"/>
           </columnConstraints>
 
-          <VBox styleClass="card-display" GridPane.rowIndex="0">
-            <StackPane VBox.vgrow="ALWAYS" fx:id="userProfilePlaceholder" styleClass="pane-with-border">
-            </StackPane>
-          </VBox>
+          <ScrollPane fitToWidth="true" styleClass="card-display" GridPane.rowIndex="0">
+            <content>
+              <VBox styleClass="background-needed" fx:id="input1">
+                <StackPane VBox.vgrow="ALWAYS" fx:id="userProfilePlaceholder"
+                           styleClass="pane-with-border">
+                </StackPane>
+              </VBox>
+            </content>
+          </ScrollPane>
 
-          <VBox styleClass="card-display" GridPane.rowIndex="1">
-            <StackPane VBox.vgrow="ALWAYS" fx:id="selectedFriendPlaceholder" styleClass="pane-with-border">
-            </StackPane>
-          </VBox>
+          <ScrollPane fitToWidth="true" styleClass="card-display" GridPane.rowIndex="1">
+            <content>
+              <VBox styleClass="background-needed" fx:id="input2">
+                <StackPane VBox.vgrow="ALWAYS" fx:id="selectedFriendPlaceholder" styleClass="pane-with-border">
+                </StackPane>
+              </VBox>
+            </content>
+          </ScrollPane>
 
         </GridPane>
 
