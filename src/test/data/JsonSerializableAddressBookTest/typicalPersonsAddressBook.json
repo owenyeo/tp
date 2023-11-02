@@ -9,8 +9,7 @@
     "schedule" : {
       "datedEvents" : [ ],
       "modules" : [ ],
-      "ccas" : [ ],
-      "meetUpEvents" : [ ]
+      "ccas" : [ ]
     },
     "tags" : [ "friends" ]
   }, {
@@ -22,8 +21,7 @@
     "schedule" : {
       "datedEvents" : [ ],
       "modules" : [ ],
-      "ccas" : [ ],
-      "meetUpEvents" : [ ]
+      "ccas" : [ ]
     },
     "tags" : [ "owesMoney", "friends" ]
   }, {
@@ -35,8 +33,7 @@
     "schedule" : {
       "datedEvents" : [ ],
       "modules" : [ ],
-      "ccas" : [ ],
-      "meetUpEvents" : [ ]
+      "ccas" : [ ]
     },
     "tags" : [ ]
   }, {
@@ -46,13 +43,28 @@
     "address" : "10th street",
     "birthday": "2000-01-01",
     "schedule" : {
-      "datedEvents" : [ "CS2103 Meeting 2023-10-10 1030 1130 y", "Walk Dog 2023-10-10 1030 1130 n", "Competitive sleeping 2023-10-10 1030 1130 y"],
-      "modules" : ["CS2103 Wednesday 1200 1300", "CS2101 Tuesday 1200 1400", "CS2100 Monday 1400 1500" ],
+      "datedEvents" : [ {
+        "name" : "Gym",
+        "reminder" : true,
+        "timeBlockString" : "Thursday 1400 1600",
+        "localDateString" : "2023-11-02"
+      }, {
+        "name" : "Dance",
+        "reminder" : true,
+        "timeBlockString" : "Saturday 1200 1300",
+        "localDateString" : "2023-11-11"
+      } ],
+      "modules" : [ {
+        "name" : "CS2103",
+        "timeBlockString" : "Monday 1200 1400"
+      }, {
+        "name" : "CS2101",
+        "timeBlockString" : "Tuesday 1200 1400"
+      } ],
       "ccas" : [ {
         "name" : "sleeping",
         "timeBlockString" : "Monday 1200 1400"
-      }  ],
-      "meetUpEvents" : [ "CS2103 Meeting 2023-10-10 1030 1130 y Alice Pauline", "Walk Dog 2023-10-10 1030 1130 n Benson Meier", "Competitive sleeping 2023-10-10 1030 1130 y Carl Kurz"]
+      }  ]
     },
     "tags" : [ "friends" ]
   }, {
@@ -62,10 +74,31 @@
     "address" : "michegan ave",
     "birthday": "2000-01-01",
     "schedule" : {
-      "datedEvents" : [ ],
-      "modules" : [ ],
-      "ccas" : [ ],
-      "meetUpEvents" : [ ]
+      "datedEvents" : [ {
+        "name" : "Aerobics",
+        "reminder" : true,
+        "timeBlockString" : "Wednesday 1400 1600",
+        "localDateString" : "2023-11-01"
+      }, {
+        "name" : "Meet with Bob",
+        "reminder" : true,
+        "timeBlockString" : "Sunday 1900 2000",
+        "localDateString" : "2023-11-12"
+      } ],
+      "modules" : [ {
+        "name" : "CS2103",
+        "timeBlockString" : "Monday 1200 1400"
+      }, {
+        "name" : "CS2101",
+        "timeBlockString" : "Tuesday 1200 1400"
+      } ],
+      "ccas" : [ {
+        "name" : "sleeping",
+        "timeBlockString" : "Monday 1200 1400"
+      }, {
+        "name" : "eating",
+        "timeBlockString" : "Tuesday 1200 1400"
+      } ]
     },
     "tags" : [ ]
   }, {
@@ -75,10 +108,31 @@
     "address" : "little tokyo",
     "birthday": "2000-01-01",
     "schedule" : {
-      "datedEvents" : [ ],
-      "modules" : [ ],
-      "ccas" : [ ],
-      "meetUpEvents" : [ ]
+      "datedEvents" : [ {
+        "name" : "Cooking",
+        "reminder" : false,
+        "timeBlockString" : "Thursday 1400 1600",
+        "localDateString" : "2023-11-02"
+      }, {
+        "name" : "Dance",
+        "reminder" : true,
+        "timeBlockString" : "Saturday 1200 1300",
+        "localDateString" : "2023-11-11"
+      } ],
+      "modules" : [ {
+        "name" : "CS2100",
+        "timeBlockString" : "Friday 1000 1400"
+      }, {
+        "name" : "CS2109",
+        "timeBlockString" : "Thursday 0800 1000"
+      } ],
+      "ccas" : [ {
+        "name" : "sleeping",
+        "timeBlockString" : "Monday 1200 1400"
+      }, {
+        "name" : "eating",
+        "timeBlockString" : "Tuesday 1200 1400"
+      } ]
     },
     "tags" : [ ]
   }, {
@@ -88,10 +142,31 @@
     "address" : "4th street",
     "birthday": "2000-01-01",
     "schedule" : {
-      "datedEvents" : [ ],
-      "modules" : [ ],
-      "ccas" : [ ],
-      "meetUpEvents" : [ ]
+      "datedEvents" : [ {
+        "name" : "Clubbing",
+        "reminder" : true,
+        "timeBlockString" : "Friday 2200 0300",
+        "localDateString" : "2023-11-02"
+      }, {
+        "name" : "Beach day",
+        "reminder" : true,
+        "timeBlockString" : "Saturday 1200 1800",
+        "localDateString" : "2023-11-11"
+      } ],
+      "modules" : [ {
+        "name" : "CS2040",
+        "timeBlockString" : "Monday 1600 1800"
+      }, {
+        "name" : "ES2660",
+        "timeBlockString" : "Thursday 0800 1200"
+      } ],
+      "ccas" : [ {
+        "name" : "Muay Thai",
+        "timeBlockString" : "Monday 1200 1400"
+      }, {
+        "name" : "Basketball",
+        "timeBlockString" : "Tuesday 1200 1400"
+      } ]
     },
     "tags" : [ ]
   } ]
