@@ -239,38 +239,35 @@ Removes the specified event from the specified Person
 **Format:**\
 To remove an event, you can use the rmevent command with the following parameters:
 
-`rmevent [INDEX] type/[EVENT_TYPE] en/[EVENT_NAME]`
+`rmevent [INDEX] en/[EVENT_NAME]`
 
 INDEX (Index of the friend or 'user')
-type/EVENT_TYPE (Event type, either 'dated' or 'meetup')
 en/EVENT_NAME (Event name)
 
 Successful commands:
 
 Remove an event from a friend's calendar:\
-`rmevent 1 type/dated en/CS2103T Lecture`
+`rmevent 1 en/CS2103T Lecture`
 Remove an event from your own calendar:\
-`rmevent user type/dated en/CS2103T Lecture`
+`rmevent user en/CS2103T Lecture`
 
 
 **Unsuccessful commands:**\
 If an invalid index is used:\
 `Invalid index!`\
 `Parameters: INDEX`\
-`type/EVENT_TYPE`\
 `en/EVENT_NAME`\
-`Example: rmevent 1 type/dated en/CS2103T Lecture`\
+`Example: rmevent 1 en/CS2103T Lecture`\
 `NOTE: If you want to remove an event from yourself, use index user`\
-`Example: rmevent user type/dated en/CS2103T Lecture`\
+`Example: rmevent user en/CS2103T Lecture`\
 
 If wrong command format is used (i.e missing prefixes, wrong event name):\
 `Command format is invalid!`\
 `Parameters: INDEX`\
-`type/EVENT_TYPE`\
 `en/EVENT_NAME`\
-`Example: rmevent 1 type/dated en/CS2103T Lecture`\
+`Example: rmevent 1 en/CS2103T Lecture`\
 `NOTE: If you want to remove an event from yourself, use index user`\
-`Example: rmevent user type/dated en/CS2103T Lecture`\
+`Example: rmevent user en/CS2103T Lecture`\
 
 ### Add recurring events to you/your friend's schedule : `addschedule`
 This command adds a recurring event to you or your friend's schedule.
