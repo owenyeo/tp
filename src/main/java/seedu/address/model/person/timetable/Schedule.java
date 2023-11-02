@@ -8,6 +8,8 @@ import java.util.List;
 
 import seedu.address.model.person.Person;
 
+import static java.util.Objects.isNull;
+
 /**
  * Represents a schedule consisting of modules, CCAs (Co-Curricular Activities), and dated events.
  */
@@ -142,17 +144,19 @@ public class Schedule {
                     startSlot = -1;
                 }
             }
-            if (startSlot != -1) {
-                // Free time slot goes until the end of the day
-                freeTimes.add(createFreeTime(day, startSlot, 47));
-            }
         }
 
         return freeTimes;
     }
 
     public boolean hasFreeTime() {
-        return !getThisWeeksFreeTime().isEmpty();
+        List<FreeTime> freeTimes = getThisWeeksFreeTime();
+        for (FreeTime freeTime : freeTimes) {
+            if (!isNull(freeTime)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**

@@ -1,14 +1,10 @@
 package seedu.address.model.person.timetable;
 
-import java.util.Arrays;
-
 /**
  * Represents the half-hour blocks within a day.
- * Each block is represented as a boolean value indicating if that half-hour block is free.
+ * Each block is represented by a start time and end time.
  */
 public class HalfHourBlocks implements Comparable<HalfHourBlocks> {
-    private static final int BLOCKS_IN_DAY = 48;
-    private final boolean[] blocks = new boolean[BLOCKS_IN_DAY];
     private final int startHalfHour;
     private final int endHalfHour;
 
@@ -19,9 +15,6 @@ public class HalfHourBlocks implements Comparable<HalfHourBlocks> {
      * @param endHalfHour The ending half-hour block (exclusive).
      */
     public HalfHourBlocks(int startHalfHour, int endHalfHour) {
-        for (int i = startHalfHour; i < endHalfHour; i++) {
-            blocks[i] = true;
-        }
         this.startHalfHour = startHalfHour;
         this.endHalfHour = endHalfHour;
     }
@@ -33,12 +26,7 @@ public class HalfHourBlocks implements Comparable<HalfHourBlocks> {
      * @return true if there's an overlap, false otherwise.
      */
     public boolean overlaps(HalfHourBlocks other) {
-        for (int i = 0; i < BLOCKS_IN_DAY; i++) {
-            if (this.blocks[i] && other.blocks[i]) {
-                return true;
-            }
-        }
-        return false;
+        return this.startHalfHour < other.endHalfHour && other.startHalfHour < this.endHalfHour;
     }
 
     /**
@@ -48,17 +36,21 @@ public class HalfHourBlocks implements Comparable<HalfHourBlocks> {
      * @return A new HalfHourBlocks representing the overlap.
      */
     public HalfHourBlocks getOverlap(HalfHourBlocks other) {
-        HalfHourBlocks overlap = new HalfHourBlocks(0, 0);
-        for (int i = 0; i < BLOCKS_IN_DAY; i++) {
-            overlap.blocks[i] = this.blocks[i] && other.blocks[i];
+        if (!this.overlaps(other)) {
+            return null;
         }
-        return overlap;
+        int overlapStart = Math.max(this.startHalfHour, other.startHalfHour);
+        int overlapEnd = Math.min(this.endHalfHour, other.endHalfHour);
+        return new HalfHourBlocks(overlapStart, overlapEnd);
     }
 
     @Override
     public int compareTo(HalfHourBlocks other) {
-        assert(other.equals(other));
-        return Integer.compare(this.startHalfHour, other.startHalfHour);
+        if (this.startHalfHour != other.startHalfHour) {
+            return Integer.compare(this.startHalfHour, other.startHalfHour);
+        } else {
+            return Integer.compare(this.endHalfHour, other.endHalfHour);
+        }
     }
 
     @Override
@@ -66,34 +58,27 @@ public class HalfHourBlocks implements Comparable<HalfHourBlocks> {
         if (this == other) {
             return true;
         }
-
         if (other == null || getClass() != other.getClass()) {
             return false;
         }
-
         HalfHourBlocks that = (HalfHourBlocks) other;
-        return Arrays.equals(blocks, that.blocks);
+        return this.startHalfHour == that.startHalfHour && this.endHalfHour == that.endHalfHour;
     }
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(blocks);
+        return 31 * startHalfHour + endHalfHour;
     }
 
     /**
      * Returns a string representation of the HalfHourBlocks object.
-     * The string contains the indices of the half-hour blocks that are marked as free time, separated by a hyphen.
-     * For example, if blocks 0, 2, and 4 are marked as free time, the string returned will be "0-2-4-".
      *
      * @return A string representation of the HalfHourBlocks object.
      */
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        String startTimeInt = String.format("%04d", startHalfHour / 2 * 100 + (startHalfHour % 2) * 30);
-        String endTimeInt = String.format("%04d", endHalfHour / 2 * 100 + (endHalfHour % 2) * 30);
-        sb.append(startTimeInt).append(" ").append(endTimeInt);
-
-        return sb.toString();
+        String startTimeString = String.format("%04d", startHalfHour / 2 * 100 + (startHalfHour % 2) * 30);
+        String endTimeString = String.format("%04d", endHalfHour / 2 * 100 + (endHalfHour % 2) * 30);
+        return startTimeString + " " + endTimeString;
     }
 }
