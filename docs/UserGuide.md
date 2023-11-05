@@ -377,6 +377,51 @@ If wrong command format is used (i.e missing prefixes, wrong event name):\
 `NOTE: If you want to remove an event from yourself, use index user`\
 `Example: rmschedule user type/cca en/CS2103T Lecture`\
 
+### Set Reminder for dated events: `setReminder`
+
+Sets a reminder for a dated event from the user's schedule
+
+Format: \
+To set a reminder a dated event in your schedule, you can use the setReminder command with the following parameters:
+
+`setReminder [EVENT_NAME]`
+
+Successful command: 
+
+Set reminder for an event:\
+`setReminder CS2103T Lecture`\
+`Reminder set for following event:`\
+`CS2103T Lecture`
+
+Unsuccessful command:
+
+If an invalid event name is used:\
+`setReminder CS1111 Lecture`\
+`No such event exists!`
+
+### Set Reminder for dated events: `rmReminder`
+
+Remove a reminder for a dated event from the user's schedule
+
+Format: \
+To remove a reminder set for an event in your schedule, you can use the 
+rmReminder command with the following parameters:
+
+`rmReminder [EVENT_NAME]`
+
+Successful command:
+
+Remove reminder for an event:\
+`rmReminder CS2103T Lecture`\
+`Reminder removed for following event:`\
+`CS2103T Lecture`
+
+Unsuccessful command:\
+If an invalid event name is used:\
+`rmReminder CS1111 Lecture`\
+`No such event exists!`
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from TimetaBRO.

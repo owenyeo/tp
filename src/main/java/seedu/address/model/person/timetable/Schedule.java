@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.commands.exceptions.CommandException;
 
 /**
  * Represents a schedule consisting of modules, CCAs (Co-Curricular Activities), and dated events.
@@ -67,24 +68,18 @@ public class Schedule {
 
 
     /**
-     * Retrieves the list of dated events scheduled for the current week that have reminders.
+     * Retrieves the list of dated events.
      *
-     * @return A list of dated events with reminders for the current week.
+     * @return A list of dated events for the current day.
      */
-    public List<DatedEvent> getThisWeeksDatedEventsWithReminder() {
-        LocalDate today = LocalDate.now();
-        LocalDate startOfThisWeek = today.minusDays(today.getDayOfWeek().getValue() - DayOfWeek.MONDAY.getValue());
-        LocalDate endOfThisWeek = startOfThisWeek.plusDays(6);
-
-        List<DatedEvent> thisWeeksDatedEventsWithReminder = new ArrayList<>();
+    public List<DatedEvent> getTodayDatedEvents() {
+        List<DatedEvent> thisWeeksDatedEvents = new ArrayList<>();
         for (DatedEvent event : datedEventsList) {
-            if (event.getDate().isAfter(startOfThisWeek.minusDays(1))
-                    && event.getDate().isBefore(endOfThisWeek.plusDays(1))
-                    && event.hasReminder()) { // This checks if the event has a reminder set.
-                thisWeeksDatedEventsWithReminder.add(event);
+            if (event.getDate().equals(LocalDate.now()) && event.hasReminder()) {
+                thisWeeksDatedEvents.add(event);
             }
         }
-        return thisWeeksDatedEventsWithReminder;
+        return thisWeeksDatedEvents;
     }
 
     /**
@@ -395,7 +390,7 @@ public class Schedule {
      *
      * @param eventName Name of the dated event to be removed.
      */
-    public void deleteDatedEvent(String eventName) throws Exception {
+    public void deleteDatedEvent(String eventName) throws CommandException {
         boolean isFound = false;
         for (DatedEvent event : datedEventsList) {
             if (event.getName().equals(eventName)) {
@@ -406,7 +401,7 @@ public class Schedule {
         }
 
         if (!isFound) {
-            throw new Exception("Meet-up event " + eventName + " does not exist!");
+            throw new CommandException("Meet-up event " + eventName + " does not exist!");
         }
     }
 
