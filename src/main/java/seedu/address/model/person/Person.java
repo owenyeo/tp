@@ -1,6 +1,6 @@
 package seedu.address.model.person;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,7 +36,7 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address,
             Birthday birthday, Schedule schedule, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, birthday, tags);
+        requireNonNull(name);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -109,7 +109,34 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().equals(getName())
+                && otherPerson.getBirthday().equals(getBirthday());
+    }
+
+    /**
+     * Returns true if both persons have the same phone number.
+     * This defines a notion of equality between two persons.
+     */
+    public boolean isSamePhone(Person otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+
+        return otherPerson != null
+                && otherPerson.getPhone().equals(getPhone());
+    }
+
+    /**
+     * Returns true if both persons have the same email address.
+     * This defines a notion of equality between two persons.
+     */
+    public boolean isSameEmail(Person otherPerson) {
+        if (otherPerson == this) {
+            return true;
+        }
+
+        return otherPerson != null
+                && otherPerson.getEmail().equals(getEmail());
     }
 
     /**
