@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
-
+import java.time.format.DateTimeParseException;
 /**
  * Represents a Person's birthday in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidBirthday(String)}
@@ -27,7 +27,19 @@ public class Birthday {
         date = birthday;
     }
 
+    /**
+     * Returns true if a given string is a valid birthday.
+     */
     public static Boolean isValidBirthday(String test) {
+        if (test == "") {
+            return true;
+        }
+        try {
+            LocalDate.parse(test);
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -37,6 +49,9 @@ public class Birthday {
     }
 
     public LocalDate getDate() {
+        if (date == "") {
+            return LocalDate.parse("1900-01-01");
+        }
         return LocalDate.parse(date);
     }
 

@@ -14,7 +14,6 @@ import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.timetable.FreeTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -49,7 +48,21 @@ public class ParserUtil {
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+
+        // Split the name into words based on spaces
+        String[] words = trimmedName.split("\\s+");
+        StringBuilder capitalizedBuilder = new StringBuilder();
+
+        for (String word : words) {
+            // Capitalize the first letter of each word and lowercase the rest of the letters
+            String capitalizedWord = word.substring(0, 1).toUpperCase()
+                + word.substring(1).toLowerCase();
+            capitalizedBuilder.append(capitalizedWord).append(" ");
+        }
+
+        // Trim the trailing space
+        String capitalizedTrimmedName = capitalizedBuilder.toString().trim();
+        return new Name(capitalizedTrimmedName);
     }
 
     /**
@@ -61,6 +74,10 @@ public class ParserUtil {
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
+        if (phone == "") {
+            return new Phone("");
+        }
+
         if (!Phone.isValidPhone(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
@@ -76,6 +93,10 @@ public class ParserUtil {
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
+        if (address == "") {
+            return new Address("");
+        }
+
         if (!Address.isValidAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
@@ -91,6 +112,11 @@ public class ParserUtil {
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
+
+        if (email == "") {
+            return new Email("");
+        }
+
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
@@ -103,37 +129,13 @@ public class ParserUtil {
     public static Birthday parseBirthday(String date) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
+        if (date == "") {
+            return new Birthday("");
+        }
         if (!Birthday.isValidBirthday(trimmedDate)) {
             throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
         }
         return new Birthday(date);
-    }
-
-    /**
-     * Parses a {@code String freeTime} into a {@code FreeTime}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code freeTime} is invalid.
-     */
-    public static FreeTime parseFreeTime(String freeTime) throws ParseException {
-        requireNonNull(freeTime);
-        String trimmedFreeTime = freeTime.trim();
-        if (!FreeTime.isValidFreeTime(trimmedFreeTime)) {
-            throw new ParseException(FreeTime.MESSAGE_CONSTRAINTS);
-        }
-        return new FreeTime(trimmedFreeTime);
-    }
-
-    /**
-     * Parses {@code Collection<String> freeTimes} into a {@code Set<FreeTime>}.
-     */
-    public static Set<FreeTime> parseFreeTimes(Collection<String> freeTimes) throws ParseException {
-        requireNonNull(freeTimes);
-        final Set<FreeTime> freeTimeSet = new HashSet<>();
-        for (String freeTimeName : freeTimes) {
-            freeTimeSet.add(parseFreeTime(freeTimeName));
-        }
-        return freeTimeSet;
     }
 
     /**
