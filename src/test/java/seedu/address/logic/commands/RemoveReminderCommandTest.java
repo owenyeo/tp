@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalUsers.JANE;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +22,7 @@ public class RemoveReminderCommandTest {
 
     @Test
     public void execute_validEvent_success() {
-        User newUser = new UserBuilder().build();
+        User newUser = new UserBuilder(JANE).build();
         model.setUser(newUser);
         RemoveReminderCommand removeReminderCommand = new RemoveReminderCommand("CS2103 Meeting");
         String expectedMessage = RemoveReminderCommand.MESSAGE_REMOVE_REMINDER_SUCCESS + "CS2103 Meeting";

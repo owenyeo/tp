@@ -377,6 +377,51 @@ If wrong command format is used (i.e missing prefixes, wrong event name):\
 `NOTE: If you want to remove an event from yourself, use index user`\
 `Example: rmschedule user type/cca en/CS2103T Lecture`\
 
+### Set Reminder for dated events: `setReminder`
+
+Sets a reminder for a dated event from the user's schedule
+
+Format: \
+To set a reminder a dated event in your schedule, you can use the setReminder command with the following parameters:
+
+`setReminder [EVENT_NAME]`
+
+Successful command: 
+
+Set reminder for an event:\
+`setReminder CS2103T Lecture`\
+`Reminder set for following event:`\
+`CS2103T Lecture`
+
+Unsuccessful command:
+
+If an invalid event name is used:\
+`setReminder CS1111 Lecture`\
+`No such event exists!`
+
+### Set Reminder for dated events: `rmReminder`
+
+Remove a reminder for a dated event from the user's schedule
+
+Format: \
+To remove a reminder set for an event in your schedule, you can use the 
+rmReminder command with the following parameters:
+
+`rmReminder [EVENT_NAME]`
+
+Successful command:
+
+Remove reminder for an event:\
+`rmReminder CS2103T Lecture`\
+`Reminder removed for following event:`\
+`CS2103T Lecture`
+
+Unsuccessful command:\
+If an invalid event name is used:\
+`rmReminder CS1111 Lecture`\
+`No such event exists!`
+
+
 ### Clearing all entries : `clear`
 
 Clears all entries from TimetaBRO.
@@ -450,17 +495,20 @@ If your changes to the data file makes its format invalid, TimetaBRO will discar
 
 ## Command Summary
 
-| Action                 | Format and Examples                                                                                                              |
-|------------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| **Add a Friend**       | `add n/NAME [u/NICKNAME] p/PHONE_NUMBER t/TELEGRAM_HANDLE e/EMAIL [m/MODULE /from START_TIME /to END_TIME /day DAY] [t/TAG]…​`<br> Example: `add n/John Doe p/98765432 t/johndoe e/johnd@example.com m/CS2103T /from 1200 /to 1300 /day Wednesday t/police` |
-| **Add an Event**       | `addevent [INDEX] type/[EVENT_TYPE] en/[EVENT NAME] h/[DATE TIME] r/[REMINDER]`<br> Example: `addevent 1 type/dated en/CS2030 Finals h/2023-10-31 1000 1400 r/y`                            |
-| **Remove an Event**    | `rmevent [INDEX] type/[EVENT_TYPE] en/[EVENT NAME]`<br> Example: `rmevent 1 type/dated en/CS2103T Lecture`                                                                  |
-| **Add a Recurring Event** | `addschedule [INDEX] type/[EVENT_TYPE] en/[EVENT NAME] h/[DAY TIME]`<br> Example: `addschedule 1 type/module en/CS2030 h/Monday 1000 1400`                                |
-| **Remove a Recurring Event** | `rmschedule [INDEX] type/[EVENT_TYPE] en/[EVENT NAME]`<br> Example: `rmschedule 1 type/CCA en/CS2103T Lecture`                                                           |
-| **Clear All Entries**  | `clear`                                                                                                                                                                                  |
-| **Delete a Friend**    | `delete INDEX`<br> Example: `delete 3`                                                                                                                                                  |
-| **Edit Friend Info**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [t/TELEGRAM_HANDLE] [e/EMAIL] [m/MODULE /from START_TIME /to END_TIME /day DAY] [t/TAG]…​`<br> Example: `edit 2 n/James Lee e/jameslee@example.com` |
-| **List All Friends**   | `list`                                                                                                                                                                                   |
-| **View Help**          | `help`                                                                                                                                                                                   |
-| **Find Common Free Times** | `cft [INDEX]`<br>NOTE: To check common free times with entire friends list, use `cft` without any index.<br>Example: `cft`                                                                                                                                                                          |
+| Action                       | Format and Examples                                                                                                                                                                        |
+|------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add a Friend**             | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]…​`<br> Example: `add n/John Doe p/98765432 e/johnd@example.com a/1 Hon Sui Sen Dr, Singapore 117588 b/2023-11-05 t/police` |
+| **Add an Event**             | `addevent [INDEX] type/EVENT_TYPE en/EVENT NAME h/DATE TIME r/REMINDER`<br> Example: `addevent 1 type/dated en/CS2030 Finals h/2023-10-31 1000 1400 r/y`                                   |
+| **Remove an Event**          | `rmevent [INDEX] type/EVENT_TYPE en/EVENT NAME`<br> Example: `rmevent 1 type/dated en/CS2103T Lecture`                                                                                     |
+| **Add a Recurring Event**    | `addschedule [INDEX] type/EVENT_TYPE en/EVENT_NAME h/DAY TIME`<br> Example: `addschedule 1 type/module en/CS2030 h/Monday 1000 1400`                                                       |
+| **Remove a Recurring Event** | `rmschedule [INDEX] type/EVENT_TYPE en/EVENT_NAME`<br> Example: `rmschedule 1 type/CCA en/CS2103T Lecture`                                                                                 |
+| **Remove a Reminder**        | `rmReminder EVENT_NAME`<br> Example: `rmReminder CS2103T Lecture`                                                                                                                          |
+| **Set a Reminder**           | `setReminder EVENT_NAME`<br> Example: `setReminder CS2103T Lecture`                                                                                                                        |
+| **Clear All Entries**        | `clear`                                                                                                                                                                                    |
+| **Delete a Friend**          | `delete INDEX`<br> Example: `delete 3`                                                                                                                                                     |
+| **Edit Friend Info**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`<br> Example: `edit 2 n/James Lee e/jameslee@example.com`                                               |
+| **Edit User Info**           | `user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`<br> Example: `user n/James Lee e/jameslee@example.com`                                                       |
+| **List All Friends**         | `list`                                                                                                                                                                                     |
+| **View Help**                | `help`                                                                                                                                                                                     |
+| **Find Common Free Times**   | `cft [INDEX]`<br>NOTE: To check common free times with entire friends list, use `cft` without any index.<br>Example: `cft`                                                                 |                                                                       
 

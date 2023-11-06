@@ -12,14 +12,8 @@ public class TypicalSchedule {
 
     public static final Schedule NORMAL_SCHEDULE = new ScheduleBuilder()
             .withModule(new Module("CS2103", "Wednesday 1200 1300"))
-            .withModule(new Module("CS2101", "Tuesday 1200 1400"))
-            .withModule(new Module("CS2100", "Monday 1400 1500"))
             .withCca(new Cca("Basketball", "Monday 1800 2000"))
-            .withCca(new Cca("Soccer", "Tuesday 1800 2000"))
-            .withCca(new Cca("Tennis", "Wednesday 1800 2000"))
             .withDatedEvent(DatedEvent.newDatedEvent("CS2103 Meeting 2023-10-10 1030 1130 y"))
-            .withDatedEvent(DatedEvent.newDatedEvent("Walk Dog 2023-10-10 1030 1130 n"))
-            .withDatedEvent(DatedEvent.newDatedEvent("Competitive sleeping 2023-10-10 1030 1130 y"))
             .build();
 
     public static final Schedule FULL_SCHEDULE = new ScheduleBuilder()

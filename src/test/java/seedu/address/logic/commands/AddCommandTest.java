@@ -188,12 +188,22 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<User> getUserView() {
-            throw new UnsupportedOperationException("This method should not be called.");
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public Person getPersonWithName(Name name) {
             return null;
+        }
+
+        @Override
+        public boolean hasPhone(Person person) {
+            throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public boolean hasEmail(Person person) {
+            throw new AssertionError("This method should not be called");
         }
 
     }

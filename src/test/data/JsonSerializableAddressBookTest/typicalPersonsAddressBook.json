@@ -44,27 +44,19 @@
     "birthday": "2000-01-01",
     "schedule" : {
       "datedEvents" : [ {
-        "name" : "Gym",
+        "name" : "CS2103 Meeting",
         "reminder" : true,
-        "timeBlockString" : "Thursday 1400 1600",
-        "localDateString" : "2023-11-02"
-      }, {
-        "name" : "Dance",
-        "reminder" : true,
-        "timeBlockString" : "Saturday 1200 1300",
-        "localDateString" : "2023-11-11"
+        "timeBlockString" : "Tuesday 1030 1130",
+        "localDateString" : "2023-10-10"
       } ],
       "modules" : [ {
         "name" : "CS2103",
-        "timeBlockString" : "Monday 1200 1400"
-      }, {
-        "name" : "CS2101",
-        "timeBlockString" : "Tuesday 1200 1400"
+        "timeBlockString" : "Wednesday 1200 1300"
       } ],
       "ccas" : [ {
-        "name" : "sleeping",
-        "timeBlockString" : "Monday 1200 1400"
-      }  ]
+        "name" : "Basketball",
+        "timeBlockString" : "Monday 1800 2000"
+      } ]
     },
     "tags" : [ "friends" ]
   }, {
@@ -72,32 +64,20 @@
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
-    "birthday": "2000-01-01",
-    "schedule" : {
+    "birthday": "2000-01-01",    "schedule" : {
       "datedEvents" : [ {
-        "name" : "Aerobics",
+        "name" : "CS2103 Meeting",
         "reminder" : true,
-        "timeBlockString" : "Wednesday 1400 1600",
-        "localDateString" : "2023-11-01"
-      }, {
-        "name" : "Meet with Bob",
-        "reminder" : true,
-        "timeBlockString" : "Sunday 1900 2000",
-        "localDateString" : "2023-11-12"
+        "timeBlockString" : "Tuesday 1030 1130",
+        "localDateString" : "2023-10-10"
       } ],
       "modules" : [ {
         "name" : "CS2103",
-        "timeBlockString" : "Monday 1200 1400"
-      }, {
-        "name" : "CS2101",
-        "timeBlockString" : "Tuesday 1200 1400"
+        "timeBlockString" : "Wednesday 1200 1300"
       } ],
       "ccas" : [ {
-        "name" : "sleeping",
-        "timeBlockString" : "Monday 1200 1400"
-      }, {
-        "name" : "eating",
-        "timeBlockString" : "Tuesday 1200 1400"
+        "name" : "Basketball",
+        "timeBlockString" : "Monday 1800 2000"
       } ]
     },
     "tags" : [ ]
@@ -109,29 +89,18 @@
     "birthday": "2000-01-01",
     "schedule" : {
       "datedEvents" : [ {
-        "name" : "Cooking",
-        "reminder" : false,
-        "timeBlockString" : "Thursday 1400 1600",
-        "localDateString" : "2023-11-02"
-      }, {
-        "name" : "Dance",
+        "name" : "CS2103 Meeting",
         "reminder" : true,
-        "timeBlockString" : "Saturday 1200 1300",
-        "localDateString" : "2023-11-11"
+        "timeBlockString" : "Tuesday 1030 1130",
+        "localDateString" : "2023-10-10"
       } ],
       "modules" : [ {
-        "name" : "CS2100",
-        "timeBlockString" : "Friday 1000 1400"
-      }, {
-        "name" : "CS2109",
-        "timeBlockString" : "Thursday 0800 1000"
+        "name" : "CS2103",
+        "timeBlockString" : "Wednesday 1200 1300"
       } ],
       "ccas" : [ {
-        "name" : "sleeping",
-        "timeBlockString" : "Monday 1200 1400"
-      }, {
-        "name" : "eating",
-        "timeBlockString" : "Tuesday 1200 1400"
+        "name" : "Basketball",
+        "timeBlockString" : "Monday 1800 2000"
       } ]
     },
     "tags" : [ ]
@@ -143,29 +112,18 @@
     "birthday": "2000-01-01",
     "schedule" : {
       "datedEvents" : [ {
-        "name" : "Clubbing",
+        "name" : "CS2103 Meeting",
         "reminder" : true,
-        "timeBlockString" : "Friday 2200 0300",
-        "localDateString" : "2023-11-02"
-      }, {
-        "name" : "Beach day",
-        "reminder" : true,
-        "timeBlockString" : "Saturday 1200 1800",
-        "localDateString" : "2023-11-11"
+        "timeBlockString" : "Tuesday 1030 1130",
+        "localDateString" : "2023-10-10"
       } ],
       "modules" : [ {
-        "name" : "CS2040",
-        "timeBlockString" : "Monday 1600 1800"
-      }, {
-        "name" : "ES2660",
-        "timeBlockString" : "Thursday 0800 1200"
+        "name" : "CS2103",
+        "timeBlockString" : "Wednesday 1200 1300"
       } ],
       "ccas" : [ {
-        "name" : "Muay Thai",
-        "timeBlockString" : "Monday 1200 1400"
-      }, {
         "name" : "Basketball",
-        "timeBlockString" : "Tuesday 1200 1400"
+        "timeBlockString" : "Monday 1800 2000"
       } ]
     },
     "tags" : [ ]
