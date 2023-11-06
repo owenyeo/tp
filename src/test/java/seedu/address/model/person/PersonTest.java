@@ -25,6 +25,18 @@ public class PersonTest {
     }
 
     @Test
+    public void isSamePhone() {
+        assertTrue(ALICE.isSamePhone(ALICE));
+        assertFalse(ALICE.isSamePerson(new PersonBuilder().withName(VALID_NAME_BOB).build()));
+    }
+
+    @Test
+    public void isSameEmail() {
+        assertTrue(ALICE.isSameEmail(ALICE));
+        assertFalse(ALICE.isSamePerson(new PersonBuilder().withName(VALID_NAME_BOB).build()));
+    }
+
+    @Test
     public void isSamePerson() {
         // same object -> returns true
         assertTrue(ALICE.isSamePerson(ALICE));
