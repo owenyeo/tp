@@ -23,7 +23,8 @@ public class UserTest {
     @Test
     public void returnRemindedDatedEvents() {
         User user = new UserBuilder().build();
-        user.getDatedEvents().add(new DatedEvent("Walk Dog", "Monday 1030 1130", LocalDate.now().toString(), true));
+        user.getSchedule().addDatedEvent(new DatedEvent("Walk Dog", "Monday 1030 1130",
+                LocalDate.now().toString(), true));
         String expectedMessage = "Walk Dog Monday 1030 1130\n";
         assertEquals(expectedMessage, user.returnRemindedEvent());
     }
