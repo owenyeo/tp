@@ -61,7 +61,7 @@
     "tags" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
-    "phone" : "9482224",
+    "phone" : "94822243",
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "birthday": "2000-01-01",    "schedule" : {
@@ -83,7 +83,7 @@
     "tags" : [ ]
   }, {
     "name" : "Fiona Kunz",
-    "phone" : "9482427",
+    "phone" : "94824272",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "birthday": "2000-01-01",
@@ -106,7 +106,7 @@
     "tags" : [ ]
   }, {
     "name" : "George Best",
-    "phone" : "9482442",
+    "phone" : "94824424",
     "email" : "anna@example.com",
     "address" : "4th street",
     "birthday": "2000-01-01",
