@@ -74,15 +74,6 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a set of free times containing the list of strings given.
-     */
-    public static Set<FreeTime> getFreeTimeSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(FreeTime::new)
-                .collect(Collectors.toSet());
-    }
-
-    /**
      * Returns a tag set containing the list of strings given.
      */
     public static Set<Tag> getTagSet(String... strings) {

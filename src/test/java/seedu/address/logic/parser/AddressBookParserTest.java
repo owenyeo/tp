@@ -6,6 +6,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalUsers.JANE;
 import static seedu.address.testutil.TypicalUsers.JOHN;
 
 import java.util.Arrays;
@@ -15,14 +16,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.CommonFreetimeCommand;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.commands.edit.EditCommand;
 import seedu.address.logic.commands.edit.EditPersonDescriptor;
 import seedu.address.logic.commands.edit.EditUserCommand;
@@ -92,6 +86,50 @@ public class AddressBookParserTest {
         CommonFreetimeCommand command = (CommonFreetimeCommand) parser.parseCommand(
                 CommonFreetimeCommand.COMMAND_WORD);
         assertEquals(new CommonFreetimeCommand(), command);
+    }
+
+    @Test
+    public void parseCommand_setReminder() throws Exception {
+        SetReminderCommand command = (SetReminderCommand) parser.parseCommand(
+                SetReminderCommand.COMMAND_WORD + " CS2103 Meeting");
+        assertEquals(new SetReminderCommand("CS2103 Meeting"), command);
+    }
+
+    @Test
+    public void parseCommand_removeReminder() throws Exception {
+        RemoveReminderCommand command = (RemoveReminderCommand) parser.parseCommand(
+                RemoveReminderCommand.COMMAND_WORD + " CS2103 Meeting");
+        assertEquals(new RemoveReminderCommand("CS2103 Meeting"), command);
+    }
+
+    @Test
+    public void parseCommand_addEvent() throws Exception {
+        AddEventCommand command = (AddEventCommand) parser.parseCommand(
+                AddEventCommand.COMMAND_WORD + " user en/CS2103 Meeting h/2023-10-10 1030 1130 r/y");
+        assertEquals(new AddEventCommand("CS2103 Meeting",
+                "2023-10-10 1030 1130", "y"), command);
+    }
+
+    @Test
+    public void parseCommand_addSchedule() throws Exception {
+        AddScheduleCommand command = (AddScheduleCommand) parser.parseCommand(
+                AddScheduleCommand.COMMAND_WORD + " user type/cca en/Basketball h/Monday 1030 1130");
+        assertEquals(new AddScheduleCommand("cca", "Basketball", "Monday 1030 1130"),
+                command);
+    }
+
+    @Test
+    public void parseCommand_removeEvent() throws Exception {
+        RemoveEventCommand command = (RemoveEventCommand) parser.parseCommand(
+                RemoveEventCommand.COMMAND_WORD + " user en/CS2103 Meeting");
+        assertEquals(new RemoveEventCommand("CS2103 Meeting", null), command);
+    }
+
+    @Test
+    public void parseCommand_removeSchedule() throws Exception {
+        RemoveScheduleCommand command = (RemoveScheduleCommand) parser.parseCommand(
+                RemoveScheduleCommand.COMMAND_WORD + " user type/cca en/Basketball");
+        assertEquals(new RemoveScheduleCommand("cca", "Basketball"), command);
     }
 
 

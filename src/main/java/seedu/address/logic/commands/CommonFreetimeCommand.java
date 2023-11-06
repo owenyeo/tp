@@ -169,6 +169,7 @@ public class CommonFreetimeCommand extends Command {
      * @return List of common free times with specified contact.
      * @throws CommandException if an error occurs during command execution.
      */
+    /**
     public List<FreeTime> getCommonFreeTimeWith(Model model, Name contactName) throws CommandException {
         Person friend = model.getPersonWithName(contactName);
         Schedule friendSchedule = friend.getSchedule();
@@ -180,6 +181,7 @@ public class CommonFreetimeCommand extends Command {
             return commonFreeTime;
         }
     }
+     */
 
     @Override
     public boolean equals(Object other) {

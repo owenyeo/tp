@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
 import seedu.address.model.user.User;
 import seedu.address.model.user.UserData;
 import seedu.address.model.user.UserPrefs;
@@ -161,5 +162,13 @@ public class ModelManagerTest {
         modelManager.addPerson(new PersonBuilder().withName("Alice Pauline")
                 .withBirthday(LocalDate.now().toString()).build());
         assertEquals("Alice Pauline\n", modelManager.getBirthdayList());
+    }
+
+    @Test
+    public void getPersonWithName() {
+        modelManager.addPerson(ALICE);
+        Person expectedPerson = ALICE;
+        Person actualPerson = modelManager.getPersonWithName(expectedPerson.getName());
+        assertEquals(expectedPerson, actualPerson);
     }
 }

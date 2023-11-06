@@ -1,9 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTNAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTTYPE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.stream.Stream;
 
@@ -32,10 +30,8 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
                 + AddScheduleCommand.MESSAGE_USAGE));
         }
 
-        if (!arePrefixesUnique(argMultimap, PREFIX_EVENTNAME, PREFIX_EVENTTYPE, PREFIX_SCHEDULE)) {
-            throw new ParseException(String.format("You can only have 1 of each prefix!\n"
-                + AddScheduleCommand.MESSAGE_USAGE));
-        }
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EVENTNAME, PREFIX_SCHEDULE,
+                PREFIX_REMINDER);
 
         String indexString;
 
@@ -69,12 +65,4 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
-    /**
-     * Returns true if there are duplicate prefixes
-     * @param argumentMultimap
-     * @param prefixes
-     */
-    private static boolean arePrefixesUnique(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getAllValues(prefix).size() == 1);
-    }
 }

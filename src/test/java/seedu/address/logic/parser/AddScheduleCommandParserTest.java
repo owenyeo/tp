@@ -1,4 +1,4 @@
-/**package seedu.address.logic.parser;
+package seedu.address.logic.parser;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTTYPE;
@@ -102,11 +102,8 @@ public class AddScheduleCommandParserTest {
                 expectedMessage);
 
         // wrong index
-        // assertParseFailure(parser, "wrong type/dated en/CS2103 Meeting h/2023-10-10 1030 1130 r/y",
-        //        expectedMessage2);
+        assertParseFailure(parser, "wrong type/dated en/CS2103 Meeting h/2023-10-10 1030 1130 r/y",
+                expectedMessage2);
     }
 
-    // refer to addeventcommand parser
-
 }
-*/

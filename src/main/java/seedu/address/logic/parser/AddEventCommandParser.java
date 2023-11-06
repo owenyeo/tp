@@ -34,11 +34,8 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
                 + AddEventCommand.MESSAGE_USAGE));
         }
 
-        if (!arePrefixesUnique(argMultimap, PREFIX_EVENTNAME,
-            PREFIX_SCHEDULE, PREFIX_REMINDER)) {
-            throw new ParseException(String.format("You can only have 1 of each prefix!\n"
-                + AddEventCommand.MESSAGE_USAGE));
-        }
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EVENTNAME, PREFIX_SCHEDULE,
+            PREFIX_REMINDER);
 
         String indexString;
 
@@ -71,12 +68,4 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
-    /**
-     * Returns true if there are duplicate prefixes
-     * @param argumentMultimap
-     * @param prefixes
-     */
-    private static boolean arePrefixesUnique(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getAllValues(prefix).size() == 1);
-    }
 }
