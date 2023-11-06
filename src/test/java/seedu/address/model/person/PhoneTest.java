@@ -43,10 +43,6 @@ public class PhoneTest {
         // same values -> returns true
         assertTrue(phone.equals(new Phone("91792309")));
 
-        Phone phone = new Phone("99999999");
-        // same values -> returns true
-        assertTrue(phone.equals(new Phone("99999999")));
-
         // same object -> returns true
         assertTrue(phone.equals(phone));
 
