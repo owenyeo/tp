@@ -33,6 +33,7 @@ public class PhoneTest {
 
         // valid phone numbers
         assertTrue(Phone.isValidPhone("93121534")); // exactly 8 numbers
+        assertTrue(Phone.isValidPhone(""));
     }
 
     @Test
@@ -41,6 +42,10 @@ public class PhoneTest {
 
         // same values -> returns true
         assertTrue(phone.equals(new Phone("91792309")));
+
+        Phone phone = new Phone("99999999");
+        // same values -> returns true
+        assertTrue(phone.equals(new Phone("99999999")));
 
         // same object -> returns true
         assertTrue(phone.equals(phone));
@@ -53,11 +58,12 @@ public class PhoneTest {
 
         // different values -> returns false
         assertFalse(phone.equals(new Phone("91378808")));
+        assertFalse(phone.equals(new Phone("99599999")));
     }
 
     @Test
     public void testHashCode() {
-        Phone phone = new Phone("91792309");
-        assertEquals(phone.hashCode(), new Phone("91792309").hashCode());
+        Phone phone = new Phone("99999999");
+        assertEquals(phone.hashCode(), new Phone("99999999").hashCode());
     }
 }

@@ -2,9 +2,11 @@ package seedu.address.model.user;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
@@ -59,6 +61,7 @@ public class User extends Person {
     }
 
     public Optional<DatedEvent> getDatedEvent(String name) {
+        List<DatedEvent> datedEvents = getSchedule().getDatedEventsList();
         for (DatedEvent event: datedEvents) {
             if (event.getName().toLowerCase().equals(name.toLowerCase())) {
                 return Optional.of(event);
@@ -70,19 +73,19 @@ public class User extends Person {
     /**
      * Sets the reminder for the given event.
      */
-    public void setReminder(DatedEvent event) {
-        datedEvents.add(new DatedEvent(event.getName(), event.getTimeBlockString(),
+    public void setReminder(DatedEvent event) throws CommandException {
+        getSchedule().deleteDatedEvent(event.getName());
+        getSchedule().addDatedEvent(new DatedEvent(event.getName(), event.getTimeBlockString(),
                 event.getDate().toString(), true));
-        datedEvents.remove(event);
     }
 
     /**
      * Removes the reminder for the given event.
      */
-    public void removeReminder(DatedEvent event) {
-        datedEvents.add(new DatedEvent(event.getName(), event.getTimeBlockString(),
+    public void removeReminder(DatedEvent event) throws CommandException {
+        getSchedule().deleteDatedEvent(event.getName());
+        getSchedule().addDatedEvent(new DatedEvent(event.getName(), event.getTimeBlockString(),
                 event.getDate().toString(), false));
-        datedEvents.remove(event);
     }
 
     /**
@@ -90,6 +93,7 @@ public class User extends Person {
      */
     public String returnRemindedEvent() {
         StringBuilder sb = new StringBuilder();
+        List<DatedEvent> datedEvents = getSchedule().getTodayDatedEvents();
         for (DatedEvent event: datedEvents) {
             if (event.hasReminder() && event.getDate().equals(LocalDate.now())) {
                 sb.append(event.getStringForReminder() + "\n");

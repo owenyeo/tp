@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalUsers.JANE;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +22,7 @@ public class SetReminderCommandTest {
 
     @Test
     public void execute_validEvent_success() {
-        User newUser = new UserBuilder().build();
+        User newUser = new UserBuilder(JANE).build();
         model.setUser(newUser);
         SetReminderCommand setReminderCommand = new SetReminderCommand("CS2103 Meeting");
         String expectedMessage = SetReminderCommand.MESSAGE_SET_REMINDER_SUCCESS + "CS2103 Meeting";
