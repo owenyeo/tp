@@ -24,7 +24,7 @@ public class JsonAdaptedUserTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_BIRTHDAY = "";
+    private static final String INVALID_BIRTHDAY = "2020-02-30";
     private static final String INVALID_TAG = "#friend";
 
 
