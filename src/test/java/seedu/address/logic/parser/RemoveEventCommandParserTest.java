@@ -24,7 +24,7 @@ public class RemoveEventCommandParserTest {
 
         // dated event in friend
         assertParseSuccess(parser, "1 en/CS2103 Meeting",
-                new RemoveEventCommand("CS2103 Meeting",  Index.fromOneBased(1)));
+                new RemoveEventCommand("CS2103 Meeting", Index.fromOneBased(1)));
     }
 
     @Test
