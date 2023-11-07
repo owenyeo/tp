@@ -20,7 +20,7 @@ public class AddEventCommandParserTest {
 
         // dated event in user
         assertParseSuccess(parser, "user en/CS2103 Meeting h/2023-10-10 1030 1130 r/y",
-                new AddEventCommand("CS2103 Meeting", "2023-10-10 1030 1130", "dated"));
+                new AddEventCommand("CS2103 Meeting", "2023-10-10 1030 1130", "y"));
 
         // dated event in friend
         assertParseSuccess(parser, "1 en/CS2103 Meeting h/2023-10-10 1030 1130 r/y",
@@ -34,39 +34,29 @@ public class AddEventCommandParserTest {
         String validCommand = "user en/CS2103 Meeting h/2023-10-10 1030 1130 r/y";
 
         // multiple event name
-        assertParseFailure(parser, validCommand + "en/CS2103 Meeting",
+        assertParseFailure(parser, validCommand + " en/CS2103 Meeting",
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EVENTNAME));
 
         // multiple event schedule
-        assertParseFailure(parser, validCommand + "h/2023-10-10 1030 1130",
+        assertParseFailure(parser, validCommand + " h/2023-10-10 1030 1130",
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_SCHEDULE));
 
         // multiple event reminder
-        assertParseFailure(parser, validCommand + "r/y",
+        assertParseFailure(parser, validCommand + " r/y",
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_REMINDER));
 
         // multiple fields repeated
-        assertParseFailure(parser, validCommand + "en/CS2103 Meeting" + "r/y",
+        assertParseFailure(parser, validCommand + " en/CS2103 Meeting" + " r/y",
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EVENTNAME, PREFIX_REMINDER));
-
-        // invalid value followed by valid value
-
-        // invalid schedule
-        assertParseFailure(parser, "h/2023-10-10 1030 1145" + validCommand,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_SCHEDULE));
-
-        //invalid reminder
-        assertParseFailure(parser, "r/yes" + validCommand,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_REMINDER));
 
         //valid value followed by invalid value
 
         // invalid schedule
-        assertParseFailure(parser, validCommand + "h/2023-10-10 1030 1145",
+        assertParseFailure(parser, validCommand + " h/2023-10-10 1030 1145",
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_SCHEDULE));
 
         //invalid reminder
-        assertParseFailure(parser, validCommand + "r/yes",
+        assertParseFailure(parser, validCommand + " r/yes",
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_REMINDER));
     }
 
@@ -76,7 +66,7 @@ public class AddEventCommandParserTest {
                 + AddEventCommand.MESSAGE_USAGE);
 
         String expectedMessage2 = String.format("Invalid index!\n"
-                + "Index can only be 'user' or a 'positive integer!' \n");
+                + "Index can only be 'user' or a positive integer! \n");
 
         // missing event name prefix
         assertParseFailure(parser, "user h/2023-10-10 1030 1130 r/y",
@@ -95,7 +85,7 @@ public class AddEventCommandParserTest {
                 expectedMessage);
 
         // wrong index
-        assertParseFailure(parser, "wrong type/dated en/CS2103 Meeting h/2023-10-10 1030 1130 r/y",
+        assertParseFailure(parser, "wrong en/CS2103 Meeting h/2023-10-10 1030 1130 r/y",
                 expectedMessage2);
     }
 

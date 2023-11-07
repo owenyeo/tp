@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTTYPE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 
 import java.util.List;
@@ -52,8 +51,7 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
                 + "Duplicated prefixes are: " + duplicatePrefixString));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EVENTNAME, PREFIX_SCHEDULE,
-                PREFIX_REMINDER);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EVENTNAME, PREFIX_SCHEDULE, PREFIX_EVENTTYPE);
 
         String indexString;
 

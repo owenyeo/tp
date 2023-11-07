@@ -101,4 +101,5 @@ public class RemoveScheduleCommandParser implements Parser<RemoveScheduleCommand
         return Stream.of(prefixes).filter(prefix -> argumentMultimap.getAllValues(prefix).size() > 1)
             .collect(java.util.stream.Collectors.toList());
     }
+
 }

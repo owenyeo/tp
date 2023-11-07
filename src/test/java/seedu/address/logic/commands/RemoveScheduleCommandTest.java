@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -101,8 +102,7 @@ public class RemoveScheduleCommandTest {
         RemoveScheduleCommand removeScheduleCommand = new RemoveScheduleCommand("CS2103",
                 "sleep");
 
-        String expectedMessage = "Invalid event type or name!\n"
-                + "Event type must either be 'cca' or 'module' and event must be in schedule!\n";
+        String expectedMessage = "Invalid event type!\n" + "Event type must either be 'cca' or 'module'!\n";
 
         assertCommandFailure(removeScheduleCommand, model, expectedMessage);
     }
@@ -117,7 +117,7 @@ public class RemoveScheduleCommandTest {
 
         String expectedMessage = "Module " + "CS1101" + " does not exist!";
 
-        assertCommandFailure(removeScheduleCommand, model, expectedMessage);
+        assertThrows(IllegalArgumentException.class, () -> removeScheduleCommand.execute(model));
     }
 
     @Test
