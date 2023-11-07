@@ -23,7 +23,7 @@
 
       <HBox fx:id="helpMessageContainer" alignment="CENTER">
         <children>
-          <VBox minWidth="535" maxWidth="535">
+          <VBox>
 
             <Label styleClass="help_heading" >Welcome to TimetaBRO!</Label>
 
