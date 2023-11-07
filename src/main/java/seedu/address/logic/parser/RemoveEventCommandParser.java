@@ -52,7 +52,7 @@ public class RemoveEventCommandParser implements Parser<RemoveEventCommand> {
                 return new RemoveEventCommand(eventName, null);
             } else if (Integer.parseInt(indexString) > 0) {
                 return new RemoveEventCommand(eventName, ParserUtil.parseIndex(indexString));
-            } catch (NumberFormatException e) {
+            } else {
                 throw new ParseException(String.format("Invalid index!" + "\n"
                         + "Index can only be 'user' or a positive integer! \n"));
             }
