@@ -37,6 +37,7 @@ public class RemoveEventCommandParser implements Parser<RemoveEventCommand> {
                 + "Message Usage:\n" + RemoveEventCommand.MESSAGE_USAGE, missingPrefixString));
         }
 
+
         if (!arePrefixesUnique(argMultimap, PREFIX_EVENTNAME)) {
             List<Prefix> duplicatePrefix = getDuplicatePrefixes(argMultimap, PREFIX_EVENTNAME);
             String duplicatePrefixString = "";
@@ -54,13 +55,10 @@ public class RemoveEventCommandParser implements Parser<RemoveEventCommand> {
                 return new RemoveEventCommand(eventName, null);
             } else if (Integer.parseInt(indexString) > 0) {
                 return new RemoveEventCommand(eventName, ParserUtil.parseIndex(indexString));
-            } else {
-                throw new ParseException("Invalid index!\n"
-                        + "Index must either be 'user' or a positive integer!\n");
+            } catch (NumberFormatException e) {
+                throw new ParseException(String.format("Invalid index!" + "\n"
+                        + "Index can only be 'user' or a positive integer! \n"));
             }
-        } catch (Exception pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveEventCommand.MESSAGE_USAGE), pe);
         }
     }
 
@@ -71,6 +69,7 @@ public class RemoveEventCommandParser implements Parser<RemoveEventCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+
 
     /**
      * Returns true if there are duplicate prefixes

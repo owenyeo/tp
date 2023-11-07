@@ -61,9 +61,6 @@ public class RemoveScheduleCommandParser implements Parser<RemoveScheduleCommand
                 throw new ParseException("Invalid index!\n"
                         + "Index must either be 'user' or a positive integer!\n");
             }
-        } catch (Exception pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveScheduleCommand.MESSAGE_USAGE), pe);
         }
     }
 
@@ -100,4 +97,5 @@ public class RemoveScheduleCommandParser implements Parser<RemoveScheduleCommand
         return Stream.of(prefixes).filter(prefix -> argumentMultimap.getAllValues(prefix).size() > 1)
             .collect(java.util.stream.Collectors.toList());
     }
+
 }

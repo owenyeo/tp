@@ -126,7 +126,7 @@ public class AddressBookParserTest {
     public void parseCommand_addSchedule() throws Exception {
         AddScheduleCommand command = (AddScheduleCommand) parser.parseCommand(
                 AddScheduleCommand.COMMAND_WORD + " user type/cca en/Basketball h/Monday 1030 1130");
-        assertEquals(new AddScheduleCommand("cca", "Basketball", "Monday 1030 1130"),
+        assertEquals(new AddScheduleCommand("basketball", "cca", "Monday 1030 1130"),
                 command);
     }
 
@@ -134,14 +134,14 @@ public class AddressBookParserTest {
     public void parseCommand_removeEvent() throws Exception {
         RemoveEventCommand command = (RemoveEventCommand) parser.parseCommand(
                 RemoveEventCommand.COMMAND_WORD + " user en/CS2103 Meeting");
-        assertEquals(new RemoveEventCommand("CS2103 Meeting", null), command);
+        assertEquals(new RemoveEventCommand("cs2103 meeting", null), command);
     }
 
     @Test
     public void parseCommand_removeSchedule() throws Exception {
         RemoveScheduleCommand command = (RemoveScheduleCommand) parser.parseCommand(
                 RemoveScheduleCommand.COMMAND_WORD + " user type/cca en/Basketball");
-        assertEquals(new RemoveScheduleCommand("cca", "Basketball"), command);
+        assertEquals(new RemoveScheduleCommand("basketball", "cca"), command);
     }
 
 
