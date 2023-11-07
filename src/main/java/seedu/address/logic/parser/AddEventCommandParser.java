@@ -31,26 +31,26 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_EVENTNAME,
             PREFIX_SCHEDULE, PREFIX_REMINDER)) {
-                List<Prefix> missingPrefix = getMissingPrefixes(argMultimap, PREFIX_EVENTNAME,
-                    PREFIX_SCHEDULE, PREFIX_REMINDER);
-                String missingPrefixString = "";
-                for (Prefix prefix : missingPrefix) {
-                    missingPrefixString += prefix + " ";
-                }
-                throw new ParseException(String.format("Missing prefix(es) for %s!\n"
-                    + "Message Usage:\n" + AddEventCommand.MESSAGE_USAGE, missingPrefixString));
+            List<Prefix> missingPrefix = getMissingPrefixes(argMultimap, PREFIX_EVENTNAME,
+                PREFIX_SCHEDULE, PREFIX_REMINDER);
+            String missingPrefixString = "";
+            for (Prefix prefix : missingPrefix) {
+                missingPrefixString += prefix + " ";
+            }
+            throw new ParseException(String.format("Missing prefix(es) for %s!\n"
+                + "Message Usage:\n" + AddEventCommand.MESSAGE_USAGE, missingPrefixString));
         }
 
         if (!arePrefixesUnique(argMultimap, PREFIX_EVENTNAME,
             PREFIX_SCHEDULE, PREFIX_REMINDER)) {
-                List<Prefix> duplicatePrefix = getDuplicatePrefixes(argMultimap, PREFIX_EVENTNAME,
-                    PREFIX_SCHEDULE, PREFIX_REMINDER);
-                String duplicatePrefixString = "";
-                for (Prefix prefix : duplicatePrefix) {
-                    duplicatePrefixString += prefix + " ";
-                }
-                throw new ParseException(String.format("You can only have 1 of each prefix!\n"
-                    + "Duplicated prefixes are: " + duplicatePrefixString));
+            List<Prefix> duplicatePrefix = getDuplicatePrefixes(argMultimap, PREFIX_EVENTNAME,
+                PREFIX_SCHEDULE, PREFIX_REMINDER);
+            String duplicatePrefixString = "";
+            for (Prefix prefix : duplicatePrefix) {
+                duplicatePrefixString += prefix + " ";
+            }
+            throw new ParseException(String.format("You can only have 1 of each prefix!\n"
+                + "Duplicated prefixes are: " + duplicatePrefixString));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EVENTNAME, PREFIX_SCHEDULE,
