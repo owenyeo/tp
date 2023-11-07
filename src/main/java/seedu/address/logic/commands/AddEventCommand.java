@@ -50,10 +50,10 @@ public class AddEventCommand extends Command {
     /**
      * Constructs an AddEventCommand object with the specified event name, index, schedule,
      * reminder and event type.
-     * @param eventName
-     * @param index
-     * @param schedule
-     * @param reminder
+     * @param eventName The name of the event.
+     * @param index The index of the friend to add the event to.
+     * @param schedule The schedule of the event.
+     * @param reminder The reminder of the event.
      */
     public AddEventCommand(String eventName, Index index,
         String schedule, String reminder) {
@@ -69,10 +69,9 @@ public class AddEventCommand extends Command {
     /**
      * Constructs an AddEventCommand object with the specified event name, schedule,
      * reminder and event type.
-     * @param eventName
-     * @param schedule
-     * @param reminder
-     * @param eventType
+     * @param eventName The name of the event.
+     * @param schedule The schedule of the event.
+     * @param reminder The reminder of the event.
      */
     public AddEventCommand(String eventName, String schedule,
         String reminder) {

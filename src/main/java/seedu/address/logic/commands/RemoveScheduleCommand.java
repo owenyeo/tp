@@ -24,8 +24,8 @@ public class RemoveScheduleCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Removes an event from the specified contact's calendar.\n"
         + "Parameters: "
-        + "INDEX\n"
-        + "type/EVENT_TYPE\n"
+        + "INDEX (must be a positive integer) "
+        + "type/EVENT_TYPE (must be either 'cca' or 'module') "
         + "en/EVENT_NAME\n"
         + "Example: " + COMMAND_WORD
         + " 1"
@@ -75,10 +75,15 @@ public class RemoveScheduleCommand extends Command {
 
         Schedule userSchedule = model.getUser().getSchedule();
         try {
-            List<Person> lastShownList = model.getFilteredPersonList();
-            if (index.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX + "\n"
-                    + "Index can be max " + lastShownList.size() + "!");
+            if (this.index == null) {
+                friend = model.getUser();
+            } else {
+                List<Person> lastShownList = model.getFilteredPersonList();
+                if (index.getZeroBased() >= lastShownList.size()) {
+                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX + "\n"
+                        + "Index can be max " + lastShownList.size() + "!");
+                }
+                friend = model.getFilteredPersonList().get(index.getZeroBased());
             }
             switch (eventType) {
             // If the event is a cca event, remove it from the specified contact's calendar.
@@ -91,7 +96,7 @@ public class RemoveScheduleCommand extends Command {
                 } else {
                     friend = model.getFilteredPersonList().get(index.getZeroBased());
                     friend.getSchedule().deleteCca(eventName);
-                    return new CommandResult("Dated Event '"
+                    return new CommandResult("CCA '"
                         + eventName
                         + "'' deleted from "
                         + friend.getName().toString()
@@ -106,7 +111,7 @@ public class RemoveScheduleCommand extends Command {
                 } else {
                     friend = model.getFilteredPersonList().get(index.getZeroBased());
                     friend.getSchedule().deleteModule(eventName);
-                    return new CommandResult("Meetup Event '"
+                    return new CommandResult("Module '"
                         + eventName
                         + "'' deleted from "
                         + friend.getName().toString()
