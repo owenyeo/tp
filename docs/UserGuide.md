@@ -1,4 +1,7 @@
-# TimetaBRO User Guide
+---
+layout: page
+title: User Guide
+---
 
 ## Introduction
 
