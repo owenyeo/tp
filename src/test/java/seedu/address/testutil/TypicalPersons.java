@@ -37,21 +37,21 @@ public class TypicalPersons {
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withSchedule(NORMAL_SCHEDULE)
             .withBirthday("2000-01-01").withTags("friends").build();
-    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("94182224")
+    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("94822243")
             .withEmail("werner@example.com").withAddress("michegan ave").withSchedule(NORMAL_SCHEDULE)
             .withBirthday("2000-01-01").build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("94182427")
+    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("94824272")
             .withEmail("lydia@example.com").withAddress("little tokyo").withSchedule(NORMAL_SCHEDULE)
             .withBirthday("2000-01-01").build();
-    public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("94821442")
+    public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("94824424")
             .withEmail("anna@example.com").withAddress("4th street").withSchedule(NORMAL_SCHEDULE)
             .withBirthday("2000-01-01").build();
 
     // Manually added
-    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("84182424")
+    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("84824242")
             .withEmail("stefan@example.com").withAddress("little india").withSchedule(NORMAL_SCHEDULE)
             .withBirthday("2000-01-01").build();
-    public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("81482131")
+    public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("84821313")
             .withEmail("hans@example.com").withAddress("chicago ave").withSchedule(NORMAL_SCHEDULE)
             .withBirthday("2000-01-01").build();
 

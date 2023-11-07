@@ -15,6 +15,12 @@ public class EmailTest {
     }
 
     @Test
+    public void constructor_invalidEmail_throwsIllegalArgumentException() {
+        String invalidEmail = "@example.com";
+        assertThrows(IllegalArgumentException.class, () -> new Email(invalidEmail));
+    }
+
+    @Test
     public void isValidEmail() {
         // null email
         assertThrows(NullPointerException.class, () -> Email.isValidEmail(null));
