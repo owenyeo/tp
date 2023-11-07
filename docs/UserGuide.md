@@ -1,5 +1,3 @@
-# TimetaBRO User Guide
-
 ## Introduction
 
 Welcome to TimetaBRO, your ultimate companion for managing your university life, social interactions, and schedules. It is dedicated to **NUS students who have many things on their plate, and have trouble arranging meetings with friends and teammates**.
@@ -23,10 +21,10 @@ Before we jump into it, let's make sure that your TimetaBRO is working properly!
 2. Next, download the latest 'timetabro.jar' from [here](https://github.com/AY2324S1-CS2103T-W12-4/tp).
 3. Copy the file to the folder you want to use as a home folder for TimetaBRO.
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
-    * add n/Owen p/91792309 s/CS2101 Tuesday 1200 1400 b/ 2001-12-26:
+    * `add n/Owen p/91792309 e/owen@mail.com a/NUSC College Elm b/2001-12-26`:
     adds a friend named Owen, with phone number 91792309 and birthday on 26 December 2001. He is taking a class on Tuesday 1200-1400 for module CS2101
-    * cft Friday 1200 1400:
-    Filters your friend list to people who are free on these timings
+    * `cft Owen`:
+    displays the times that you and Owen are both free to meet.
 
 
 Nice! Now you know the basic commands and have launched TimetaBRO, lets get into the finer details.
@@ -67,7 +65,7 @@ Format: `help`
 
 Adds a person to TimetaBRO.
 
-Format: `add n/NAME [u/NICKNAME] p/PHONE_NUMBER t/TELEGRAM_HANDLE e/EMAIL [m/MODULE /from START_TIME /to END_TIME /day DAY] [t/TAG]`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]`
 
 <div markdown="span" class="alert alert-primary">Tip:
 A person can have any number of tags (including 0)
@@ -82,8 +80,8 @@ Unsuccessful Command:
 - `Wrong inputs for prefix: {prefix with error}`
 
 Examples:
-* `add n/John Doe p/98765432 t/johndoe e/johnd@example.com m/CS2103T /from 1200 /to 1300 /day Wednesday t/police`
-* `add n/Betsy Crowe t/betsycrowe e/betsycrowe@example.com p/1234567 m/CS2101 /from 1200 /to 1400 /day Monday, Thursday  t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com b/2001-12-12 a/Downtown t/police`
+* `add n/Betsy Crowe e/betsycrowe@example.com p/1234567 b/2002-04-19 a/Upurs Street t/criminal`
 
 ### Listing all persons : `list`
 
@@ -91,20 +89,12 @@ Shows a list of all added friends.
 
 Format: `list`
 
-Successful Command:
-
-Adds a person to your list. `Added {NAME} to the list.`
-
-Unsuccessful Command:
-
-Displays an error message. `To list, please run the command ‘list’`
-
 
 ### Editing a friend's information : `edit`
 
 Edits an existing person in TimetaBRO.
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [t/TELEGRAM_HANDLE] [e/EMAIL] [m/MODULE /from START_TIME /to END_TIME /day DAY] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -185,9 +175,9 @@ This command adds a dated, non-recurring event to you or your friend's schedule.
 
 Format: `addevent`\
 To add event to yourself, use \
-`addevent user type/[TYPE] en/[EVENT NAME] h/[DATE TIME] r/[REMINDER]` \
+`addevent user en/EVENT NAME h/DATE TIME r/REMINDER` \
 To add event for friend, use \
-`addevent INDEX type/[TYPE] en/[EVENT NAME] h/[DATE TIME] r/[REMINDER]`
+`addevent INDEX en/EVENT NAME h/DATE TIME r/REMINDER`
 
 - Adds an event titled `EVENT_NAME` to either user or
 the specified friend and `INDEX`
@@ -199,7 +189,7 @@ Successful Command:
 
 **Input:** 
 ````
-addevent 1 type/dated en/CS2030 Finals h/2023-10-31 1000 1400 r/y\
+addevent 1 en/CS2030 Finals h/2023-10-31 1000 1400 r/y
 ````
 **Output:**
 ````
@@ -210,7 +200,7 @@ CS2030 Finals 2023-10-31 1000 1400 to [Friend Name]
 
 **Input:**
 ````
-addevent user type/dated en/CS2101 OP2 h/2023-10-31 1500 1600 r/y
+addevent user en/CS2101 OP2 h/2023-10-31 1500 1600 r/y
 ````
 
 **Output:**
@@ -228,8 +218,8 @@ this error message will be shown
 ````
 Invalid index!
 addevent: Adds a non-recurring event to the calendar.
-Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME h/[Date [YYYY-MM-DD] StarTime (HHMM) EndTime (HHMM)] r/[REMINDER: y/n]`\
-Example: addevent 1 type/dated en/CS2103T Lecture h/2020-03-02 1400 1600 r/y`\ 
+Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] StarTime (HHMM) EndTime (HHMM)] r/[REMINDER: y/n]`\
+Example: addevent 1 en/CS2103T Lecture h/2020-03-02 1400 1600 r/y`\ 
 
 Note: If you are adding a meetup event, then index refers to the index of the friend you are meeting with.
 If you are adding a dated event, then index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself
@@ -255,9 +245,9 @@ Removes the specified event from the specified Person
 **Format:**\
 To remove an event, you can use the rmevent command with the following parameters:
 
-`rmevent [INDEX] en/[EVENT_NAME]`
+`rmevent INDEX en/EVENT_NAME`
 
-INDEX (Index of the friend or 'user')
+INDEX (Index of the friend on the address book list or 'user')\
 en/EVENT_NAME (Event name)
 
 Successful commands:
@@ -290,9 +280,9 @@ This command adds a recurring event to you or your friend's schedule.
 
 Format: `addschedule`\
 To add event to yourself, use \
-`addschedule user type/[TYPE] en/[EVENT NAME] h/[DAY TIME]` \
+`addschedule user type/TYPE en/EVENT NAME h/DAY TIME` \
 To add event for friend, use \
-`addschedule INDEX type/[TYPE] en/[EVENT NAME] h/[DAY TIME]`
+`addschedule INDEX type/TYPE en/EVENT NAME h/DAY TIME`
 
 - Adds an event titled `EVENT_NAME` to either user or
 the specified friend and `INDEX`
@@ -308,11 +298,11 @@ Successful Command:\
 `CS2030 Monday 1000 1400 to [Friend Name]`
 
 **Input:**\
-`addschedule user type/CCA en/CS2101 h/Tuesday 1500 1600`\
+`addschedule user type/CCA en/Basketball h/Tuesday 1500 1600`\
 **Output:**\
 `New event added:` \
 `CCA:`\
-`CS2101 Tuesday 1500 1600 to Me`
+`Basketball Tuesday 1500 1600 to Me`
 
 Unsuccessful Command:\
 If a user puts an invalid index,
@@ -320,7 +310,7 @@ this error message will be shown
 
 `Invalid index!`\
 `addevent: Adds a non-recurring event to the calendar.`\
-`Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME h/[Day [Day of week] StarTime (HHMM) EndTime (HHMM)]`\
+`Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME h/(Day (Day of week) StarTime (HHMM) EndTime (HHMM))`\
 `Example: addschedule 1 type/dated en/CS2103T Lecture h/Wednesday 1400 1600`\
 
 `Note: If you are adding a meetup event, then index refers to the index of the friend you are meeting with.`\
@@ -331,9 +321,9 @@ this error message will be shown\
 `Input should be in the format 'name [Day] HHMM HHMM yes/no', where:`\
 `'name' represents the name and should not contain spaces.`\
 `'Day' represents a day of the week (e.g. Monday).`
-`'HHMM' represents a valid 24-hour time format in half-hour blocks (e.g., 0000, 1230, 2300).`\
-`The first 'HHMM' represents the starting time (e.g., '0830' for 08:30 AM).`\
-`The second 'HHMM' represents the ending time (e.g., '1730' for 05:30 PM).`\
+`'HHMM' represents a valid 24-hour time format in half-hour blocks (e.g. 0000, 1230, 2300).`\
+`The first 'HHMM' represents the starting time (e.g. '0830' for 08:30 AM).`\
+`The second 'HHMM' represents the ending time (e.g. '1730' for 05:30 PM).`\
 `y/n represents whether you want a reminder for this event.`\
 
 ### Removing a recurring scheduled event: `rmschedule`
@@ -343,7 +333,7 @@ Removes the specified recurring item from the specified Person's schedule
 **Format:**\
 To remove a scheduled event, you can use the rmschedule command with the following parameters:
 
-`rmevent [INDEX] type/[EVENT_TYPE] en/[EVENT_NAME]`
+`rmschedule INDEX type/EVENT_TYPE en/EVENT_NAME`
 
 INDEX (Index of the friend or 'user')
 type/EVENT_TYPE (Event type, either 'dated' or 'meetup')
@@ -384,7 +374,7 @@ Sets a reminder for a dated event from the user's schedule
 Format: \
 To set a reminder a dated event in your schedule, you can use the setReminder command with the following parameters:
 
-`setReminder [EVENT_NAME]`
+`setReminder EVENT_NAME`
 
 Successful command: 
 
@@ -407,7 +397,7 @@ Format: \
 To remove a reminder set for an event in your schedule, you can use the 
 rmReminder command with the following parameters:
 
-`rmReminder [EVENT_NAME]`
+`rmReminder EVENT_NAME`
 
 Successful command:
 
