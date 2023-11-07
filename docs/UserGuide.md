@@ -59,6 +59,8 @@ Nice! Now you know the basic commands and have launched TimetaBRO, lets get into
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
+* Clicking on your friend's name will display their timetable on the right hand side.
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
