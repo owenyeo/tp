@@ -111,4 +111,26 @@ public class AddEventCommand extends Command {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof AddEventCommand)) {
+            return false;
+        }
+
+        AddEventCommand other = (AddEventCommand) o;
+        if (index == null && other.index != null) {
+            return false;
+        } else if (index != null && other.index == null) {
+            return false;
+        } else {
+            return eventName.equals(other.eventName)
+                    && schedule.equals(other.schedule)
+                    && reminder.equals(other.reminder);
+        }
+    }
+
 }

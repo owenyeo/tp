@@ -95,4 +95,24 @@ public class RemoveEventCommand extends Command {
         return result;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof RemoveEventCommand)) {
+            return false;
+        }
+
+        RemoveEventCommand other = (RemoveEventCommand) o;
+        if (index == null && other.index != null) {
+            return false;
+        } else if (index != null && other.index == null) {
+            return false;
+        } else {
+            return eventName.equals(other.eventName);
+        }
+    }
+
 }

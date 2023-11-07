@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.AddScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -50,8 +49,8 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
                 Integer.parseInt(indexString);
                 return new AddScheduleCommand(eventName, eventType, ParserUtil.parseIndex(indexString), schedule);
             } catch (NumberFormatException e) {
-                throw new ParseException(String.format("Invalid index!" + "\n" +
-                        "Index can only be 'user' or a positive integer! \n"));
+                throw new ParseException(String.format("Invalid index!" + "\n"
+                        + "Index can only be 'user' or a positive integer! \n"));
             }
         }
     }

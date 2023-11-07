@@ -20,20 +20,20 @@ public class AddScheduleCommandParserTest {
 
         // cca in user
         assertParseSuccess(parser, "user type/cca en/Basketball h/Monday 1030 1130",
-                new AddScheduleCommand("Basketball", "cca", "Monday 1030 1130"));
+                new AddScheduleCommand("basketball", "cca", "Monday 1030 1130"));
 
         // cca in friend
         assertParseSuccess(parser, "1 type/cca en/Basketball h/Monday 1030 1130",
-                new AddScheduleCommand("Basketball", "cca", Index.fromOneBased(1),
+                new AddScheduleCommand("basketball", "cca", Index.fromOneBased(1),
                         "Monday 1030 1130"));
 
         // module in user
-        assertParseSuccess(parser, "user type/module en/CS2103 h/Monday 1030 1130 r/y",
-                new AddScheduleCommand("CS2103", "module", "Monday 1030 1130"));
+        assertParseSuccess(parser, "user type/module en/CS2103 h/Monday 1030 1130",
+                new AddScheduleCommand("cs2103", "module", "Monday 1030 1130"));
 
         // module in friend
-        assertParseSuccess(parser, "1 type/module en/CS2103 h/Monday 1030 1130 r/y",
-                new AddScheduleCommand("CS2103", "module", Index.fromOneBased(1),
+        assertParseSuccess(parser, "1 type/module en/CS2103 h/Monday 1030 1130",
+                new AddScheduleCommand("cs2103", "module", Index.fromOneBased(1),
                         "Monday 1030 1130"));
     }
 

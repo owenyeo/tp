@@ -84,43 +84,36 @@ public class RemoveScheduleCommand extends Command {
             }
             friend = model.getFilteredPersonList().get(index.getZeroBased());
         }
+
         switch (eventType) {
-            // If the event is a cca event, remove it from the specified contact's calendar.
-            case "cca":
-                if (index == null) {
-                    userSchedule.deleteCca(eventName);
-                    return new CommandResult("CCA '"
-                        + eventName
+        case "cca":
+            if (index == null) {
+                userSchedule.deleteCca(eventName);
+                return new CommandResult("CCA '" + eventName
                         + "'' deleted from your calendar!", false, false, true, false);
-                } else {
-                    friend = model.getFilteredPersonList().get(index.getZeroBased());
-                    friend.getSchedule().deleteCca(eventName);
-                    return new CommandResult("CCA '"
-                        + eventName
-                        + "'' deleted from "
+            } else {
+                friend = model.getFilteredPersonList().get(index.getZeroBased());
+                friend.getSchedule().deleteCca(eventName);
+                return new CommandResult("CCA '" + eventName + "'' deleted from "
                         + friend.getName().toString()
                         + "'s calendar!", false, false, true, false);
-                }
-            // If the event is a module event, remove it from the specified contact's calendar.
-            case "module":
-                if (index == null) {
-                    userSchedule.deleteModule(eventName);
-                    return new CommandResult("Module '" + eventName
-                        + "'' deleted from your calendar!", false, false, true, false);
-                } else {
-                    friend = model.getFilteredPersonList().get(index.getZeroBased());
-                    friend.getSchedule().deleteModule(eventName);
-                    return new CommandResult("Module '"
-                        + eventName
-                        + "'' deleted from "
-                        + friend.getName().toString()
-                        + "'s calendar!", false, false, true, false);
-                }
-            // If the event type is invalid, throw an exception.
-            default:
-                throw new CommandException("Invalid event type!\n"
-                    + "Event type must either be 'cca' or 'module'!\n");
             }
+        case "module":
+            if (index == null) {
+                userSchedule.deleteModule(eventName);
+                return new CommandResult("Module '" + eventName
+                        + "'' deleted from your calendar!", false, false, true, false);
+            } else {
+                friend = model.getFilteredPersonList().get(index.getZeroBased());
+                friend.getSchedule().deleteModule(eventName);
+                return new CommandResult("Module '" + eventName + "'' deleted from "
+                        + friend.getName().toString()
+                        + "'s calendar!", false, false, true, false);
+            }
+        default:
+            throw new CommandException("Invalid event type!\n"
+                    + "Event type must either be 'cca' or 'module'!\n");
+        }
     }
 
     /**
@@ -134,6 +127,27 @@ public class RemoveScheduleCommand extends Command {
             result += event.toString() + "\n";
         }
         return result;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof RemoveScheduleCommand)) {
+            return false;
+        }
+
+        RemoveScheduleCommand other = (RemoveScheduleCommand) o;
+        if (index == null && other.index != null) {
+            return false;
+        } else if (index != null && other.index == null) {
+            return false;
+        } else {
+            return eventName.equals(other.eventName)
+                    && eventType.equals(other.eventType);
+        }
     }
 
 }

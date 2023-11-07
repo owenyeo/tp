@@ -51,8 +51,8 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
                 Integer.parseInt(indexString);
                 return new AddEventCommand(eventName, ParserUtil.parseIndex(indexString), schedule, reminder);
             } catch (NumberFormatException e) {
-                throw new ParseException(String.format("Invalid index!" + "\n" +
-                    "Index can only be 'user' or a positive integer! \n"));
+                throw new ParseException(String.format("Invalid index!" + "\n"
+                    + "Index can only be 'user' or a positive integer! \n"));
             }
         }
     }

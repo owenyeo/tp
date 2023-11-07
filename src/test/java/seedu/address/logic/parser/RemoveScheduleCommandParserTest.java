@@ -19,24 +19,24 @@ public class RemoveScheduleCommandParserTest {
 
         // cca in user
         assertParseSuccess(parser, "user type/cca en/Basketball",
-                new RemoveScheduleCommand("Basketball", "cca", null));
+                new RemoveScheduleCommand("basketball", "cca"));
 
         // cca in friend
         assertParseSuccess(parser, "1 type/cca en/Basketball",
-                new RemoveScheduleCommand("Basketball", "cca", Index.fromOneBased(1)));
+                new RemoveScheduleCommand("basketball", "cca", Index.fromOneBased(1)));
 
         // module in user
         assertParseSuccess(parser, "user type/module en/CS2103",
-                new RemoveScheduleCommand("CS2103", "module", Index.fromOneBased(1)));
+                new RemoveScheduleCommand("cs2103", "module"));
 
         // module in friend
         assertParseSuccess(parser, "1 type/module en/CS2103",
-                new RemoveScheduleCommand("CS2103", "module", Index.fromOneBased(1)));
+                new RemoveScheduleCommand("cs2103", "module", Index.fromOneBased(1)));
     }
 
     @Test
     public void parse_repeatedValue_failure() {
-        String validCommand = "user type/cca en/Basketabll";
+        String validCommand = "user type/cca en/Basketball";
 
         // multiple event type
         assertParseFailure(parser, validCommand + " type/cca",

@@ -44,8 +44,8 @@ public class RemoveScheduleCommandParser implements Parser<RemoveScheduleCommand
                 Integer.parseInt(indexString);
                 return new RemoveScheduleCommand(eventName, eventType, ParserUtil.parseIndex(indexString));
             } catch (NumberFormatException e) {
-                throw new ParseException(String.format("Invalid index!" + "\n" +
-                        "Index can only be 'user' or a positive integer! \n"));
+                throw new ParseException(String.format("Invalid index!" + "\n"
+                        + "Index can only be 'user' or a positive integer! \n"));
             }
         }
     }

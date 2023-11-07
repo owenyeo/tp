@@ -42,8 +42,8 @@ public class RemoveEventCommandParser implements Parser<RemoveEventCommand> {
                 Integer.parseInt(indexString);
                 return new RemoveEventCommand(eventName, ParserUtil.parseIndex(indexString));
             } catch (NumberFormatException e) {
-                throw new ParseException(String.format("Invalid index!" + "\n" +
-                        "Index can only be 'user' or a positive integer! \n"));
+                throw new ParseException(String.format("Invalid index!" + "\n"
+                        + "Index can only be 'user' or a positive integer! \n"));
             }
         }
     }
