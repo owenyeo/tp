@@ -63,29 +63,20 @@ public class RemoveEventCommand extends Command {
         Person friend;
 
         Schedule userSchedule = model.getUser().getSchedule();
-        try {
-            if (index == null) {
-                userSchedule.deleteDatedEvent(eventName);
-                return new CommandResult("Dated Event '"
-                    + eventName
+        if (index == null) {
+            userSchedule.deleteDatedEvent(eventName);
+            return new CommandResult("Dated Event '" + eventName
                     + "' deleted from your calendar!", false, false, true, false);
-            } else {
-                List<Person> lastShownList = model.getFilteredPersonList();
-                if (index.getZeroBased() >= lastShownList.size()) {
-                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX + "\n"
+        } else {
+            List<Person> lastShownList = model.getFilteredPersonList();
+            if (index.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX + "\n"
                         + "Index can be max " + lastShownList.size() + "!");
-                }
-                friend = model.getFilteredPersonList().get(index.getZeroBased());
-                friend.getSchedule().deleteDatedEvent(eventName);
-                return new CommandResult("Dated Event '"
-                    + eventName
-                    + "' deleted from "
-                    + friend.getName().toString()
-                    + "'s calendar!", false, false, true, false);
             }
-        } catch (Exception e) {
-            throw new CommandException("Event " + eventName + " does not exist!\n"
-                + "Please check that you have entered the correct event name!\n");
+            friend = model.getFilteredPersonList().get(index.getZeroBased());
+            friend.getSchedule().deleteDatedEvent(eventName);
+            return new CommandResult("Dated Event '" + eventName + "' deleted from "
+                    + friend.getName().toString() + "'s calendar!", false, false, true, false);
         }
     }
 
@@ -103,4 +94,5 @@ public class RemoveEventCommand extends Command {
         }
         return result;
     }
+
 }

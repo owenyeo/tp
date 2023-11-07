@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
-import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.AddScheduleCommand;
 
 public class AddScheduleCommandParserTest {
@@ -43,36 +42,25 @@ public class AddScheduleCommandParserTest {
         String validCommand = "user type/cca en/Basketball h/Monday 1030 1130";
 
         // multiple event type
-        assertParseFailure(parser, validCommand + "type/cca",
+        assertParseFailure(parser, validCommand + " type/cca",
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EVENTTYPE));
 
         // multiple event name
-        assertParseFailure(parser, validCommand + "en/CS2103",
+        assertParseFailure(parser, validCommand + " en/CS2103",
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EVENTNAME));
 
         // multiple event schedule
-        assertParseFailure(parser, validCommand + "h/Monday 1030 1130",
+        assertParseFailure(parser, validCommand + " h/Monday 1030 1130",
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_SCHEDULE));
-
-        // invalid value followed by valid value
-
-        // invalid type
-        assertParseFailure(parser, "typed/cca" + validCommand,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EVENTTYPE));
-
-        // invalid schedule
-        assertParseFailure(parser, "h/Monday 1030 1145" + validCommand,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_SCHEDULE));
-
 
         //valid value followed by invalid value
 
         // invalid type
-        assertParseFailure(parser, validCommand + "typed/cca",
+        assertParseFailure(parser, validCommand + " type/cca",
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EVENTTYPE));
 
         // invalid schedule
-        assertParseFailure(parser, validCommand + "h/Monday 1030 1145",
+        assertParseFailure(parser, validCommand + " h/Monday 1030 1145",
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_SCHEDULE));
 
     }
@@ -80,10 +68,10 @@ public class AddScheduleCommandParserTest {
     @Test
     public void parse_fieldMissing_failure() {
         String expectedMessage = String.format("Command format is invalid! \n"
-                + AddEventCommand.MESSAGE_USAGE);
+                + AddScheduleCommand.MESSAGE_USAGE);
 
         String expectedMessage2 = String.format("Invalid index!\n"
-                + "Index can only be 'user' or a 'positive integer!' \n");
+                + "Index can only be 'user' or a positive integer! \n");
 
         // missing schedule name prefix
         assertParseFailure(parser, "user type/cca en/Basketball",
@@ -102,7 +90,7 @@ public class AddScheduleCommandParserTest {
                 expectedMessage);
 
         // wrong index
-        assertParseFailure(parser, "wrong type/dated en/CS2103 Meeting h/2023-10-10 1030 1130 r/y",
+        assertParseFailure(parser, "wrong type/cca en/CS2103 Meeting h/2023-10-10 1030 1130 r/y",
                 expectedMessage2);
     }
 

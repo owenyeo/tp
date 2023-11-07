@@ -3,11 +3,11 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTTYPE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 
 import java.util.stream.Stream;
 
+import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.commands.AddScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -33,8 +33,7 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
                 + AddScheduleCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EVENTNAME, PREFIX_SCHEDULE,
-                PREFIX_REMINDER);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EVENTNAME, PREFIX_SCHEDULE, PREFIX_EVENTTYPE);
 
         String indexString;
 
@@ -42,21 +41,18 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
         String eventType = argMultimap.getValue(PREFIX_EVENTTYPE).get().toLowerCase();
         String schedule = argMultimap.getValue(PREFIX_SCHEDULE).get();
 
-        try {
-            indexString = argMultimap.getPreamble().toLowerCase();
-        } catch (Exception pe) {
-            throw new ParseException(String.format("Please input an index!" + "\n"
-                + "Message Usage:\n" + AddScheduleCommand.MESSAGE_USAGE));
-        }
+        indexString = argMultimap.getPreamble().toLowerCase();
 
         if (indexString.equals("user")) {
             return new AddScheduleCommand(eventName, eventType, schedule);
-        } else if (Integer.parseInt(indexString) > 0) {
-            return new AddScheduleCommand(eventName, eventType,
-                ParserUtil.parseIndex(indexString), schedule);
         } else {
-            throw new ParseException("Invalid index!\n"
-                + "Index can only be 'user' or a 'positive integer!' \n");
+            try {
+                Integer.parseInt(indexString);
+                return new AddScheduleCommand(eventName, eventType, ParserUtil.parseIndex(indexString), schedule);
+            } catch (NumberFormatException e) {
+                throw new ParseException(String.format("Invalid index!" + "\n" +
+                        "Index can only be 'user' or a positive integer! \n"));
+            }
         }
     }
 

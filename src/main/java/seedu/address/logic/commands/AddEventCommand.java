@@ -36,7 +36,7 @@ public class AddEventCommand extends Command {
         + "h/2020-03-02 1400 1600 "
         + "r/y \n"
         + "Note: "
-        + "If you are adding a dated event, then index should be the index of "
+        + "Index should be the index of "
         + "the friend you are adding the dated event to or 'user' "
         + "if you would like to add the event to yourself \n";
 

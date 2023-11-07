@@ -29,13 +29,13 @@ public class RemoveScheduleCommand extends Command {
         + "en/EVENT_NAME\n"
         + "Example: " + COMMAND_WORD
         + " 1"
-        + " type/dated"
-        + " en/CS2103T Lecture\n"
+        + " type/cca"
+        + " en/Basketball\n"
         + "NOTE: If you want to remove an event from yourself, use index user\n"
         + "Example: " + COMMAND_WORD
         + " user"
-        + " type/dated"
-        + " en/CS2103T Lecture";
+        + " type/cca"
+        + " en/Basketball";
 
     private final String eventName;
     private final String eventType;
@@ -74,18 +74,17 @@ public class RemoveScheduleCommand extends Command {
         Person friend;
 
         Schedule userSchedule = model.getUser().getSchedule();
-        try {
-            if (this.index == null) {
-                friend = model.getUser();
-            } else {
-                List<Person> lastShownList = model.getFilteredPersonList();
-                if (index.getZeroBased() >= lastShownList.size()) {
-                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX + "\n"
+        if (this.index == null) {
+            friend = model.getUser();
+        } else {
+            List<Person> lastShownList = model.getFilteredPersonList();
+            if (index.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX + "\n"
                         + "Index can be max " + lastShownList.size() + "!");
-                }
-                friend = model.getFilteredPersonList().get(index.getZeroBased());
             }
-            switch (eventType) {
+            friend = model.getFilteredPersonList().get(index.getZeroBased());
+        }
+        switch (eventType) {
             // If the event is a cca event, remove it from the specified contact's calendar.
             case "cca":
                 if (index == null) {
@@ -106,7 +105,7 @@ public class RemoveScheduleCommand extends Command {
             case "module":
                 if (index == null) {
                     userSchedule.deleteModule(eventName);
-                    return new CommandResult("Module" + eventName
+                    return new CommandResult("Module '" + eventName
                         + "'' deleted from your calendar!", false, false, true, false);
                 } else {
                     friend = model.getFilteredPersonList().get(index.getZeroBased());
@@ -122,9 +121,6 @@ public class RemoveScheduleCommand extends Command {
                 throw new CommandException("Invalid event type!\n"
                     + "Event type must either be 'cca' or 'module'!\n");
             }
-        } catch (Exception e) {
-            throw new CommandException(e.getMessage());
-        }
     }
 
     /**
@@ -139,4 +135,5 @@ public class RemoveScheduleCommand extends Command {
         }
         return result;
     }
+
 }
