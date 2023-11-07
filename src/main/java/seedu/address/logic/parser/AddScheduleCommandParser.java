@@ -63,19 +63,18 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
 
         try {
             indexString = argMultimap.getPreamble().toLowerCase();
+            if (indexString.equals("user")) {
+                return new AddScheduleCommand(eventName, eventType, schedule);
+            } else if (Integer.parseInt(indexString) > 0) {
+                return new AddScheduleCommand(eventName, eventType,
+                    ParserUtil.parseIndex(indexString), schedule);
+            } else {
+                throw new ParseException("Invalid index!\n"
+                    + "Index can only be 'user' or a 'positive integer!' \n");
+            }
         } catch (Exception pe) {
             throw new ParseException(String.format("Please input an index!" + "\n"
                 + "Message Usage:\n" + AddScheduleCommand.MESSAGE_USAGE));
-        }
-
-        if (indexString.equals("user")) {
-            return new AddScheduleCommand(eventName, eventType, schedule);
-        } else if (Integer.parseInt(indexString) > 0) {
-            return new AddScheduleCommand(eventName, eventType,
-                ParserUtil.parseIndex(indexString), schedule);
-        } else {
-            throw new ParseException("Invalid index!\n"
-                + "Index can only be 'user' or a 'positive integer!' \n");
         }
     }
 

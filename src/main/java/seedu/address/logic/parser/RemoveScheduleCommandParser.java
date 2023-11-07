@@ -63,7 +63,8 @@ public class RemoveScheduleCommandParser implements Parser<RemoveScheduleCommand
             }
         } catch (Exception pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveScheduleCommand.MESSAGE_USAGE), pe);
+                    String.format("Please input an index!" + "\n"
+                        + "Message Usage: ", RemoveScheduleCommand.MESSAGE_USAGE));
         }
     }
 
