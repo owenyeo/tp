@@ -191,7 +191,7 @@ Successful Command:
 
 **Input:** 
 ````
-addevent 1 en/CS2030 Finals h/2023-10-31 1000 1400 r/y\
+addevent 1 en/CS2030 Finals h/2023-10-31 1000 1400 r/y
 ````
 **Output:**
 ````
