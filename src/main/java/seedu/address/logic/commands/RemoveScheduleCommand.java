@@ -24,8 +24,8 @@ public class RemoveScheduleCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Removes an event from the specified contact's calendar.\n"
         + "Parameters: "
-        + "INDEX (must be a positive integer) "
-        + "type/EVENT_TYPE (must be either 'cca' or 'module') "
+        + "INDEX "
+        + "type/EVENT_TYPE "
         + "en/EVENT_NAME\n"
         + "Example: " + COMMAND_WORD
         + " 1"

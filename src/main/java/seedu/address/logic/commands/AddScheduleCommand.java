@@ -20,9 +20,9 @@ public class AddScheduleCommand extends Command {
     public static final String COMMAND_WORD = "addschedule";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a schedule to the specified contact.\n"
             + "Parameters: "
-            + "INDEX\n"
-            + "type/EVENT_TYPE\n"
-            + "en/EVENT_NAME\n"
+            + "INDEX "
+            + "type/EVENT_TYPE "
+            + "en/EVENT_NAME"
             + "h/[DAY_OF_WEEK START_TIME [HHMM] END_TIME [HHMM]]\n"
             + "Example: " + COMMAND_WORD
             + " 1"
