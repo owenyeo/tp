@@ -1,4 +1,4 @@
-/**package seedu.address.logic.parser;
+package seedu.address.logic.parser;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTTYPE;
@@ -94,10 +94,8 @@ public class RemoveScheduleCommandParserTest {
                 expectedMessage);
 
         // wrong index
-        // assertParseFailure(parser, "wrong type/cca en/Basketball",
-        //        expectedMessage2);
+        assertParseFailure(parser, "wrong type/cca en/Basketball",
+                expectedMessage2);
     }
 
-    // same as addEventCommandParser
 }
-*/

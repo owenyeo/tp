@@ -1,4 +1,4 @@
-/**package seedu.address.logic.commands;
+package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.person.Person;
@@ -27,7 +28,7 @@ public class RemoveEventCommandTest {
         User newUser = new UserBuilder().build();
         model.setUser(newUser);
         model.getUser().getSchedule().addDatedEvent(DatedEvent.newDatedEvent("CS2103 Meeting 2023-10-10 1030 1130 y"));
-        RemoveEventCommand removeEventCommand = new RemoveEventCommand("CS2103 Meeting", "dated", null);
+        RemoveEventCommand removeEventCommand = new RemoveEventCommand("CS2103 Meeting", null);
         String expectedMessage = "Dated Event 'CS2103 Meeting' deleted from your calendar!";
         Model expectedModel = new ModelManager(model.getAddressBook(),
                 new UserPrefs(), new UserData());
@@ -45,7 +46,7 @@ public class RemoveEventCommandTest {
         Person friend = model.getFilteredPersonList().get(0);
         friend.getSchedule().addDatedEvent(DatedEvent.newDatedEvent("CS2103 Meeting 2023-10-10 1030 1130 y"));
         RemoveEventCommand removeEventCommand = new RemoveEventCommand("CS2103 Meeting",
-                "dated", Index.fromZeroBased(0));
+                Index.fromZeroBased(0));
         String expectedMessage = "Dated Event 'CS2103 Meeting' deleted from Alice Pauline's calendar!";
         Model expectedModel = new ModelManager(model.getAddressBook(),
                 new UserPrefs(), new UserData());
@@ -57,37 +58,35 @@ public class RemoveEventCommandTest {
     }
 
     @Test
-    public void execute_invalidEventType_failure() {
+    public void execute_invalidEventName_failure() {
         User newUser = new UserBuilder().build();
         model.setUser(newUser);
         model.getUser().getSchedule().addDatedEvent(DatedEvent.newDatedEvent("CS2103 Meeting 2023-10-10 1030 1130 y"));
-        RemoveEventCommand removeEventCommand = new RemoveEventCommand("CS2103 Meeting",
-                "sleep", null);
+        RemoveEventCommand removeEventCommand = new RemoveEventCommand("CS2101", null);
 
-        String expectedMessage = "Invalid event type or name!\n"
-                + "Event type must either be 'dated' or 'meetup' and event must be in schedule\n";
+        String expectedMessage = "Event " + "CS2101" + " does not exist!\n"
+                + "Please check that you have entered the correct event name!\n";
 
         assertCommandFailure(removeEventCommand, model, expectedMessage);
     }
 
     @Test
-    public void execute_invalidEventName_failure() {
+    public void execute_invalidIndex_failure() {
         User newUser = new UserBuilder().build();
         model.setUser(newUser);
         model.getUser().getSchedule().addDatedEvent(DatedEvent.newDatedEvent("CS2103 Meeting 2023-10-10 1030 1130 y"));
-        RemoveEventCommand removeEventCommand = new RemoveEventCommand("CS2101",
-                "dated", null);
+        RemoveEventCommand removeEventCommand = new RemoveEventCommand("CS2103 Meeting",
+                Index.fromZeroBased(1000));
 
-        String expectedMessage = "Invalid event type or name!\n"
-                + "Event type must either be 'dated' or 'meetup' and event must be in schedule\n";
+        String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX + "\n"
+                + "Index can be max " + "7" + "!";
 
         assertCommandFailure(removeEventCommand, model, expectedMessage);
     }
 
     @Test
     public void listEvents_success() {
-        RemoveEventCommand removeEventCommand = new RemoveEventCommand("CS2103",
-                "dated", null);
+        RemoveEventCommand removeEventCommand = new RemoveEventCommand("CS2103", null);
         ArrayList<DatedEvent> events = new ArrayList<>();
         events.add(DatedEvent.newDatedEvent("CS2103 Meeting 2023-10-10 1030 1130 y"));
         events.add(DatedEvent.newDatedEvent("Walk Dog 2023-10-10 1030 1130 n"));
@@ -100,18 +99,10 @@ public class RemoveEventCommandTest {
 
     @Test
     public void listEvents_empty() {
-        RemoveEventCommand removeEventCommand = new RemoveEventCommand("CS2103",
-                "dated", null);
+        RemoveEventCommand removeEventCommand = new RemoveEventCommand("CS2103", null);
         ArrayList<DatedEvent> events = new ArrayList<>();
         String expectedMessage = "";
         assertEquals(expectedMessage, removeEventCommand.listEvents(events));
     }
 
-    // same thing as RemoveScheduleCommand
-
-    // removeschedulecommand has 2 constructors but removeeventcommand only has 1
-
-    // duplicate of listEvents unless necessary
-
 }
-*/

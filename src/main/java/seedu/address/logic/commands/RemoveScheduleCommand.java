@@ -91,7 +91,7 @@ public class RemoveScheduleCommand extends Command {
                 } else {
                     friend = model.getFilteredPersonList().get(index.getZeroBased());
                     friend.getSchedule().deleteCca(eventName);
-                    return new CommandResult("Dated Event '"
+                    return new CommandResult("CCA '"
                         + eventName
                         + "'' deleted from "
                         + friend.getName().toString()
@@ -106,7 +106,7 @@ public class RemoveScheduleCommand extends Command {
                 } else {
                     friend = model.getFilteredPersonList().get(index.getZeroBased());
                     friend.getSchedule().deleteModule(eventName);
-                    return new CommandResult("Meetup Event '"
+                    return new CommandResult("Module '"
                         + eventName
                         + "'' deleted from "
                         + friend.getName().toString()
