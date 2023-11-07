@@ -116,6 +116,14 @@ public class AddressBookTest {
         assertEquals("Alice Pauline\n", addressBook.getBirthdayList());
     }
 
+    @Test
+    public void getPersonWithName() {
+        addressBook.addPerson(ALICE);
+        Person expectedPerson = ALICE;
+        Person actualPerson = addressBook.getPersonWithName(expectedPerson.getName());
+        assertEquals(expectedPerson, actualPerson);
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */

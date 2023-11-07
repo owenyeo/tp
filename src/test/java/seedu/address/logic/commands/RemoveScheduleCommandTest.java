@@ -1,4 +1,4 @@
-/**package seedu.address.logic.commands;
+package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.person.Person;
@@ -30,8 +31,8 @@ public class RemoveScheduleCommandTest {
         model.setUser(newUser);
         model.getUser().getSchedule().addCca(new Cca("Basketball", "Monday 1800 2000"));
         RemoveScheduleCommand removeScheduleCommand = new RemoveScheduleCommand("Basketball",
-                "cca");
-        String expectedMessage = "CCA 'Basketball' deleted from your calendar!";
+                "cca", null);
+        String expectedMessage = "CCA 'Basketball'' deleted from your calendar!";
         Model expectedModel = new ModelManager(model.getAddressBook(),
                 new UserPrefs(), new UserData());
         expectedModel.setUser(newUser);
@@ -48,7 +49,7 @@ public class RemoveScheduleCommandTest {
         friend.getSchedule().addCca(new Cca("Basketball", "Monday 1800 2000"));
         RemoveScheduleCommand removeScheduleCommand = new RemoveScheduleCommand("Basketball",
                 "cca", Index.fromZeroBased(0));
-        String expectedMessage = "CCA 'Basketball' deleted from Alice Pauline's calendar!";
+        String expectedMessage = "CCA 'Basketball'' deleted from Alice Pauline's calendar!";
         Model expectedModel = new ModelManager(model.getAddressBook(),
                 new UserPrefs(), new UserData());
         expectedModel.setUser(newUser);
@@ -64,8 +65,8 @@ public class RemoveScheduleCommandTest {
         model.setUser(newUser);
         model.getUser().getSchedule().addModule(new Module("CS2103", "Monday 1800 2000"));
         RemoveScheduleCommand removeScheduleCommand = new RemoveScheduleCommand("CS2103",
-                "module");
-        String expectedMessage = "Module 'CS2103' deleted from your calendar!";
+                "module", null);
+        String expectedMessage = "Module 'CS2103'' deleted from your calendar!";
         Model expectedModel = new ModelManager(model.getAddressBook(),
                 new UserPrefs(), new UserData());
         expectedModel.setUser(newUser);
@@ -82,7 +83,7 @@ public class RemoveScheduleCommandTest {
         friend.getSchedule().addModule(new Module("CS2103", "Monday 1800 2000"));
         RemoveScheduleCommand removeScheduleCommand = new RemoveScheduleCommand("CS2103",
                 "module", Index.fromZeroBased(0));
-        String expectedMessage = "Module 'CS2103' deleted from Alice Pauline's calendar!";
+        String expectedMessage = "Module 'CS2103'' deleted from Alice Pauline's calendar!";
         Model expectedModel = new ModelManager(model.getAddressBook(),
                 new UserPrefs(), new UserData());
         expectedModel.setUser(newUser);
@@ -111,16 +112,27 @@ public class RemoveScheduleCommandTest {
         User newUser = new UserBuilder().build();
         model.setUser(newUser);
         model.getUser().getSchedule().addModule(new Module("CS2103", "Monday 1800 2000"));
-        RemoveScheduleCommand removeScheduleCommand = new RemoveScheduleCommand("CS2101",
+        RemoveScheduleCommand removeScheduleCommand = new RemoveScheduleCommand("CS1101",
                 "module");
 
-        String expectedMessage = "Invalid event type or name!\n"
-                + "Event type must either be 'cca' or 'module' and event must be in schedule!\n";
+        String expectedMessage = "Module " + "CS1101" + " does not exist!";
 
         assertCommandFailure(removeScheduleCommand, model, expectedMessage);
     }
 
+    @Test
+    public void execute_invalidFriendIndex_failure() {
+        User newUser = new UserBuilder().build();
+        model.setUser(newUser);
+        model.getUser().getSchedule().addModule(new Module("CS2103", "Monday 1800 2000"));
+        RemoveScheduleCommand removeScheduleCommand = new RemoveScheduleCommand("CS2103",
+                "module", Index.fromZeroBased(1000));
 
+        String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX + "\n"
+                + "Index can be max " + "7" + "!";
+
+        assertCommandFailure(removeScheduleCommand, model, expectedMessage);
+    }
 
     @Test
     public void listEvents_success() {
@@ -145,12 +157,4 @@ public class RemoveScheduleCommandTest {
         assertEquals(expectedMessage, removeScheduleCommand.listEvents(events));
     }
 
-    // reformat string in RemoveScheduleCommand above
-
-    // can consider cases where type is correct but event inside schedule for exception in default
-
-    // can consider throwing exception in listEvents if wrong type of events eg Cca
-    // if added lmk so that i can test the catch exception part
-
 }
-*/

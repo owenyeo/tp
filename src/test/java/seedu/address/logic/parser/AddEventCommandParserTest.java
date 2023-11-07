@@ -1,7 +1,6 @@
-/**package seedu.address.logic.parser;
+package seedu.address.logic.parser;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTNAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTTYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -20,28 +19,19 @@ public class AddEventCommandParserTest {
     public void parse_allFieldsPresent_success() {
 
         // dated event in user
-        assertParseSuccess(parser, "user type/dated en/CS2103 Meeting h/2023-10-10 1030 1130 r/y",
-                new AddEventCommand("CS2103 Meeting", "2023-10-10 1030 1130",
-                        "y", "dated"));
+        assertParseSuccess(parser, "user en/CS2103 Meeting h/2023-10-10 1030 1130 r/y",
+                new AddEventCommand("CS2103 Meeting", "2023-10-10 1030 1130", "dated"));
 
         // dated event in friend
-        assertParseSuccess(parser, "1 type/dated en/CS2103 Meeting h/2023-10-10 1030 1130 r/y",
+        assertParseSuccess(parser, "1 en/CS2103 Meeting h/2023-10-10 1030 1130 r/y",
                 new AddEventCommand("CS2103 Meeting", Index.fromOneBased(1),
-                        "2023-10-10 1030 1130", "y", "dated"));
+                        "2023-10-10 1030 1130", "y"));
 
-        // meetup event in user
-        assertParseSuccess(parser, "1 type/meetup en/CS2103 Meeting h/2023-10-10 1030 1130 r/y",
-                new AddEventCommand("CS2103 Meeting", Index.fromOneBased(1),
-                        "2023-10-10 1030 1130", "y", "meetup"));
     }
 
     @Test
     public void parse_repeatedValue_failure() {
-        String validCommand = "user type/dated en/CS2103 Meeting h/2023-10-10 1030 1130 r/y";
-
-        // multiple event type
-        assertParseFailure(parser, validCommand + "type/dated",
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EVENTTYPE));
+        String validCommand = "user en/CS2103 Meeting h/2023-10-10 1030 1130 r/y";
 
         // multiple event name
         assertParseFailure(parser, validCommand + "en/CS2103 Meeting",
@@ -56,14 +46,10 @@ public class AddEventCommandParserTest {
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_REMINDER));
 
         // multiple fields repeated
-        assertParseFailure(parser, validCommand + "typed/dated" + "r/y",
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EVENTTYPE, PREFIX_REMINDER));
+        assertParseFailure(parser, validCommand + "en/CS2103 Meeting" + "r/y",
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EVENTNAME, PREFIX_REMINDER));
 
         // invalid value followed by valid value
-
-        // invalid type
-        assertParseFailure(parser, "typed/dated" + validCommand,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EVENTTYPE));
 
         // invalid schedule
         assertParseFailure(parser, "h/2023-10-10 1030 1145" + validCommand,
@@ -74,10 +60,6 @@ public class AddEventCommandParserTest {
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_REMINDER));
 
         //valid value followed by invalid value
-
-        // invalid type
-        assertParseFailure(parser, validCommand + "typed/dated",
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EVENTTYPE));
 
         // invalid schedule
         assertParseFailure(parser, validCommand + "h/2023-10-10 1030 1145",
@@ -97,34 +79,24 @@ public class AddEventCommandParserTest {
                 + "Index can only be 'user' or a 'positive integer!' \n");
 
         // missing event name prefix
-        assertParseFailure(parser, "user type/dated h/2023-10-10 1030 1130 r/y",
-                expectedMessage);
-
-        // missing event type prefix
-        assertParseFailure(parser, "user en/CS2103 Meeting h/2023-10-10 1030 1130 r/y",
+        assertParseFailure(parser, "user h/2023-10-10 1030 1130 r/y",
                 expectedMessage);
 
         // missing event schedule prefix
-        assertParseFailure(parser, "user type/dated en/CS2103 Meeting r/y",
+        assertParseFailure(parser, "user en/CS2103 Meeting r/y",
                 expectedMessage);
 
         // missing event reminder prefix
-        assertParseFailure(parser, "user type/dated en/CS2103 Meeting h/2023-10-10 1030 1130",
+        assertParseFailure(parser, "user en/CS2103 Meeting h/2023-10-10 1030 1130",
                 expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, "user dated CS2103 Meeting 2023-10-10 1030 1130 y",
+        assertParseFailure(parser, "user CS2103 Meeting 2023-10-10 1030 1130 y",
                 expectedMessage);
 
         // wrong index
-        // assertParseFailure(parser, "wrong type/dated en/CS2103 Meeting h/2023-10-10 1030 1130 r/y",
-        //        expectedMessage2);
+        assertParseFailure(parser, "wrong type/dated en/CS2103 Meeting h/2023-10-10 1030 1130 r/y",
+                expectedMessage2);
     }
 
-    // add equals method for addeventcommand
-    // add verifyNoDuplicatePrefixesFor to ArgumentMultimap (refer to AddCommandParser)
-    // need to deal with invalid type, name, schedule reminder (parse_invalidValue_failure in AddCommandParserTest)
-    // chane indexString handling due to parseInt done before ParseException thrown
-    // (see last assertParseFailure in parse_fieldMissing_failure)
 }
-*/

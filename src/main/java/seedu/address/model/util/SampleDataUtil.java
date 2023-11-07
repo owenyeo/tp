@@ -14,7 +14,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.timetable.DatedEvent;
-import seedu.address.model.person.timetable.FreeTime;
 import seedu.address.model.person.timetable.Schedule;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.user.ReadOnlyUserData;
@@ -71,15 +70,6 @@ public class SampleDataUtil {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
-    }
-
-    /**
-     * Returns a set of free times containing the list of strings given.
-     */
-    public static Set<FreeTime> getFreeTimeSet(String... strings) {
-        return Arrays.stream(strings)
-                .map(FreeTime::new)
-                .collect(Collectors.toSet());
     }
 
     /**

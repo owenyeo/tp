@@ -155,25 +155,6 @@ public abstract class TimeBlock implements Comparable<TimeBlock> {
         return day == this.day.getValue();
     }
 
-    @Override
-    public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof FreeTime)) {
-            return false;
-        }
-
-        TimeBlock otherTimeBlock = (TimeBlock) other;
-        return timeBlockString.equals(otherTimeBlock.timeBlockString);
-    }
-
-    @Override
-    public int hashCode() {
-        return timeBlockString.hashCode();
-    }
 
     @Override
     public String toString() {
