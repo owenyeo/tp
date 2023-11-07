@@ -36,7 +36,7 @@ public class AddEventCommand extends Command {
         + "h/2020-03-02 1400 1600 "
         + "r/y \n"
         + "Note: "
-        + "If you are adding a dated event, then index should be the index of "
+        + "Index should be the index of "
         + "the friend you are adding the dated event to or 'user' "
         + "if you would like to add the event to yourself \n";
 
@@ -108,6 +108,28 @@ public class AddEventCommand extends Command {
                     + schedule + " to " + friend.getName(), false, false, true, false);
         } catch (Exception e) {
             throw new CommandException(e.getMessage());
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof AddEventCommand)) {
+            return false;
+        }
+
+        AddEventCommand other = (AddEventCommand) o;
+        if (index == null && other.index != null) {
+            return false;
+        } else if (index != null && other.index == null) {
+            return false;
+        } else {
+            return eventName.equals(other.eventName)
+                    && schedule.equals(other.schedule)
+                    && reminder.equals(other.reminder);
         }
     }
 

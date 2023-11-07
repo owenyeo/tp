@@ -32,27 +32,21 @@ public class RemoveScheduleCommandParser implements Parser<RemoveScheduleCommand
                 + RemoveScheduleCommand.MESSAGE_USAGE));
         }
 
-        if (!arePrefixesUnique(argMultimap, PREFIX_EVENTNAME, PREFIX_EVENTTYPE)) {
-            throw new ParseException(String.format("You can only have 1 of each prefix!\n"
-                + RemoveScheduleCommand.MESSAGE_USAGE));
-        }
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EVENTNAME, PREFIX_EVENTTYPE);
 
-        try {
-            String indexString = argMultimap.getPreamble().toLowerCase();
-            String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get().toLowerCase();
-            String eventType = argMultimap.getValue(PREFIX_EVENTTYPE).get().toLowerCase();
-            if (indexString.equals("user")) {
-                return new RemoveScheduleCommand(eventName, eventType, null);
-            } else if (Integer.parseInt(indexString) > 0) {
-                return new RemoveScheduleCommand(eventName, eventType,
-                    ParserUtil.parseIndex(indexString));
-            } else {
-                throw new ParseException("Invalid index!\n"
-                        + "Index must either be 'user' or a positive integer!\n");
+        String indexString = argMultimap.getPreamble().toLowerCase();
+        String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get().toLowerCase();
+        String eventType = argMultimap.getValue(PREFIX_EVENTTYPE).get().toLowerCase();
+        if (indexString.equals("user")) {
+            return new RemoveScheduleCommand(eventName, eventType, null);
+        } else {
+            try {
+                Integer.parseInt(indexString);
+                return new RemoveScheduleCommand(eventName, eventType, ParserUtil.parseIndex(indexString));
+            } catch (NumberFormatException e) {
+                throw new ParseException(String.format("Invalid index!" + "\n"
+                        + "Index can only be 'user' or a positive integer! \n"));
             }
-        } catch (Exception pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveScheduleCommand.MESSAGE_USAGE), pe);
         }
     }
 
@@ -64,12 +58,4 @@ public class RemoveScheduleCommandParser implements Parser<RemoveScheduleCommand
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
-    /**
-     * Returns true if there are duplicate prefixes
-     * @param argumentMultimap
-     * @param prefixes
-     */
-    private static boolean arePrefixesUnique(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getAllValues(prefix).size() == 1);
-    }
 }
