@@ -25,8 +25,8 @@ public class RemoveEventCommand extends Command {
     public static final String MESSAGE_USAGE =
         "rmevent: Removes an event from the specified contact's calendar.\n"
             + "Parameters: "
-            + "INDEX\n"
-            + "en/EVENT_NAME\n"
+            + "INDEX "
+            + "en/EVENT_NAME \n"
             + "Example: " + COMMAND_WORD
             + " 1"
             + " en/CS2103T Lecture\n"
