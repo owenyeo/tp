@@ -15,6 +15,12 @@ public class PhoneTest {
     }
 
     @Test
+    public void constructor_invalidPhone_throwsIllegalArgumentException() {
+        String invalidPhone = "123";
+        assertThrows(IllegalArgumentException.class, () -> new Phone(invalidPhone));
+    }
+
+    @Test
     public void isValidPhone() {
         // null phone number
         assertThrows(NullPointerException.class, () -> Phone.isValidPhone(null));
@@ -26,16 +32,16 @@ public class PhoneTest {
         assertFalse(Phone.isValidPhone("9312 1534")); // spaces within digits
 
         // valid phone numbers
-        assertTrue(Phone.isValidPhone("93121534"));
+        assertTrue(Phone.isValidPhone("93121534")); // exactly 8 numbers
         assertTrue(Phone.isValidPhone(""));
     }
 
     @Test
     public void equals() {
-        Phone phone = new Phone("99999999");
+        Phone phone = new Phone("91792309");
 
         // same values -> returns true
-        assertTrue(phone.equals(new Phone("99999999")));
+        assertTrue(phone.equals(new Phone("91792309")));
 
         // same object -> returns true
         assertTrue(phone.equals(phone));
@@ -47,6 +53,7 @@ public class PhoneTest {
         assertFalse(phone.equals(5.0f));
 
         // different values -> returns false
+        assertFalse(phone.equals(new Phone("91378808")));
         assertFalse(phone.equals(new Phone("99599999")));
     }
 
