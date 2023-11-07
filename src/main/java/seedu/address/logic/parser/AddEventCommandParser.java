@@ -58,7 +58,7 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
 
         String indexString;
 
-        String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get();
+        String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get().toUpperCase();
         String schedule = argMultimap.getValue(PREFIX_SCHEDULE).get();
         String reminder = argMultimap.getValue(PREFIX_REMINDER).get();
 

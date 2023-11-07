@@ -55,8 +55,8 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
 
         String indexString;
 
-        String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get().toLowerCase();
-        String eventType = argMultimap.getValue(PREFIX_EVENTTYPE).get().toLowerCase();
+        String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get().toUpperCase();
+        String eventType = argMultimap.getValue(PREFIX_EVENTTYPE).get().toUpperCase();
         String schedule = argMultimap.getValue(PREFIX_SCHEDULE).get();
 
         try {

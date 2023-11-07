@@ -70,7 +70,7 @@ Format: `help`
 
 Adds a person to TimetaBRO.
 
-Format: `add n/NAME [u/NICKNAME] p/PHONE_NUMBER t/TELEGRAM_HANDLE e/EMAIL [m/MODULE /from START_TIME /to END_TIME /day DAY] [t/TAG]`
+Format: `add n/NAME p/PHONE_NUMBER b/BIRTHDAY a/ADDRESS e/EMAIL [t/TAG]`
 
 <div markdown="span" class="alert alert-primary">Tip:
 A person can have any number of tags (including 0)
@@ -85,8 +85,8 @@ Unsuccessful Command:
 - `Wrong inputs for prefix: {prefix with error}`
 
 Examples:
-* `add n/John Doe p/98765432 t/johndoe e/johnd@example.com m/CS2103T /from 1200 /to 1300 /day Wednesday t/police`
-* `add n/Betsy Crowe t/betsycrowe e/betsycrowe@example.com p/1234567 m/CS2101 /from 1200 /to 1400 /day Monday, Thursday  t/criminal`
+* `add n/John Doe p/98765432 e/johnd@example.com t/police b/2001-10-10 a/18 College Ave E, Cinnamon West Learn Lobe, Singapore 138593`
+* `add n/Betsy Crowe e/betsycrowe@example.com p/1234567 t/criminal`
 
 ### Listing all persons : `list`
 
@@ -107,7 +107,7 @@ Displays an error message. `To list, please run the command ‘list’`
 
 Edits an existing person in TimetaBRO.
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [t/TELEGRAM_HANDLE] [e/EMAIL] [m/MODULE /from START_TIME /to END_TIME /day DAY] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [b/BIRTHDAY] [e/EMAIL] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -122,7 +122,7 @@ Changes the specified parameters of specified friend’s profile
 
 Unsuccessful Command:
 
-Displays an error message `Please specify the details to change! Correct syntax: edit INDEX [n/NAME] [p/PHONE_NUMBER] [t/TELEGRAM_HANDLE] [e/EMAIL] [m/MODULE /from START_TIME /to END_TIME /day DAY] [t/TAG]`
+Displays an error message `Please specify the details to change! Correct syntax: edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]`
 
 
 Examples:
@@ -197,6 +197,7 @@ the specified friend and `INDEX`
 - Event date and time will be equal to `DATE TIME`
 where `DATE TIME` must be entered in the format `YYYY-MM-DD HHMM [start time] HHMM [end time]`
 - Users can set whether they want to enable reminders for this event by inputting `y/n` under `[REMINDER]`
+- Event names will be changed to all upper case regardless of whether it was keyed it in lower case or upper case
 
 Successful Command:
 
@@ -308,6 +309,7 @@ To add event for friend, use \
 the specified friend and `INDEX`
 - Event date and time will be equal to `DAY TIME`
 where `DAY TIME` must be entered in the format `[monday/tuesday/wednesday/thursday/friday/saturday/sunday] HHMM [start time] HHMM [end time]`
+- Event names will be changed to all upper case regardless of whether it was keyed it in lower case or upper case
 
 **Successful Command:**\
 Input:

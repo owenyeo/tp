@@ -47,7 +47,7 @@ public class RemoveEventCommandParser implements Parser<RemoveEventCommand> {
         String indexString;
         try {
             indexString = argMultimap.getPreamble().toLowerCase();
-            String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get().toLowerCase();
+            String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get().toUpperCase();
             if (indexString.equals("user")) {
                 return new RemoveEventCommand(eventName, null);
             } else if (Integer.parseInt(indexString) > 0) {
