@@ -47,7 +47,7 @@ public class RemoveScheduleCommandParser implements Parser<RemoveScheduleCommand
         try {
             String indexString = argMultimap.getPreamble().toLowerCase();
             String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get().toUpperCase();
-            String eventType = argMultimap.getValue(PREFIX_EVENTTYPE).get().toUpperCase();
+            String eventType = argMultimap.getValue(PREFIX_EVENTTYPE).get().toLowerCase();
             if (indexString.equals("user")) {
                 return new RemoveScheduleCommand(eventName, eventType, null);
             } else if (Integer.parseInt(indexString) > 0) {

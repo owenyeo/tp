@@ -92,7 +92,7 @@ public class CommonFreetimeCommand extends Command {
      * @return a message indicating that the user and the given friend have no common free time
      */
     public static String createNoOverlapFriendMessage(Person friend) {
-        return "You and " + friend.getName().toString() + " have no common free time!";
+        return "You and " + friend.getName().toString() + " have no common free time!\n";
     }
 
     /**
@@ -129,7 +129,7 @@ public class CommonFreetimeCommand extends Command {
         Schedule friendSchedule = friend.getSchedule();
         List<FreeTime> commonFreeTimeWithFriend = userSchedule.getThisWeeksFreeTimesWith(friendSchedule);
         if (commonFreeTimeWithFriend.isEmpty()) {
-            throw new CommandException(createNoOverlapFriendMessage(friend));
+            return new StringBuilder(createNoOverlapFriendMessage(friend));
         } else {
             StringBuilder sb = new StringBuilder("You have common free times with "
                 + friend.getName().toString()
