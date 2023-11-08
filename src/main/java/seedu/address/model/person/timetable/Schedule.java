@@ -260,7 +260,8 @@ public class Schedule {
         if (!isOverlapping(newModule)) {
             modulesList.add(newModule);
         } else {
-            throw new IllegalArgumentException("Module " + newModule.getName() + " overlaps with " + getOverlappingEvent(newModule) + "!");
+            throw new IllegalArgumentException("Module " + newModule.getName()
+                    + " overlaps with " + getOverlappingEvent(newModule) + "!");
         }
     }
 
@@ -317,7 +318,8 @@ public class Schedule {
         if (!isOverlapping(newCca)) {
             ccasList.add(newCca);
         } else {
-            throw new IllegalArgumentException("CCA " + newCca.getName() + " overlaps with " + getOverlappingEvent(newCca) + "!");
+            throw new IllegalArgumentException("CCA " + newCca.getName() + " overlaps with "
+                    + getOverlappingEvent(newCca) + "!");
         }
     }
 
@@ -365,20 +367,6 @@ public class Schedule {
     }
 
     /**
-     * Adds a dated event to the schedule.
-     *
-     * @param eventString String representation of the dated event.
-     */
-    public void addDatedEvent(String eventString) {
-        DatedEvent newEvent = DatedEvent.newDatedEvent(eventString);
-        if (!isOverlapping(newEvent)) {
-            datedEventsList.add(newEvent);
-        } else {
-            throw new IllegalArgumentException("Event " + newEvent.getName() + " overlaps with " + getOverlappingEvent(newEvent) + "!");
-        }
-    }
-
-    /**
      * Returns true if the given event overlaps with any event in the schedule
      * @param event
      * @return true if the given event overlaps with any event in the schedule
@@ -387,7 +375,7 @@ public class Schedule {
         List<TimeBlock> totalList = new ArrayList<>();
         totalList.addAll(modulesList);
         totalList.addAll(ccasList);
-        totalList.addAll(datedEventsList); 
+        totalList.addAll(datedEventsList);
         for (TimeBlock e : totalList) {
             if (event.isOverlap(e)) {
                 return true;
@@ -405,7 +393,7 @@ public class Schedule {
         List<TimeBlock> totalList = new ArrayList<>();
         totalList.addAll(modulesList);
         totalList.addAll(ccasList);
-        totalList.addAll(datedEventsList); 
+        totalList.addAll(datedEventsList);
         for (TimeBlock e : totalList) {
             if (event.isOverlap(e)) {
                 return e.getName();
@@ -421,6 +409,21 @@ public class Schedule {
      */
     public void addDatedEvent(DatedEvent event) {
         datedEventsList.add(event);
+    }
+
+    /**
+     * Adds a dated event to the schedule.
+     *
+     * @param eventString String representation of the dated event.
+     */
+    public void addDatedEvent(String eventString) {
+        DatedEvent newEvent = DatedEvent.newDatedEvent(eventString);
+        if (!isOverlapping(newEvent)) {
+            datedEventsList.add(newEvent);
+        } else {
+            throw new IllegalArgumentException("Event " + newEvent.getName()
+                    + " overlaps with " + getOverlappingEvent(newEvent) + "!");
+        }
     }
 
     /**
