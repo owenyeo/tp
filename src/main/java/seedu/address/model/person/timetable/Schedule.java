@@ -292,7 +292,7 @@ public class Schedule {
      *
      * @param moduleName Name of the module to be removed.
      */
-    public void deleteModule(String moduleName) {
+    public void deleteModule(String moduleName) throws CommandException {
         boolean isFound = false;
         for (Module module : modulesList) {
             if (module.getName().equals(moduleName)) {
@@ -303,7 +303,7 @@ public class Schedule {
         }
 
         if (!isFound) {
-            throw new IllegalArgumentException("Module " + moduleName + " does not exist!");
+            throw new CommandException("Module " + moduleName + " does not exist!");
         }
     }
 
@@ -349,7 +349,7 @@ public class Schedule {
      *
      * @param ccaName Name of the CCA to be removed.
      */
-    public void deleteCca(String ccaName) {
+    public void deleteCca(String ccaName) throws CommandException{
         boolean isFound = false;
         for (Cca cca : ccasList) {
             if (cca.getName().equals(ccaName)) {
@@ -360,7 +360,7 @@ public class Schedule {
         }
 
         if (!isFound) {
-            throw new IllegalArgumentException("CCA " + ccaName + " does not exist!");
+            throw new CommandException("CCA " + ccaName + " does not exist!");
         }
     }
 
