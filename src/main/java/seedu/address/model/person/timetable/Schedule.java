@@ -107,12 +107,12 @@ public class Schedule {
                     startSlot = slot;
                 } else if (timeSlots[day][slot] && startSlot != -1) {
                     // End of a free time slot
-                    freeTimes.add(createFreeTime(day, startSlot, slot - 1));
+                    freeTimes.add(createFreeTime(day, startSlot, slot));
                     startSlot = -1;
                 }
             }
             if (startSlot != -1) {
-                freeTimes.add(createFreeTime(day, startSlot, 47)); // The entire day is free.
+                freeTimes.add(createFreeTime(day, startSlot, 48)); // The entire day is free.
             }
         }
 
