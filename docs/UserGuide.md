@@ -189,6 +189,8 @@ To add event for friend, use \
 - Event date and time will be equal to `DATE TIME`
   where `DATE TIME` must be entered in the format `YYYY-MM-DD HHMM [start time] HHMM [end time]`
 - Users can set whether they want to enable reminders for this event by inputting `y/n` under `[REMINDER]`
+- Event names will be changed to all upper case regardless of whether it was keyed it in lower case or upper case
+- Overlapping events will not be allowed
 
 Successful Command:
 
@@ -292,15 +294,21 @@ To add event for friend, use \
 - Adds an event titled `EVENT_NAME` to either user or
   the specified friend and `INDEX`
 - Event date and time will be equal to `DAY TIME`
-  where `DAY TIME` must be entered in the format `[monday/tuesday/wednesday/thursday/friday/saturday/sunday] HHMM [start time] HHMM [end time]`
+where `DAY TIME` must be entered in the format `[monday/tuesday/wednesday/thursday/friday/saturday/sunday] HHMM [start time] HHMM [end time]`
+- Event names will be changed to all upper case regardless of whether it was keyed it in lower case or upper case
+- Overlapping schedules will not be allowed
 
-Successful Command:\
-**Input:** \
-`addschedule 1 type/module en/CS2030 h/Monday 1000 1400`\
-**Output:**\
-`New event added:`\
-`Module:`\
-`CS2030 Monday 1000 1400 to [Friend Name]`
+**Successful Command:**\
+Input:
+````
+addschedule 1 type/module en/CS2030 h/Monday 1000 1400
+````
+Output:
+````
+New event added:
+Module:
+CS2030 Monday 1000 1400 to [Friend Name]
+````
 
 **Input:**\
 `addschedule user type/CCA en/Basketball h/Tuesday 1500 1600`\
