@@ -1,15 +1,11 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTNAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMINDER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHEDULE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.Messages;
 import seedu.address.logic.commands.AddEventCommand;
 
 public class AddEventCommandParserTest {
@@ -20,11 +16,11 @@ public class AddEventCommandParserTest {
 
         // dated event in user
         assertParseSuccess(parser, "user en/CS2103 Meeting h/2023-10-10 1030 1130 r/y",
-                new AddEventCommand("CS2103 Meeting", "2023-10-10 1030 1130", "y"));
+                new AddEventCommand("CS2103 MEETING", "2023-10-10 1030 1130", "y"));
 
         // dated event in friend
         assertParseSuccess(parser, "1 en/CS2103 Meeting h/2023-10-10 1030 1130 r/y",
-                new AddEventCommand("CS2103 Meeting", Index.fromOneBased(1),
+                new AddEventCommand("CS2103 MEETING", Index.fromOneBased(1),
                         "2023-10-10 1030 1130", "y"));
 
     }
@@ -35,58 +31,51 @@ public class AddEventCommandParserTest {
 
         // multiple event name
         assertParseFailure(parser, validCommand + " en/CS2103 Meeting",
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EVENTNAME));
+                "You can only have 1 of each prefix!\n" + "Duplicated prefixes are: en/ ");
 
         // multiple event schedule
         assertParseFailure(parser, validCommand + " h/2023-10-10 1030 1130",
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_SCHEDULE));
+                "You can only have 1 of each prefix!\n" + "Duplicated prefixes are: h/ ");
 
         // multiple event reminder
         assertParseFailure(parser, validCommand + " r/y",
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_REMINDER));
+                "You can only have 1 of each prefix!\n" + "Duplicated prefixes are: r/ ");
 
         // multiple fields repeated
         assertParseFailure(parser, validCommand + " en/CS2103 Meeting" + " r/y",
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EVENTNAME, PREFIX_REMINDER));
+                "You can only have 1 of each prefix!\n" + "Duplicated prefixes are: en/ r/ ");
 
-        //valid value followed by invalid value
-
-        // invalid schedule
-        assertParseFailure(parser, validCommand + " h/2023-10-10 1030 1145",
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_SCHEDULE));
-
-        //invalid reminder
-        assertParseFailure(parser, validCommand + " r/yes",
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_REMINDER));
     }
 
     @Test
     public void parse_fieldMissing_failure() {
-        String expectedMessage = String.format("Command format is invalid! \n"
-                + AddEventCommand.MESSAGE_USAGE);
-
-        String expectedMessage2 = String.format("Invalid index!\n"
-                + "Index can only be 'user' or a positive integer! \n");
 
         // missing event name prefix
         assertParseFailure(parser, "user h/2023-10-10 1030 1130 r/y",
-                expectedMessage);
+                "Missing prefix(es) for en/ !\n" + "Message Usage:\n" + AddEventCommand.MESSAGE_USAGE);
 
         // missing event schedule prefix
         assertParseFailure(parser, "user en/CS2103 Meeting r/y",
-                expectedMessage);
+                "Missing prefix(es) for h/ !\n" + "Message Usage:\n" + AddEventCommand.MESSAGE_USAGE);
 
         // missing event reminder prefix
         assertParseFailure(parser, "user en/CS2103 Meeting h/2023-10-10 1030 1130",
-                expectedMessage);
+                "Missing prefix(es) for r/ !\n" + "Message Usage:\n" + AddEventCommand.MESSAGE_USAGE);
+
+        // missing multiple prefixes
+        assertParseFailure(parser, "user en/CS2103 Meeting",
+                "Missing prefix(es) for h/ r/ !\n" + "Message Usage:\n" + AddEventCommand.MESSAGE_USAGE);
 
         // all prefixes missing
         assertParseFailure(parser, "user CS2103 Meeting 2023-10-10 1030 1130 y",
-                expectedMessage);
+                "Missing prefix(es) for en/ h/ r/ !\n" + "Message Usage:\n" +
+                        AddEventCommand.MESSAGE_USAGE);
 
         // wrong index
         assertParseFailure(parser, "wrong en/CS2103 Meeting h/2023-10-10 1030 1130 r/y",
-                expectedMessage2);
+                String.format("Invalid index!\n"
+                        + "Index can only be 'user' or a positive integer! \n"));
+
     }
 
 }
