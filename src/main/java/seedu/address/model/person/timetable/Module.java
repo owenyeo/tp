@@ -47,7 +47,8 @@ public class Module extends TimeBlock {
 
         // Check for valid number of parts
         if (parts.length != 4) {
-            throw new IllegalArgumentException("Invalid module input format. Expected: NAME DAY HHMM HHMM");
+            String errorMsg = "Invalid module input format. Expected: NAME DAY HHMM HHMM" + MESSAGE_CONSTRAINTS;
+            throw new IllegalArgumentException(errorMsg);
         }
 
         String name = parts[0];

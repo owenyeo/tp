@@ -17,7 +17,7 @@ public abstract class TimeBlock implements Comparable<TimeBlock> {
             + "Day is case-insensitive. The start time must be before the end time.";
 
     public static final String VALIDATION_REGEX = "^(?i)(monday|tuesday|wednesday|thursday|friday|saturday|sunday) "
-            + "([01]?\\d|2[0-3])(00|30) ([01]?\\d|2[0-3])(00|30)$"; //format: (case-insensitive) day 2359 2359
+            + "([01]?\\d|2[0-3])(00|30) (([01]?\\d|2[0-3])(00|30)|(2400))$"; //format: (case-insensitive) day 2359 2359
 
     private String timeBlockString;
     private final DayOfWeek day;
