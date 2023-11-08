@@ -132,5 +132,4 @@ public class AddEventCommand extends Command {
                     && reminder.equals(other.reminder);
         }
     }
-
 }

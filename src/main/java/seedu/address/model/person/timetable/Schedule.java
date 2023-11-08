@@ -256,7 +256,12 @@ public class Schedule {
      * @param moduleString String representation of the module.
      */
     public void addModule(String moduleString) throws IllegalValueException {
-        modulesList.add(Module.newModule(moduleString));
+        Module newModule = Module.newModule(moduleString);
+        if (!isOverlapping(newModule)) {
+            modulesList.add(newModule);
+        } else {
+            throw new IllegalArgumentException("Module " + newModule.getName() + " overlaps with " + getOverlappingEvent(newModule) + "!");
+        }
     }
 
     /**
@@ -308,7 +313,12 @@ public class Schedule {
      * @param ccaString String representation of the CCA.
      */
     public void addCca(String ccaString) throws IllegalValueException {
-        ccasList.add(Cca.newCca(ccaString));
+        Cca newCca = Cca.newCca(ccaString);
+        if (!isOverlapping(newCca)) {
+            ccasList.add(newCca);
+        } else {
+            throw new IllegalArgumentException("CCA " + newCca.getName() + " overlaps with " + getOverlappingEvent(newCca) + "!");
+        }
     }
 
     /**
@@ -360,7 +370,48 @@ public class Schedule {
      * @param eventString String representation of the dated event.
      */
     public void addDatedEvent(String eventString) {
-        datedEventsList.add(DatedEvent.newDatedEvent(eventString));
+        DatedEvent newEvent = DatedEvent.newDatedEvent(eventString);
+        if (!isOverlapping(newEvent)) {
+            datedEventsList.add(newEvent);
+        } else {
+            throw new IllegalArgumentException("Event " + newEvent.getName() + " overlaps with " + getOverlappingEvent(newEvent) + "!");
+        }
+    }
+
+    /**
+     * Returns true if the given event overlaps with any event in the schedule
+     * @param event
+     * @return true if the given event overlaps with any event in the schedule
+     */
+    public boolean isOverlapping(TimeBlock event) {
+        List<TimeBlock> totalList = new ArrayList<>();
+        totalList.addAll(modulesList);
+        totalList.addAll(ccasList);
+        totalList.addAll(datedEventsList); 
+        for (TimeBlock e : totalList) {
+            if (event.isOverlap(e)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns the event that the given event is overlapping with
+     * @param event
+     * @return the event that the given event is overlapping with
+     */
+    public String getOverlappingEvent(TimeBlock event) {
+        List<TimeBlock> totalList = new ArrayList<>();
+        totalList.addAll(modulesList);
+        totalList.addAll(ccasList);
+        totalList.addAll(datedEventsList); 
+        for (TimeBlock e : totalList) {
+            if (event.isOverlap(e)) {
+                return e.getName();
+            }
+        }
+        return null;
     }
 
     /**

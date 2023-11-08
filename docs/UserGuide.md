@@ -202,6 +202,7 @@ the specified friend and `INDEX`
 where `DATE TIME` must be entered in the format `YYYY-MM-DD HHMM [start time] HHMM [end time]`
 - Users can set whether they want to enable reminders for this event by inputting `y/n` under `[REMINDER]`
 - Event names will be changed to all upper case regardless of whether it was keyed it in lower case or upper case
+- Overlapping events will not be allowed
 
 Successful Command:
 
@@ -314,6 +315,7 @@ the specified friend and `INDEX`
 - Event date and time will be equal to `DAY TIME`
 where `DAY TIME` must be entered in the format `[monday/tuesday/wednesday/thursday/friday/saturday/sunday] HHMM [start time] HHMM [end time]`
 - Event names will be changed to all upper case regardless of whether it was keyed it in lower case or upper case
+- Overlapping schedules will not be allowed
 
 **Successful Command:**\
 Input:
