@@ -124,7 +124,7 @@ public class JsonAdaptedUserTest {
         JsonAdaptedUser user =
                 new JsonAdaptedUser(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, INVALID_BIRTHDAY, VALID_TAGS,
                         VALID_SCHEDULE, VALID_DATEDEVENTS);
-        String expectedMessage = "Birthday should be in the format of YYYY-MM-DD OR YYYY-M-D "
+        String expectedMessage = "Birthday should be in the format of YYYY-MM-DD "
                 + "and should be a valid date.";
         assertThrows(IllegalValueException.class, expectedMessage, user::toModelType);
     }

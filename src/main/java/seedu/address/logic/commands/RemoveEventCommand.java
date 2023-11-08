@@ -25,8 +25,8 @@ public class RemoveEventCommand extends Command {
     public static final String MESSAGE_USAGE =
         "rmevent: Removes an event from the specified contact's calendar.\n"
             + "Parameters: "
-            + "INDEX\n"
-            + "en/EVENT_NAME\n"
+            + "INDEX "
+            + "en/EVENT_NAME \n"
             + "Example: " + COMMAND_WORD
             + " 1"
             + " en/CS2103T Lecture\n"
@@ -63,29 +63,20 @@ public class RemoveEventCommand extends Command {
         Person friend;
 
         Schedule userSchedule = model.getUser().getSchedule();
-        try {
-            if (index == null) {
-                userSchedule.deleteDatedEvent(eventName);
-                return new CommandResult("Dated Event '"
-                    + eventName
+        if (index == null) {
+            userSchedule.deleteDatedEvent(eventName);
+            return new CommandResult("Dated Event '" + eventName
                     + "' deleted from your calendar!", false, false, true, false);
-            } else {
-                List<Person> lastShownList = model.getFilteredPersonList();
-                if (index.getZeroBased() >= lastShownList.size()) {
-                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX + "\n"
+        } else {
+            List<Person> lastShownList = model.getFilteredPersonList();
+            if (index.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX + "\n"
                         + "Index can be max " + lastShownList.size() + "!");
-                }
-                friend = model.getFilteredPersonList().get(index.getZeroBased());
-                friend.getSchedule().deleteDatedEvent(eventName);
-                return new CommandResult("Dated Event '"
-                    + eventName
-                    + "' deleted from "
-                    + friend.getName().toString()
-                    + "'s calendar!", false, false, true, false);
             }
-        } catch (Exception e) {
-            throw new CommandException("Event " + eventName + " does not exist!\n"
-                + "Please check that you have entered the correct event name!\n");
+            friend = model.getFilteredPersonList().get(index.getZeroBased());
+            friend.getSchedule().deleteDatedEvent(eventName);
+            return new CommandResult("Dated Event '" + eventName + "' deleted from "
+                    + friend.getName().toString() + "'s calendar!", false, false, true, false);
         }
     }
 
@@ -103,4 +94,25 @@ public class RemoveEventCommand extends Command {
         }
         return result;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof RemoveEventCommand)) {
+            return false;
+        }
+
+        RemoveEventCommand other = (RemoveEventCommand) o;
+        if (index == null && other.index != null) {
+            return false;
+        } else if (index != null && other.index == null) {
+            return false;
+        } else {
+            return eventName.equals(other.eventName);
+        }
+    }
+
 }
