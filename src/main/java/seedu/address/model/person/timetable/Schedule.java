@@ -292,8 +292,9 @@ public class Schedule {
      * Removes a module from the schedule.
      *
      * @param moduleName Name of the module to be removed.
+     * @throws CommandException If the module to be removed does not exist.
      */
-    public void deleteModule(String moduleName) {
+    public void deleteModule(String moduleName) throws CommandException {
         boolean isFound = false;
         for (Module module : modulesList) {
             if (module.getName().equals(moduleName)) {
@@ -304,7 +305,8 @@ public class Schedule {
         }
 
         if (!isFound) {
-            throw new IllegalArgumentException("Module " + moduleName + " does not exist!");
+            throw new CommandException("Module " + moduleName + " does not exist!\n"
+                    + "Please check that you have entered the correct module name!\n");
         }
     }
 
@@ -350,8 +352,9 @@ public class Schedule {
      * Removes a CCA from the schedule.
      *
      * @param ccaName Name of the CCA to be removed.
+     * @throws CommandException If the CCA to be removed does not exist.
      */
-    public void deleteCca(String ccaName) {
+    public void deleteCca(String ccaName) throws CommandException {
         boolean isFound = false;
         for (Cca cca : ccasList) {
             if (cca.getName().equals(ccaName)) {
@@ -362,13 +365,14 @@ public class Schedule {
         }
 
         if (!isFound) {
-            throw new IllegalArgumentException("CCA " + ccaName + " does not exist!");
+            throw new CommandException("Cca " + ccaName + " does not exist!\n"
+                    + "Please check that you have entered the correct cca name!\n");
         }
     }
 
     /**
      * Returns true if the given event overlaps with any event in the schedule
-     * @param event
+     * @param event the event to be checked
      * @return true if the given event overlaps with any event in the schedule
      */
     public boolean isOverlapping(TimeBlock event) {
@@ -386,7 +390,7 @@ public class Schedule {
 
     /**
      * Returns the event that the given event is overlapping with
-     * @param event
+     * @param event the event to be checked
      * @return the event that the given event is overlapping with
      */
     public String getOverlappingEvent(TimeBlock event) {
