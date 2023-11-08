@@ -1,8 +1,3 @@
----
-layout: page
-title: User Guide
----
-
 ## Introduction
 
 Welcome to TimetaBRO, your ultimate companion for managing your university life, social interactions, and schedules. It is dedicated to **NUS students who have many things on their plate, and have trouble arranging meetings with friends and teammates**.
@@ -25,12 +20,19 @@ Before we jump into it, let's make sure that your TimetaBRO is working properly!
     * If Java 11 is not installed, you may follow the installation instructions over here.
 2. Next, download the latest 'timetabro.jar' from [here](https://github.com/AY2324S1-CS2103T-W12-4/tp).
 3. Copy the file to the folder you want to use as a home folder for TimetaBRO.
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
-    * add n/Owen p/91792309 s/CS2101 Tuesday 1200 1400 b/ 2001-12-26:
-    adds a friend named Owen, with phone number 91792309 and birthday on 26 December 2001. He is taking a class on Tuesday 1200-1400 for module CS2101
-    * cft Friday 1200 1400:
-    Filters your friend list to people who are free on these timings
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. You should see a pop up. That is your reminder for the events and birthdays for the day!
 
+![Ui-labelled](images/ui-overview.png)
+<br><center><ins>Image: User interface layout of TimetaBRO</ins></center><br>
+
+Here are some commands you can try:
+
+  * add n/Owen p/91792309 b/ 2001-12-26:
+  adds a friend named Owen, with phone number 91792309 and birthday on 26 December 2001
+  * addschedule 1 type/module en/CS2101 h/Monday 1200 1400:
+  adds a module CS2101 into the schedule of the first person in your friends list that occurs on Monday 12pm to 2pm
+  * cft Friday 1200 1400:
+  Filters your friend list to people who are free on these timings
 
 Nice! Now you know the basic commands and have launched TimetaBRO, lets get into the finer details.
 

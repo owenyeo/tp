@@ -11,24 +11,39 @@ TimetaBRO, your ultimate companion for managing your university life, social int
 
 ### Summary of Contributions
 
-**Code contributed:** [Link to your code on tP Code Dashboard]
+**Code contributed:** 
+https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=owenyeo&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22
 
 **Enhancements implemented:**
+* Implemented the User, UserData, and ReadOnlyUserData to save user details and schedule.
+* Implemented the EditUserCommand to allow for editting of user details.
+* Implemented UserDataStorage and updated Storage, StorageManager to support it.
+* Created the follow Json related classes:
+    * JsonAdaptedCca
+    * JsonAdaptedDatedEvent
+    * JsonAdaptedModule
+    * JsonAdaptedSchedule
+    * JsonAdaptedUser
+    * JsonUserDataStorage
+    * JsonSerializableUserData.java
+* Wrote testcases for storage
+* Changed Add and Edit to only require names
 
-[to be added later]
 
 **Contributions to the User Guide (UG):**
-
-[to be added later]
+* Wrote the introduction
+* Wrote About
+* Wrote the Quickstart
 
 **Contributions to the Developer Guide (DG):**
-
-[to be added later]
+* Adjusted the diagrams in Storage and Model
+* Added details about UserDataStorage
 
 **Contributions to team-based tasks:**
-
-[to be added later]
+* Delegated work to teammates 
+* Created issues and assigned them to teammates
+* Kept track of code deadlines
 
 **Contributions beyond the project team:**
-
-[to be added later]
+* Took part in Bug CATcher stress test
+* Took part in PE-D
