@@ -6,11 +6,10 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddScheduleCommand;
 import seedu.address.logic.commands.RemoveScheduleCommand;
 
 public class RemoveScheduleCommandParserTest {
-    private RemoveScheduleCommandParser parser = new RemoveScheduleCommandParser();
+    private final RemoveScheduleCommandParser parser = new RemoveScheduleCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -69,8 +68,7 @@ public class RemoveScheduleCommandParserTest {
 
         // wrong index
         assertParseFailure(parser, "wrong type/cca en/Basketball",
-                String.format("Invalid index!\n"
-                        + "Index can only be 'user' or a positive integer! \n"));
+                "Invalid index!\n" + "Index can only be 'user' or a positive integer! \n");
     }
 
 }

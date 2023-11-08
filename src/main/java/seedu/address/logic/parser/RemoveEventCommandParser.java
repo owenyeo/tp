@@ -2,13 +2,11 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTNAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTTYPE;
 
 import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.RemoveEventCommand;
-import seedu.address.logic.commands.RemoveScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -55,8 +53,8 @@ public class RemoveEventCommandParser implements Parser<RemoveEventCommand> {
                 Integer.parseInt(indexString);
                 return new RemoveEventCommand(eventName, ParserUtil.parseIndex(indexString));
             } catch (NumberFormatException e) {
-                throw new ParseException(String.format("Invalid index!" + "\n"
-                        + "Index can only be 'user' or a positive integer! \n"));
+                throw new ParseException("Invalid index!" + "\n"
+                        + "Index can only be 'user' or a positive integer! \n");
             }
         }
 
@@ -73,8 +71,8 @@ public class RemoveEventCommandParser implements Parser<RemoveEventCommand> {
 
     /**
      * Returns true if there are duplicate prefixes
-     * @param argumentMultimap
-     * @param prefixes
+     * @param argumentMultimap The argument multimap to check for the presence of prefixes.
+     * @param prefixes The prefixes to check for duplicates.
      */
     private static boolean arePrefixesUnique(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getAllValues(prefix).size() == 1);
@@ -82,7 +80,6 @@ public class RemoveEventCommandParser implements Parser<RemoveEventCommand> {
 
     /**
      * Returns the prefixes that is not present in the given {@code ArgumentMultimap}.
-     * @throws ParseException if the user input does not conform the expected format
      */
     private static List<Prefix> getMissingPrefixes(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).filter(prefix -> argumentMultimap.getValue(prefix).isEmpty())

@@ -9,7 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddEventCommand;
 
 public class AddEventCommandParserTest {
-    private AddEventCommandParser parser = new AddEventCommandParser();
+    private final AddEventCommandParser parser = new AddEventCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -68,13 +68,12 @@ public class AddEventCommandParserTest {
 
         // all prefixes missing
         assertParseFailure(parser, "user CS2103 Meeting 2023-10-10 1030 1130 y",
-                "Missing prefix(es) for en/ h/ r/ !\n" + "Message Usage:\n" +
-                        AddEventCommand.MESSAGE_USAGE);
+                "Missing prefix(es) for en/ h/ r/ !\n" + "Message Usage:\n"
+                        + AddEventCommand.MESSAGE_USAGE);
 
         // wrong index
         assertParseFailure(parser, "wrong en/CS2103 Meeting h/2023-10-10 1030 1130 r/y",
-                String.format("Invalid index!\n"
-                        + "Index can only be 'user' or a positive integer! \n"));
+                "Invalid index!\n" + "Index can only be 'user' or a positive integer! \n");
 
     }
 
