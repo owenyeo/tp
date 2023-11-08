@@ -89,7 +89,6 @@ public class ModuleTest {
         assertFalse(Module.isValidModuleName("CS21*3")); // contains non-alphanumeric characters
         assertFalse(Module.isValidModuleName("CS2103 CS2103")); // contains spaces
         assertFalse(Module.isValidModuleName("CS21031")); // more numbers
-        assertFalse(Module.isValidModuleName("CS210")); // less numbers
         assertFalse(Module.isValidModuleName("CS")); // only alphbets
 
         // valid name

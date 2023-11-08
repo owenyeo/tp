@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTTYPE;
 import java.util.List;
 import java.util.stream.Stream;
 
+import seedu.address.logic.commands.AddScheduleCommand;
 import seedu.address.logic.commands.RemoveScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -44,23 +45,20 @@ public class RemoveScheduleCommandParser implements Parser<RemoveScheduleCommand
                 + "Duplicated prefixes are: " + duplicatePrefixString));
         }
 
-        try {
-            String indexString = argMultimap.getPreamble().toLowerCase();
-            String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get().toUpperCase();
-            String eventType = argMultimap.getValue(PREFIX_EVENTTYPE).get().toLowerCase();
-            if (indexString.equals("user")) {
-                return new RemoveScheduleCommand(eventName, eventType, null);
-            } else if (Integer.parseInt(indexString) > 0) {
+        String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get().toUpperCase();
+        String eventType = argMultimap.getValue(PREFIX_EVENTTYPE).get().toLowerCase();
+        String indexString = argMultimap.getPreamble().toLowerCase();
+        if (indexString.equals("user")) {
+            return new RemoveScheduleCommand(eventName, eventType, null);
+        } else {
+            try {
+                Integer.parseInt(indexString);
                 return new RemoveScheduleCommand(eventName, eventType,
-                    ParserUtil.parseIndex(indexString));
-            } else {
-                throw new ParseException("Invalid index!\n"
-                        + "Index must either be 'user' or a positive integer!\n");
+                        ParserUtil.parseIndex(indexString));
+            } catch (NumberFormatException e) {
+                throw new ParseException(String.format("Invalid index!" + "\n"
+                        + "Index can only be 'user' or a positive integer! \n"));
             }
-        } catch (Exception pe) {
-            throw new ParseException(
-                    String.format("Please input an index!" + "\n"
-                        + "Message Usage: ", RemoveScheduleCommand.MESSAGE_USAGE));
         }
     }
 

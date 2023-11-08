@@ -13,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.TypicalDatedEvents.NORMAL_DATEDEVENTS;
+import static seedu.address.testutil.TypicalSchedule.FILLED_SCHEDULE;
 import static seedu.address.testutil.TypicalSchedule.FULL_SCHEDULE;
 import static seedu.address.testutil.TypicalSchedule.NORMAL_SCHEDULE;
 
@@ -37,6 +38,10 @@ public class TypicalUsers {
             .withAddress("123, Clementi Ave 6, #05-22").withEmail("james@example.com")
             .withPhone("92345679").withBirthday("2000-01-01").withSchedule(FULL_SCHEDULE)
             .withTags("friends").build();
+
+    public static final User JOSH = new UserBuilder().withName("Josh Doe")
+            .withAddress("123, Clementi Ave 5, #05-22").withEmail("josh@example.com")
+            .withPhone("92345612").withBirthday("2000-01-01").withSchedule(FILLED_SCHEDULE).build();
 
     // Manually added - User's details found in {@code CommandTestUtil}
     public static final User AMY = new UserBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
