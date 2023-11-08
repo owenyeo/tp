@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-## Introduction
+## Introduction - What is TimetaBRO?
 
 Welcome to TimetaBRO, your ultimate companion for managing your university life, social interactions, and schedules. It is dedicated to NUS students who have many things on their plate and have trouble arranging meetings with friends and teammates.
 
@@ -18,7 +18,13 @@ This user guide will also provide information about its amazing functionalities 
 
 Additionally, we included FAQs and a glossary in case you have any additional questions after reading this user guide.
 
-## Quickstart
+--------------------------------------------------------------------------------------------------------------------
+* Table of Contents
+{:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 1. Quickstart
 Before we jump into it, let's make sure that your TimetaBRO is working properly!
 1. Ensure you have Java 11 installed on your computer.
     * To check if Java 11 is currently installed, you may follow this short guide.
@@ -34,8 +40,9 @@ Before we jump into it, let's make sure that your TimetaBRO is working properly!
 
 Nice! Now you know the basic commands and have launched TimetaBRO, lets get into the finer details.
 
+## 2. TimetaBRO User Interface
 
-## Features
+## 3. Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -59,18 +66,69 @@ Nice! Now you know the basic commands and have launched TimetaBRO, lets get into
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
 </div>
 
-### Viewing help : `help`
+### 3.1 User Commands
 
-Shows a message explaining how to access the help page.
+#### 3.1.1 Editing User Information: user
 
-Format: `help`
+Personalise your profile information.
 
+Format: `user n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...​`
 
-### Adding a person: `add`
+<div markdown="span" class="alert alert-primary">Tip:
+A person can have any number of tags (including 0)
+</div><br />
+
+Successful Command:
+
+- `Edited Your Details: NAME, Phone: PHONE_NUMBER, Email: EMAIL; Address: ADDRESS; Free Times: [FREE_TIMES]`
+
+#### 3.1.2 Adding recurring event to user: addschedule user
+
+This command adds a recurring event to your schedule.
+
+Format: `addschedule user type/TYPE en/EVENT NAME h/DAY_TIME`\
+
+- Adds an event titled `EVENT_NAME`
+- `TYPE` is a prefix that can either be `module` or `CCA`
+- Event date and time will be equal to `DAY_TIME`<br>
+where `DAY_TIME` must be entered in the format `Day HHMM HHMM`
+`Day` is any day of the week and is case insensitive, `HHMM` is a 24H time format to indicate the start time and end time.
+
+**Input:**
+````
+addschedule user type/CCA en/Basketball h/Tuesday 1500 1600
+````
+**Output:**
+````
+New event added:
+CCA:
+Basketball Tuesday 1500 1600 to Me
+````
+
+**Unsuccessful Command:**\
+If a user uses the wrong format (i.e missing prefix, wrong event type),
+this error message will be shown\
+````
+Input should be in the format 'name [Day] HHMM HHMM yes/no', where:
+'name' represents the name and should not contain spaces.
+'Day' represents a day of the week (e.g. Monday).
+'HHMM' represents a valid 24-hour time format in half-hour blocks (e.g. 0000, 1230, 2300).
+The first 'HHMM' represents the starting time (e.g. '0830' for 08:30 AM).
+The second 'HHMM' represents the ending time (e.g. '1730' for 05:30 PM).
+y/n represents whether you want a reminder for this event.
+````
+
+#### 3.1.3 Adding non-recurring event to user: addevent user
+#### 3.1.4 Deleting recurring event from user: rmschedule user
+#### 3.1.5 Deleting non-recurring event from user: rmevent user
+
+### 3.2 Friend Commands
+
+#### 3.2.1 Adding a friend: add
 
 Adds a person to TimetaBRO.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...​`
 
 <div markdown="span" class="alert alert-primary">Tip:
 A person can have any number of tags (including 0)
@@ -88,20 +146,13 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com b/2001-12-12 a/Downtown t/police`
 * `add n/Betsy Crowe e/betsycrowe@example.com p/1234567 b/2002-04-19 a/Upurs Street t/criminal`
 
-### Listing all persons : `list`
+#### 3.2.2 Editing friend information: edit
 
-Shows a list of all added friends.
-
-Format: `list`
-
-
-### Editing a friend's information : `edit`
-
-Edits an existing person in TimetaBRO.
+Edits an existing friend in TimetaBRO.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed friend list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
@@ -121,7 +172,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower m/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing modules.
 
-### Deleting a person : `delete`
+#### 3.2.3 Deleting a friend's information: delete
 
 Deletes the specified friend from TimetaBRO.
 
@@ -144,50 +195,86 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the list.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Finding common free times with friend(s) : `cft`
+#### 3.2.4 Listing all friends: list
 
-Finds friend(s) with the same free times as you.
+Shows a list of all added friends.
 
-Format: `cft [INDEX]`
+Format: `list`
 
-* Finds common free times with friend of the specified `INDEX`.
-* Finds common free times with **all friends** in the list if `INDEX` is not included.
+#### 3.2.5 Viewing friend's profile
+
+Show your friend's timetable.
+
+How to use:
+1. Scroll down your list of friends, until you locate the friend's timetable you want to see.
+2. Click on the friend's profile. You should see their details appear, on the bottom right panel.
+
+#### 3.2.6 Adding recurring event to friend: addschedule
+
+This command adds a recurring event to a friend's schedule.
+
+Format: `addschedule`\
+To add event to yourself, use \
+`addschedule user type/TYPE en/EVENT NAME h/DAY_TIME` \
+To add event for friend, use \
+`addschedule INDEX type/TYPE en/EVENT NAME h/DAY_TIME`
+
+- Adds an event titled `EVENT_NAME` to either user or
+  the specified friend and `INDEX`
+- Event date and time will be equal to `DAY_TIME`
+  where `DAY_TIME` must be entered in the format `[monday/tuesday/wednesday/thursday/friday/saturday/sunday] HHMM [start time] HHMM [end time]`
 
 Successful Command:\
 **Input:** \
-`cft`\
+`addschedule 1 type/module en/CS2030 h/Monday 1000 1400`\
 **Output:**\
-Found common free time with friend.\
-`Here are the contacts with the same free time as you:`
-- `Andre [Monday 1230 1300]`
-- `Owen [Sunday 1200 1400]`
+`New event added:`\
+`Module:`\
+`CS2030 Monday 1000 1400 to [Friend Name]`
 
-You have no free time: `You have no free time!`
+**Input:**\
+`addschedule user type/CCA en/Basketball h/Tuesday 1500 1600`\
+**Output:**\
+`New event added:` \
+`CCA:`\
+`Basketball Tuesday 1500 1600 to Me`
 
-No common free times with friends: `You have no contacts with the same free time as you!`
+Unsuccessful Command:\
+If a user puts an invalid index,
+this error message will be shown
 
-Unsuccessful Command:
+`Invalid index!`\
+`addevent: Adds a non-recurring event to the calendar.`\
+`Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME h/(Day (Day of week) StarTime (HHMM) EndTime (HHMM))`\
+`Example: addschedule 1 type/dated en/CS2103T Lecture h/Wednesday 1400 1600`\
 
-If user inputs a friend that does not exist, the app will display\
-`There is no such contact in your contacts!`
+`Note: If you are adding a meetup event, then index refers to the index of the friend you are meeting with.`\
+`If you are adding a dated event, then index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself`
 
-Examples:
-* `cft` lists all friends .
-* `cft n/Betsy` finds people with the name `Betsy` and displays the common free times with this list.
+If a user uses the wrong format (i.e missing prefix, wrong event type),
+this error message will be shown\
+`Input should be in the format 'name [Day] HHMM HHMM yes/no', where:`\
+`'name' represents the name and should not contain spaces.`\
+`'Day' represents a day of the week (e.g. Monday).`
+`'HHMM' represents a valid 24-hour time format in half-hour blocks (e.g. 0000, 1230, 2300).`\
+`The first 'HHMM' represents the starting time (e.g. '0830' for 08:30 AM).`\
+`The second 'HHMM' represents the ending time (e.g. '1730' for 05:30 PM).`\
+`y/n represents whether you want a reminder for this event.`\
 
-### Add events to you/your friend's schedule : `addevent`
+#### 3.2.7 Adding non-recurring event to friend: addevent
+
 This command adds a dated, non-recurring event to you or your friend's schedule.
 
 Format: `addevent`\
 To add event to yourself, use \
-`addevent user en/EVENT NAME h/DATE TIME r/REMINDER` \
+`addevent user en/EVENT NAME h/DATE r/REMINDER` \
 To add event for friend, use \
-`addevent INDEX en/EVENT NAME h/DATE TIME r/REMINDER`
+`addevent INDEX en/EVENT NAME h/DATE r/REMINDER`
 
 - Adds an event titled `EVENT_NAME` to either user or
   the specified friend and `INDEX`
-- Event date and time will be equal to `DATE TIME`
-  where `DATE TIME` must be entered in the format `YYYY-MM-DD HHMM [start time] HHMM [end time]`
+- Event date and time will be equal to `DATE`
+  where `DATE` must be entered in the format `YYYY-MM-DD HHMM [start time] HHMM [end time]`
 - Users can set whether they want to enable reminders for this event by inputting `y/n` under `[REMINDER]`
 
 Successful Command:
@@ -242,96 +329,7 @@ The second 'HHMM' represents the ending time (e.g., '1730' for 05:30 PM).
 y/n represents whether you want a reminder for this event.
 ````
 
-
-### Removing an event: `rmevent`
-
-Removes the specified event from the specified Person
-
-**Format:**\
-To remove an event, you can use the rmevent command with the following parameters:
-
-`rmevent INDEX en/EVENT_NAME`
-
-INDEX (Index of the friend on the address book list or 'user')\
-en/EVENT_NAME (Event name)
-
-Successful commands:
-
-Remove an event from a friend's calendar:\
-`rmevent 1 en/CS2103T Lecture`
-Remove an event from your own calendar:\
-`rmevent user en/CS2103T Lecture`
-
-
-**Unsuccessful commands:**\
-If an invalid index is used:\
-`Invalid index!`\
-`Parameters: INDEX`\
-`en/EVENT_NAME`\
-`Example: rmevent 1 en/CS2103T Lecture`\
-`NOTE: If you want to remove an event from yourself, use index user`\
-`Example: rmevent user en/CS2103T Lecture`\
-
-If wrong command format is used (i.e missing prefixes, wrong event name):\
-`Command format is invalid!`\
-`Parameters: INDEX`\
-`en/EVENT_NAME`\
-`Example: rmevent 1 en/CS2103T Lecture`\
-`NOTE: If you want to remove an event from yourself, use index user`\
-`Example: rmevent user en/CS2103T Lecture`\
-
-### Add recurring events to you/your friend's schedule : `addschedule`
-This command adds a recurring event to you or your friend's schedule.
-
-Format: `addschedule`\
-To add event to yourself, use \
-`addschedule user type/TYPE en/EVENT NAME h/DAY TIME` \
-To add event for friend, use \
-`addschedule INDEX type/TYPE en/EVENT NAME h/DAY TIME`
-
-- Adds an event titled `EVENT_NAME` to either user or
-  the specified friend and `INDEX`
-- Event date and time will be equal to `DAY TIME`
-  where `DAY TIME` must be entered in the format `[monday/tuesday/wednesday/thursday/friday/saturday/sunday] HHMM [start time] HHMM [end time]`
-
-Successful Command:\
-**Input:** \
-`addschedule 1 type/module en/CS2030 h/Monday 1000 1400`\
-**Output:**\
-`New event added:`\
-`Module:`\
-`CS2030 Monday 1000 1400 to [Friend Name]`
-
-**Input:**\
-`addschedule user type/CCA en/Basketball h/Tuesday 1500 1600`\
-**Output:**\
-`New event added:` \
-`CCA:`\
-`Basketball Tuesday 1500 1600 to Me`
-
-Unsuccessful Command:\
-If a user puts an invalid index,
-this error message will be shown
-
-`Invalid index!`\
-`addevent: Adds a non-recurring event to the calendar.`\
-`Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME h/(Day (Day of week) StarTime (HHMM) EndTime (HHMM))`\
-`Example: addschedule 1 type/dated en/CS2103T Lecture h/Wednesday 1400 1600`\
-
-`Note: If you are adding a meetup event, then index refers to the index of the friend you are meeting with.`\
-`If you are adding a dated event, then index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself`
-
-If a user uses the wrong format (i.e missing prefix, wrong event type),
-this error message will be shown\
-`Input should be in the format 'name [Day] HHMM HHMM yes/no', where:`\
-`'name' represents the name and should not contain spaces.`\
-`'Day' represents a day of the week (e.g. Monday).`
-`'HHMM' represents a valid 24-hour time format in half-hour blocks (e.g. 0000, 1230, 2300).`\
-`The first 'HHMM' represents the starting time (e.g. '0830' for 08:30 AM).`\
-`The second 'HHMM' represents the ending time (e.g. '1730' for 05:30 PM).`\
-`y/n represents whether you want a reminder for this event.`\
-
-### Removing a recurring scheduled event: `rmschedule`
+#### 3.2.8 Deleting recurring event from friend: rmschedule
 
 Removes the specified recurring item from the specified Person's schedule
 
@@ -372,7 +370,77 @@ If wrong command format is used (i.e missing prefixes, wrong event name):\
 `NOTE: If you want to remove an event from yourself, use index user`\
 `Example: rmschedule user type/cca en/CS2103T Lecture`\
 
-### Set Reminder for dated events: `setReminder`
+#### 3.2.9 Deleting non-recurrring event from friend: rmevent
+
+Removes the specified event from the specified Person
+
+**Format:**\
+To remove an event, you can use the rmevent command with the following parameters:
+
+`rmevent INDEX en/EVENT_NAME`
+
+INDEX (Index of the friend on the address book list or 'user')\
+en/EVENT_NAME (Event name)
+
+Successful commands:
+
+Remove an event from a friend's calendar:\
+`rmevent 1 en/CS2103T Lecture`
+Remove an event from your own calendar:\
+`rmevent user en/CS2103T Lecture`
+
+
+**Unsuccessful commands:**\
+If an invalid index is used:\
+`Invalid index!`\
+`Parameters: INDEX`\
+`en/EVENT_NAME`\
+`Example: rmevent 1 en/CS2103T Lecture`\
+`NOTE: If you want to remove an event from yourself, use index user`\
+`Example: rmevent user en/CS2103T Lecture`\
+
+If wrong command format is used (i.e missing prefixes, wrong event name):\
+`Command format is invalid!`\
+`Parameters: INDEX`\
+`en/EVENT_NAME`\
+`Example: rmevent 1 en/CS2103T Lecture`\
+`NOTE: If you want to remove an event from yourself, use index user`\
+`Example: rmevent user en/CS2103T Lecture`\
+
+#### 3.2.10 Finding common free times with your friend: cft
+
+Finds friend(s) with the same free times as you.
+
+Format: `cft [INDEX]`
+
+* Finds common free times with friend of the specified `INDEX`.
+* Finds common free times with **all friends** in the list if `INDEX` is not included.
+
+Successful Command:\
+**Input:** \
+`cft`\
+**Output:**\
+Found common free time with friend.\
+`Here are the contacts with the same free time as you:`
+- `Andre [Monday 1230 1300]`
+- `Owen [Sunday 1200 1400]`
+
+You have no free time: `You have no free time!`
+
+No common free times with friends: `You have no contacts with the same free time as you!`
+
+Unsuccessful Command:
+
+If user inputs a friend that does not exist, the app will display\
+`There is no such contact in your contacts!`
+
+Examples:
+* `cft` lists all friends .
+* `cft n/Betsy` finds people with the name `Betsy` and displays the common free times with this list.
+
+### 3.3 Reminder Commands
+
+#### 3.3.1 Set reminder for non-recurring events: setReminder
 
 Sets a reminder for a dated event from the user's schedule
 
@@ -394,7 +462,7 @@ If an invalid event name is used:\
 `setReminder CS1111 Lecture`\
 `No such event exists!`
 
-### Set Reminder for dated events: `rmReminder`
+#### 3.3.2 Remove reminder for non-recurring events: rmReminder
 
 Remove a reminder for a dated event from the user's schedule
 
@@ -417,7 +485,15 @@ If an invalid event name is used:\
 `No such event exists!`
 
 
-### Clearing all entries : `clear`
+### 3.4 Other Commands
+
+#### 3.4.1 Viewing help: help
+
+Shows a message explaining how to access the help page.
+
+Format: `help`
+
+#### 3.4.2 Clearing all entries
 
 Clears all entries from TimetaBRO.
 
@@ -427,15 +503,15 @@ Successful Command:
 
 `All friends have been deleted`
 
-### Exiting the program : `exit`
+#### 3.4.3 Exiting the program
 
 Exits the program.
 
 Format: `exit`
 
-Successful Command:
-
 The app closes after saving all data.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Saving the data
 
@@ -456,28 +532,28 @@ If your changes to the data file makes its format invalid, TimetaBRO will discar
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TimetaBRO home folder.
 
-**Q**: Is TimetaBRO compatible with Mac and Linux operating systems, or is it Windows-specific?
+**Q**: Is TimetaBRO compatible with Mac and Linux operating systems, or is it Windows-specific?<br>
 **A**: TimetaBRO is compatible with multiple operating systems, including Windows, Mac, and Linux. It runs on systems that support Java 11, so you can use it on your preferred platform.
 
-**Q:** Can I import my friend's schedule from a different calendar application into TimetaBRO?
+**Q:** Can I import my friend's schedule from a different calendar application into TimetaBRO?<br>
 **A:** Currently, TimetaBRO does not offer a direct import feature for schedules from other calendar applications. You'll need to manually add your friends' schedules to TimetaBRO using the add command.
 
-**Q:** Is there a way to set recurring events for specific dates or weekdays, like every Tuesday, without manually adding them one by one?
+**Q:** Is there a way to set recurring events for specific dates or weekdays, like every Tuesday, without manually adding them one by one?<br>
 **A:** Yes, you can add recurring events for specific weekdays in TimetaBRO using the addschedule command. This feature allows you to set events for particular days of the week, making it easier to input recurring events.
 
-**Q:** What happens if I accidentally delete a friend or event in TimetaBRO? Is there a way to recover deleted data?
+**Q:** What happens if I accidentally delete a friend or event in TimetaBRO? Is there a way to recover deleted data?<br>
 **A:** Unfortunately, TimetaBRO does not have a built-in data recovery feature. When you delete a friend or event, the data is permanently removed from the application. It's essential to double-check your actions to avoid accidental deletions.
 
-**Q:** How can I customize the reminder settings for events added to TimetaBRO?
+**Q:** How can I customize the reminder settings for events added to TimetaBRO?<br>
 **A:** You can customize the reminder settings for events when adding them using the addevent command. The r/y or r/n option allows you to enable or disable reminders for specific events.
 
-**Q:** Is there a way to share my TimetaBRO schedule with others or export it to a different format, such as a calendar file?
+**Q:** Is there a way to share my TimetaBRO schedule with others or export it to a different format, such as a calendar file?<br>
 **A:** TimetaBRO currently does not support sharing schedules with others or exporting them to external formats. It primarily functions as a personal scheduling tool.
 
-**Q:** What sets TimetaBRO apart from other scheduling tools?
+**Q:** What sets TimetaBRO apart from other scheduling tools?<br>
 **A:** TimetaBRO's unique feature of saving your friends' schedules and finding common free times makes it stand out. It's a powerful tool for enhancing social connections and simplifying event planning, which many users find highly valuable.
 
-**Q:** What are the advantages of saving my friends' schedules in TimetaBRO?
+**Q:** What are the advantages of saving my friends' schedules in TimetaBRO?<br>
 **A:** Saving your friends' schedules in TimetaBRO allows you to easily coordinate meetups and group activities, making it simpler to find a time that works for everyone. It strengthens your social connections and helps you stay connected with friends.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -490,20 +566,25 @@ If your changes to the data file makes its format invalid, TimetaBRO will discar
 
 ## Command Summary
 
-| Action                       | Format and Examples                                                                                                                                                                        |
-|------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add a Friend**             | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]…​`<br> Example: `add n/John Doe p/98765432 e/johnd@example.com a/1 Hon Sui Sen Dr, Singapore 117588 b/2023-11-05 t/police` |
-| **Add an Event**             | `addevent [INDEX] type/EVENT_TYPE en/EVENT NAME h/DATE TIME r/REMINDER`<br> Example: `addevent 1 type/dated en/CS2030 Finals h/2023-10-31 1000 1400 r/y`                                   |
-| **Remove an Event**          | `rmevent [INDEX] type/EVENT_TYPE en/EVENT NAME`<br> Example: `rmevent 1 type/dated en/CS2103T Lecture`                                                                                     |
-| **Add a Recurring Event**    | `addschedule [INDEX] type/EVENT_TYPE en/EVENT_NAME h/DAY TIME`<br> Example: `addschedule 1 type/module en/CS2030 h/Monday 1000 1400`                                                       |
-| **Remove a Recurring Event** | `rmschedule [INDEX] type/EVENT_TYPE en/EVENT_NAME`<br> Example: `rmschedule 1 type/CCA en/CS2103T Lecture`                                                                                 |
-| **Remove a Reminder**        | `rmReminder EVENT_NAME`<br> Example: `rmReminder CS2103T Lecture`                                                                                                                          |
-| **Set a Reminder**           | `setReminder EVENT_NAME`<br> Example: `setReminder CS2103T Lecture`                                                                                                                        |
-| **Clear All Entries**        | `clear`                                                                                                                                                                                    |
-| **Delete a Friend**          | `delete INDEX`<br> Example: `delete 3`                                                                                                                                                     |
-| **Edit Friend Info**         | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`<br> Example: `edit 2 n/James Lee e/jameslee@example.com`                                               |
-| **Edit User Info**           | `user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`<br> Example: `user n/James Lee e/jameslee@example.com`                                                       |
-| **List All Friends**         | `list`                                                                                                                                                                                     |
-| **View Help**                | `help`                                                                                                                                                                                     |
-| **Find Common Free Times**   | `cft [INDEX]`<br>NOTE: To check common free times with entire friends list, use `cft` without any index.<br>Example: `cft`                                                                 |                                                                       
+| Action                                      | Format and Examples                                                                                                                                                                        |
+|---------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add a Friend**                            | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]…​`<br> Example: `add n/John Doe p/98765432 e/johnd@example.com a/1 Hon Sui Sen Dr, Singapore 117588 b/2023-11-05 t/police` |
+| **Add an Event to friend**                  | `addevent [INDEX] en/EVENT NAME h/DATE r/REMINDER`<br> Example: `addevent 1 en/CS2030 Finals h/2023-10-31 1000 1400 r/y`                                                                   |
+| **Add an Event to user**                    | `addevent user en/EVENT NAME h/DATE r/REMINDER`<br> Example: `addevent user en/CS2030 Finals h/2023-10-31 1000 1400 r/y`                                                                   |
+| **Remove an Event from friend**             | `rmevent [INDEX] en/EVENT NAME`<br> Example: `rmevent 1 en/CS2103T Lecture`                                                                                                                |
+| **Remove an Event from user**               | `rmevent user en/EVENT NAME`<br> Example: `rmevent user en/CS2103T Lecture`                                                                                                                |
+| **Add a Recurring Event to friend**         | `addschedule [INDEX] type/EVENT_TYPE en/EVENT_NAME h/DAY_TIME`<br> Example: `addschedule 1 type/module en/CS2030 h/Monday 1000 1400`                                                       |
+| **Add a Recurring Event to user**           | `addschedule user type/EVENT_TYPE en/EVENT_NAME h/DAY_TIME`<br> Example: `addschedule 1 type/module en/CS2030 h/Monday 1000 1400`                                                          |
+| **Remove a Recurring Event from friend**    | `rmschedule [INDEX] type/EVENT_TYPE en/EVENT_NAME`<br> Example: `rmschedule 1 type/CCA en/CS2103T Lecture`                                                                                 |
+| **Remove a Recurring Event from user**      | `rmschedule user type/EVENT_TYPE en/EVENT_NAME`<br> Example: `rmschedule 1 type/CCA en/CS2103T Lecture`                                                                                    |
+| **Remove a Reminder**                       | `rmReminder EVENT_NAME`<br> Example: `rmReminder CS2103T Lecture`                                                                                                                          |
+| **Set a Reminder**                          | `setReminder EVENT_NAME`<br> Example: `setReminder CS2103T Lecture`                                                                                                                        |
+| **Clear All Entries**                       | `clear`                                                                                                                                                                                    |
+| **Delete a Friend**                         | `delete INDEX`<br> Example: `delete 3`                                                                                                                                                     |
+| **Edit Friend Info**                        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`<br> Example: `edit 2 n/James Lee e/jameslee@example.com`                                               |
+| **Edit User Info**                          | `user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`<br> Example: `user n/James Lee e/jameslee@example.com`                                                       |
+| **List All Friends**                        | `list`                                                                                                                                                                                     |
+| **View Help**                               | `help`                                                                                                                                                                                     |
+| **Find Common Free Times with friend**      | `cft [INDEX]` Example: `cft 1`                                                                                                                                                             |                                                                       
+| **Find Common Free Times with all friends** | `cft`<br>                                                                                                                                                                                  |                                                                       
 
