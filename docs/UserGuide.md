@@ -1,3 +1,8 @@
+---
+layout: page
+title: User Guide
+---
+
 ## Introduction
 
 Welcome to TimetaBRO, your ultimate companion for managing your university life, social interactions, and schedules. It is dedicated to **NUS students who have many things on their plate, and have trouble arranging meetings with friends and teammates**.
