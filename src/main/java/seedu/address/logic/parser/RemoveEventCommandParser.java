@@ -2,11 +2,13 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTTYPE;
 
 import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.RemoveEventCommand;
+import seedu.address.logic.commands.RemoveScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -44,23 +46,20 @@ public class RemoveEventCommandParser implements Parser<RemoveEventCommand> {
                 + "Duplicated prefixes are: " + duplicatePrefixString));
         }
 
-        String indexString;
-        try {
-            indexString = argMultimap.getPreamble().toLowerCase();
-            String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get().toUpperCase();
-            if (indexString.equals("user")) {
-                return new RemoveEventCommand(eventName, null);
-            } else if (Integer.parseInt(indexString) > 0) {
+        String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get().toUpperCase();
+        String indexString = argMultimap.getPreamble().toLowerCase();
+        if (indexString.equals("user")) {
+            return new RemoveEventCommand(eventName, null);
+        } else {
+            try {
+                Integer.parseInt(indexString);
                 return new RemoveEventCommand(eventName, ParserUtil.parseIndex(indexString));
-            } else {
+            } catch (NumberFormatException e) {
                 throw new ParseException(String.format("Invalid index!" + "\n"
                         + "Index can only be 'user' or a positive integer! \n"));
             }
-        } catch (Exception pe) {
-            throw new ParseException(
-                    String.format("Please input an index!\n"
-                            + "Message Usage:\n" + RemoveEventCommand.MESSAGE_USAGE));
         }
+
     }
 
     /**
