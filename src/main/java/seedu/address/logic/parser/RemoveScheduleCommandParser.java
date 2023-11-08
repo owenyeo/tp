@@ -14,10 +14,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new DeleteEventCommand object
  */
 public class RemoveScheduleCommandParser implements Parser<RemoveScheduleCommand> {
-
-    private static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n"
-            + RemoveScheduleCommand.MESSAGE_USAGE;
-
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteEventCommand
      * and returns a DeleteEventCommand object for execution.
@@ -50,7 +46,7 @@ public class RemoveScheduleCommandParser implements Parser<RemoveScheduleCommand
 
         try {
             String indexString = argMultimap.getPreamble().toLowerCase();
-            String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get().toLowerCase();
+            String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get().toUpperCase();
             String eventType = argMultimap.getValue(PREFIX_EVENTTYPE).get().toLowerCase();
             if (indexString.equals("user")) {
                 return new RemoveScheduleCommand(eventName, eventType, null);
@@ -61,6 +57,10 @@ public class RemoveScheduleCommandParser implements Parser<RemoveScheduleCommand
                 throw new ParseException("Invalid index!\n"
                         + "Index must either be 'user' or a positive integer!\n");
             }
+        } catch (Exception pe) {
+            throw new ParseException(
+                    String.format("Please input an index!" + "\n"
+                        + "Message Usage: ", RemoveScheduleCommand.MESSAGE_USAGE));
         }
     }
 

@@ -13,10 +13,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new DeleteEventCommand object
  */
 public class RemoveEventCommandParser implements Parser<RemoveEventCommand> {
-
-    private static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n"
-            + RemoveEventCommand.MESSAGE_USAGE;
-
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteEventCommand
      * and returns a DeleteEventCommand object for execution.
@@ -48,17 +44,22 @@ public class RemoveEventCommandParser implements Parser<RemoveEventCommand> {
                 + "Duplicated prefixes are: " + duplicatePrefixString));
         }
 
+        String indexString;
         try {
-            String indexString = argMultimap.getPreamble().toLowerCase();
-            String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get().toLowerCase();
+            indexString = argMultimap.getPreamble().toLowerCase();
+            String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get().toUpperCase();
             if (indexString.equals("user")) {
                 return new RemoveEventCommand(eventName, null);
             } else if (Integer.parseInt(indexString) > 0) {
                 return new RemoveEventCommand(eventName, ParserUtil.parseIndex(indexString));
-            } catch (NumberFormatException e) {
+            } else {
                 throw new ParseException(String.format("Invalid index!" + "\n"
                         + "Index can only be 'user' or a positive integer! \n"));
             }
+        } catch (Exception pe) {
+            throw new ParseException(
+                    String.format("Please input an index!\n"
+                            + "Message Usage:\n" + RemoveEventCommand.MESSAGE_USAGE));
         }
     }
 
