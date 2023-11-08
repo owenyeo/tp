@@ -28,30 +28,8 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_EVENTNAME, PREFIX_EVENTTYPE, PREFIX_SCHEDULE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_EVENTNAME, PREFIX_EVENTTYPE, PREFIX_SCHEDULE)) {
-            List<Prefix> missingPrefix = getMissingPrefixes(argMultimap, PREFIX_EVENTNAME,
-                PREFIX_EVENTTYPE, PREFIX_SCHEDULE);
-            String missingPrefixString = "";
-            for (Prefix prefix : missingPrefix) {
-                missingPrefixString += prefix + " ";
-            }
-            throw new ParseException(String.format("Missing prefix(es) for %s!\n"
-                + "Message Usage:\n" + AddScheduleCommand.MESSAGE_USAGE, missingPrefixString));
-        }
-
-        if (!arePrefixesUnique(argMultimap, PREFIX_EVENTNAME,
-            PREFIX_EVENTTYPE, PREFIX_SCHEDULE)) {
-            List<Prefix> duplicatePrefix = getDuplicatePrefixes(argMultimap, PREFIX_EVENTNAME,
-                PREFIX_EVENTTYPE, PREFIX_SCHEDULE);
-            String duplicatePrefixString = "";
-            for (Prefix prefix : duplicatePrefix) {
-                duplicatePrefixString += prefix + " ";
-            }
-            throw new ParseException(String.format("You can only have 1 of each prefix!\n"
-                + "Duplicated prefixes are: " + duplicatePrefixString));
-        }
-
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_EVENTNAME, PREFIX_SCHEDULE, PREFIX_EVENTTYPE);
+        checkPresentPrefixes(argMultimap);
+        checkUniquePrefixes(argMultimap);
 
         String indexString;
 
@@ -85,6 +63,25 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
     }
 
     /**
+     * Checks if the required prefixes for adding an event are present in the given argument multimap.
+     * Throws a ParseException if any of the required prefixes are missing.
+     * @param argumentMultimap The argument multimap to check for the presence of prefixes.
+     * @throws ParseException If any of the required prefixes are missing.
+     */
+    private static void checkPresentPrefixes(ArgumentMultimap argMultimap) throws ParseException {
+        if (!arePrefixesPresent(argMultimap, PREFIX_EVENTNAME, PREFIX_EVENTTYPE, PREFIX_SCHEDULE)) {
+            List<Prefix> missingPrefix = getMissingPrefixes(argMultimap, PREFIX_EVENTNAME,
+                PREFIX_EVENTTYPE, PREFIX_SCHEDULE);
+            String missingPrefixString = "";
+            for (Prefix prefix : missingPrefix) {
+                missingPrefixString += prefix + " ";
+            }
+            throw new ParseException(String.format("Missing prefix(es) for %s!\n"
+                + "Message Usage:\n" + AddScheduleCommand.MESSAGE_USAGE, missingPrefixString));
+        }
+    }
+
+    /**
      * Returns the prefixes that is not present in the given {@code ArgumentMultimap}.
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -100,6 +97,26 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
      */
     private static boolean arePrefixesUnique(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getAllValues(prefix).size() == 1);
+    }
+
+    /**
+     * Checks if there are duplicate prefixes in the given argument multimap.
+     * Throws a ParseException if there are duplicate prefixes.
+     * @param argumentMultimap The argument multimap to check for duplicate prefixes.
+     * @throws ParseException If there are duplicate prefixes.
+     */
+    private static void checkUniquePrefixes(ArgumentMultimap argMultimap) throws ParseException {
+        if (!arePrefixesUnique(argMultimap, PREFIX_EVENTNAME,
+            PREFIX_EVENTTYPE, PREFIX_SCHEDULE)) {
+            List<Prefix> duplicatePrefix = getDuplicatePrefixes(argMultimap, PREFIX_EVENTNAME,
+                PREFIX_EVENTTYPE, PREFIX_SCHEDULE);
+            String duplicatePrefixString = "";
+            for (Prefix prefix : duplicatePrefix) {
+                duplicatePrefixString += prefix + " ";
+            }
+            throw new ParseException(String.format("You can only have 1 of each prefix!\n"
+                + "Duplicated prefixes are: " + duplicatePrefixString));
+        }
     }
 
     /**

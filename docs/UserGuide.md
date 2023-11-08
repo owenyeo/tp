@@ -276,6 +276,8 @@ To add event for friend, use \
 - Event date and time will be equal to `DATE`
   where `DATE` must be entered in the format `YYYY-MM-DD HHMM [start time] HHMM [end time]`
 - Users can set whether they want to enable reminders for this event by inputting `y/n` under `[REMINDER]`
+- Event names will be changed to all upper case regardless of whether it was keyed it in lower case or upper case
+- Overlapping events will not be allowed
 
 Successful Command:
 
@@ -368,7 +370,6 @@ If wrong command format is used (i.e missing prefixes, wrong event name):\
 `en/EVENT_NAME`\
 `Example: rmschedule 1 type/cca en/CS2103T Lecture`\
 `NOTE: If you want to remove an event from yourself, use index user`\
-`Example: rmschedule user type/cca en/CS2103T Lecture`\
 
 #### 3.2.9 Deleting non-recurrring event from friend: rmevent
 
