@@ -1,4 +1,4 @@
-/**package seedu.address.logic.commands;
+package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.AddEventCommand.MESSAGE_SUCCESS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.person.Person;
@@ -82,7 +83,6 @@ public class AddScheduleCommandTest {
         assertCommandSuccess(addScheduleCommand, model, expectedMessage, expectedModel);
     }
 
-
     @Test
     public void execute_invalidEventType_failure() {
         User newUser = new UserBuilder().build();
@@ -95,5 +95,18 @@ public class AddScheduleCommandTest {
 
         assertCommandFailure(addScheduleCommand, model, expectedMessage);
     }
+
+    @Test
+    public void execute_invalidIndex_failure() {
+        User newUser = new UserBuilder().build();
+        model.setUser(newUser);
+        AddScheduleCommand addScheduleCommand = new AddScheduleCommand("CS2103",
+                "module", Index.fromZeroBased(100), "Monday 1030 1130");
+
+        String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX + "\n"
+                + "Index can be max " + "7" + "!";
+
+        assertCommandFailure(addScheduleCommand, model, expectedMessage);
+    }
+
 }
- */

@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENTNAME;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.RemoveEventCommand;
@@ -12,10 +13,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new DeleteEventCommand object
  */
 public class RemoveEventCommandParser implements Parser<RemoveEventCommand> {
-
-    private static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n"
-            + RemoveEventCommand.MESSAGE_USAGE;
-
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteEventCommand
      * and returns a DeleteEventCommand object for execution.
@@ -27,29 +24,42 @@ public class RemoveEventCommandParser implements Parser<RemoveEventCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_EVENTNAME);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_EVENTNAME)) {
-            throw new ParseException(String.format("Command format is invalid! \n"
-                + RemoveEventCommand.MESSAGE_USAGE));
+            List<Prefix> missingPrefix = getMissingPrefixes(argMultimap, PREFIX_EVENTNAME);
+            String missingPrefixString = "";
+            for (Prefix prefix : missingPrefix) {
+                missingPrefixString += prefix + " ";
+            }
+            throw new ParseException(String.format("Missing prefix(es) for %s!\n"
+                + "Message Usage:\n" + RemoveEventCommand.MESSAGE_USAGE, missingPrefixString));
         }
+
 
         if (!arePrefixesUnique(argMultimap, PREFIX_EVENTNAME)) {
+            List<Prefix> duplicatePrefix = getDuplicatePrefixes(argMultimap, PREFIX_EVENTNAME);
+            String duplicatePrefixString = "";
+            for (Prefix prefix : duplicatePrefix) {
+                duplicatePrefixString += prefix + " ";
+            }
             throw new ParseException(String.format("You can only have 1 of each prefix!\n"
-                + RemoveEventCommand.MESSAGE_USAGE));
+                + "Duplicated prefixes are: " + duplicatePrefixString));
         }
 
+        String indexString;
         try {
-            String indexString = argMultimap.getPreamble().toLowerCase();
-            String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get().toLowerCase();
+            indexString = argMultimap.getPreamble().toLowerCase();
+            String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get().toUpperCase();
             if (indexString.equals("user")) {
                 return new RemoveEventCommand(eventName, null);
             } else if (Integer.parseInt(indexString) > 0) {
                 return new RemoveEventCommand(eventName, ParserUtil.parseIndex(indexString));
             } else {
-                throw new ParseException("Invalid index!\n"
-                        + "Index must either be 'user' or a positive integer!\n");
+                throw new ParseException(String.format("Invalid index!" + "\n"
+                        + "Index can only be 'user' or a positive integer! \n"));
             }
         } catch (Exception pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveEventCommand.MESSAGE_USAGE), pe);
+                    String.format("Please input an index!\n"
+                            + "Message Usage:\n" + RemoveEventCommand.MESSAGE_USAGE));
         }
     }
 
@@ -61,6 +71,7 @@ public class RemoveEventCommandParser implements Parser<RemoveEventCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
+
     /**
      * Returns true if there are duplicate prefixes
      * @param argumentMultimap
@@ -68,5 +79,22 @@ public class RemoveEventCommandParser implements Parser<RemoveEventCommand> {
      */
     private static boolean arePrefixesUnique(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getAllValues(prefix).size() == 1);
+    }
+
+    /**
+     * Returns the prefixes that is not present in the given {@code ArgumentMultimap}.
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    private static List<Prefix> getMissingPrefixes(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).filter(prefix -> argumentMultimap.getValue(prefix).isEmpty())
+            .collect(java.util.stream.Collectors.toList());
+    }
+
+    /**
+     * Returns the prefixes that are not unique in the given {@code ArgumentMultimap}.
+     */
+    private static List<Prefix> getDuplicatePrefixes(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).filter(prefix -> argumentMultimap.getAllValues(prefix).size() > 1)
+            .collect(java.util.stream.Collectors.toList());
     }
 }

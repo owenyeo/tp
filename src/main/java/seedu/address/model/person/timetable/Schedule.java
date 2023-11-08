@@ -36,7 +36,8 @@ public class Schedule {
      */
     public List<TimeBlock> getThisWeeksSchedule() {
         LocalDate today = LocalDate.now();
-        LocalDate startOfThisWeek = today.minusDays(today.getDayOfWeek().getValue() - DayOfWeek.MONDAY.getValue());
+        LocalDate startOfThisWeek = today
+                .minusDays(today.getDayOfWeek().getValue() - DayOfWeek.MONDAY.getValue());
         LocalDate endOfThisWeek = startOfThisWeek.plusDays(6);
 
         List<TimeBlock> thisWeeksSchedule = new ArrayList<>();
@@ -401,7 +402,8 @@ public class Schedule {
         }
 
         if (!isFound) {
-            throw new CommandException("Meet-up event " + eventName + " does not exist!");
+            throw new CommandException("Event " + eventName + " does not exist!\n"
+                    + "Please check that you have entered the correct event name!\n");
         }
     }
 

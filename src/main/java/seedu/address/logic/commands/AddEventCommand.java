@@ -36,7 +36,7 @@ public class AddEventCommand extends Command {
         + "h/2020-03-02 1400 1600 "
         + "r/y \n"
         + "Note: "
-        + "If you are adding a dated event, then index should be the index of "
+        + "Index should be the index of "
         + "the friend you are adding the dated event to or 'user' "
         + "if you would like to add the event to yourself \n";
 
@@ -50,10 +50,10 @@ public class AddEventCommand extends Command {
     /**
      * Constructs an AddEventCommand object with the specified event name, index, schedule,
      * reminder and event type.
-     * @param eventName
-     * @param index
-     * @param schedule
-     * @param reminder
+     * @param eventName The name of the event.
+     * @param index The index of the friend to add the event to.
+     * @param schedule The schedule of the event.
+     * @param reminder The reminder of the event.
      */
     public AddEventCommand(String eventName, Index index,
         String schedule, String reminder) {
@@ -69,10 +69,9 @@ public class AddEventCommand extends Command {
     /**
      * Constructs an AddEventCommand object with the specified event name, schedule,
      * reminder and event type.
-     * @param eventName
-     * @param schedule
-     * @param reminder
-     * @param eventType
+     * @param eventName The name of the event.
+     * @param schedule The schedule of the event.
+     * @param reminder The reminder of the event.
      */
     public AddEventCommand(String eventName, String schedule,
         String reminder) {
@@ -109,6 +108,28 @@ public class AddEventCommand extends Command {
                     + schedule + " to " + friend.getName(), false, false, true, false);
         } catch (Exception e) {
             throw new CommandException(e.getMessage());
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof AddEventCommand)) {
+            return false;
+        }
+
+        AddEventCommand other = (AddEventCommand) o;
+        if (index == null && other.index != null) {
+            return false;
+        } else if (index != null && other.index == null) {
+            return false;
+        } else {
+            return eventName.equals(other.eventName)
+                    && schedule.equals(other.schedule)
+                    && reminder.equals(other.reminder);
         }
     }
 

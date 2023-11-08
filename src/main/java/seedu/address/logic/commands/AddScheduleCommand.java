@@ -20,20 +20,20 @@ public class AddScheduleCommand extends Command {
     public static final String COMMAND_WORD = "addschedule";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a schedule to the specified contact.\n"
             + "Parameters: "
-            + "INDEX\n"
-            + "type/EVENT_TYPE\n"
-            + "en/EVENT_NAME\n"
+            + "INDEX "
+            + "type/EVENT_TYPE "
+            + "en/EVENT_NAME"
             + "h/[DAY_OF_WEEK START_TIME [HHMM] END_TIME [HHMM]]\n"
             + "Example: " + COMMAND_WORD
             + " 1"
             + " type/cca"
-            + " en/CS2103T Lecture\n"
+            + " en/Basketball\n"
             + " h/Monday 1400 1600\n"
-            + "NOTE: If you want to add an event to yourself, use index user\n"
+            + "NOTE: If you want to add a cca/module to yourself, use index user\n"
             + "Example: " + COMMAND_WORD
             + " user"
             + " type/cca"
-            + " en/CS2103T Lecture"
+            + " en/Basketball"
             + " h/Monday 1400 1600";
 
     public static final String MESSAGE_SUCCESS = "New event added: ";
@@ -45,10 +45,10 @@ public class AddScheduleCommand extends Command {
 
     /**
      * Constructs an AddScheduleCommand object with the specified event name, index, schedule and event type.
-     * @param eventName
-     * @param eventType
-     * @param index
-     * @param schedule
+     * @param eventName The name of the event.
+     * @param eventType The type of the event.
+     * @param index The index of the friend to add the event to.
+     * @param schedule The schedule of the event.
      */
     public AddScheduleCommand(String eventName, String eventType, Index index, String schedule) {
         this.eventName = eventName;
@@ -59,9 +59,9 @@ public class AddScheduleCommand extends Command {
 
     /**
      * Constructs an AddScheduleCommand object with the specified event name, schedule and event type.
-     * @param eventName
-     * @param eventType
-     * @param schedule
+     * @param eventName The name of the event.
+     * @param eventType The type of the event.
+     * @param schedule The schedule of the event.
      */
     public AddScheduleCommand(String eventName, String eventType, String schedule) {
         this(eventName, eventType, null, schedule);
@@ -108,8 +108,8 @@ public class AddScheduleCommand extends Command {
                     + friend.getName(), false, false, true, false);
             case "module":
                 // If the event type is module, add the event to the friend's module schedule
-                Schedule friendScedule = friend.getSchedule();
-                friendScedule.addModule(eventName + " " + schedule);
+                friendSchedule = friend.getSchedule();
+                friendSchedule.addModule(eventName + " " + schedule);
                 return new CommandResult(MESSAGE_SUCCESS
                     + "\nModule:\n"
                     + eventName
@@ -124,6 +124,28 @@ public class AddScheduleCommand extends Command {
             }
         } catch (Exception e) {
             throw new CommandException(e.getMessage());
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (!(o instanceof AddScheduleCommand)) {
+            return false;
+        }
+
+        AddScheduleCommand other = (AddScheduleCommand) o;
+        if (index == null && other.index != null) {
+            return false;
+        } else if (index != null && other.index == null) {
+            return false;
+        } else {
+            return eventName.equals(other.eventName)
+                && eventType.equals(other.eventType)
+                && schedule.equals(other.schedule);
         }
     }
 }

@@ -103,6 +103,7 @@ public class DatedEvent extends TimeBlock {
 
         // Create the time block
         String timeBlockString = dayOfWeek + " " + startTime + " " + endTime;
+        checkArgument(isValidTimeBlock(timeBlockString), MESSAGE_CONSTRAINTS);
 
         return new DatedEvent(nameString, timeBlockString, dateString, reminder);
     }

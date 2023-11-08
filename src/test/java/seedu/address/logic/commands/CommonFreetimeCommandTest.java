@@ -1,16 +1,9 @@
-/**package seedu.address.logic.commands;
+package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
-import static seedu.address.testutil.TypicalPersons.CARL;
-import static seedu.address.testutil.TypicalPersons.DANIEL;
-import static seedu.address.testutil.TypicalPersons.ELLE;
-import static seedu.address.testutil.TypicalPersons.FIONA;
-import static seedu.address.testutil.TypicalPersons.GEORGE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalUsers.JAMES;
 import static seedu.address.testutil.TypicalUsers.JANE;
@@ -27,7 +20,7 @@ import seedu.address.model.user.UserPrefs;
 /**
  * Contains integration tests (interaction with the Model) for {@code CommonFreeTimeCommand}.
  */
-/**
+
 public class CommonFreetimeCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new UserData());
     private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new UserData());
@@ -43,41 +36,18 @@ public class CommonFreetimeCommandTest {
         model.setUser(JAMES);
         expectedModel.setUser(JAMES);
         CommonFreetimeCommand commonFreetimeCommand = new CommonFreetimeCommand();
-        assertCommandFailure(commonFreetimeCommand, model, CommonFreetimeCommand.MESSAGE_NO_FREE_TIME);
-    }
-
-    @Test
-    public void execute_nameNull_success() {
-        CommonFreetimeCommand commonFreetimeCommand = new CommonFreetimeCommand();
-        String expectedMessage = CommonFreetimeCommand.MESSAGE_COMMON_FREETIME_SUCCESS
-                + ALICE.getName().toString() + " is free at " + "[Monday 1200 1300]" + "\n"
-                + BENSON.getName().toString() + " is free at " + "[Monday 1200 1300]" + "\n"
-                + CARL.getName().toString() + " is free at " + "[Monday 1200 1300]" + "\n"
-                + DANIEL.getName().toString() + " is free at " + "[Monday 1200 1300]" + "\n"
-                + ELLE.getName().toString() + " is free at " + "[Monday 1200 1300]" + "\n"
-                + FIONA.getName().toString() + " is free at " + "[Monday 1200 1300]" + "\n"
-                + GEORGE.getName().toString() + " is free at " + "[Monday 1200 1300]" + "\n";
-        assertCommandSuccess(commonFreetimeCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_nameFriend_success() {
-        CommonFreetimeCommand commonFreetimeCommand = new CommonFreetimeCommand(Index.fromOneBased(1));
-        String expectedMessage = CommonFreetimeCommand.MESSAGE_COMMON_FREETIME_SUCCESS
-                + ALICE.getName().toString() + " is free at " + "[Monday 1200 1300]" + "\n";
-        assertCommandSuccess(commonFreetimeCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_noOverlapContact_failure() {
-        CommonFreetimeCommand commonFreetimeCommand = new CommonFreetimeCommand();
         assertCommandFailure(commonFreetimeCommand, model, CommonFreetimeCommand.MESSAGE_NO_CONTACTS);
     }
 
     @Test
-    public void execute_noOverlapFriend_failure() {
-        CommonFreetimeCommand commonFreetimeCommand = new CommonFreetimeCommand(Index.fromOneBased(1));
-        assertCommandFailure(commonFreetimeCommand, model, CommonFreetimeCommand.createNoOverlapFriendMessage(ALICE));
+    public void execute_nameFriend_success() {
+        CommonFreetimeCommand commonFreetimeCommand = new CommonFreetimeCommand(Index.fromOneBased(2));
+        String expectedMessage = "You have common free times with Benson Meier at:" + "\n"
+                + "[Monday 0000 1730]" + "\n" + "[Monday 2000 2330]" + "\n"
+                + "[Tuesday 0000 2330]" + "\n" + "[Wednesday 0000 1130]" + "\n" + "[Wednesday 1300 2330]" + "\n"
+                + "[Thursday 0000 2330]" + "\n" + "[Friday 0000 2330]" + "\n" + "[Saturday 0000 2330]" + "\n"
+                + "[Sunday 0000 2330]" + "\n";
+        assertCommandSuccess(commonFreetimeCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -112,4 +82,3 @@ public class CommonFreetimeCommandTest {
         assertEquals(expected, commonFreetimeCommandAlice.toString());
     }
 }
-*/

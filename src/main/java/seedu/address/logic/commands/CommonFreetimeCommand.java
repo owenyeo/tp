@@ -9,7 +9,6 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.timetable.FreeTime;
 import seedu.address.model.person.timetable.Schedule;
@@ -93,7 +92,7 @@ public class CommonFreetimeCommand extends Command {
      * @return a message indicating that the user and the given friend have no common free time
      */
     public static String createNoOverlapFriendMessage(Person friend) {
-        return "You and " + friend.getName().toString() + " have no common free time!";
+        return "You and " + friend.getName().toString() + " have no common free time!\n";
     }
 
     /**
@@ -130,7 +129,7 @@ public class CommonFreetimeCommand extends Command {
         Schedule friendSchedule = friend.getSchedule();
         List<FreeTime> commonFreeTimeWithFriend = userSchedule.getThisWeeksFreeTimesWith(friendSchedule);
         if (commonFreeTimeWithFriend.isEmpty()) {
-            throw new CommandException(createNoOverlapFriendMessage(friend));
+            return new StringBuilder(createNoOverlapFriendMessage(friend));
         } else {
             StringBuilder sb = new StringBuilder("You have common free times with "
                 + friend.getName().toString()
@@ -158,26 +157,6 @@ public class CommonFreetimeCommand extends Command {
             return sb;
         } catch (CommandException e) {
             return new StringBuilder(e.getMessage());
-        }
-    }
-
-    /**
-     * Returns a List of common free times with specified contact.
-     *
-     * @param model {@code Model} which the command should operate on.
-     * @param contactName Name of contact to find common free time with.
-     * @return List of common free times with specified contact.
-     * @throws CommandException if an error occurs during command execution.
-     */
-    public List<FreeTime> getCommonFreeTimeWith(Model model, Name contactName) throws CommandException {
-        Person friend = model.getPersonWithName(contactName);
-        Schedule friendSchedule = friend.getSchedule();
-        Schedule userSchedule = model.getUser().getSchedule();
-        List<FreeTime> commonFreeTime = userSchedule.getThisWeeksFreeTimesWith(friendSchedule);
-        if (commonFreeTime.isEmpty()) {
-            throw new CommandException(createNoOverlapFriendMessage(friend));
-        } else {
-            return commonFreeTime;
         }
     }
 
