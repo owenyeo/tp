@@ -21,7 +21,7 @@ import seedu.address.model.user.UserPrefs;
  * Contains integration tests (interaction with the Model) for {@code CommonFreeTimeCommand}.
  */
 
-public class CommonFreetimeCommandTest {
+public class CommonFreeTimeCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new UserData());
     private final Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new UserData());
 

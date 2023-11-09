@@ -95,7 +95,7 @@ public class AddressBookParser {
             return new RemoveReminderCommandParser().parse(arguments);
 
         case CommonFreetimeCommand.COMMAND_WORD:
-            return new CommonFreetimeCommandParser().parse(arguments);
+            return new CommonFreeTimeCommandParser().parse(arguments);
 
         case AddEventCommand.COMMAND_WORD:
             return new AddEventCommandParser().parse(arguments);

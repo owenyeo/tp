@@ -70,12 +70,11 @@ public class CommonFreetimeCommand extends Command {
                 return new CommandResult(createCommonFreeTimeMessage(overlappingContacts, user).toString());
             }
         } else {
+            List<Person> lastShownList = model.getFilteredPersonList();
+            if (index.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
             try {
-                List<Person> lastShownList = model.getFilteredPersonList();
-                if (index.getZeroBased() >= lastShownList.size()) {
-                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-                }
-
                 Person friend = lastShownList.get(index.getZeroBased());
 
                 return new CommandResult(createCommonFreeTimeMessage(user, friend).toString());

@@ -55,7 +55,6 @@ public class ModuleTest {
         assertThrows(IllegalArgumentException.class, () -> module.editName(""));
     }
 
-
     @Test
     public void isModule_success() {
         Module module = new Module("CS2103", "monday 1200 1400");
@@ -92,8 +91,11 @@ public class ModuleTest {
         assertFalse(Module.isValidModuleName("CS")); // only alphbets
 
         // valid name
-        assertTrue(Cca.isValidCcaName("CS2103")); // alphanumeric characters
-        assertTrue(Cca.isValidCcaName("cs2103")); // with small letters
+        assertTrue(Module.isValidModuleName("CS210")); // 3 numbers
+        assertTrue(Module.isValidModuleName("CSS210")); // 3 starting alphabets
+        assertTrue(Module.isValidModuleName("CS2101S")); // less numbers
+        assertTrue(Module.isValidModuleName("CS2103")); // alphanumeric characters
+        assertTrue(Module.isValidModuleName("cs2103")); // with small letters
     }
 
     @Test

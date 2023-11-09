@@ -370,21 +370,6 @@ public class Schedule {
     }
 
     /**
-     * Adds a dated event to the schedule.
-     *
-     * @param eventString String representation of the dated event.
-     */
-    public void addDatedEvent(String eventString) {
-        DatedEvent newEvent = DatedEvent.newDatedEvent(eventString);
-        if (!isOverlapping(newEvent)) {
-            datedEventsList.add(newEvent);
-        } else {
-            throw new CommandException("Cca " + ccaName + " does not exist!\n"
-                    + "Please check that you have entered the correct cca name!\n");
-        }
-    }
-
-    /**
      * Returns true if the given event overlaps with any event in the schedule
      * @param event the event to be checked
      * @return true if the given event overlaps with any event in the schedule
@@ -520,5 +505,9 @@ public class Schedule {
     @Override
     public int hashCode() {
         return toString().hashCode();
+    }
+
+    public static void main(String[] args) {
+
     }
 }
