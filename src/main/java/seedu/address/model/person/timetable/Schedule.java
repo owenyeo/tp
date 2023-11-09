@@ -365,6 +365,20 @@ public class Schedule {
         }
 
         if (!isFound) {
+            throw new CommandException("CCA " + ccaName + " does not exist!");
+        }
+    }
+
+    /**
+     * Adds a dated event to the schedule.
+     *
+     * @param eventString String representation of the dated event.
+     */
+    public void addDatedEvent(String eventString) {
+        DatedEvent newEvent = DatedEvent.newDatedEvent(eventString);
+        if (!isOverlapping(newEvent)) {
+            datedEventsList.add(newEvent);
+        } else {
             throw new CommandException("Cca " + ccaName + " does not exist!\n"
                     + "Please check that you have entered the correct cca name!\n");
         }
