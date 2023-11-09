@@ -16,7 +16,7 @@ https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=owenyeo&sort=groupTit
 
 **Enhancements implemented:**
 * Implemented the User, UserData, and ReadOnlyUserData to save user details and schedule.
-* Implemented the EditUserCommand to allow for editting of user details.
+* Implemented the EditUserCommand to allow for editing of user details.
 * Implemented UserDataStorage and updated Storage, StorageManager to support it.
 * Created the follow Json related classes:
     * JsonAdaptedCca
