@@ -17,7 +17,7 @@ public class FreeTime implements Comparable<FreeTime> {
             + "Day is case-insensitive.";
 
     public static final String VALIDATION_REGEX = "^(?i)(monday|tuesday|wednesday|thursday|friday|saturday|sunday) "
-            + "([01]?\\d|2[0-3])(00|30) ([01]?\\d|2[0-3])(00|30)$"; //format: (case-insensitive) day 2359 2359
+            + "([01]?\\d|2[0-3])(00|30) (([01]?\\d|2[0-3])(00|30)|(2400))$";
 
     public final String freeTimeString;
     private final DayOfWeek day;
@@ -47,6 +47,9 @@ public class FreeTime implements Comparable<FreeTime> {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidFreeTime(String test) {
+        if (!test.matches(VALIDATION_REGEX)) {
+            System.out.println("YOUR INPUT DOESN'T WORK" + test);
+        }
         return test.matches(VALIDATION_REGEX);
     }
 

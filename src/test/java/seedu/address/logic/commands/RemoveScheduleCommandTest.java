@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -115,9 +114,10 @@ public class RemoveScheduleCommandTest {
         RemoveScheduleCommand removeScheduleCommand = new RemoveScheduleCommand("CS1101",
                 "module");
 
-        String expectedMessage = "Module " + "CS1101" + " does not exist!";
+        String expectedMessage = "Module " + "CS1101" + " does not exist!\n"
+                + "Please check that you have entered the correct module name!\n";
 
-        assertThrows(IllegalArgumentException.class, () -> removeScheduleCommand.execute(model));
+        assertCommandFailure(removeScheduleCommand, model, expectedMessage);
     }
 
     @Test

@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalUsers.JAMES;
 import static seedu.address.testutil.TypicalUsers.JANE;
+import static seedu.address.testutil.TypicalUsers.JOSH;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +22,8 @@ import seedu.address.model.user.UserPrefs;
  */
 
 public class CommonFreetimeCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new UserData());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new UserData());
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new UserData());
+    private final Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new UserData());
 
     @BeforeEach
     public void setUp() {
@@ -33,20 +33,20 @@ public class CommonFreetimeCommandTest {
 
     @Test
     public void execute_userNoFreetime_failure() {
-        model.setUser(JAMES);
-        expectedModel.setUser(JAMES);
+        model.setUser(JOSH);
+        expectedModel.setUser(JOSH);
         CommonFreetimeCommand commonFreetimeCommand = new CommonFreetimeCommand();
-        assertCommandFailure(commonFreetimeCommand, model, CommonFreetimeCommand.MESSAGE_NO_CONTACTS);
+        assertCommandFailure(commonFreetimeCommand, model, CommonFreetimeCommand.MESSAGE_NO_FREE_TIME);
     }
 
     @Test
     public void execute_nameFriend_success() {
         CommonFreetimeCommand commonFreetimeCommand = new CommonFreetimeCommand(Index.fromOneBased(2));
         String expectedMessage = "You have common free times with Benson Meier at:" + "\n"
-                + "[Monday 0000 1730]" + "\n" + "[Monday 2000 2330]" + "\n"
-                + "[Tuesday 0000 2330]" + "\n" + "[Wednesday 0000 1130]" + "\n" + "[Wednesday 1300 2330]" + "\n"
-                + "[Thursday 0000 2330]" + "\n" + "[Friday 0000 2330]" + "\n" + "[Saturday 0000 2330]" + "\n"
-                + "[Sunday 0000 2330]" + "\n";
+                + "[Monday 0000 1800]" + "\n" + "[Monday 2000 2400]" + "\n"
+                + "[Tuesday 0000 2400]" + "\n" + "[Wednesday 0000 1200]" + "\n" + "[Wednesday 1300 2400]" + "\n"
+                + "[Thursday 0000 2400]" + "\n" + "[Friday 0000 2400]" + "\n" + "[Saturday 0000 2400]" + "\n"
+                + "[Sunday 0000 2400]" + "\n";
         assertCommandSuccess(commonFreetimeCommand, model, expectedMessage, expectedModel);
     }
 

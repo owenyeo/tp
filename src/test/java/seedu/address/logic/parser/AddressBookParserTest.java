@@ -118,7 +118,7 @@ public class AddressBookParserTest {
     public void parseCommand_addEvent() throws Exception {
         AddEventCommand command = (AddEventCommand) parser.parseCommand(
                 AddEventCommand.COMMAND_WORD + " user en/CS2103 Meeting h/2023-10-10 1030 1130 r/y");
-        assertEquals(new AddEventCommand("CS2103 Meeting",
+        assertEquals(new AddEventCommand("CS2103 MEETING",
                 "2023-10-10 1030 1130", "y"), command);
     }
 
@@ -126,7 +126,7 @@ public class AddressBookParserTest {
     public void parseCommand_addSchedule() throws Exception {
         AddScheduleCommand command = (AddScheduleCommand) parser.parseCommand(
                 AddScheduleCommand.COMMAND_WORD + " user type/cca en/Basketball h/Monday 1030 1130");
-        assertEquals(new AddScheduleCommand("basketball", "cca", "Monday 1030 1130"),
+        assertEquals(new AddScheduleCommand("BASKETBALL", "cca", "Monday 1030 1130"),
                 command);
     }
 
@@ -134,14 +134,14 @@ public class AddressBookParserTest {
     public void parseCommand_removeEvent() throws Exception {
         RemoveEventCommand command = (RemoveEventCommand) parser.parseCommand(
                 RemoveEventCommand.COMMAND_WORD + " user en/CS2103 Meeting");
-        assertEquals(new RemoveEventCommand("cs2103 meeting", null), command);
+        assertEquals(new RemoveEventCommand("CS2103 MEETING", null), command);
     }
 
     @Test
     public void parseCommand_removeSchedule() throws Exception {
         RemoveScheduleCommand command = (RemoveScheduleCommand) parser.parseCommand(
                 RemoveScheduleCommand.COMMAND_WORD + " user type/cca en/Basketball");
-        assertEquals(new RemoveScheduleCommand("basketball", "cca"), command);
+        assertEquals(new RemoveScheduleCommand("BASKETBALL", "cca"), command);
     }
 
 

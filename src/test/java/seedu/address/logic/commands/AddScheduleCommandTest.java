@@ -72,9 +72,9 @@ public class AddScheduleCommandTest {
         model.setUser(newUser);
         Person friend = model.getFilteredPersonList().get(0);
         AddScheduleCommand addScheduleCommand = new AddScheduleCommand("CS2103",
-                "module", Index.fromZeroBased(0), "Monday 1030 1130");
+                "module", Index.fromZeroBased(0), "Saturday 0000 0100");
         String expectedMessage = MESSAGE_SUCCESS + "\nModule:\n" + "CS2103"
-                + " " + "Monday 1030 1130" + " to " + friend.getName();
+                + " " + "Saturday 0000 0100" + " to " + friend.getName();
 
         Model expectedModel = new ModelManager(model.getAddressBook(),
                 new UserPrefs(), new UserData());

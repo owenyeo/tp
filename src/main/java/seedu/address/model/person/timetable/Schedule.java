@@ -107,12 +107,12 @@ public class Schedule {
                     startSlot = slot;
                 } else if (timeSlots[day][slot] && startSlot != -1) {
                     // End of a free time slot
-                    freeTimes.add(createFreeTime(day, startSlot, slot - 1));
+                    freeTimes.add(createFreeTime(day, startSlot, slot));
                     startSlot = -1;
                 }
             }
             if (startSlot != -1) {
-                freeTimes.add(createFreeTime(day, startSlot, 47)); // The entire day is free.
+                freeTimes.add(createFreeTime(day, startSlot, 48)); // The entire day is free.
             }
         }
 
@@ -260,7 +260,8 @@ public class Schedule {
         if (!isOverlapping(newModule)) {
             modulesList.add(newModule);
         } else {
-            throw new IllegalArgumentException("Module " + newModule.getName() + " overlaps with " + getOverlappingEvent(newModule) + "!");
+            throw new IllegalArgumentException("Module " + newModule.getName()
+                    + " overlaps with " + getOverlappingEvent(newModule) + "!");
         }
     }
 
@@ -291,6 +292,7 @@ public class Schedule {
      * Removes a module from the schedule.
      *
      * @param moduleName Name of the module to be removed.
+     * @throws CommandException If the module to be removed does not exist.
      */
     public void deleteModule(String moduleName) throws CommandException {
         boolean isFound = false;
@@ -303,7 +305,8 @@ public class Schedule {
         }
 
         if (!isFound) {
-            throw new CommandException("Module " + moduleName + " does not exist!");
+            throw new CommandException("Module " + moduleName + " does not exist!\n"
+                    + "Please check that you have entered the correct module name!\n");
         }
     }
 
@@ -317,7 +320,8 @@ public class Schedule {
         if (!isOverlapping(newCca)) {
             ccasList.add(newCca);
         } else {
-            throw new IllegalArgumentException("CCA " + newCca.getName() + " overlaps with " + getOverlappingEvent(newCca) + "!");
+            throw new IllegalArgumentException("CCA " + newCca.getName() + " overlaps with "
+                    + getOverlappingEvent(newCca) + "!");
         }
     }
 
@@ -348,8 +352,9 @@ public class Schedule {
      * Removes a CCA from the schedule.
      *
      * @param ccaName Name of the CCA to be removed.
+     * @throws CommandException If the CCA to be removed does not exist.
      */
-    public void deleteCca(String ccaName) throws CommandException{
+    public void deleteCca(String ccaName) throws CommandException {
         boolean isFound = false;
         for (Cca cca : ccasList) {
             if (cca.getName().equals(ccaName)) {
@@ -374,20 +379,21 @@ public class Schedule {
         if (!isOverlapping(newEvent)) {
             datedEventsList.add(newEvent);
         } else {
-            throw new IllegalArgumentException("Event " + newEvent.getName() + " overlaps with " + getOverlappingEvent(newEvent) + "!");
+            throw new CommandException("Cca " + ccaName + " does not exist!\n"
+                    + "Please check that you have entered the correct cca name!\n");
         }
     }
 
     /**
      * Returns true if the given event overlaps with any event in the schedule
-     * @param event
+     * @param event the event to be checked
      * @return true if the given event overlaps with any event in the schedule
      */
     public boolean isOverlapping(TimeBlock event) {
         List<TimeBlock> totalList = new ArrayList<>();
         totalList.addAll(modulesList);
         totalList.addAll(ccasList);
-        totalList.addAll(datedEventsList); 
+        totalList.addAll(datedEventsList);
         for (TimeBlock e : totalList) {
             if (event.isOverlap(e)) {
                 return true;
@@ -398,14 +404,14 @@ public class Schedule {
 
     /**
      * Returns the event that the given event is overlapping with
-     * @param event
+     * @param event the event to be checked
      * @return the event that the given event is overlapping with
      */
     public String getOverlappingEvent(TimeBlock event) {
         List<TimeBlock> totalList = new ArrayList<>();
         totalList.addAll(modulesList);
         totalList.addAll(ccasList);
-        totalList.addAll(datedEventsList); 
+        totalList.addAll(datedEventsList);
         for (TimeBlock e : totalList) {
             if (event.isOverlap(e)) {
                 return e.getName();
@@ -421,6 +427,21 @@ public class Schedule {
      */
     public void addDatedEvent(DatedEvent event) {
         datedEventsList.add(event);
+    }
+
+    /**
+     * Adds a dated event to the schedule.
+     *
+     * @param eventString String representation of the dated event.
+     */
+    public void addDatedEvent(String eventString) {
+        DatedEvent newEvent = DatedEvent.newDatedEvent(eventString);
+        if (!isOverlapping(newEvent)) {
+            datedEventsList.add(newEvent);
+        } else {
+            throw new IllegalArgumentException("Event " + newEvent.getName()
+                    + " overlaps with " + getOverlappingEvent(newEvent) + "!");
+        }
     }
 
     /**

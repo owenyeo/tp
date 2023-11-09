@@ -44,23 +44,20 @@ public class RemoveScheduleCommandParser implements Parser<RemoveScheduleCommand
                 + "Duplicated prefixes are: " + duplicatePrefixString));
         }
 
-        try {
-            String indexString = argMultimap.getPreamble().toLowerCase();
-            String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get().toUpperCase();
-            String eventType = argMultimap.getValue(PREFIX_EVENTTYPE).get().toLowerCase();
-            if (indexString.equals("user")) {
-                return new RemoveScheduleCommand(eventName, eventType, null);
-            } else if (Integer.parseInt(indexString) > 0) {
+        String eventName = argMultimap.getValue(PREFIX_EVENTNAME).get().toUpperCase();
+        String eventType = argMultimap.getValue(PREFIX_EVENTTYPE).get().toLowerCase();
+        String indexString = argMultimap.getPreamble().toLowerCase();
+        if (indexString.equals("user")) {
+            return new RemoveScheduleCommand(eventName, eventType, null);
+        } else {
+            try {
+                Integer.parseInt(indexString);
                 return new RemoveScheduleCommand(eventName, eventType,
-                    ParserUtil.parseIndex(indexString));
-            } else {
-                throw new ParseException("Invalid index!\n"
-                        + "Index must either be 'user' or a positive integer!\n");
+                        ParserUtil.parseIndex(indexString));
+            } catch (NumberFormatException e) {
+                throw new ParseException("Invalid index!" + "\n"
+                        + "Index can only be 'user' or a positive integer! \n");
             }
-        } catch (Exception pe) {
-            throw new ParseException(
-                    String.format("Please input an index!" + "\n"
-                        + "Message Usage: ", RemoveScheduleCommand.MESSAGE_USAGE));
         }
     }
 
@@ -74,8 +71,8 @@ public class RemoveScheduleCommandParser implements Parser<RemoveScheduleCommand
 
     /**
      * Returns true if there are duplicate prefixes
-     * @param argumentMultimap
-     * @param prefixes
+     * @param argumentMultimap The argument multimap to check for the presence of prefixes.
+     * @param prefixes The prefixes to check for duplicates.
      */
     private static boolean arePrefixesUnique(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getAllValues(prefix).size() == 1);
@@ -83,7 +80,6 @@ public class RemoveScheduleCommandParser implements Parser<RemoveScheduleCommand
 
     /**
      * Returns the prefixes that is not present in the given {@code ArgumentMultimap}.
-     * @throws ParseException if the user input does not conform the expected format
      */
     private static List<Prefix> getMissingPrefixes(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).filter(prefix -> argumentMultimap.getValue(prefix).isEmpty())

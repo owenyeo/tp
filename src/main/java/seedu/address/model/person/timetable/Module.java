@@ -7,20 +7,20 @@ import seedu.address.commons.exceptions.IllegalValueException;
 
 /**
  * Represents a Module in the application.
- * Contains information about the module name and its timings.
+ * Contains information about the module code and its timings.
  */
 public class Module extends TimeBlock {
-    public static final String MESSAGE_CONSTRAINTS = "Module Name should be in the format 'AANNNN', \n"
-            + "where 'AA' are any two alphabetic characters (e.g., CS, cS, Cs), \n"
-            + "and 'NNNN' represents a four-digit number (e.g., 2100, 1001, 0001). \n"
+    public static final String MESSAGE_CONSTRAINTS = "Module codes should start with 2-3 alphabetic characters, \n"
+            + "followed by 3-4 digits, and can optionally end with an extra alphabetic character. \n"
             + "The alphabetic characters are case-insensitive.";
-    private static final String VALIDATION_REGEX = "^[a-zA-Z]{2}\\d{4}$";
+
+    private static final String VALIDATION_REGEX = "^[a-zA-Z]{2,3}\\d{3,4}[a-zA-Z]?$";
     private final String moduleName;
 
     /**
-     * Constructs a {@code Module} with the specified name and time block.
+     * Constructs a {@code Module} with the specified code and time block.
      *
-     * @param name The name of the module. Should follow the format described in MESSAGE_CONSTRAINTS.
+     * @param name The module code. Should follow the format described in MESSAGE_CONSTRAINTS.
      * @param timeBlockString The time block for the module. Expected format: DAY HHMM HHMM.
      */
     public Module(String name, String timeBlockString) { //name = name, timeBlockString = DAY HHMM HHMM
@@ -47,7 +47,8 @@ public class Module extends TimeBlock {
 
         // Check for valid number of parts
         if (parts.length != 4) {
-            throw new IllegalArgumentException("Invalid module input format. Expected: NAME DAY HHMM HHMM");
+            String errorMsg = "Invalid module input format. Expected: NAME DAY HHMM HHMM" + MESSAGE_CONSTRAINTS;
+            throw new IllegalArgumentException(errorMsg);
         }
 
         String name = parts[0];
