@@ -1,7 +1,7 @@
 # Project Portfolio Page: TimetaBRO
 
 ## Overview
-[to be added later]
+TimetaBRO is a scheduling application that allows users to manage their own schedule as well as the schedules of their friends. It offers features such as adding and removing friends, adding and removing events, setting reminders, and finding common free times among friends. TimetaBRO is compatible with multiple operating systems and saves data automatically in a JSON file. It also allows advanced users to edit the data file directly. The application offers a command-line interface and provides a command summary for easy reference. TimetaBRO is a powerful tool for enhancing social connections and simplifying event planning.
 
 ## Summary of Contributions
 
@@ -11,13 +11,16 @@ https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=w12-4&sort=groupTitle
 **Enhancements implemented:**
 
 - Changed `add` and `edit` commands to allow users to add friend's free times when adding the friend (past iteration) (feature has been removed)
-- Created `addschedule`, `rmschedule`, `addevent`, `rmevent` commands
+- Created `addschedule`, `rmschedule`, `addevent`, `rmevent`, and `cft` commands
 - Created some test cases for the commands made by me
 - Fixed seveeral bugs pertaining to `add`, `edit`, `addschedule`, `rmschedule`, `addevent`, `rmevent` commands
 
 **Contributions to the User Guide (UG):**
 
-[to be added later]
+- Added guides for commands `cft`, `rmevent`, `addevent`, `addschedule`, `rmschedule` commands
+- Fixed UG documentation to align with newer commands
+- Updated UG to include expected features that may not be expected by users, such as:
+    - 
 
 **Contributions to the Developer Guide (DG):**
 

@@ -35,6 +35,7 @@ public class EditUserCommandParser implements Parser<EditUserCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_BIRTHDAY, PREFIX_TAG);
 
+        // Check if preamble is present
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditUserCommand.MESSAGE_USAGE));
         }
@@ -44,6 +45,7 @@ public class EditUserCommandParser implements Parser<EditUserCommand> {
 
         EditUserDescriptor editPersonDescriptor = new EditUserDescriptor();
 
+        // Check if all present prefixes are valid
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }

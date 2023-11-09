@@ -1,7 +1,7 @@
 package seedu.address.model.person.timetable;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -10,6 +10,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.commands.exceptions.CommandException;
 
 public class ScheduleTest {
 
@@ -21,7 +22,7 @@ public class ScheduleTest {
         List<TimeBlock> expected = new ArrayList<>();
         expected.add(new Cca("Basketball", "monday 1200 1300"));
         expected.add(new Module("CS2103", "monday 1400 1500"));
-        assertTrue(schedule.getScheduleForDayOfWeek(1).equals(expected));
+        assertEquals(schedule.getScheduleForDayOfWeek(1), expected);
     }
 
     @Test
@@ -30,7 +31,7 @@ public class ScheduleTest {
         schedule.addModule(new Module("CS2103", "monday 1400 1500"));
         List<Module> expected = new ArrayList<>();
         expected.add(new Module("CS2103", "monday 1400 1500"));
-        assertTrue(schedule.getModulesList().equals(expected));
+        assertEquals(schedule.getModulesList(), expected);
     }
 
     @Test
@@ -48,7 +49,7 @@ public class ScheduleTest {
         List<Module> expected = new ArrayList<>();
         expected.add(new Module("CS2101", "monday 1900 2000"));
         expected.add(new Module("CS2100", "monday 1600 1700"));
-        assertTrue(schedule.getModulesList().equals(expected));
+        assertEquals(schedule.getModulesList(), expected);
     }
 
     @Test
@@ -60,14 +61,14 @@ public class ScheduleTest {
     }
 
     @Test
-    public void deleteModule_success() {
+    public void deleteModule_success() throws CommandException {
         Schedule schedule = new Schedule();
         schedule.addModule(new Module("CS2103", "monday 1400 1500"));
         schedule.addModule(new Module("CS2101", "monday 1600 1700"));
         schedule.deleteModule("CS2103");
         List<Module> expected = new ArrayList<>();
         expected.add(new Module("CS2101", "monday 1600 1700"));
-        assertTrue(schedule.getModulesList().equals(expected));
+        assertEquals(schedule.getModulesList(), expected);
     }
 
     @Test
@@ -75,7 +76,7 @@ public class ScheduleTest {
         Schedule schedule = new Schedule();
         schedule.addModule(new Module("CS2103", "monday 1400 1500"));
         schedule.addModule(new Module("CS2101", "monday 1600 1700"));
-        assertThrows(IllegalArgumentException.class, () -> schedule.deleteModule("CS2100"));
+        assertThrows(CommandException.class, () -> schedule.deleteModule("CS2100"));
     }
 
     @Test
@@ -84,7 +85,7 @@ public class ScheduleTest {
         schedule.addCca(new Cca("Basketball", "monday 1400 1500"));
         List<Cca> expected = new ArrayList<>();
         expected.add(new Cca("Basketball", "monday 1400 1500"));
-        assertTrue(schedule.getCcasList().equals(expected));
+        assertEquals(schedule.getCcasList(), expected);
     }
 
     @Test
@@ -102,7 +103,7 @@ public class ScheduleTest {
         List<Cca> expected = new ArrayList<>();
         expected.add(new Cca("Football", "monday 1900 2000"));
         expected.add(new Cca("Tennis", "monday 1600 1700"));
-        assertTrue(schedule.getCcasList().equals(expected));
+        assertEquals(schedule.getCcasList(), expected);
     }
 
     @Test
@@ -114,14 +115,14 @@ public class ScheduleTest {
     }
 
     @Test
-    public void deleteCca_success() {
+    public void deleteCca_success() throws CommandException {
         Schedule schedule = new Schedule();
         schedule.addCca(new Cca("Basketball", "monday 1400 1500"));
         schedule.addCca(new Cca("Football", "monday 1600 1700"));
         schedule.deleteCca("Basketball");
         List<Cca> expected = new ArrayList<>();
         expected.add(new Cca("Football", "monday 1600 1700"));
-        assertTrue(schedule.getCcasList().equals(expected));
+        assertEquals(schedule.getCcasList(), expected);
     }
 
     @Test
@@ -129,7 +130,7 @@ public class ScheduleTest {
         Schedule schedule = new Schedule();
         schedule.addCca(new Cca("Basketball", "monday 1400 1500"));
         schedule.addCca(new Cca("Football", "monday 1600 1700"));
-        assertThrows(IllegalArgumentException.class, () -> schedule.deleteCca("CS2100"));
+        assertThrows(CommandException.class, () -> schedule.deleteCca("CS2100"));
     }
 
     @Test
@@ -139,7 +140,7 @@ public class ScheduleTest {
         List<DatedEvent> expected = new ArrayList<>();
         expected.add(new DatedEvent("Walk Dog", "monday 1400 1500",
                 "2023-10-30", true));
-        assertTrue(schedule.getDatedEventsList().equals(expected));
+        assertEquals(schedule.getDatedEventsList(), expected);
     }
 
     @Test
@@ -153,7 +154,7 @@ public class ScheduleTest {
                 "2023-10-31", true));
         expected.add(new DatedEvent("Walk Cat", "monday 1400 1500",
                 "2023-10-30", true));
-        assertTrue(schedule.getDatedEventsList().equals(expected));
+        assertEquals(schedule.getDatedEventsList(), expected);
     }
 
     @Test
@@ -165,7 +166,7 @@ public class ScheduleTest {
         List<DatedEvent> expected = new ArrayList<>();
         expected.add(new DatedEvent("Sleep", "tuesday 1400 1500",
                 "2023-10-31", true));
-        assertTrue(schedule.getDatedEventsList().equals(expected));
+        assertEquals(schedule.getDatedEventsList(), expected);
     }
 
     @Test
@@ -183,9 +184,9 @@ public class ScheduleTest {
         schedule.addDatedEvent("Sleep 2023-10-31 1400 1500 y");
         Schedule schedule2 = new Schedule();
 
-        assertTrue(schedule.equals(schedule));
-        assertFalse(schedule.equals(null));
-        assertFalse(schedule.equals(schedule2));
+        assertEquals(schedule, schedule);
+        assertNotEquals(null, schedule);
+        assertNotEquals(schedule, schedule2);
     }
 
 

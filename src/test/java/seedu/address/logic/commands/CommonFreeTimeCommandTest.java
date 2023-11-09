@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalUsers.JAMES;
 import static seedu.address.testutil.TypicalUsers.JANE;
+import static seedu.address.testutil.TypicalUsers.JOSH;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +22,8 @@ import seedu.address.model.user.UserPrefs;
  */
 
 public class CommonFreeTimeCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new UserData());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new UserData());
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new UserData());
+    private final Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new UserData());
 
     @BeforeEach
     public void setUp() {
@@ -33,8 +33,8 @@ public class CommonFreeTimeCommandTest {
 
     @Test
     public void execute_userNoFreetime_failure() {
-        model.setUser(JAMES);
-        expectedModel.setUser(JAMES);
+        model.setUser(JOSH);
+        expectedModel.setUser(JOSH);
         CommonFreetimeCommand commonFreetimeCommand = new CommonFreetimeCommand();
         assertCommandFailure(commonFreetimeCommand, model, CommonFreetimeCommand.MESSAGE_NO_FREE_TIME);
     }

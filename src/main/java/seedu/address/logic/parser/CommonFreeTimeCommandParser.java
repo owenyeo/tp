@@ -27,6 +27,7 @@ public class CommonFreeTimeCommandParser implements Parser<CommonFreetimeCommand
             ArgumentTokenizer.tokenize(userInput, PREFIX_NAME);
 
         Index index;
+        // Check if preamble is present
         try {
             if (userInput.equalsIgnoreCase("")) {
                 return new CommonFreetimeCommand();
