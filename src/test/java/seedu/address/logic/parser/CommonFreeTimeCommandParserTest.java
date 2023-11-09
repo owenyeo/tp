@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.CommonFreetimeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class CommonFreetimeCommandParserTest {
-    private CommonFreetimeCommandParser parser = new CommonFreetimeCommandParser();
+public class CommonFreeTimeCommandParserTest {
+    private CommonFreeTimeCommandParser parser = new CommonFreeTimeCommandParser();
 
     @Test
     public void parse_validArgs_returnsCommonFreetimeCommand() throws ParseException {
