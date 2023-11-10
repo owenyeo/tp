@@ -170,6 +170,12 @@ The `Storage` component,
 * inherits from `AddressBookStorage`, `UserPrefStorage`, and `UserDataStorage` which means it can be treated as any one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+<img src = "images/TimetableStorageClassDiagram.png" width="550" />
+
+The `Timetable` Classes
+* Allows users to save their friends' and their own timetables in JSON format, and read them back into corresponding objects
+* Depends on the related files in `Model`.
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
