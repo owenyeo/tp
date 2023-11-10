@@ -642,9 +642,15 @@ Example: rmevent user en/CS2103T Lecture
 
 Finds friend(s) with the same free times as you.
 
-Format: `cft [INDEX]`
+Format: <br>
+**Finding common free times with a specific friend**<br>
+`cft INDEX`
 
 * Finds common free times with friend of the specified `INDEX`.
+
+**Finding common free times with entire friends list**<br>
+`cft`
+
 * Finds common free times with **all friends** in the list if `INDEX` is not included.
 
 **Successful Command:**\
@@ -656,6 +662,8 @@ Output:\
 Displays all the common free times you have with all your friends in your friend list.
 ````
 Here are the contacts with the same free time as you:
+You and Bernice Yu have no common free time!
+You and Charlotte have no common free time!
 You have common free times with Alex Yeoh at:
 [Monday 0000 0800]
 [Monday 2000 2400]
@@ -666,8 +674,6 @@ You have common free times with Alex Yeoh at:
 [Friday 0000 2400]
 [Saturday 0000 2400]
 [Sunday 0000 2400]
-You and Bernice Yu have no common free time!
-You and Charlotte have no common free time!
 ````
 Input: 
 ````
