@@ -365,7 +365,8 @@ public class Schedule {
         }
 
         if (!isFound) {
-            throw new CommandException("CCA " + ccaName + " does not exist!");
+            throw new CommandException("CCA " + ccaName + " does not exist!"
+                    + "Please check that you have entered the correct cca name!\n");
         }
     }
 
