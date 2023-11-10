@@ -550,7 +550,8 @@ y/n represents whether you want a reminder for this event.
 
 #### 3.2.8 Deleting recurring event from friend: `rmschedule`
 
-Removes the specified recurring item from the specified Person's schedule
+Removes the specified recurring item from the specified Person's schedule<br>
+If there are multiple schedules with the same names, this command will remove the earliest day in the week, but the later time in the same day.<br>
 
 **Format:**\
 To remove a scheduled event, you can use the rmschedule command with the following parameters:
@@ -595,7 +596,8 @@ NOTE: If you want to remove an event from yourself, use index user
 
 #### 3.2.9 Deleting non-recurrring event from friend: `rmevent`
 
-Removes the specified event from the specified Person
+Removes the specified event from the specified Person<br>
+If there are multiple schedules with the same names, this command will remove the earliest day in the week, but the later time in the same day.<br>
 
 **Format:**\
 To remove an event, you can use the rmevent command with the following parameters:
@@ -830,11 +832,11 @@ If your changes to the data file makes its format invalid, TimetaBRO will discar
 **Q:** Is there a way to share my TimetaBRO schedule with others or export it to a different format, such as a calendar file?<br>
 **A:** TimetaBRO currently does not support sharing schedules with others or exporting them to external formats. It primarily functions as a personal scheduling tool.
 
-**Q:** What sets TimetaBRO apart from other scheduling tools?<br>
-**A:** TimetaBRO's unique feature of saving your friends' schedules and finding common free times makes it stand out. It's a powerful tool for enhancing social connections and simplifying event planning, which many users find highly valuable.
+**Q:** Can I remove a specific event or schedule from my timetable or my friends' timetable? <br>
+**A:** Currently, there is no way to select a specific event or schedule to remove. However,you may set slightly different names for events with the same name, such as 'Meetup with Jason (1)' and 'Meetup with Jason (2)' so that you can select a the specific event to delete later.
 
-**Q:** What are the advantages of saving my friends' schedules in TimetaBRO?<br>
-**A:** Saving your friends' schedules in TimetaBRO allows you to easily coordinate meetups and group activities, making it simpler to find a time that works for everyone. It strengthens your social connections and helps you stay connected with friends.
+**Q:** If I have two events that overlap, can I add both of them to the calendar? <br>
+**A:** As TimetaBRO was designed to be a timetable management app, we would not be allowing overlapping events to be added into the timetable.
 
 --------------------------------------------------------------------------------------------------------------------
 
