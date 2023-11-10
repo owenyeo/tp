@@ -83,13 +83,17 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person` objects residing in the `Model`.
 
 **Component Structure:**
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+Depending on the state of the application, certain parts of the UI are shown or hidden in `MainWindow`. eg. `HelpWindow` and `SelectedFriendCard`.
+
+Upon TimetaBRO being launched, the `Reminder` window will be shown on the bottom right hand corner of the desktop's screen.
 
 ### Logic component
 
@@ -163,6 +167,27 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Click to View Friend Timetable Feature
+
+#### Description
+
+Whichever list cell of the friend list is clicked on, 
+it becomes selected, 
+and is displayed on the bottom half of the right hand side of the app.
+
+#### Implementation
+* The user clicks on the cell within the `ListView` of the friend list.
+* The `onMouseClicked` event is triggered upon the user's click.
+* `PersonListPanel.PersonListViewCell#updateItem()` handles this `MouseEvent` object:
+  * It checks if the event is a single click. 
+  * If so, it notes the Person object in the selected list cell and fires a new event `ListCellSelectedEvent` with the selected person.
+* The `ListCellSelectedEvent` extends `Event` saves the selected person object.
+* The event filter in `MainWindow#fillInnerParts()` handles the `ListCellSelectedEvent` 
+and retrieves the selected person from it using `ListCellSelectedEvent#getSelectedPerson()`.
+* The selected person is used to create a new `SelectedFriendCard`, which is stored under `friendProfile`.
+* The contents of the `SelectedFriendPlaceHolder` is replaced with the `friendProfile`.
+* The position of the selected friend in the friend list is saved in `selectedFriendPos` for refreshing the display with any changes.
 
 ### \[Proposed\] Undo/redo feature
 
