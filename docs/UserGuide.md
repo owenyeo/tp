@@ -67,7 +67,7 @@ Errors and success messages all will be here, and they will guide you to use Tim
 
 ### 2.4. Friends list
 
-This section displays all your friends in your list by default, 
+This section displays all your friends in your list by default,
 and may be filtered display certain friends based on the executed command.
 
 ### 2.5. Daily reminder pop-up
@@ -96,7 +96,7 @@ At all times, this section displays the user profile. This consists of all the u
 
 #### 2.6.2. Friend Display
 
-This section is blank by default. 
+This section is blank by default.
 It displays the profile of whichever friend is selected from the list by clicking on it.<br>
 Upon selection, the list cell of that friend will turn blue, and you can see your friend's details and schedule for qucik comaprisons.
 
@@ -110,7 +110,7 @@ The days of the week are arranged from Monday to Sunday, and the timeslots are a
 
 ##### 2.6.3.1 Color coding
 
-The event timeslots are color coded according to their type. 
+The event timeslots are color coded according to their type.
 
 Blue for module (recurring), red for cca (recurring), and green for dated (non-recurring) events.
 
@@ -262,9 +262,9 @@ this error message will be shown:
 [error message]
 Message Usage:
 addevent: Adds a non-recurring event to the calendar.
-Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] StartTime (HHMM) EndTime (HHMM)] r/[REMINDER: y/n] 
-Example: addevent 1 en/CS2103T Lecture h/2020-03-02 1400 1600 r/y 
-Note: Index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself 
+Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] StartTime (HHMM) EndTime (HHMM)] r/[REMINDER: y/n]
+Example: addevent 1 en/CS2103T Lecture h/2020-03-02 1400 1600 r/y
+Note: Index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself
 ````
 The error message at the top of the command feedback above will specify what needs to be rectified.\
 eg.\
@@ -279,7 +279,7 @@ Missing prefix(es) for en/ h/ r/ !
 
 <div markdown="span" class="alert alert-warning">Caution:
 Events added outside of the current week are not visible! The application is streamlined for you to see what's ahead in the week, and not anything more.
-</div>  
+</div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -354,7 +354,7 @@ Removes the specified event from your schedule. Use it when your plans changes!
 Click [here](#parameters) to find out more about the parameter constraints.
 
 **Successful commands:**\
-Input: 
+Input:
 ````
 rmevent user en/CS2103T exam
 ````
@@ -370,7 +370,7 @@ this error message will be shown:
 Missing prefix(es) for en/ !
 Message Usage:
 rmevent: Removes an event from the specified contact's calendar.
-Parameters: INDEX en/EVENT_NAME 
+Parameters: INDEX en/EVENT_NAME
 Example: rmevent 1 en/CS2103T Final Exam
 NOTE: If you want to remove an event from your calendar, use rmevent user.
 Example: rmevent user en/CS2103T Final Exam
@@ -404,7 +404,7 @@ New Person Added: {NAME}, Phone: {PHONE}, Email: {EMAIL}, Address: {ADDRESS}, Bi
 **Unsuccessful Command:**\
 Output:
 ````
-Invalid command format! 
+Invalid command format!
 add: Adds a person to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...
 Example: add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 b/2000-01-01 t/friends t/owesMoney
 ````
@@ -441,7 +441,7 @@ Edited Person {NAME}; Phone: {PHONE}; Email: {EMAIL}; Address: {ADDRESS}; Birthd
 **Unsuccessful Command:**\
 Displays an error message:
 ````
-Invalid command format! 
+Invalid command format!
 edit: Edits the details of the person identified by the index number used in the displayed person list. Existing values will be overwritten by the input values.
 Parameters: INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]...
 Example: edit 1 p/91234567 e/johndoe@example.com
@@ -478,12 +478,12 @@ The friend should be removed from the friend's list. Good riddance! (Or see you 
 **Unsuccessful Command:**\
 If index is unspecified or not a positive integer, the following error message will be returned:
 ````
-Invalid command format! 
+Invalid command format!
 delete: Deletes the person identified by the index number used in the displayed person list.
 Parameters: INDEX (must be a positive integer)
 Example: delete 1
 ````
-If index given is not in the list, the following error message will be returned: 
+If index given is not in the list, the following error message will be returned:
 ````
 The person index provided is invalid
 ````
@@ -537,7 +537,7 @@ If the user does not put an index or the index is not a positive integer,
 this error messsage will be shown:
 ````
 Invalid index!
-Index can only be 'user' or a positive integer! 
+Index can only be 'user' or a positive integer!
 ````
 If the user uses an index that is larger than the list,
 this error message will be shown:
@@ -607,14 +607,14 @@ CS2030 FINALS 2023-10-31 1000 1400 to [Friend Name]
 
 **Unsuccessful Command:**
 
-If the user does not put an index or the index is not a positive integer, 
+If the user does not put an index or the index is not a positive integer,
 this error messsage will be shown:
 ````
 Invalid index!
-Index can only be 'user' or a positive integer! 
+Index can only be 'user' or a positive integer!
 ````
 If the user uses an index that is larger than the list,
-this error message will be shown: 
+this error message will be shown:
 ````
 The person index provided is invalid
 Index can be max [list size]!
@@ -626,9 +626,9 @@ this error message will be shown
 [error message]
 Message Usage:
 addevent: Adds a non-recurring event to the calendar.
-Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] START_TIME [HHMM] END_TIME [HHMM] r/[REMINDER: y/n] 
-Example: addevent 1 en/CS2103T Final Exam h/2020-03-02 1400 1600 r/y 
-Note: Index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself 
+Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] START_TIME [HHMM] END_TIME [HHMM] r/[REMINDER: y/n]
+Example: addevent 1 en/CS2103T Final Exam h/2020-03-02 1400 1600 r/y
+Note: Index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself
 ````
 The error message at the top of the command feedback above will specify what needs to be rectified.\
 eg.\
@@ -680,7 +680,7 @@ If the user does not put an index or the index is not a positive integer,
 this error messsage will be shown:
 ````
 Invalid index!
-Index can only be 'user' or a positive integer! 
+Index can only be 'user' or a positive integer!
 ````
 If the user uses an index that is larger than the list,
 this error message will be shown:
@@ -750,7 +750,7 @@ If the user does not put an index or the index is not a positive integer,
 this error messsage will be shown:
 ````
 Invalid index!
-Index can only be 'user' or a positive integer! 
+Index can only be 'user' or a positive integer!
 ````
 If the user uses an index that is larger than the list,
 this error message will be shown:
@@ -770,7 +770,7 @@ If wrong command format is used (i.e missing prefix):
 Missing prefix(es) for en/ !
 Message Usage:
 rmevent: Removes an event from the specified contact's calendar.
-Parameters: INDEX en/EVENT_NAME 
+Parameters: INDEX en/EVENT_NAME
 Example: rmevent 1 en/CS2103T Final Exam
 NOTE: If you want to remove an event from yourself, use rmevent user
 Example: rmevent user en/CS2103T Final Exam
@@ -815,11 +815,11 @@ You have common free times with Alex Yeoh at:
 [Saturday 0000 2400]
 [Sunday 0000 2400]
 ````
-Input: 
+Input:
 ````
 cft 1
 ````
-Output: 
+Output:
 ````
 You have common free times with Alex Yeoh at:
 [Monday 0000 0800]
@@ -838,7 +838,7 @@ If your contact is a hustler and you have no common free times with a contact, i
 You and [Friend's Name] have no common free time!
 ````
 
-If you're super busy and your entire timetable is full for the whole week, it will return: 
+If you're super busy and your entire timetable is full for the whole week, it will return:
 ````
 You have no free time!
 ````
@@ -852,7 +852,7 @@ You have no contacts with the same free time as you!
 
 If user inputs invalid command format, the app will display
 ````
-Invalid command format! 
+Invalid command format!
 cft: Finds all contacts with the same free time as the User.
 Example: cft
 ````
@@ -956,7 +956,7 @@ The app closes after saving all data.
 ## **Parameters**
 
 <div markdown="span" class="alert alert-warning">Caution:
-Command parameter inputs have certain constraints to ensure their use is streamlined.  
+Command parameter inputs have certain constraints to ensure their use is streamlined.
 </div>
 
 | Parameter      | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
@@ -1051,4 +1051,3 @@ For you TLDR-ers!
 | **View Help**                               | `help`                                                                                                                                                                             |
 | **Find Common Free Times with friend**      | `cft [INDEX]` Example: `cft 1`                                                                                                                                                     |                                                                       
 | **Find Common Free Times with all friends** | `cft`<br>                                                                                                                                                                          |                                                                       
-
