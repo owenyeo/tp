@@ -15,6 +15,7 @@ package "UserData Storage" {
 Class "<<interface>>\nUserDataStorage" as UserDataStorage
 Class JsonUserDataStorage
 Class JsonSerializableUserData
+Class JsonAdaptedUser
 }
 
 Class "<<interface>>\nStorage" as Storage
@@ -26,11 +27,11 @@ Class JsonAddressBookStorage
 Class JsonSerializableAddressBook
 Class JsonAdaptedPerson
 Class JsonAdaptedTag
-Class JsonAdaptedFreeTime
+
+
 }
-
-
-
+package "Timetable Classes"{
+}
 }
 
 Class HiddenOutside #FFFFFF
@@ -50,9 +51,10 @@ JsonUserDataStorage .up.|> UserDataStorage
 JsonAddressBookStorage .up.|> AddressBookStorage
 JsonUserDataStorage ..> JsonSerializableUserData
 JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableUserData --> "1" JsonAdaptedPerson
+JsonSerializableUserData --> "1" JsonAdaptedUser
 JsonSerializableAddressBook --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
-JsonAdaptedPerson --> "*" JsonAdaptedFreeTime
+JsonAdaptedPerson --> "Timetable Classes"
+JsonAdaptedUser --> "Timetable Classes"
 
 @enduml
