@@ -134,7 +134,7 @@ Each event block consists of the event name on the first line, and the start and
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order you like!<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
@@ -153,24 +153,34 @@ eg. `1430` and `1500` will be excepted, `1445` and `2359` will not be allowed.
 
 Personalise your profile information.
 
-Format: `user n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...​`
+Format: `user n/NAME p/PHONE e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...​`
+
+Click [here](#parameters) to find out more about the parameter constraints.
 
 <div markdown="span" class="alert alert-primary">Tip:
 A person can have any number of tags (including 0). Go crazy!
 </div><br />
 
 **Successful Command:**
-
-- `Edited Your Details: NAME, Phone: PHONE_NUMBER, Email: EMAIL; Address: ADDRESS; Birthday: BIRTHDAY; Tags: [TAG]...​`
+````
+Edited Your Details: NAME, Phone: PHONE, Email: EMAIL; Address: ADDRESS; Birthday: BIRTHDAY; Tags: [TAG]...​
+````
+**Unsuccessful Command:**\
+No changes:
+````
+No changes to user.
+````
 
 #### 3.1.2 Adding recurring event to user: `addschedule user`
 
 This command adds a recurring event to your schedule.
 
-Format: `addschedule user type/TYPE en/EVENT NAME h/DAY_TIME`
+Format: `addschedule user type/EVENT_TYPE en/EVENT_NAME h/DAY_TIME`
+
+Click [here](#parameters) to find out more about the parameter constraints.
 
 - Adds an event titled `EVENT_NAME`
-- `TYPE` is a prefix that can either be `module` or `CCA`.
+- `EVENT_TYPE` is a prefix that can either be `module` or `CCA`.
 - Event date and time will be equal to `DAY_TIME`<br>
 where `DAY_TIME` must be entered in the format `Day HHMM HHMM`.<br>
 `Day` is any day of the week fully spelt out and is case-insensitive, `HHMM` is a 24H time format to indicate the start time and end time!
@@ -195,14 +205,12 @@ this error message will be shown:
 [error message]
 Message Usage:
 addschedule: Adds a schedule to the specified contact.
-Parameters: INDEX type/EVENT_TYPE en/EVENT_NAMEh/[DAY_OF_WEEK START_TIME [HHMM] END_TIME [HHMM]]
-Example: addschedule 1 type/cca en/Basketball
- h/Monday 1400 1600
-NOTE: If you want to add a cca/module to yourself, use index user
+Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME h/[DAY_OF_WEEK START_TIME [HHMM] END_TIME [HHMM]]
+Example: addschedule 1 type/cca en/Basketball h/Monday 1400 1600
+NOTE: If you want to add a cca/module to yourself, use addschedule user
 Example: addschedule user type/cca en/Basketball h/Monday 1400 1600
 ````
 The error message at the top of the command feedback above will specify what needs to be rectified.\
-eg.\
 Input:
 ````
 addschedule user
@@ -226,13 +234,14 @@ Missing prefix(es) for en/ type/ h/ !
 
 This command adds a non-recurring event to your schedule. Use it for meetings, hangouts, and exams!
 
-Format: `addevent user en/EVENT NAME h/DAY_TIME`
+Format: `addevent user en/EVENT NAME h/DAY_TIME r/REMINDER`
 
 - Adds an event titled `EVENT_NAME`
-- Event date and time will be equal to `DATE` <br>
-where `DATE` must be entered in the format `YYYY-MM-DD HHMM [start time] HHMM [end time]`. Date must be a valid date!
-- Users can set whether they want to enable reminders for this event by inputting `y/n` under `[REMINDER]`. Don't forget them!
+- Event date and time will be equal to `DATE_TIME` <br>
+where `DATE_TIME` must be entered in the format `DATE [YYYY-MM-DD] START_TIME [HHMM] END_TIME [HHMM]`. Date must be a valid date!
+- You can set whether you want to enable reminders for this event by inputting `y/n` under `[REMINDER]` so you don't forget them!
 - Event names will be changed to all upper case regardless of whether it was keyed it in lower case or upper case. TimetaBRO is hyping you up!
+- Click [here](#parameters) to find out more about the parameter constraints.
 
 **Successful Command:**\
 Input:
@@ -288,8 +297,7 @@ Removes the specified recurring item from your schedule. Use it when your schedu
 
 Format: `rmschedule user type/EVENT_TYPE en/EVENT_NAME`
 
-type/EVENT_TYPE (Event type, either 'module' or 'CCA')\
-en/EVENT_NAME (Event name)
+Click [here](#parameters) to find out more about the parameter constraints.
 
 **Successful commands:**\
 Input:
@@ -302,7 +310,7 @@ BASKETBALL has been removed from [Your Name]!
 ````
 
 **Unsuccessful commands:**\
-If a user uses the wrong format (i.e missing prefix, wrong event type),
+If a user uses the wrong format (i.e missing prefix),
 this error message will be shown:
 ````
 [error message]
@@ -323,6 +331,19 @@ Output:
 ````
 Missing prefix(es) for en/ type/ !
 ````
+If a user inputs an invalid event type, the following error message will be shown:
+````
+Invalid event type!
+Event type must either be 'cca' or 'module'!
+````
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: Notes about the rmschedule and rmevent command:
+
+If there are multiple time slots with the same names, the command will remove time slots in the chronological order they were added.
+
+</div>
 
 #### 3.1.5 Deleting non-recurring event from user: `rmevent user`
 
@@ -330,7 +351,7 @@ Removes the specified event from your schedule. Use it when your plans changes!
 
 **Format:** `rmevent user en/EVENT_NAME`
 
-en/EVENT_NAME (Event name)
+Click [here](#parameters) to find out more about the parameter constraints.
 
 **Successful commands:**\
 Input: 
@@ -350,9 +371,9 @@ Missing prefix(es) for en/ !
 Message Usage:
 rmevent: Removes an event from the specified contact's calendar.
 Parameters: INDEX en/EVENT_NAME 
-Example: rmevent 1 en/CS2103T Lecture
-NOTE: If you want to remove an event from yourself, use index user
-Example: rmevent user en/CS2103T Lecture
+Example: rmevent 1 en/CS2103T Final Exam
+NOTE: If you want to remove an event from your calendar, use rmevent user.
+Example: rmevent user en/CS2103T Final Exam
 ````
 
 ### 3.2 Friend Commands
@@ -361,13 +382,14 @@ Example: rmevent user en/CS2103T Lecture
 
 Adds a person to your TimetaBRO friend list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...​`
+Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...​`
 
 * Adds a person to your friend list to the last index!
 * You can't add someone with the same birthday and same name, because it's likely that they are the same person! (We know its not necessarily true but its the best way we can do it without collecting your NRIC...)
 * You can't have duplicate phone numbers or emails.
 * Names can be alphanumeric. For Elon Musk's child's sake!
 * Birthdays must be a valid date! We do check the calendars.
+* Click [here](#parameters) to find out more about the parameter constraints.
 
 <div markdown="span" class="alert alert-primary">Tip:
 A person can have any number of tags (including 0)
@@ -376,7 +398,7 @@ A person can have any number of tags (including 0)
 **Successful Command:**\
 Output:
 ````
-New Person Added: {NAME}, Phone: {PHONE_NUMBER}, Email: {EMAIL}, Address: {ADDRESS}, Birthday: {BIRTHDAY}, tags: [{TAG}]
+New Person Added: {NAME}, Phone: {PHONE}, Email: {EMAIL}, Address: {ADDRESS}, Birthday: {BIRTHDAY}, tags: [{TAG}]
 ````
 
 **Unsuccessful Command:**\
@@ -393,17 +415,19 @@ Examples:
 
 #### 3.2.2 Editing friend information: `edit`
 
-Edits an existing friend in TimetaBRO.
+Edits a friend's details in TimetaBRO.
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed friend list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
-* Same constraints as add! Meaning no duplicate persons, numbers, or emails. Birthdays also need to be valid dates.
+* Same constraints as add! Meaning no duplicate names. Birthdays also need to be valid dates.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative. We're working on it!
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
+* Click [here](#parameters) to find out more about the parameter constraints.
+
 
 **Successful Command:**
 
@@ -411,7 +435,7 @@ Changes the specified parameters of specified friend’s profile.
 
 Output:
 ````
-Edited Person {NAME}, Phone: {PHONE_NUMBER}, Email: {EMAIL}, Address: {ADDRESS}, Birthday: {BIRTHDAY}, tags: [{TAG}]
+Edited Person {NAME}; Phone: {PHONE}; Email: {EMAIL}; Address: {ADDRESS}; Birthday: {BIRTHDAY}; tags: [{TAG}]
 ````
 
 **Unsuccessful Command:**\
@@ -429,7 +453,7 @@ The person index provided is invalid
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower m/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing modules.
+*  `edit 2 n/Betsy Crower` Edits the name of the 2nd person to be `Betsy Crower`.
 
 #### 3.2.3 Deleting a friend's information: `delete`
 
@@ -437,9 +461,9 @@ Deletes the specified friend from TimetaBRO.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`. Use it if you want to unfriend them.
+* Deletes the person at the specified `INDEX`, in the event they're no longer your friend.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​ (duh)
+* The index **must be a positive integer** 1, 2, 3, …​
 
 **Successful Command:**
 
@@ -470,13 +494,13 @@ Examples:
 
 #### 3.2.4 Listing all friends: `list`
 
-Shows a list of all your dear added friends.
+Shows a list of all your added friends.
 
 Format: `list`
 
 #### 3.2.5 Viewing friend's profile
 
-Show your friend's timetable.
+View your friend's timetable.
 
 **How to use:**
 1. Scroll down your list of friends, until you locate the friend's timetable you want to see.
@@ -493,6 +517,7 @@ Format: `addschedule INDEX type/TYPE en/EVENT_NAME h/DAY_TIME`
 - Event date and time will be equal to `DAY_TIME`
   where `DAY_TIME` must be entered in the format `[monday/tuesday/wednesday/thursday/friday/saturday/sunday] HHMM [start time] HHMM [end time]`
 - Event names will be changed to all upper case regardless of whether it was keyed it in lower case or upper case. Imagine timetaBRO hyping you up!
+- Click [here](#parameters) to find out more about the parameter constraints.
 
 **Successful Command:**\
 Input:
@@ -530,7 +555,7 @@ addschedule: Adds a schedule to the specified contact.
 Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME h/[DAY_OF_WEEK START_TIME [HHMM] END_TIME [HHMM]]
 Example: addschedule 1 type/cca en/Basketball
  h/Monday 1400 1600
-NOTE: If you want to add a cca/module to yourself, use index user
+NOTE: If you want to add a cca/module to yourself, use addschedule user
 Example: addschedule user type/cca en/Basketball h/Monday 1400 1600
 ````
 The error message at the top of the command feedback above will specify what needs to be changed. Helpful!\
@@ -565,6 +590,7 @@ Format: `addevent INDEX en/EVENT_NAME h/DATE_TIME r/REMINDER`
   where `DATE` must be entered in the format `YYYY-MM-DD HHMM [start time] HHMM [end time]`. Date must be a real date too!
 - Users can set whether they want to enable reminders for this event by inputting `y/n` under `[REMINDER]`. Never forget these events again!
 - Event names will be changed to all upper case regardless of whether it was keyed it in lower case or upper case.
+- Click [here](#parameters) to find out more about the parameter constraints.
 
 **Successful Command:**
 
@@ -600,8 +626,8 @@ this error message will be shown
 [error message]
 Message Usage:
 addevent: Adds a non-recurring event to the calendar.
-Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] StartTime (HHMM) EndTime (HHMM)] r/[REMINDER: y/n] 
-Example: addevent 1 en/CS2103T Lecture h/2020-03-02 1400 1600 r/y 
+Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] START_TIME [HHMM] END_TIME [HHMM] r/[REMINDER: y/n] 
+Example: addevent 1 en/CS2103T Final Exam h/2020-03-02 1400 1600 r/y 
 Note: Index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself 
 ````
 The error message at the top of the command feedback above will specify what needs to be rectified.\
@@ -628,16 +654,16 @@ Missing prefix(es) for en/ h/ r/ !
 #### 3.2.8 Deleting recurring event from friend: `rmschedule`
 
 Removes the specified recurring item from the specified Person's schedule. Use it when they have a change in schedule!<br>
-If there are multiple schedules with the same names, this command will remove the earliest day in the week, but the later time in the same day. A little strange, but it works!<br>
 
 **Format:**\
 To remove a scheduled event, you can use the rmschedule command with the following parameters:
 
 `rmschedule INDEX type/EVENT_TYPE en/EVENT_NAME`
 
-INDEX (Index of the friend)\
-type/EVENT_TYPE (Event type, either 'module' or 'CCA')\
-en/EVENT_NAME (Event name)
+`INDEX` (Index of the friend)\
+`EVENT_TYPE` ('module' or 'CCA')\
+`EVENT_NAME` (Event name)\
+Click [here](#parameters) to find out more about the parameter constraints.
 
 **Successful commands:**\
 Input:
@@ -689,6 +715,13 @@ Output:
 ````
 Missing prefix(es) for en/ type/ !
 ````
+<div markdown="block" class="alert alert-info">
+
+:information_source: Notes about the rmschedule and rmevent command:
+
+If there are multiple time slots with the same names, the command will remove time slots in the chronological order they were added.
+
+</div>
 
 #### 3.2.9 Deleting non-recurrring event from friend: `rmevent`
 
@@ -700,8 +733,7 @@ To remove an event, you can use the rmevent command with the following parameter
 
 `rmevent INDEX en/EVENT_NAME`
 
-INDEX (Index of the friend)\
-en/EVENT_NAME (Event name)
+Click [here](#parameters) to find out more about the parameter constraints.
 
 **Successful commands:**\
 Input:
@@ -739,12 +771,12 @@ Missing prefix(es) for en/ !
 Message Usage:
 rmevent: Removes an event from the specified contact's calendar.
 Parameters: INDEX en/EVENT_NAME 
-Example: rmevent 1 en/CS2103T Lecture
-NOTE: If you want to remove an event from yourself, use index user
-Example: rmevent user en/CS2103T Lecture
+Example: rmevent 1 en/CS2103T Final Exam
+NOTE: If you want to remove an event from yourself, use rmevent user
+Example: rmevent user en/CS2103T Final Exam
 ````
 
-#### 3.2.10 Finding common free times with your friend: `cft`
+#### 3.2.10 Finding common free times with your friend(s): `cft`
 
 Finds friend(s) with the same free times as you, or returns a message if no friends are free. That's okay though! Just find more friends to add!
 
@@ -843,6 +875,8 @@ To set a reminder a dated event in your schedule, you can use the setReminder co
 
 `setReminder EVENT_NAME`
 
+Click [here](#parameters) to find out more about the parameter constraints.
+
 **Successful command:**\
 Input:
 ````
@@ -866,6 +900,9 @@ No such event exists!
 Remove a reminder for a dated event from the user's schedule. Don't forget it!
 
 Format: `rmReminder EVENT_NAME`
+
+Click [here](#parameters) to find out more about the parameter constraints.
+
 
 **Successful command:**\
 Input:
@@ -939,7 +976,6 @@ Command parameter inputs have certain constraints to ensure their use is streaml
 | **REMINDER**   | `y` to turn reminder on. <br>`n` to turn reminder off.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ### Saving the data
@@ -996,7 +1032,7 @@ If your changes to the data file makes its format invalid, TimetaBRO will discar
 For you TLDR-ers!
 | Action                                      | Format and Examples                                                                                                                                                                |
 |---------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add a Friend**                            | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]…​`<br> Example: `add n/John Doe p/98765432 e/johnd@example.com a/1 Hon Sui Sen Dr, Singapore 117588 b/2023-11-05 t/police` |
+| **Add a Friend**                            | `add n/NAME p/PHONE e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]…​`<br> Example: `add n/John Doe p/98765432 e/johnd@example.com a/1 Hon Sui Sen Dr, Singapore 117588 b/2023-11-05 t/police` |
 | **Add an Event to friend**                  | `addevent INDEX en/EVENT NAME h/DATE r/REMINDER`<br> Example: `addevent 1 en/CS2030 Finals h/2023-10-31 1000 1400 r/y`                                                             |
 | **Add an Event to user**                    | `addevent user en/EVENT NAME h/DATE r/REMINDER`<br> Example: `addevent user en/CS2030 Finals h/2023-10-31 1000 1400 r/y`                                                           |
 | **Remove an Event from friend**             | `rmevent INDEX en/EVENT NAME`<br> Example: `rmevent 1 en/CS2103T Lecture`                                                                                                          |
@@ -1009,8 +1045,8 @@ For you TLDR-ers!
 | **Set a Reminder**                          | `setReminder EVENT_NAME`<br> Example: `setReminder CS2103T Lecture`                                                                                                                |
 | **Clear All Entries**                       | `clear`                                                                                                                                                                            |
 | **Delete a Friend**                         | `delete INDEX`<br> Example: `delete 3`                                                                                                                                             |
-| **Edit Friend Info**                        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`<br> Example: `edit 2 n/James Lee e/jameslee@example.com`                                       |
-| **Edit User Info**                          | `user [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`<br> Example: `user n/James Lee e/jameslee@example.com`                                               |
+| **Edit Friend Info**                        | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`<br> Example: `edit 2 n/James Lee e/jameslee@example.com`                                       |
+| **Edit User Info**                          | `user [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`<br> Example: `user n/James Lee e/jameslee@example.com`                                               |
 | **List All Friends**                        | `list`                                                                                                                                                                             |
 | **View Help**                               | `help`                                                                                                                                                                             |
 | **Find Common Free Times with friend**      | `cft [INDEX]` Example: `cft 1`                                                                                                                                                     |                                                                       

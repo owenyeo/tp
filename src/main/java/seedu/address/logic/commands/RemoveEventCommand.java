@@ -29,11 +29,11 @@ public class RemoveEventCommand extends Command {
             + "en/EVENT_NAME \n"
             + "Example: " + COMMAND_WORD
             + " 1"
-            + " en/CS2103T Lecture\n"
-            + "NOTE: If you want to remove an event from yourself, use index user\n"
+            + " en/CS2103T Final Exam\n"
+            + "NOTE: If you want to remove an event from your calendar, use rmevent user.\n"
             + "Example: " + COMMAND_WORD
             + " user"
-            + " en/CS2103T Lecture";
+            + " en/CS2103T Final Exam";
 
     private final String eventName;
     private final Index index;
