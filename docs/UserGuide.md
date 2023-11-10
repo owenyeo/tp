@@ -237,26 +237,35 @@ where `DATE` must be entered in the format `YYYY-MM-DD HHMM [start time] HHMM [e
 **Successful Command:**\
 Input:
 ````
-addschedule user type/CCA en/Basketball h/Tuesday 1500 1600
+addevent user en/Final Submission h/2023-10-17 1500 1600 r/y
 ````
 Output:
 ````
 New event added:
-CCA:
-BASKETBALL Tuesday 1500 1600 to [Your Name]
+Dated Event:
+FINAL SUBMISSION 2023-10-17 1500 1600 to [Your Name]
 ````
 
 **Unsuccessful Command:**\
 If a user uses the wrong format (i.e missing prefix, wrong event type),
 this error message will be shown:
 ````
-Input should be in the format 'name [Day] HHMM HHMM yes/no', where:
-'name' represents the name and should not contain spaces.
-'Day' represents a day of the week (e.g. Monday).
-'HHMM' represents a valid 24-hour time format in half-hour blocks (e.g. 0000, 1230, 2300).
-The first 'HHMM' represents the starting time (e.g. '0830' for 08:30 AM).
-The second 'HHMM' represents the ending time (e.g. '1730' for 05:30 PM).
-y/n represents whether you want a reminder for this event.
+[error message]
+Message Usage:
+addevent: Adds a non-recurring event to the calendar.
+Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] StartTime (HHMM) EndTime (HHMM)] r/[REMINDER: y/n] 
+Example: addevent 1 en/CS2103T Lecture h/2020-03-02 1400 1600 r/y 
+Note: Index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself 
+````
+The error message at the top of the command feedback above will specify what needs to be rectified.\
+eg.\
+Input:
+````
+addevent user
+````
+Output:
+````
+Missing prefix(es) for en/ h/ r/ !
 ````
 
 <div markdown="span" class="alert alert-warning">Caution:
@@ -277,7 +286,7 @@ Events added outside of the current week are not visible! The application is str
 
 Removes the specified recurring item from your schedule. Use it when your schedule changes!
 
-**Format:** `rmschedule USER type/EVENT_TYPE en/EVENT_NAME`
+Format: `rmschedule user type/EVENT_TYPE en/EVENT_NAME`
 
 type/EVENT_TYPE (Event type, either 'module' or 'CCA')\
 en/EVENT_NAME (Event name)
@@ -285,22 +294,34 @@ en/EVENT_NAME (Event name)
 **Successful commands:**\
 Input:
 ````
-rmschedule user type/CCA en/CS2103T Lecture
+rmschedule user type/CCA en/Basketball
 ````
 Output:
 ````
-CS2103T LECTURE has been removed from [Your Name]!
+BASKETBALL has been removed from [Your Name]!
 ````
 
 **Unsuccessful commands:**\
-If wrong command format is used (i.e missing prefixes, wrong event name):
+If a user uses the wrong format (i.e missing prefix, wrong event type),
+this error message will be shown:
 ````
-Command format is invalid!
-Parameters: INDEX
-type/EVENT_TYPE
-en/EVENT_NAME
-Example: rmschedule 1 type/cca en/CS2103T Lecture
+[error message]
+Message Usage:
+rmschedule: Removes an event from the specified contact's calendar.
+Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME
+Example: rmschedule 1 type/cca en/Basketball
 NOTE: If you want to remove an event from yourself, use index user
+Example: rmschedule user type/cca en/Basketball
+````
+The error message at the top of the command feedback above will specify what needs to be rectified.\
+eg.\
+Input:
+````
+rmschedule user
+````
+Output:
+````
+Missing prefix(es) for en/ type/ !
 ````
 
 #### 3.1.5 Deleting non-recurring event from user: `rmevent user`
@@ -314,19 +335,23 @@ en/EVENT_NAME (Event name)
 **Successful commands:**\
 Input: 
 ````
-rmevent user en/CS2103T LECTURE
+rmevent user en/CS2103T exam
 ````
 Output:
 ````
-Dated event 'CS2103T LECTURE' deleted from your calendar!
+Dated event 'CS2103T EXAM' deleted from your calendar!
 ````
 
 **Unsuccessful commands:**\
-If wrong command format is used (i.e missing prefixes, wrong event name):
+If a user uses the wrong format (i.e missing prefix),
+this error message will be shown:
 ````
-Command format is invalid!
-Parameters: INDEX
-en/EVENT_NAME
+Missing prefix(es) for en/ !
+Message Usage:
+rmevent: Removes an event from the specified contact's calendar.
+Parameters: INDEX en/EVENT_NAME 
+Example: rmevent 1 en/CS2103T Lecture
+NOTE: If you want to remove an event from yourself, use index user
 Example: rmevent user en/CS2103T Lecture
 ````
 
@@ -334,12 +359,12 @@ Example: rmevent user en/CS2103T Lecture
 
 #### 3.2.1 Adding a friend: `add`
 
-Adds a person to TimetaBRO.
+Adds a person to your TimetaBRO friend list.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...​`
 
-* Adds a person to your friendslist to the last index!
-* You can't add someone with the same birthday and same name, because its likely that they are the same person! (We know its not necessarily true but its the best way we can do it without collecting your NRIC...)
+* Adds a person to your friend list to the last index!
+* You can't add someone with the same birthday and same name, because it's likely that they are the same person! (We know its not necessarily true but its the best way we can do it without collecting your NRIC...)
 * You can't have duplicate phone numbers or emails.
 * Names can be alphanumeric. For Elon Musk's child's sake!
 * Birthdays must be a valid date! We do check the calendars.
@@ -348,13 +373,19 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...​`
 A person can have any number of tags (including 0)
 </div><br />
 
-Successful Command:
+**Successful Command:**\
+Output:
+````
+New Person Added: {NAME}, Phone: {PHONE_NUMBER}, Email: {EMAIL}, Address: {ADDRESS}, Birthday: {BIRTHDAY}, tags: [{TAG}]
+````
 
-- `New Person Added: {NAME}, Phone: {PHONE_NUMBER}, Email: {EMAIL}, Address: {ADDRESS}, Birthday: {BIRTHDAY}, tags: [{TAG}]`
-
-Unsuccessful Command:
-
-- `Wrong inputs for prefix: {prefix with error}`
+**Unsuccessful Command:**\
+Output:
+````
+Invalid command format! 
+add: Adds a person to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...
+Example: add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 b/2000-01-01 t/friends t/owesMoney
+````
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com b/2001-12-12 a/Downtown t/police`
@@ -376,13 +407,24 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY]
 
 **Successful Command:**
 
-Changes the specified parameters of specified friend’s profile
+Changes the specified parameters of specified friend’s profile.
 
-**Unsuccessful Command:**
+Output:
+````
+Edited Person {NAME}, Phone: {PHONE_NUMBER}, Email: {EMAIL}, Address: {ADDRESS}, Birthday: {BIRTHDAY}, tags: [{TAG}]
+````
 
+**Unsuccessful Command:**\
 Displays an error message:
 ````
-Please specify the details to change! Correct syntax: edit INDEX [n/NAME] [a/ADDRESS] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]
+Invalid command format! 
+edit: Edits the details of the person identified by the index number used in the displayed person list. Existing values will be overwritten by the input values.
+Parameters: INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]...
+Example: edit 1 p/91234567 e/johndoe@example.com
+````
+If index given is not in the list, the following error message will be returned:
+````
+The person index provided is invalid
 ````
 
 Examples:
@@ -409,10 +451,18 @@ Output:
 ````
 The friend should be removed from the friend's list. Good riddance! (Or see you later!)
 
-**Unsuccessful Command:**
-
-- `Cannot delete (NAME)`
-- `Cannot find (INDEX)`
+**Unsuccessful Command:**\
+If index is unspecified or not a positive integer, the following error message will be returned:
+````
+Invalid command format! 
+delete: Deletes the person identified by the index number used in the displayed person list.
+Parameters: INDEX (must be a positive integer)
+Example: delete 1
+````
+If index given is not in the list, the following error message will be returned: 
+````
+The person index provided is invalid
+````
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the list.
@@ -458,6 +508,19 @@ CS2030 Monday 1000 1400 to [Friend Name]
 ````
 
 **Unsuccessful Command:**\
+If the user does not put an index or the index is not a positive integer,
+this error messsage will be shown:
+````
+Invalid index!
+Index can only be 'user' or a positive integer! 
+````
+If the user uses an index that is larger than the list,
+this error message will be shown:
+````
+The person index provided is invalid
+Index can be max [list size]!
+````
+
 If a user uses the wrong format (i.e missing prefix, wrong event type),
 this error message will be shown:
 ````
@@ -479,14 +542,6 @@ addschedule
 Output:
 ````
 Missing prefix(es) for en/ type/ h/ !
-````
-Input: 
-````
-addschedule type/cca en/Basketball h/Monday 1200 1800
-````
-Output: 
-````
-Please put an index!
 ````
 
 <div markdown="block" class="alert alert-info">
@@ -521,34 +576,43 @@ Output:
 ````
 New event added:
 Dated Event:
-CS2030 Finals 2023-10-31 1000 1400 to [Friend Name]
+CS2030 FINALS 2023-10-31 1000 1400 to [Friend Name]
 ````
 
 **Unsuccessful Command:**
 
-If a user puts an invalid index,
-this error message will be shown
-
+If the user does not put an index or the index is not a positive integer, 
+this error messsage will be shown:
 ````
 Invalid index!
-addevent: Adds a non-recurring event to the calendar.
-Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] StarTime (HHMM) EndTime (HHMM)] r/[REMINDER: y/n]`\
-Example: addevent 1 en/CS2103T Lecture h/2020-03-02 1400 1600 r/y`\ 
-
-Note: If you are adding a meetup event, then index refers to the index of the friend you are meeting with.
-If you are adding a dated event, then index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself
+Index can only be 'user' or a positive integer! 
+````
+If the user uses an index that is larger than the list,
+this error message will be shown: 
+````
+The person index provided is invalid
+Index can be max [list size]!
 ````
 
-If a user uses the wrong format (i.e missing prefix, wrong event type),
+If a user uses the wrong format (i.e missing prefix),
 this error message will be shown
 ````
-Input should be in the format 'name YYYY-MM-DD HHMM HHMM yes/no', where:
-'name' represents the name and should not contain spaces.
-'YYYY-MM-DD' represents a date (e.g., '2023-10-24').
-'HHMM' represents a valid 24-hour time format in half-hour blocks (e.g., 0000, 1230, 2300).
-The first 'HHMM' represents the starting time (e.g., '0830' for 08:30 AM).
-The second 'HHMM' represents the ending time (e.g., '1730' for 05:30 PM).
-y/n represents whether you want a reminder for this event.
+[error message]
+Message Usage:
+addevent: Adds a non-recurring event to the calendar.
+Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] StartTime (HHMM) EndTime (HHMM)] r/[REMINDER: y/n] 
+Example: addevent 1 en/CS2103T Lecture h/2020-03-02 1400 1600 r/y 
+Note: Index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself 
+````
+The error message at the top of the command feedback above will specify what needs to be rectified.\
+eg.\
+Input:
+````
+addevent 1
+````
+Output:
+````
+Missing prefix(es) for en/ h/ r/ !
 ````
 
 <div markdown="block" class="alert alert-info">
@@ -586,18 +650,44 @@ BASKETBALL has been removed from [Friend's Name]!
 ````
 
 **Unsuccessful commands:**\
-If an invalid index is used:
+If the user does not put an index or the index is not a positive integer,
+this error messsage will be shown:
 ````
-The person index provided is invalid.
-Index can be max 6!
+Invalid index!
+Index can only be 'user' or a positive integer! 
+````
+If the user uses an index that is larger than the list,
+this error message will be shown:
+````
+The person index provided is invalid
+Index can be max [list size]!
 ````
 
-If wrong command format is used (i.e missing prefixes, wrong event name):
+If given event does not exist, this error message will be shown:
 ````
-Command format is invalid!
+[TYPE] [EVENT_NAME] does not exist!
+Please check that you have entered the correct [TYPE] name!
+````
+
+If wrong command format is used (i.e missing prefixes):
+````
+[error message]
+Message Usage:
+rmschedule: Removes an event from the specified contact's calendar.
 Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME
 Example: rmschedule 1 type/cca en/Basketball
 NOTE: If you want to remove an event from yourself, use index user
+Example: rmschedule user type/cca en/Basketball
+````
+The error message at the top of the command feedback above will specify what needs to be rectified.\
+eg.\
+Input:
+````
+rmschedule 1
+````
+Output:
+````
+Missing prefix(es) for en/ type/ !
 ````
 
 #### 3.2.9 Deleting non-recurrring event from friend: `rmevent`
@@ -610,7 +700,7 @@ To remove an event, you can use the rmevent command with the following parameter
 
 `rmevent INDEX en/EVENT_NAME`
 
-INDEX (Index of the friend on the address book list or 'user')\
+INDEX (Index of the friend)\
 en/EVENT_NAME (Event name)
 
 **Successful commands:**\
@@ -624,21 +714,31 @@ Dated event 'CS2103T FINAL EXAM' deleted from [Friend's Name]'s calendar!
 ````
 
 **Unsuccessful commands:**\
-If an invalid index is used:
+If the user does not put an index or the index is not a positive integer,
+this error messsage will be shown:
 ````
 Invalid index!
-Parameters: INDEX
-en/EVENT_NAME
-Example: rmevent 1 en/CS2103T Final Exam
-NOTE: If you want to remove an event from yourself, use index user
-Example: rmevent user en/CS2103T Final Exam
+Index can only be 'user' or a positive integer! 
+````
+If the user uses an index that is larger than the list,
+this error message will be shown:
+````
+The person index provided is invalid
+Index can be max [list size]!
 ````
 
-If wrong command format is used (i.e missing prefixes, wrong event name):
+If given event does not exist, this error message will be shown:
 ````
-Command format is invalid!
-Parameters: INDEX
-en/EVENT_NAME
+Event [EVENT_NAME] does not exist!
+Please check that you have entered the correct event name!
+````
+
+If wrong command format is used (i.e missing prefix):
+````
+Missing prefix(es) for en/ !
+Message Usage:
+rmevent: Removes an event from the specified contact's calendar.
+Parameters: INDEX en/EVENT_NAME 
 Example: rmevent 1 en/CS2103T Lecture
 NOTE: If you want to remove an event from yourself, use index user
 Example: rmevent user en/CS2103T Lecture
@@ -710,9 +810,15 @@ You have no contacts with the same free time as you!
 
 **Unsuccessful Command:**
 
-If user inputs a friend that does not exist, the app will display
+If user inputs invalid command format, the app will display
 ````
-There is no such contact in your contacts!
+Invalid command format! 
+cft: Finds all contacts with the same free time as the User.
+Example: cft
+````
+If user inputs an index that does not exist in the list, the app will display
+````
+The person index provided is invalid
 ````
 Examples:
 * `cft` lists all friends .
@@ -737,7 +843,7 @@ setReminder CS2103T Final Exam
 Output:
 ````
 Reminder set for following event:
-CS2103T Final Exam
+CS2103T FINAL EXAM
 ````
 
 **Unsuccessful command:**
@@ -761,7 +867,7 @@ rmReminder CS2103T Final Exam
 Output:
 ````
 Reminder removed for following event:
-CS2103T Final Exam
+CS2103T FINAL EXAM
 ````
 
 **Unsuccessful command:**\
