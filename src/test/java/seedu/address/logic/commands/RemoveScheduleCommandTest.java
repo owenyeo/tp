@@ -32,7 +32,7 @@ public class RemoveScheduleCommandTest {
         model.getUser().getSchedule().addCca(new Cca("Basketball", "Monday 1800 2000"));
         RemoveScheduleCommand removeScheduleCommand = new RemoveScheduleCommand("Basketball",
                 "cca", null);
-        String expectedMessage = "CCA 'Basketball'' deleted from your calendar!";
+        String expectedMessage = "CCA 'Basketball' deleted from your calendar!";
         Model expectedModel = new ModelManager(model.getAddressBook(),
                 new UserPrefs(), new UserData());
         expectedModel.setUser(newUser);
@@ -49,7 +49,7 @@ public class RemoveScheduleCommandTest {
         friend.getSchedule().addCca(new Cca("Basketball", "Monday 1800 2000"));
         RemoveScheduleCommand removeScheduleCommand = new RemoveScheduleCommand("Basketball",
                 "cca", Index.fromZeroBased(0));
-        String expectedMessage = "CCA 'Basketball'' deleted from Alice Pauline's calendar!";
+        String expectedMessage = "CCA 'Basketball' deleted from Alice Pauline's calendar!";
         Model expectedModel = new ModelManager(model.getAddressBook(),
                 new UserPrefs(), new UserData());
         expectedModel.setUser(newUser);
@@ -66,7 +66,7 @@ public class RemoveScheduleCommandTest {
         model.getUser().getSchedule().addModule(new Module("CS2103", "Monday 1800 2000"));
         RemoveScheduleCommand removeScheduleCommand = new RemoveScheduleCommand("CS2103",
                 "module", null);
-        String expectedMessage = "Module 'CS2103'' deleted from your calendar!";
+        String expectedMessage = "Module 'CS2103' deleted from your calendar!";
         Model expectedModel = new ModelManager(model.getAddressBook(),
                 new UserPrefs(), new UserData());
         expectedModel.setUser(newUser);
@@ -83,7 +83,7 @@ public class RemoveScheduleCommandTest {
         friend.getSchedule().addModule(new Module("CS2103", "Monday 1800 2000"));
         RemoveScheduleCommand removeScheduleCommand = new RemoveScheduleCommand("CS2103",
                 "module", Index.fromZeroBased(0));
-        String expectedMessage = "Module 'CS2103'' deleted from Alice Pauline's calendar!";
+        String expectedMessage = "Module 'CS2103' deleted from Alice Pauline's calendar!";
         Model expectedModel = new ModelManager(model.getAddressBook(),
                 new UserPrefs(), new UserData());
         expectedModel.setUser(newUser);
