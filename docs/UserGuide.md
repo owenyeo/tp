@@ -478,6 +478,9 @@ Format: `list`
 
 Show your friend's timetable.
 
+![Ui-labelled](images/ui-view-friend.png)
+<br><center><ins>Image: Friend profile selection on TimetaBRO</ins></center><br>
+
 **How to use:**
 1. Scroll down your list of friends, until you locate the friend's timetable you want to see.
 2. Click on the friend's profile. You should see their details appear, on the bottom right panel.

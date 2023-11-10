@@ -15,7 +15,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](http://www.comp.nus.edu.sg/~damithch)]
 [[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/andrefoo.md)]
 
 * Role: Developer
 
@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/kristayeo.png" width="200px">
 
-[[github](http://github.com/kristayeo)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/kristayeo)] [[portfolio](team/kristayeo.md)]
 
 * Role: UI
 * Responsibilities: Data
@@ -53,7 +53,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/teozhengyang.png" width="200px">
 
 [[github](http://github.com/teozhengyang)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/teozhengyang.md)]
 
 * Role: Developer
 * Responsibilities: UI
