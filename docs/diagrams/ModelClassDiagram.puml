@@ -12,23 +12,24 @@ Class ModelManager
 
 Class UniquePersonList
 Class Person
-Class User
 Class Address
 Class Email
 Class Name
 Class Phone
 Class Tag
-Class FreeTime
-Class HalfHourBlocks
-Class DatedEvent
 
-package User as "User" {
+package user as "User" {
 Class "<<interface>>\nReadOnlyUserData" as ReadOnlyUserData
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class UserPrefs
 Class UserData
 Class User
 }
+
+package Timetable {
+Class Hidden #FFFFFF
+}
+
 Class I #FFFFFF
 }
 
@@ -55,19 +56,17 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
-Person *--> "*" FreeTime
-FreeTime *--> "1" HalfHourBlocks
-FreeTime *--> "1" DayOfWeek
+Person -down-> "Timetable"
+User -down-> "Timetable"
+
 
 User --> Person
-User *--> "*" DatedEvent
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
 
 ModelManager --> "~* filtered" Person
 @enduml

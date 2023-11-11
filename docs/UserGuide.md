@@ -144,6 +144,7 @@ Each event block consists of the event name on the first line, and the start and
 * Clicking on your friend's name will display their timetable on the bottom half of the right hand side of TimetaBRO.
 * Only times in 30-minute intervals are allowed. <br>
 eg. `1430` and `1500` will be excepted, `1445` and `2359` will not be allowed.
+
 </div>
 
 ### 3.1 User Commands
@@ -160,7 +161,7 @@ A person can have any number of tags (including 0). Go crazy!
 
 **Successful Command:**
 
-- `Edited Your Details: NAME, Phone: PHONE_NUMBER, Email: EMAIL; Address: ADDRESS; Free Times: [FREE_TIMES]`
+- `Edited Your Details: NAME, Phone: PHONE_NUMBER, Email: EMAIL; Address: ADDRESS; Birthday: BIRTHDAY; Tags: [TAG]...​`
 
 #### 3.1.2 Adding recurring event to user: `addschedule user`
 
@@ -236,27 +237,40 @@ where `DATE` must be entered in the format `YYYY-MM-DD HHMM [start time] HHMM [e
 **Successful Command:**\
 Input:
 ````
-addschedule user type/CCA en/Basketball h/Tuesday 1500 1600
+addevent user en/Final Submission h/2023-10-17 1500 1600 r/y
 ````
 Output:
 ````
 New event added:
-CCA:
-BASKETBALL Tuesday 1500 1600 to [Your Name]
+Dated Event:
+FINAL SUBMISSION 2023-10-17 1500 1600 to [Your Name]
 ````
 
 **Unsuccessful Command:**\
 If a user uses the wrong format (i.e missing prefix, wrong event type),
 this error message will be shown:
 ````
-Input should be in the format 'name [Day] HHMM HHMM yes/no', where:
-'name' represents the name and should not contain spaces.
-'Day' represents a day of the week (e.g. Monday).
-'HHMM' represents a valid 24-hour time format in half-hour blocks (e.g. 0000, 1230, 2300).
-The first 'HHMM' represents the starting time (e.g. '0830' for 08:30 AM).
-The second 'HHMM' represents the ending time (e.g. '1730' for 05:30 PM).
-y/n represents whether you want a reminder for this event.
+[error message]
+Message Usage:
+addevent: Adds a non-recurring event to the calendar.
+Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] StartTime (HHMM) EndTime (HHMM)] r/[REMINDER: y/n] 
+Example: addevent 1 en/CS2103T Lecture h/2020-03-02 1400 1600 r/y 
+Note: Index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself 
 ````
+The error message at the top of the command feedback above will specify what needs to be rectified.\
+eg.\
+Input:
+````
+addevent user
+````
+Output:
+````
+Missing prefix(es) for en/ h/ r/ !
+````
+
+<div markdown="span" class="alert alert-warning">Caution:
+Events added outside of the current week are not visible! The application is streamlined for you to see what's ahead in the week, and not anything more.
+</div>  
 
 <div markdown="block" class="alert alert-info">
 
@@ -272,7 +286,7 @@ y/n represents whether you want a reminder for this event.
 
 Removes the specified recurring item from your schedule. Use it when your schedule changes!
 
-**Format:** `rmschedule USER type/EVENT_TYPE en/EVENT_NAME`
+Format: `rmschedule user type/EVENT_TYPE en/EVENT_NAME`
 
 type/EVENT_TYPE (Event type, either 'module' or 'CCA')\
 en/EVENT_NAME (Event name)
@@ -280,22 +294,34 @@ en/EVENT_NAME (Event name)
 **Successful commands:**\
 Input:
 ````
-rmschedule user type/CCA en/CS2103T Lecture
+rmschedule user type/CCA en/Basketball
 ````
 Output:
 ````
-CS2103T LECTURE has been removed from [Your Name]!
+BASKETBALL has been removed from [Your Name]!
 ````
 
 **Unsuccessful commands:**\
-If wrong command format is used (i.e missing prefixes, wrong event name):
+If a user uses the wrong format (i.e missing prefix, wrong event type),
+this error message will be shown:
 ````
-Command format is invalid!
-Parameters: INDEX
-type/EVENT_TYPE
-en/EVENT_NAME
-Example: rmschedule 1 type/cca en/CS2103T Lecture
+[error message]
+Message Usage:
+rmschedule: Removes an event from the specified contact's calendar.
+Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME
+Example: rmschedule 1 type/cca en/Basketball
 NOTE: If you want to remove an event from yourself, use index user
+Example: rmschedule user type/cca en/Basketball
+````
+The error message at the top of the command feedback above will specify what needs to be rectified.\
+eg.\
+Input:
+````
+rmschedule user
+````
+Output:
+````
+Missing prefix(es) for en/ type/ !
 ````
 
 #### 3.1.5 Deleting non-recurring event from user: `rmevent user`
@@ -309,19 +335,23 @@ en/EVENT_NAME (Event name)
 **Successful commands:**\
 Input: 
 ````
-rmevent user en/CS2103T LECTURE
+rmevent user en/CS2103T exam
 ````
 Output:
 ````
-Dated event 'CS2103T LECTURE' deleted from your calendar!
+Dated event 'CS2103T EXAM' deleted from your calendar!
 ````
 
 **Unsuccessful commands:**\
-If wrong command format is used (i.e missing prefixes, wrong event name):
+If a user uses the wrong format (i.e missing prefix),
+this error message will be shown:
 ````
-Command format is invalid!
-Parameters: INDEX
-en/EVENT_NAME
+Missing prefix(es) for en/ !
+Message Usage:
+rmevent: Removes an event from the specified contact's calendar.
+Parameters: INDEX en/EVENT_NAME 
+Example: rmevent 1 en/CS2103T Lecture
+NOTE: If you want to remove an event from yourself, use index user
 Example: rmevent user en/CS2103T Lecture
 ````
 
@@ -329,12 +359,12 @@ Example: rmevent user en/CS2103T Lecture
 
 #### 3.2.1 Adding a friend: `add`
 
-Adds a person to TimetaBRO.
+Adds a person to your TimetaBRO friend list.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...​`
 
-* Adds a person to your friendslist to the last index!
-* You can't add someone with the same birthday and same name, because its likely that they are the same person! (We know its not necessarily true but its the best way we can do it without collecting your NRIC...)
+* Adds a person to your friend list to the last index!
+* You can't add someone with the same birthday and same name, because it's likely that they are the same person! (We know its not necessarily true but its the best way we can do it without collecting your NRIC...)
 * You can't have duplicate phone numbers or emails.
 * Names can be alphanumeric. For Elon Musk's child's sake!
 * Birthdays must be a valid date! We do check the calendars.
@@ -343,13 +373,19 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...​`
 A person can have any number of tags (including 0)
 </div><br />
 
-Successful Command:
+**Successful Command:**\
+Output:
+````
+New Person Added: {NAME}, Phone: {PHONE_NUMBER}, Email: {EMAIL}, Address: {ADDRESS}, Birthday: {BIRTHDAY}, tags: [{TAG}]
+````
 
-- `New Person Added: {NAME}, Phone: {PHONE_NUMBER}, Email: {EMAIL}, Address: {ADDRESS}, Birthday: {BIRTHDAY}, tags: [{TAG}]`
-
-Unsuccessful Command:
-
-- `Wrong inputs for prefix: {prefix with error}`
+**Unsuccessful Command:**\
+Output:
+````
+Invalid command format! 
+add: Adds a person to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...
+Example: add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 b/2000-01-01 t/friends t/owesMoney
+````
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com b/2001-12-12 a/Downtown t/police`
@@ -371,13 +407,24 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY]
 
 **Successful Command:**
 
-Changes the specified parameters of specified friend’s profile
+Changes the specified parameters of specified friend’s profile.
 
-**Unsuccessful Command:**
+Output:
+````
+Edited Person {NAME}, Phone: {PHONE_NUMBER}, Email: {EMAIL}, Address: {ADDRESS}, Birthday: {BIRTHDAY}, tags: [{TAG}]
+````
 
+**Unsuccessful Command:**\
 Displays an error message:
 ````
-Please specify the details to change! Correct syntax: edit INDEX [n/NAME] [a/ADDRESS] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]
+Invalid command format! 
+edit: Edits the details of the person identified by the index number used in the displayed person list. Existing values will be overwritten by the input values.
+Parameters: INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]...
+Example: edit 1 p/91234567 e/johndoe@example.com
+````
+If index given is not in the list, the following error message will be returned:
+````
+The person index provided is invalid
 ````
 
 Examples:
@@ -404,10 +451,18 @@ Output:
 ````
 The friend should be removed from the friend's list. Good riddance! (Or see you later!)
 
-**Unsuccessful Command:**
-
-- `Cannot delete (NAME)`
-- `Cannot find (INDEX)`
+**Unsuccessful Command:**\
+If index is unspecified or not a positive integer, the following error message will be returned:
+````
+Invalid command format! 
+delete: Deletes the person identified by the index number used in the displayed person list.
+Parameters: INDEX (must be a positive integer)
+Example: delete 1
+````
+If index given is not in the list, the following error message will be returned: 
+````
+The person index provided is invalid
+````
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the list.
@@ -431,7 +486,7 @@ Show your friend's timetable.
 
 This command adds a recurring event to a friend's schedule, like their modules and CCAs.
 
-Format: `addschedule INDEX type/TYPE en/EVENT NAME h/DAY_TIME`
+Format: `addschedule INDEX type/TYPE en/EVENT_NAME h/DAY_TIME`
 
 - Adds an event titled `EVENT_NAME` to the specified friend at `INDEX`
 - `TYPE` is a prefix that can either be `module` or `CCA`. Pretty straightforward!
@@ -453,13 +508,26 @@ CS2030 Monday 1000 1400 to [Friend Name]
 ````
 
 **Unsuccessful Command:**\
+If the user does not put an index or the index is not a positive integer,
+this error messsage will be shown:
+````
+Invalid index!
+Index can only be 'user' or a positive integer! 
+````
+If the user uses an index that is larger than the list,
+this error message will be shown:
+````
+The person index provided is invalid
+Index can be max [list size]!
+````
+
 If a user uses the wrong format (i.e missing prefix, wrong event type),
 this error message will be shown:
 ````
 [error message]
 Message Usage:
 addschedule: Adds a schedule to the specified contact.
-Parameters: INDEX type/EVENT_TYPE en/EVENT_NAMEh/[DAY_OF_WEEK START_TIME [HHMM] END_TIME [HHMM]]
+Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME h/[DAY_OF_WEEK START_TIME [HHMM] END_TIME [HHMM]]
 Example: addschedule 1 type/cca en/Basketball
  h/Monday 1400 1600
 NOTE: If you want to add a cca/module to yourself, use index user
@@ -474,14 +542,6 @@ addschedule
 Output:
 ````
 Missing prefix(es) for en/ type/ h/ !
-````
-Input: 
-````
-addschedule type/cca en/event h/Monday 1200 1800
-````
-Output: 
-````
-Please put an index!
 ````
 
 <div markdown="block" class="alert alert-info">
@@ -498,7 +558,7 @@ Please put an index!
 
 This command adds a dated, non-recurring event to you or your friend's schedule.
 
-Format: `addevent INDEX en/EVENT NAME h/DATE r/REMINDER`
+Format: `addevent INDEX en/EVENT_NAME h/DATE_TIME r/REMINDER`
 
 - Adds an event titled `EVENT_NAME` to the specified friend at `INDEX`
 - Event date and time will be equal to `DATE`
@@ -516,34 +576,43 @@ Output:
 ````
 New event added:
 Dated Event:
-CS2030 Finals 2023-10-31 1000 1400 to [Friend Name]
+CS2030 FINALS 2023-10-31 1000 1400 to [Friend Name]
 ````
 
 **Unsuccessful Command:**
 
-If a user puts an invalid index,
-this error message will be shown
-
+If the user does not put an index or the index is not a positive integer, 
+this error messsage will be shown:
 ````
 Invalid index!
-addevent: Adds a non-recurring event to the calendar.
-Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] StarTime (HHMM) EndTime (HHMM)] r/[REMINDER: y/n]`\
-Example: addevent 1 en/CS2103T Lecture h/2020-03-02 1400 1600 r/y`\ 
-
-Note: If you are adding a meetup event, then index refers to the index of the friend you are meeting with.
-If you are adding a dated event, then index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself
+Index can only be 'user' or a positive integer! 
+````
+If the user uses an index that is larger than the list,
+this error message will be shown: 
+````
+The person index provided is invalid
+Index can be max [list size]!
 ````
 
-If a user uses the wrong format (i.e missing prefix, wrong event type),
+If a user uses the wrong format (i.e missing prefix),
 this error message will be shown
 ````
-Input should be in the format 'name YYYY-MM-DD HHMM HHMM yes/no', where:
-'name' represents the name and should not contain spaces.
-'YYYY-MM-DD' represents a date (e.g., '2023-10-24').
-'HHMM' represents a valid 24-hour time format in half-hour blocks (e.g., 0000, 1230, 2300).
-The first 'HHMM' represents the starting time (e.g., '0830' for 08:30 AM).
-The second 'HHMM' represents the ending time (e.g., '1730' for 05:30 PM).
-y/n represents whether you want a reminder for this event.
+[error message]
+Message Usage:
+addevent: Adds a non-recurring event to the calendar.
+Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] StartTime (HHMM) EndTime (HHMM)] r/[REMINDER: y/n] 
+Example: addevent 1 en/CS2103T Lecture h/2020-03-02 1400 1600 r/y 
+Note: Index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself 
+````
+The error message at the top of the command feedback above will specify what needs to be rectified.\
+eg.\
+Input:
+````
+addevent 1
+````
+Output:
+````
+Missing prefix(es) for en/ h/ r/ !
 ````
 
 <div markdown="block" class="alert alert-info">
@@ -573,33 +642,52 @@ en/EVENT_NAME (Event name)
 **Successful commands:**\
 Input:
 ````
-rmschedule 1 type/CCA en/CS2103T Lecture
+rmschedule 1 type/CCA en/Basketball
 ````
 Output:
 ````
-CS2103T LECTURE has been removed from [Friend's Name]!
+BASKETBALL has been removed from [Friend's Name]!
 ````
 
 **Unsuccessful commands:**\
-If an invalid index is used:
+If the user does not put an index or the index is not a positive integer,
+this error messsage will be shown:
 ````
 Invalid index!
-Parameters: INDEX
-type/EVENT_TYPE
-en/EVENT_NAME
-Example: rmschedule 1 type/module en/CS2103T Lecture
-NOTE: If you want to remove an event from yourself, use index user
-Example: rmschedule user type/module en/CS2103T Lecture
+Index can only be 'user' or a positive integer! 
+````
+If the user uses an index that is larger than the list,
+this error message will be shown:
+````
+The person index provided is invalid
+Index can be max [list size]!
 ````
 
-If wrong command format is used (i.e missing prefixes, wrong event name):
+If given event does not exist, this error message will be shown:
 ````
-Command format is invalid!
-Parameters: INDEX
-type/EVENT_TYPE
-en/EVENT_NAME
-Example: rmschedule 1 type/cca en/CS2103T Lecture
+[TYPE] [EVENT_NAME] does not exist!
+Please check that you have entered the correct [TYPE] name!
+````
+
+If wrong command format is used (i.e missing prefixes):
+````
+[error message]
+Message Usage:
+rmschedule: Removes an event from the specified contact's calendar.
+Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME
+Example: rmschedule 1 type/cca en/Basketball
 NOTE: If you want to remove an event from yourself, use index user
+Example: rmschedule user type/cca en/Basketball
+````
+The error message at the top of the command feedback above will specify what needs to be rectified.\
+eg.\
+Input:
+````
+rmschedule 1
+````
+Output:
+````
+Missing prefix(es) for en/ type/ !
 ````
 
 #### 3.2.9 Deleting non-recurrring event from friend: `rmevent`
@@ -612,35 +700,45 @@ To remove an event, you can use the rmevent command with the following parameter
 
 `rmevent INDEX en/EVENT_NAME`
 
-INDEX (Index of the friend on the address book list or 'user')\
+INDEX (Index of the friend)\
 en/EVENT_NAME (Event name)
 
 **Successful commands:**\
 Input:
 ````
-rmevent 1 en/CS2103T Lecture
+rmevent 1 en/CS2103T Final Exam
 ````
 Output:
 ````
-Dated event 'CS2103T LECTURE' deleted from [Friend's Name]'s calendar!
+Dated event 'CS2103T FINAL EXAM' deleted from [Friend's Name]'s calendar!
 ````
 
 **Unsuccessful commands:**\
-If an invalid index is used:
+If the user does not put an index or the index is not a positive integer,
+this error messsage will be shown:
 ````
 Invalid index!
-Parameters: INDEX
-en/EVENT_NAME
-Example: rmevent 1 en/CS2103T Lecture
-NOTE: If you want to remove an event from yourself, use index user
-Example: rmevent user en/CS2103T Lecture
+Index can only be 'user' or a positive integer! 
+````
+If the user uses an index that is larger than the list,
+this error message will be shown:
+````
+The person index provided is invalid
+Index can be max [list size]!
 ````
 
-If wrong command format is used (i.e missing prefixes, wrong event name):
+If given event does not exist, this error message will be shown:
 ````
-Command format is invalid!
-Parameters: INDEX
-en/EVENT_NAME
+Event [EVENT_NAME] does not exist!
+Please check that you have entered the correct event name!
+````
+
+If wrong command format is used (i.e missing prefix):
+````
+Missing prefix(es) for en/ !
+Message Usage:
+rmevent: Removes an event from the specified contact's calendar.
+Parameters: INDEX en/EVENT_NAME 
 Example: rmevent 1 en/CS2103T Lecture
 NOTE: If you want to remove an event from yourself, use index user
 Example: rmevent user en/CS2103T Lecture
@@ -650,8 +748,16 @@ Example: rmevent user en/CS2103T Lecture
 
 Finds friend(s) with the same free times as you, or returns a message if no friends are free. That's okay though! Just find more friends to add!
 
-Format: `cft [INDEX]`
+Format: <br>
+**Finding common free times with a specific friend**<br>
+`cft INDEX`
 
+* Finds common free times with friend of the specified `INDEX`.
+
+**Finding common free times with entire friends list**<br>
+`cft`
+
+* Finds common free times with **all friends** in the list if `INDEX` is not included.
 * Finds common free times with friend of the specified `INDEX`. Use it with your best friend!
 * Finds common free times with **all friends** in the list if `INDEX` is not included. Now find someone to bug!
 
@@ -664,6 +770,8 @@ Output:\
 Displays all the common free times you have with all your friends in your friend list.
 ````
 Here are the contacts with the same free time as you:
+You and Bernice Yu have no common free time!
+You and Charlotte have no common free time!
 You have common free times with Alex Yeoh at:
 [Monday 0000 0800]
 [Monday 2000 2400]
@@ -674,8 +782,6 @@ You have common free times with Alex Yeoh at:
 [Friday 0000 2400]
 [Saturday 0000 2400]
 [Sunday 0000 2400]
-You and Bernice Yu have no common free time!
-You and Charlotte have no common free time!
 ````
 Input: 
 ````
@@ -712,18 +818,25 @@ You have no contacts with the same free time as you!
 
 **Unsuccessful Command:**
 
-If user inputs a friend that does not exist, the app will display\
-`There is no such contact in your contacts!`
-
+If user inputs invalid command format, the app will display
+````
+Invalid command format! 
+cft: Finds all contacts with the same free time as the User.
+Example: cft
+````
+If user inputs an index that does not exist in the list, the app will display
+````
+The person index provided is invalid
+````
 Examples:
 * `cft` lists all friends .
-* `cft n/Betsy` finds people with the name `Betsy` and displays the common free times with this list.
+* `cft 1` finds the 1st person on the addressbook list and displays the common free times you have with the person.
 
 ### 3.3 Reminder Commands
 
 #### 3.3.1 Set reminder for non-recurring events: `setReminder`
 
-Sets a reminder for a dated event from the user's schedule. You'll never forget another!
+Sets a reminder for a **dated, non-recurring event** from the user's schedule. You'll never forget another!
 
 Format: \
 To set a reminder a dated event in your schedule, you can use the setReminder command with the following parameters:
@@ -733,12 +846,12 @@ To set a reminder a dated event in your schedule, you can use the setReminder co
 **Successful command:**\
 Input:
 ````
-setReminder CS2103T Lecture
+setReminder CS2103T Final Exam
 ````
 Output:
 ````
 Reminder set for following event:
-CS2103T Lecture
+CS2103T FINAL EXAM
 ````
 
 **Unsuccessful command:**
@@ -757,12 +870,12 @@ Format: `rmReminder EVENT_NAME`
 **Successful command:**\
 Input:
 ````
-rmReminder CS2103T Lecture
+rmReminder CS2103T Final Exam
 ````
 Output:
 ````
 Reminder removed for following event:
-CS2103T Lecture
+CS2103T FINAL EXAM
 ````
 
 **Unsuccessful command:**\
@@ -800,6 +913,32 @@ Exits the program.
 Format: `exit`
 
 The app closes after saving all data.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Parameters**
+
+<div markdown="span" class="alert alert-warning">Caution:
+Command parameter inputs have certain constraints to ensure their use is streamlined.  
+</div>
+
+| Parameter      | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+|----------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **NAME**       | Alphanumeric, any length.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **PHONE**      | 8 digits.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **INDEX**      | A number present on the list of friends in the address book.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| **ADDRESS**    | No constraints.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| **EMAIL**      | Emails should be of the format `local-part@domain` and adhere to the following constraints: <br>1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br>2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. <br>The domain name must: <br>-  end with a domain label at least 2 characters long <br>- have each domain label start and end with alphanumeric characters <br>- have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
+| **BIRTHDAY**   | `YYYY-MM-DD`, a valid date.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| **DAY_TIME**   | `DAY HHMM HHMM` <br>`DAY` is any day of the week (case insensitive), <br> the first `HHMM` is the start time of the timeblock and the second is the end time, <br> `HHMM` is a 24 hour time format of half hour intervals, from `0000` to `2400`. <br> Example: `mOndaY 2330 2400`                                                                                                                                                                                                                                                                                                                                                                                                       |
+| **DATE_TIME**  | `YYYY-MM-DD HHMM HHMM`<br>`YYYY-MM-DD` is the date of the event which has to be valid, <br> the first `HHMM` is the start time of the timeblock and the second is the end time, <br> `HHMM` is a 24 hour time format of half hour intervals, from `0000` to `2400`. <br> Example: `2023-11-08 2330 2400`                                                                                                                                                                                                                                                                                                                                                                                 |
+| **MODULE**     | Accepts any NUS module code. Example: `CS2103T`/`UTC2113`/`MA1521`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| **CCA**        | Alphabetic, any length.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| **EVENT_NAME** | Alphabetic, any length.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| **EVENT_TYPE** | `cca` or `module` only.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| **REMINDER**   | `y` to turn reminder on. <br>`n` to turn reminder off.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 

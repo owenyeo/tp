@@ -20,11 +20,14 @@ https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=w12-4&sort=groupTitle
 - Added guides for commands `cft`, `rmevent`, `addevent`, `addschedule`, `rmschedule` commands
 - Fixed UG documentation to align with newer commands
 - Updated UG to include expected features that may not be expected by users, such as:
-    - 
+    - Informing users in the UG that event names will be changed to all caps even if they did not key it in caps
+    - Add sample code for the commands I have added
 
 **Contributions to the Developer Guide (DG):**
 
-[to be added later]
+- Update DG on how addschedule command works
+    - Created sequence diagram for addschedule command
+- Updated how Logic package works
 
 **Contributions to team-based tasks:**
 

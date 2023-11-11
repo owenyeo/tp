@@ -1,6 +1,26 @@
 [![CI Status](https://github.com/AY2324S1-CS2103T-W12-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2324S1-CS2103T-W12-4/tp/actions)
 
-![Ui](docs/images/Ui.png)
+## What is TimetaBRO?
+
+---
+
+TimetaBRO is a desktop application targetted at NUS students 
+for storing and keeping track of your peers' schedules.
+
+Created by NUS students, for NUS students, 
+TimetaBRO aims to help you easily compare others' schedules with your own 
+and efficiently find common free times with your friends or project group mates.
+
+With TimetaBRO, forget hopping around screenshots of timetables to compare them, 
+or wasting time going back and forth with your friends trying to find a meetup time!
+Instead, store all your friend's timetables on one platform and save yourself from all the hassle. 
+Schedule tracking and coordination has never been easier, faster, or more convenient!
+
+## Product Screenshot:
+
+---
+
+![Ui](docs/images/Ui-Final.png)
 
 * The project simulates an ongoing software project for a desktop application (called _TimetaBRO_) used for finding meetup times.
   * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
