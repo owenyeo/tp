@@ -188,6 +188,22 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Reminder feature
 
+#### Description
+
+The app will display a popup window with reminders for events with reminder set for them and
+for birthdays on the day itself at launch.
+
+#### Implementation
+- At launch, the `showReminder` method in `Reminder` is called.
+- `showReminder` calls `returnRemindedEvent` in `User` object to get a list of events with reminders set for them and
+`getBirthdayList` in `Model` object to get a list of birthdays on the day itself.
+- `returnRemindedEvent` will check for dated events with reminders set for them in the `User` object's schedule
+and return a list of them.
+- `getBirthdayList` will call the `getBirthdayList` method in `AddressBook` object.
+- `getBirthdayList` of the `AddressBook` object will return a list of `Person` objects in the `User` object's contacts
+who has birthdays on the day itself.
+- `showReminder` will display birthday reminders followed by dated events reminders in the relevant textareas.
+
 ### Add friend's schedule feature
 
 ### Edit user details feature
@@ -506,23 +522,154 @@ testers are expected to do more *exploratory* testing.
 
 ### Add friend
 
+1. Add a person to the list
+   1. Test case: `add n/Amy Bee p/85355255 e/amy@gmail.com a/123, Jurong West Ave 6, #08-111 b/2020-12-01` <br>
+      Expected: A person with the given details is added to the list. List is updated with new person
+   2. Test case: `add Alice Pauline` <br>
+      Expected: Error message is shown. Person is not added to the list. List remains unchanged.
+   3. Other incorrect add commands to try: `add n/Alice Pauline 11111111`, `add n/Alice Pauline 2000-01-01` , `...` <br>
+      Expected: Similar to previous.
+2. _{ more test cases …​ }_
+
 ### Add schedule
 
-### Add event
-
-### Edit user details
+1. Add cca/module to the user's schedule
+    1. Test case: `addschedule user type/cca en/table tennis h/monday 1400 1600` <br>
+       Expected: A cca event with the given details is added to the user's schedule. Schedule is updated with new event.
+   2. Test case: `addschedule user type/module en/cs2103t h/monday 1400 1600` <br>
+      Expected: A module event with the given details is added to the user's schedule. Schedule is updated with new event.
+   3. Test case: `addschedule user type/event en/lecture h/monday 1400 1600` <br>
+      Expected: Error message is shown. Event is not added to the schedule. Schedule remains unchanged.
+   4. Other incorrect add commands to try: `addschedule user type/cca table tennis h/monday 1400 1600` and `addschedule user type/module en/cs2103t h/monday 1400 1650`,`...` <br>
+      Expected: Similar to previous.
+2. Add cca/module to a friend's schedule
+    1. Test case: `addschedule 1 type/cca en/table tennis h/monday 1400 1600` <br>
+       Expected: A cca event with the given details is added to the first friend's schedule. Schedule is updated with new event.
+    2. Test case: `addschedule 1 type/module en/cs2103t h/monday 1400 1600` <br>
+       Expected: A module event with the given details is added to the first friend's schedule. Schedule is updated with new event.
+    3. Test case: `addschedule 1 type/event en/lecture h/monday 1400 1600` <br>
+       Expected: Error message is shown. Event is not added to the schedule. Schedule remains unchanged.
+    4. Other incorrect add commands to try: `addschedule 1 type/cca table tennis h/monday 1400 1600` and `addschedule 1 type/module en/cs2103t h/monday 1400 1650`, `...` <br>
+       Expected: Similar to previous.
+3. _{ more test cases …​ }_
 
 ### Delete schedule
 
-### Delete event
+1. Delete cca/module from the user's schedule
+    1. Prerequisites: A cca/module has been added to the user's schedule eg `addschedule user type/cca en/table tennis h/monday 1400 1600` and `addschedule user type/module en/cs2103t h/monday 1400 1600`
+    2. Test case: `rmschedule user type/cca en/table tennis` <br>
+       Expected: The cca is deleted from the user's schedule. Schedule is updated with the deletion.
+    3. Test case: `rmschedule user type/module en/cs2103t` <br>
+       Expected: The module is deleted from the user's schedule. Schedule is updated with the deletion.
+    4. Test case: `rmschedule user type/event en/lecture` <br>
+       Expected: Error message is shown. Event is not deleted from the schedule. Schedule remains unchanged.
+    5. Other incorrect delete commands to try: `rmschedule user type/cca table tennis` and `rmschedule user type/cca en/cs2103t`, `...` <br>
+       Expected: Similar to previous.
+2. Delete cca/module from a friend's schedule
+    1. Prerequisites: A cca/module has been added to the first friend's schedule eg `addschedule 1 type/cca en/table tennis h/monday 1400 1600` and `addschedule 1 type/module en/cs2103t h/monday 1400 1600`
+    2. Test case: `rmschedule 1 type/cca en/table tennis` <br>
+       Expected: The cca is deleted from the first friend's schedule. Schedule is updated with the deletion.
+    3. Test case: `rmschedule 1 type/module en/cs2103t` <br>
+       Expected: The module is deleted from the first friend's schedule. Schedule is updated with the deletion.
+    4. Test case: `rmschedule 1 type/event en/lecture` <br>
+       Expected: Error message is shown. Event is not deleted from the schedule. Schedule remains unchanged.
+    5. Other incorrect delete commands to try: `rmschedule 1 type/cca table tennis` and `rmschedule 1 type/cca en/cs2103t`, `...` <br>
+       Expected: Similar to previous.
+3. _{ more test cases …​ }_
 
-### Edit friend's details
+### Add event
+
+1. Add non-recurring event to the user's schedule
+    1. Test case: `addevent user en/meeting h/2023-11-15 1400 1600 r/y` <br>
+       Expected: A event with the given details is added to the user's schedule. Schedule is updated with new event.
+    2. Test case: `addevent user meeting h/2023-11-15 1400 1600 r/y` <br>
+       Expected: Error message is shown. Event is not added to the schedule. Schedule remains unchanged.
+    3. Other incorrect add commands to try: `addevent user en/meeting h/monday 1400 1650 r/y` and `addevent en/meeting h/monday 1400 1600 r/y`,`...` <br>
+       Expected: Similar to previous.
+2. Add non-recurring event to a friend's schedule
+    1. Test case: `addevent 1 en/meeting h/2023-11-15 1400 1600 r/n` <br>
+       Expected: A event with the given details is added to the first friend's schedule. Schedule is updated with new event.
+    2. Test case: `addevent 1 meeting h/2023-11-15 1400 1600 r/n` <br>
+       Expected: Error message is shown. Event is not added to the schedule. Schedule remains unchanged.
+    3. Other incorrect add commands to try: `addevent 1 en/meeting h/monday 1400 1650 r/n` and `addevent en/meeting h/monday 1400 1600 r/n`,`...` <br>
+       Expected: Similar to previous.
+3. _{ more test cases …​ }_
 
 ### Toggle reminder for events
 
+1. Set reminder for an event in the user's schedule
+    1. Prerequisites: A non-recurring event has been added to the user's schedule eg `addevent user en/meeting h/2023-11-15 1400 1600 r/n`
+    2. Test case: `setReminder meeting` <br>
+       Expected: A reminder is set for the event.
+    3. Test case: `setReminder lecture` <br>
+       Expected: Error message is shown. Reminder is not set for the event.
+    4. Other incorrect reminder commands to try: `setReminder user meeting` and `setReminder en/meeting`, `...` <br>
+       Expected: Similar to previous.
+2. Remove reminder for an event in th user's schedule
+    1. Prerequisites: A non-recurring event has been added to the user's schedule eg `addevent user en/meeting h/2023-11-15 1400 1600 r/y`
+    2. Test case: `rmReminder meeting` <br>
+      Expected: The reminder is removed for the event.
+    3. Test case: `rmReminder lecture` <br>
+      Expected: Error message is shown. Reminder is not removed for the event.
+    4. Other incorrect reminder commands to try: `rmReminder user meeting` and `rmReminder en/meeting`, `...` <br>
+      Expected: Similar to previous.
+3. _{ more test cases …​ }_
+
+### Delete event
+
+1. Delete non-recurring event from the user's schedule
+    1. Prerequisites: A non-recurring event has been added to the user's schedule eg `addevent user en/meeting h/2023-11-15 1400 1600 r/y`
+    2. Test case: `rmevent user en/meeting` <br>
+       Expected: The event is deleted from the user's schedule. Schedule is updated with the deletion.
+    3. Test case: `rmevent user en/lecture` <br>
+       Expected: Error message is shown. Event is not deleted from the schedule. Schedule remains unchanged.
+    4. Other incorrect delete commands to try: `rmevent user meeting` and `rmevent en/meeting`, `...` <br>
+       Expected: Similar to previous.
+2. Delete cca/module from a friend's schedule
+    1. Prerequisites: A non-recurring event has been added to the first friend's schedule eg `addevent 1 en/meeting h/2023-11-15 1400 1600 r/y`
+    2. Test case: `rmevent 1 en/meeting` <br>
+       Expected: The event is deleted from the first friend's schedule. Schedule is updated with the deletion.
+    3. Test case: `rmevent 1 en/lecture` <br>
+       Expected: Error message is shown. Event is not deleted from the schedule. Schedule remains unchanged.
+    4. Other incorrect delete commands to try: `rmevent 1 meeting` and `rmevent en/meeting`, `...` <br>
+       Expected: Similar to previous.
+3. _{ more test cases …​ }_
+
+### Edit user details
+
+1. Edit details of user eg name, phone, email address, birthday, address
+    1. Test case: `user n/xyz` <br>
+       Expected: User's name is updated to xyz provided user's name is not xyz.
+   2. Test case: `user n/xyz` followed by `user n/xyz` <br>
+      Expected: Error message is shown. User's name is not updated to xyz. User's name remains unchanged.
+   3. Other incorrect edit commands to try: `user p/11111111` followed by `user p/11111111`, `user`, `...` <br>
+      Expected: Similar to previous.
+2. _{ more test cases …​ }_
+
+### Edit friend's details
+
+1. Edit details of a friend eg name, phone, email address, birthday, address
+    1. Test case: `edit 1 n/xyz` <br>
+       Expected: First friend's name is updated to xyz provided first friend's name is not xyz.
+   2. Test case: `edit 1 n/xyz` followed by `edit 1 n/xyz` <br>
+      Expected: Error message is shown. First friend's name is not updated to xyz. First friend's name remains unchanged.
+   3. Other incorrect edit commands to try: `edit 1 p/11111111` followed by `edit 1 p/11111111`, `edit 1`, `...` <br>
+      Expected: Similar to previous.
+2. _{ more test cases …​ }_
+
 ### Help command
 
+1. Open help menu for any questions
+    1. Test case: `help` <br>
+       Expected: Help menu popup is shown.
+2. _{ more test cases …​ }_
+
 ### Clear command
+
+1. Clear all contacts in the list
+    1. Test case: `clear` <br>
+       Expected: All contacts in the list are deleted. List is updated with the deletion and will be empty
+2. _{ more test cases …​ }_
 
 ### Launch and shutdown
 
