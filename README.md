@@ -2,16 +2,16 @@
 
 ## What is TimetaBRO?
 
-TimetaBRO is a desktop application targetted at NUS students 
+TimetaBRO is a desktop application targetted at NUS students
 for storing and keeping track of your peers' schedules.
 
-Created by NUS students, for NUS students, 
-TimetaBRO aims to help you easily compare others' schedules with your own 
+Created by NUS students, for NUS students,
+TimetaBRO aims to help you easily compare others' schedules with your own
 and efficiently find common free times with your friends or project group mates.
 
-With TimetaBRO, forget hopping around screenshots of timetables to compare them, 
+With TimetaBRO, forget hopping around screenshots of timetables to compare them,
 or wasting time going back and forth with your friends trying to find a meetup time!
-Instead, store all your friend's timetables on one platform and save yourself from all the hassle. 
+Instead, store all your friend's timetables on one platform and save yourself from all the hassle.
 Schedule tracking and coordination has never been easier, faster, or more convenient!
 
 ## Product Screenshot:
