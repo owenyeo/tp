@@ -47,9 +47,6 @@ public class FreeTime implements Comparable<FreeTime> {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidFreeTime(String test) {
-        if (!test.matches(VALIDATION_REGEX)) {
-            System.out.println("YOUR INPUT DOESN'T WORK" + test);
-        }
         return test.matches(VALIDATION_REGEX);
     }
 

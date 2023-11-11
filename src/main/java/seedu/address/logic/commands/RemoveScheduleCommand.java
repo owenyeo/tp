@@ -90,11 +90,11 @@ public class RemoveScheduleCommand extends Command {
             if (index == null) {
                 userSchedule.deleteCca(eventName);
                 return new CommandResult("CCA '" + eventName
-                        + "'' deleted from your calendar!", false, false, true, false);
+                        + "' deleted from your calendar!", false, false, true, false);
             } else {
                 friend = model.getFilteredPersonList().get(index.getZeroBased());
                 friend.getSchedule().deleteCca(eventName);
-                return new CommandResult("CCA '" + eventName + "'' deleted from "
+                return new CommandResult("CCA '" + eventName + "' deleted from "
                         + friend.getName().toString()
                         + "'s calendar!", false, false, true, false);
             }
@@ -102,11 +102,11 @@ public class RemoveScheduleCommand extends Command {
             if (index == null) {
                 userSchedule.deleteModule(eventName);
                 return new CommandResult("Module '" + eventName
-                        + "'' deleted from your calendar!", false, false, true, false);
+                        + "' deleted from your calendar!", false, false, true, false);
             } else {
                 friend = model.getFilteredPersonList().get(index.getZeroBased());
                 friend.getSchedule().deleteModule(eventName);
-                return new CommandResult("Module '" + eventName + "'' deleted from "
+                return new CommandResult("Module '" + eventName + "' deleted from "
                         + friend.getName().toString()
                         + "'s calendar!", false, false, true, false);
             }

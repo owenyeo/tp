@@ -22,14 +22,14 @@ public class AddScheduleCommand extends Command {
             + "Parameters: "
             + "INDEX "
             + "type/EVENT_TYPE "
-            + "en/EVENT_NAME"
+            + "en/EVENT_NAME "
             + "h/[DAY_OF_WEEK START_TIME [HHMM] END_TIME [HHMM]]\n"
             + "Example: " + COMMAND_WORD
             + " 1"
             + " type/cca"
-            + " en/Basketball\n"
+            + " en/Basketball"
             + " h/Monday 1400 1600\n"
-            + "NOTE: If you want to add a cca/module to yourself, use index user\n"
+            + "NOTE: If you want to add a cca/module to yourself, use addschedule user\n"
             + "Example: " + COMMAND_WORD
             + " user"
             + " type/cca"
