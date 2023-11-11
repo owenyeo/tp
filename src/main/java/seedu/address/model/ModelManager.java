@@ -99,19 +99,19 @@ public class ModelManager implements Model {
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return addressBook.hasPerson(person) || userData.sameAsUser(person);
     }
 
     @Override
     public boolean hasPhone(Person person) {
         requireNonNull(person);
-        return addressBook.hasPhone(person);
+        return addressBook.hasPhone(person) || userData.sameAsUserPhone(person);
     }
 
     @Override
     public boolean hasEmail(Person person) {
         requireNonNull(person);
-        return addressBook.hasEmail(person);
+        return addressBook.hasEmail(person) || userData.sameAsUserEmail(person);
     }
 
     @Override

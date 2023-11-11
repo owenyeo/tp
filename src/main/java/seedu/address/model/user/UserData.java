@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Person;
 import seedu.address.model.person.timetable.DatedEvent;
 
 /**
@@ -29,10 +30,6 @@ public class UserData implements ReadOnlyUserData {
         this(userData.getUser());
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public void setDatedEvents(ArrayList<DatedEvent> datedEvents) {
         this.user.setDatedEvents(datedEvents);
     }
@@ -47,8 +44,24 @@ public class UserData implements ReadOnlyUserData {
         this.setDatedEvents(newData.getDatedEvents());
     }
 
+    public boolean sameAsUserPhone(Person person) {
+        return user.isSamePhone(person);
+    }
+
+    public boolean sameAsUserEmail(Person person) {
+        return user.isSameEmail(person);
+    }
+
+    public boolean sameAsUser(Person person) {
+        return user.isSamePerson(person);
+    }
+
     public ObservableList<User> getUserView() {
         return internalUnmodifiableList;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

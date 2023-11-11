@@ -39,7 +39,8 @@ public class AddCommandParser implements Parser<AddCommand> {
                         PREFIX_BIRTHDAY, PREFIX_TAG);
 
         // Check if all prefixes are present
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME , PREFIX_PHONE,
+                PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_BIRTHDAY)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -48,7 +49,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE,
                 PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_BIRTHDAY);
 
-        // Check if all present prefixes are valid, if not present put empty string.
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());

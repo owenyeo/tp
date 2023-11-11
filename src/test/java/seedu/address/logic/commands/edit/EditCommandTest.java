@@ -25,7 +25,9 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.user.UserData;
 import seedu.address.model.user.UserPrefs;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -137,6 +139,15 @@ public class EditCommandTest {
     }
 
     @Test
+    public void execute_sameAsUser_failure() {
+        Person user = model.getUser();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(user).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+    }
+
+    @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build();
@@ -160,6 +171,76 @@ public class EditCommandTest {
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_duplicatePhoneUnfilteredList_failure() {
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Phone duplicatePhone = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()).getPhone();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).withPhone(duplicatePhone)
+                .build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PHONE);
+    }
+
+    @Test
+    public void execute_duplicatePhoneFilteredList_failure() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        Phone duplicatePhone = model.getAddressBook().getPersonList()
+                        .get(INDEX_SECOND_PERSON.getZeroBased()).getPhone();
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).withPhone(duplicatePhone)
+                .build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PHONE);
+    }
+
+    @Test
+    public void execute_samePhoneAsUser_failure() {
+        Phone userPhone = model.getUser().getPhone();
+        Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(personToEdit)
+                        .withPhone(userPhone).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PHONE);
+    }
+
+    @Test
+    public void execute_duplicateEmailUnfilteredList_failure() {
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Email duplicateEmail = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()).getEmail();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).withEmail(duplicateEmail)
+                .build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_EMAIL);
+    }
+
+    @Test
+    public void execute_duplicateEmailFilteredList_failure() {
+        Email duplicateEmail = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()).getEmail();
+
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).withEmail(duplicateEmail)
+                .build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_EMAIL);
+    }
+
+    @Test
+    public void execute_sameEmailAsUser_failure() {
+        Email userEmail = model.getUser().getEmail();
+        Person personToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(personToEdit)
+                        .withEmail(userEmail).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_EMAIL);
     }
 
     @Test
