@@ -155,21 +155,30 @@ Personalise your profile information.
 
 Format: `user n/NAME p/PHONE e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...​`
 
-Click [here](#parameters) to find out more about the parameter constraints.
+* Click [here](#parameters) to find out more about the parameter constraints.
 
 <div markdown="span" class="alert alert-primary">Tip:
 A person can have any number of tags (including 0). Go crazy!
-</div><br />
+</div>
 
 **Successful Command:**
+<div style="background-color: #198754">
+
 ````
 Edited Your Details: NAME, Phone: PHONE, Email: EMAIL; Address: ADDRESS; Birthday: BIRTHDAY; Tags: [TAG]...​
 ````
+
+</div>
+
 **Unsuccessful Command:**\
 No changes:
+<div style="background-color: #DC3545">
+
 ````
 No changes to user.
 ````
+
+</div>
 
 #### 3.1.2 Adding recurring event to user: `addschedule user`
 
@@ -177,30 +186,41 @@ This command adds a recurring event to your schedule.
 
 Format: `addschedule user type/EVENT_TYPE en/EVENT_NAME h/DAY_TIME`
 
-Click [here](#parameters) to find out more about the parameter constraints.
-
 - Adds an event titled `EVENT_NAME`
 - `EVENT_TYPE` is a prefix that can either be `module` or `CCA`.
 - Event date and time will be equal to `DAY_TIME`<br>
 where `DAY_TIME` must be entered in the format `Day HHMM HHMM`.<br>
 `Day` is any day of the week fully spelt out and is case-insensitive, `HHMM` is a 24H time format to indicate the start time and end time!
 - Event names will be changed to all upper case regardless of whether it was keyed it in lower case or upper case.
+- Click [here](#parameters) to find out more about the parameter constraints.
+
 
 **Successful Command:**\
 Input:
+<div style="background-color: #198754">
+
 ````
 addschedule user type/CCA en/Basketball h/Tuesday 1500 1600
 ````
+
+</div>
+
 Output:
+<div style="background-color: #198754">
+
 ````
 New event added:
 CCA:
 BASKETBALL Tuesday 1500 1600 to [Your Name]
 ````
 
+</div>
+
 **Unsuccessful Command:**\
 If a user uses the wrong format (i.e missing prefix, wrong event type),
 this error message will be shown:
+<div style="background-color: #DC3545">
+
 ````
 [error message]
 Message Usage:
@@ -210,15 +230,24 @@ Example: addschedule 1 type/cca en/Basketball h/Monday 1400 1600
 NOTE: If you want to add a cca/module to yourself, use addschedule user
 Example: addschedule user type/cca en/Basketball h/Monday 1400 1600
 ````
-The error message at the top of the command feedback above will specify what needs to be rectified.\
+</div>
+
+The error message at the top of the command feedback above will specify what needs to be rectified.
+
 Input:
+<div style="background-color: #DC3545">
+
 ````
 addschedule user
 ````
+</div>
 Output:
+<div style="background-color: #DC3545">
+
 ````
 Missing prefix(es) for en/ type/ h/ !
 ````
+</div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -245,19 +274,28 @@ where `DATE_TIME` must be entered in the format `DATE [YYYY-MM-DD] START_TIME [H
 
 **Successful Command:**\
 Input:
+<div style="background-color: #198754">
+
 ````
 addevent user en/Final Submission h/2023-10-17 1500 1600 r/y
 ````
+</div>
+
 Output:
+<div style="background-color: #198754">
+
 ````
 New event added:
 Dated Event:
 FINAL SUBMISSION 2023-10-17 1500 1600 to [Your Name]
 ````
+</div>
 
 **Unsuccessful Command:**\
 If a user uses the wrong format (i.e missing prefix, wrong event type),
 this error message will be shown:
+<div style="background-color: #DC3545">
+
 ````
 [error message]
 Message Usage:
@@ -266,16 +304,25 @@ Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] StartTime (HHMM) EndTime (H
 Example: addevent 1 en/CS2103T Lecture h/2020-03-02 1400 1600 r/y
 Note: Index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself
 ````
+</div>
+
 The error message at the top of the command feedback above will specify what needs to be rectified.\
 eg.\
 Input:
+<div style="background-color: #DC3545">
+
 ````
 addevent user
 ````
+</div>
+
 Output:
+<div style="background-color: #DC3545">
+
 ````
 Missing prefix(es) for en/ h/ r/ !
 ````
+</div>
 
 <div markdown="span" class="alert alert-warning">Caution:
 Events added outside of the current week are not visible! The application is streamlined for you to see what's ahead in the week, and not anything more.
@@ -297,21 +344,30 @@ Removes the specified recurring item from your schedule. Use it when your schedu
 
 Format: `rmschedule user type/EVENT_TYPE en/EVENT_NAME`
 
-Click [here](#parameters) to find out more about the parameter constraints.
+- Click [here](#parameters) to find out more about the parameter constraints.
 
 **Successful commands:**\
 Input:
+<div style="background-color: #198754">
+
 ````
 rmschedule user type/CCA en/Basketball
 ````
+</div>
+
 Output:
+<div style="background-color: #198754">
+
 ````
 BASKETBALL has been removed from [Your Name]!
 ````
+</div>
 
 **Unsuccessful commands:**\
 If a user uses the wrong format (i.e missing prefix),
 this error message will be shown:
+<div style="background-color: #DC3545">
+
 ````
 [error message]
 Message Usage:
@@ -321,21 +377,34 @@ Example: rmschedule 1 type/cca en/Basketball
 NOTE: If you want to remove an event from yourself, use index user
 Example: rmschedule user type/cca en/Basketball
 ````
+</div>
+
 The error message at the top of the command feedback above will specify what needs to be rectified.\
 eg.\
 Input:
+<div style="background-color: #DC3545">
+
 ````
 rmschedule user
 ````
+</div>
+
 Output:
+<div style="background-color: #DC3545">
+
 ````
 Missing prefix(es) for en/ type/ !
 ````
+</div>
+
 If a user inputs an invalid event type, the following error message will be shown:
+<div style="background-color: #DC3545">
+
 ````
 Invalid event type!
 Event type must either be 'cca' or 'module'!
 ````
+</div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -351,21 +420,30 @@ Removes the specified event from your schedule. Use it when your plans changes!
 
 **Format:** `rmevent user en/EVENT_NAME`
 
-Click [here](#parameters) to find out more about the parameter constraints.
+- Click [here](#parameters) to find out more about the parameter constraints.
 
 **Successful commands:**\
 Input:
+<div style="background-color: #198754">
+
 ````
 rmevent user en/CS2103T exam
 ````
+</div>
+
 Output:
+<div style="background-color: #198754">
+
 ````
 Dated event 'CS2103T EXAM' deleted from your calendar!
 ````
+</div>
 
 **Unsuccessful commands:**\
 If a user uses the wrong format (i.e missing prefix),
 this error message will be shown:
+<div style="background-color: #DC3545">
+
 ````
 Missing prefix(es) for en/ !
 Message Usage:
@@ -375,6 +453,7 @@ Example: rmevent 1 en/CS2103T Final Exam
 NOTE: If you want to remove an event from your calendar, use rmevent user.
 Example: rmevent user en/CS2103T Final Exam
 ````
+</div>
 
 ### 3.2 Friend Commands
 
@@ -393,21 +472,27 @@ Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...​`
 
 <div markdown="span" class="alert alert-primary">Tip:
 A person can have any number of tags (including 0)
-</div><br />
+</div>
 
 **Successful Command:**\
 Output:
+<div style="background-color: #198754">
+
 ````
 New Person Added: {NAME}, Phone: {PHONE}, Email: {EMAIL}, Address: {ADDRESS}, Birthday: {BIRTHDAY}, tags: [{TAG}]
 ````
+</div>
 
 **Unsuccessful Command:**\
 Output:
+<div style="background-color: #DC3545">
+
 ````
 Invalid command format!
 add: Adds a person to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...
 Example: add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 b/2000-01-01 t/friends t/owesMoney
 ````
+</div>
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com b/2001-12-12 a/Downtown t/police`
@@ -434,22 +519,33 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG
 Changes the specified parameters of specified friend’s profile.
 
 Output:
+<div style="background-color: #198754">
+
 ````
 Edited Person {NAME}; Phone: {PHONE}; Email: {EMAIL}; Address: {ADDRESS}; Birthday: {BIRTHDAY}; tags: [{TAG}]
 ````
+</div>
 
 **Unsuccessful Command:**\
 Displays an error message:
+
+<div style="background-color: #DC3545">
+
 ````
 Invalid command format!
 edit: Edits the details of the person identified by the index number used in the displayed person list. Existing values will be overwritten by the input values.
 Parameters: INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]...
 Example: edit 1 p/91234567 e/johndoe@example.com
 ````
+</div>
+
 If index given is not in the list, the following error message will be returned:
+<div style="background-color: #DC3545">
+
 ````
 The person index provided is invalid
 ````
+</div>
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -470,23 +566,34 @@ Format: `delete INDEX`
 Delete person from user’s profile.
 
 Output:
+<div style="background-color: #198754">
+
 ````
 [Friend's Name] deleted.
 ````
+</div>
+
 The friend should be removed from the friend's list. Good riddance! (Or see you later!)
 
 **Unsuccessful Command:**\
 If index is unspecified or not a positive integer, the following error message will be returned:
+<div style="background-color: #DC3545">
+
 ````
 Invalid command format!
 delete: Deletes the person identified by the index number used in the displayed person list.
 Parameters: INDEX (must be a positive integer)
 Example: delete 1
 ````
+</div>
+
 If index given is not in the list, the following error message will be returned:
+<div style="background-color: #DC3545">
+
 ````
 The person index provided is invalid
 ````
+</div>
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the list.
@@ -524,33 +631,48 @@ Format: `addschedule INDEX type/TYPE en/EVENT_NAME h/DAY_TIME`
 
 **Successful Command:**\
 Input:
+<div style="background-color: #198754">
+
 ````
 addschedule 1 type/module en/CS2030 h/Monday 1000 1400
 ````
+</div>
 
 Output:
+<div style="background-color: #198754">
+
 ````
 New event added:
 Module:
 CS2030 Monday 1000 1400 to [Friend Name]
 ````
+</div>
 
 **Unsuccessful Command:**\
 If the user does not put an index or the index is not a positive integer,
 this error messsage will be shown:
+<div style="background-color: #DC3545">
+
 ````
 Invalid index!
 Index can only be 'user' or a positive integer!
 ````
+</div>
+
 If the user uses an index that is larger than the list,
 this error message will be shown:
+<div style="background-color: #DC3545">
+
 ````
 The person index provided is invalid
 Index can be max [list size]!
 ````
+</div>
 
 If a user uses the wrong format (i.e missing prefix, wrong event type),
 this error message will be shown:
+<div style="background-color: #DC3545">
+
 ````
 [error message]
 Message Usage:
@@ -561,16 +683,25 @@ Example: addschedule 1 type/cca en/Basketball
 NOTE: If you want to add a cca/module to yourself, use addschedule user
 Example: addschedule user type/cca en/Basketball h/Monday 1400 1600
 ````
+</div>
+
 The error message at the top of the command feedback above will specify what needs to be changed. Helpful!\
 eg.\
 Input:
+<div style="background-color: #DC3545">
+
 ````
 addschedule
 ````
+</div>
+
 Output:
+<div style="background-color: #DC3545">
+
 ````
 Missing prefix(es) for en/ type/ h/ !
 ````
+</div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -598,33 +729,49 @@ Format: `addevent INDEX en/EVENT_NAME h/DATE_TIME r/REMINDER`
 **Successful Command:**
 
 Input:
+<div style="background-color: #198754">
+
 ````
 addevent 1 en/CS2030 Finals h/2023-10-31 1000 1400 r/y
 ````
+</div>
+
 Output:
+<div style="background-color: #198754">
+
 ````
 New event added:
 Dated Event:
 CS2030 FINALS 2023-10-31 1000 1400 to [Friend Name]
 ````
+</div>
 
 **Unsuccessful Command:**
 
 If the user does not put an index or the index is not a positive integer,
 this error messsage will be shown:
+<div style="background-color: #DC3545">
+
 ````
 Invalid index!
 Index can only be 'user' or a positive integer!
 ````
+</div>
+
 If the user uses an index that is larger than the list,
 this error message will be shown:
+<div style="background-color: #DC3545">
+
 ````
 The person index provided is invalid
 Index can be max [list size]!
 ````
+</div>
 
 If a user uses the wrong format (i.e missing prefix),
 this error message will be shown
+<div style="background-color: #DC3545">
+
 ````
 [error message]
 Message Usage:
@@ -633,16 +780,25 @@ Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] START_TIME [HHMM] END_TIME 
 Example: addevent 1 en/CS2103T Final Exam h/2020-03-02 1400 1600 r/y
 Note: Index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself
 ````
+</div>
+
 The error message at the top of the command feedback above will specify what needs to be rectified.\
 eg.\
 Input:
+<div style="background-color: #DC3545">
+
 ````
 addevent 1
 ````
+</div>
+
 Output:
+<div style="background-color: #DC3545">
+
 ````
 Missing prefix(es) for en/ h/ r/ !
 ````
+</div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -658,47 +814,63 @@ Missing prefix(es) for en/ h/ r/ !
 
 Removes the specified recurring item from the specified Person's schedule. Use it when they have a change in schedule!<br>
 
-**Format:**\
-To remove a scheduled event, you can use the rmschedule command with the following parameters:
+Format: `rmschedule INDEX type/EVENT_TYPE en/EVENT_NAME`
 
-`rmschedule INDEX type/EVENT_TYPE en/EVENT_NAME`
-
-`INDEX` (Index of the friend)\
-`EVENT_TYPE` ('module' or 'CCA')\
-`EVENT_NAME` (Event name)\
-Click [here](#parameters) to find out more about the parameter constraints.
+- Removes an event titled `EVENT_NAME` from the specified friend at `INDEX`
+- `EVENT_TYPE` is a prefix that can either be `module` or `CCA`. Pretty straightforward!
+- `EVENT_NAME`must exist in the friend's schedule.
+- Click [here](#parameters) to find out more about the parameter constraints.
 
 **Successful commands:**\
 Input:
+<div style="background-color: #198754">
+
 ````
 rmschedule 1 type/CCA en/Basketball
 ````
+</div>
+
 Output:
+<div style="background-color: #198754">
+
 ````
 BASKETBALL has been removed from [Friend's Name]!
 ````
+</div>
 
 **Unsuccessful commands:**\
 If the user does not put an index or the index is not a positive integer,
 this error messsage will be shown:
+<div style="background-color: #DC3545">
+
 ````
 Invalid index!
 Index can only be 'user' or a positive integer!
 ````
+</div>
+
 If the user uses an index that is larger than the list,
 this error message will be shown:
+<div style="background-color: #DC3545">
+
 ````
 The person index provided is invalid
 Index can be max [list size]!
 ````
+</div>
 
 If given event does not exist, this error message will be shown:
+<div style="background-color: #DC3545">
+
 ````
 [TYPE] [EVENT_NAME] does not exist!
 Please check that you have entered the correct [TYPE] name!
 ````
+</div>
 
 If wrong command format is used (i.e missing prefixes):
+<div style="background-color: #DC3545">
+
 ````
 [error message]
 Message Usage:
@@ -708,16 +880,26 @@ Example: rmschedule 1 type/cca en/Basketball
 NOTE: If you want to remove an event from yourself, use index user
 Example: rmschedule user type/cca en/Basketball
 ````
+</div>
+
 The error message at the top of the command feedback above will specify what needs to be rectified.\
 eg.\
 Input:
+<div style="background-color: #DC3545">
+
 ````
 rmschedule 1
 ````
+</div>
+
 Output:
+<div style="background-color: #DC3545">
+
 ````
 Missing prefix(es) for en/ type/ !
 ````
+</div>
+
 <div markdown="block" class="alert alert-info">
 
 :information_source: Notes about the rmschedule and rmevent command:
@@ -731,44 +913,62 @@ If there are multiple time slots with the same names, the command will remove ti
 Removes the specified event from the specified Person<br>
 If there are multiple schedules with the same names, this command will remove the earliest day in the week, but the later time in the same day. Again, strange but works!<br>
 
-**Format:**\
-To remove an event, you can use the rmevent command with the following parameters:
+Format: `rmevent INDEX en/EVENT_NAME`
 
-`rmevent INDEX en/EVENT_NAME`
-
-Click [here](#parameters) to find out more about the parameter constraints.
+- Removes an event titled `EVENT_NAME` from the specified friend at `INDEX`
+- `EVENT_NAME` must exist in the friend's schedule.
+- Click [here](#parameters) to find out more about the parameter constraints.
 
 **Successful commands:**\
 Input:
+<div style="background-color: #198754">
+
 ````
 rmevent 1 en/CS2103T Final Exam
 ````
+</div>
+
 Output:
+<div style="background-color: #198754">
+
 ````
 Dated event 'CS2103T FINAL EXAM' deleted from [Friend's Name]'s calendar!
 ````
+</div>
 
 **Unsuccessful commands:**\
 If the user does not put an index or the index is not a positive integer,
 this error messsage will be shown:
+<div style="background-color: #DC3545">
+
 ````
 Invalid index!
 Index can only be 'user' or a positive integer!
 ````
+</div>
+
 If the user uses an index that is larger than the list,
 this error message will be shown:
+<div style="background-color: #DC3545">
+
 ````
 The person index provided is invalid
 Index can be max [list size]!
 ````
+</div>
 
 If given event does not exist, this error message will be shown:
+<div style="background-color: #DC3545">
+
 ````
 Event [EVENT_NAME] does not exist!
 Please check that you have entered the correct event name!
 ````
+</div>
 
 If wrong command format is used (i.e missing prefix):
+<div style="background-color: #DC3545">
+
 ````
 Missing prefix(es) for en/ !
 Message Usage:
@@ -778,19 +978,19 @@ Example: rmevent 1 en/CS2103T Final Exam
 NOTE: If you want to remove an event from yourself, use rmevent user
 Example: rmevent user en/CS2103T Final Exam
 ````
+</div>
 
 #### 3.2.10 Finding common free times with your friend(s): `cft`
 
 Finds friend(s) with the same free times as you, or returns a message if no friends are free. That's okay though! Just find more friends to add!
 
-Format: <br>
-**Finding common free times with a specific friend**<br>
-`cft INDEX`
+Format:
+
+**Finding common free times with a specific friend**: `cft INDEX`
 
 * Finds common free times with friend of the specified `INDEX`.
 
-**Finding common free times with entire friends list**<br>
-`cft`
+**Finding common free times with entire friends list**: `cft`
 
 * Finds common free times with **all friends** in the list if `INDEX` is not included.
 * Finds common free times with friend of the specified `INDEX`. Use it with your best friend!
@@ -798,11 +998,17 @@ Format: <br>
 
 **Successful Command:**\
 Input:
+<div style="background-color: #198754">
+
 ````
 cft
 ````
+</div>
+
 Output:\
 Displays all the common free times you have with all your friends in your friend list.
+<div style="background-color: #198754">
+
 ````
 Here are the contacts with the same free time as you:
 You and Bernice Yu have no common free time!
@@ -818,11 +1024,19 @@ You have common free times with Alex Yeoh at:
 [Saturday 0000 2400]
 [Sunday 0000 2400]
 ````
+</div>
+
 Input:
+<div style="background-color: #198754">
+
 ````
 cft 1
 ````
+</div>
+
 Output:
+<div style="background-color: #198754">
+
 ````
 You have common free times with Alex Yeoh at:
 [Monday 0000 0800]
@@ -835,34 +1049,52 @@ You have common free times with Alex Yeoh at:
 [Saturday 0000 2400]
 [Sunday 0000 2400]
 ````
+</div>
 
 If your contact is a hustler and you have no common free times with a contact, it will display:
+<div style="background-color: #198754">
+
 ````
 You and [Friend's Name] have no common free time!
 ````
+</div>
 
 If you're super busy and your entire timetable is full for the whole week, it will return:
+<div style="background-color: #198754">
+
 ````
 You have no free time!
 ````
+</div>
 
 If you execute `cft` and you have no common free times with any contact, it will return:
+<div style="background-color: #198754">
+
 ````
 You have no contacts with the same free time as you!
 ````
+</div>
 
 **Unsuccessful Command:**
 
 If user inputs invalid command format, the app will display
+<div style="background-color: #DC3545">
+
 ````
 Invalid command format!
 cft: Finds all contacts with the same free time as the User.
 Example: cft
 ````
+</div>
+
 If user inputs an index that does not exist in the list, the app will display
+<div style="background-color: #DC3545">
+
 ````
 The person index provided is invalid
 ````
+</div>
+
 Examples:
 * `cft` lists all friends .
 * `cft 1` finds the 1st person on the addressbook list and displays the common free times you have with the person.
@@ -873,56 +1105,73 @@ Examples:
 
 Sets a reminder for a **dated, non-recurring event** from the user's schedule. You'll never forget another!
 
-Format: \
-To set a reminder a dated event in your schedule, you can use the setReminder command with the following parameters:
-
-`setReminder EVENT_NAME`
-
-Click [here](#parameters) to find out more about the parameter constraints.
+Format: `setReminder EVENT_NAME`
+- Set reminder for an event titled `EVENT_NAME` from the user's schedule.
+- Click [here](#parameters) to find out more about the parameter constraints.
 
 **Successful command:**\
 Input:
+<div style="background-color: #198754">
+
 ````
 setReminder CS2103T Final Exam
 ````
+</div>
+
 Output:
+<div style="background-color: #198754">
+
 ````
 Reminder set for following event:
 CS2103T FINAL EXAM
 ````
+</div>
 
 **Unsuccessful command:**
 
 If an invalid event name is used, it will return:
+<div style="background-color: #DC3545">
+
 ````
 No such event exists!
 ````
+</div>
 
 #### 3.3.2 Remove reminder for non-recurring events: `rmReminder`
 
 Remove a reminder for a dated event from the user's schedule. Don't forget it!
 
 Format: `rmReminder EVENT_NAME`
-
-Click [here](#parameters) to find out more about the parameter constraints.
+- Remove reminder for an event titled `EVENT_NAME` from the user's schedule.
+- Click [here](#parameters) to find out more about the parameter constraints.
 
 
 **Successful command:**\
 Input:
+<div style="background-color: #198754">
+
 ````
 rmReminder CS2103T Final Exam
 ````
+</div>
+
 Output:
+<div style="background-color: #198754">
+
 ````
 Reminder removed for following event:
 CS2103T FINAL EXAM
 ````
+</div>
 
 **Unsuccessful command:**\
 If an invalid event name is used, it will return:
+<div style="background-color: #DC3545">
+
 ````
 No such event exists!
 ````
+</div>
 
 ### 3.4 Other Commands
 
@@ -941,9 +1190,13 @@ Format: `clear`
 **Successful Command:**
 
 Output:
+<div style="background-color: #198754">
+
 ````
 All friends have been deleted.
 ````
+</div> 
+
 The entire friend list should be emptied. Start afresh!
 
 #### 3.4.3 Exiting the program: `exit`
