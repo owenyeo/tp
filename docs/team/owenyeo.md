@@ -11,7 +11,7 @@ TimetaBRO, your ultimate companion for managing your university life, social int
 
 ### Summary of Contributions
 
-**Code contributed:** 
+**Code contributed:**
 https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=owenyeo&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22
 
 **Enhancements implemented:**
@@ -40,7 +40,7 @@ https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=owenyeo&sort=groupTit
 * Added details about UserDataStorage
 
 **Contributions to team-based tasks:**
-* Delegated work to teammates 
+* Delegated work to teammates
 * Created issues and assigned them to teammates
 * Kept track of code deadlines
 

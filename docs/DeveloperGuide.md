@@ -134,10 +134,10 @@ The `Model` component stores and manages data. It accomplishes this by creating 
 
 **Functionality:**
 
-* `Model` is not dependent on the other packages. 
-* `Ui` references the `Model` to retrieve relevant information about the `User` and the friends to be displayed on the `MainWindow`. 
-* `Logic` component communicates with the `Model` to make modifications based on the commands inputted. 
-* `Storage` component refers to the `Model` to store the data on the computer's local memory. 
+* `Model` is not dependent on the other packages.
+* `Ui` references the `Model` to retrieve relevant information about the `User` and the friends to be displayed on the `MainWindow`.
+* `Logic` component communicates with the `Model` to make modifications based on the commands inputted.
+* `Storage` component refers to the `Model` to store the data on the computer's local memory.
 
 **Component structure:**
 
@@ -214,18 +214,18 @@ who has birthdays on the day itself.
 
 #### Description
 
-Whichever list cell of the friend list is clicked on, 
-it becomes selected, 
+Whichever list cell of the friend list is clicked on,
+it becomes selected,
 and is displayed on the bottom half of the right hand side of the app.
 
 #### Implementation
 * The user clicks on the cell within the `ListView` of the friend list.
 * The `onMouseClicked` event is triggered upon the user's click.
 * `PersonListPanel.PersonListViewCell#updateItem()` handles this `MouseEvent` object:
-  * It checks if the event is a single click. 
+  * It checks if the event is a single click.
   * If so, it notes the Person object in the selected list cell and fires a new event `ListCellSelectedEvent` with the selected person.
 * The `ListCellSelectedEvent` extends `Event` saves the selected person object.
-* The event filter in `MainWindow#fillInnerParts()` handles the `ListCellSelectedEvent` 
+* The event filter in `MainWindow#fillInnerParts()` handles the `ListCellSelectedEvent`
 and retrieves the selected person from it using `ListCellSelectedEvent#getSelectedPerson()`.
 * The selected person is used to create a new `SelectedFriendCard`, which is stored under `friendProfile`.
 * The contents of the `SelectedFriendPlaceHolder` is replaced with the `friendProfile`.

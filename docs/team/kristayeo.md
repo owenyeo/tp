@@ -6,7 +6,7 @@ title: Krista Yeo's Project Portfolio Page
 # Project Portfolio Page: TimetaBRO
 
 ## Overview
-TimetaBRO is an app made for NUS students to better keep track of all their friends' information and schedules. 
+TimetaBRO is an app made for NUS students to better keep track of all their friends' information and schedules.
 It facilitates easy visual comparison between the user and a friend's timetable, and quickly finds common free times with friends.
 
 ## Summary of Contributions
@@ -25,7 +25,7 @@ https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=kristayeo&sort=groupT
   * Green for dated events (non-recurring)
 * Displayed friend profile upon selection by mouse click from the friend list
 * Refresh display profiles upon relevant command executions (user, edit, addschedule, addevent, rmschedule, rmevent)
-* Created the following UI related classes: 
+* Created the following UI related classes:
   * ListCellSelectedEvent.java
   * SelectedFriendCard.java
   * UserCard.java
@@ -45,8 +45,8 @@ https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=kristayeo&sort=groupT
 
 **Contributions to team-based tasks:**
 
-* Consistently worked with teammates that worked on the backend to ensure the smooth display of the UI. 
-* Occasionally approved and merged pull requests. 
+* Consistently worked with teammates that worked on the backend to ensure the smooth display of the UI.
+* Occasionally approved and merged pull requests.
 
 **Contributions beyond the project team:**
 
