@@ -805,7 +805,7 @@ Missing prefix(es) for en/ h/ r/ !
 
 #### 3.2.8 Deleting recurring event from friend: `rmschedule`
 
-Removes the specified recurring item from the specified Person's schedule. Use it when they have a change in schedule!<br>
+Removes the specified recurring item from the specified Person's schedule. Use it when they have a change in schedule!<br>If there are multiple schedules with the same names, this command will the instance of the event that was added the earliest!<br>
 
 Format: `rmschedule INDEX type/EVENT_TYPE en/EVENT_NAME`
 
@@ -903,8 +903,8 @@ If there are multiple time slots with the same names, the command will remove ti
 
 #### 3.2.9 Deleting non-recurrring event from friend: `rmevent`
 
-Removes the specified event from the specified Person<br>
-If there are multiple schedules with the same names, this command will remove the earliest day in the week, but the later time in the same day. Again, strange but works!<br>
+Removes the specified event from the specified Person. Use this if there are a change in anyone's plans!<br>
+If there are multiple schedules with the same names, this command will the instance of the event that was added the earliest!<br>
 
 Format: `rmevent INDEX en/EVENT_NAME`
 
@@ -1267,6 +1267,9 @@ If your changes to the data file makes its format invalid, TimetaBRO will discar
 
 **Q:** If I have two events that overlap, can I add both of them to the calendar? <br>
 **A:** Nope! As TimetaBRO was designed to be a timetable management app, we would not be allowing overlapping events to be added into the timetable. You don't wanna double book your own time!
+
+**Q:** `addevent` does not allow me to add an event with a name because I have another event with the same name, but thhat event has already passed. How can I add this new event?<br>
+**A:** No worries! You can use `rmevent INDEX en/EVENT_NAME` to first remove the event with the same name, then continue to use `addevent` to add the event you would like to add
 
 --------------------------------------------------------------------------------------------------------------------
 
