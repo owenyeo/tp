@@ -9,6 +9,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -18,6 +21,8 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Phone;
 import seedu.address.model.user.User;
 import seedu.address.model.user.UserData;
 import seedu.address.model.user.UserPrefs;
@@ -66,6 +71,51 @@ public class EditUserCommandTest {
         EditUserCommand editUserCommand = new EditUserCommand(descriptor);
 
         assertCommandFailure(editUserCommand, model, EditUserCommand.MESSAGE_DUPLICATE_USER);
+    }
+
+    @Test
+    public void execute_duplicatePhoneUnfilteredList_failure() {
+        User user = model.getUser();
+        Phone duplicatePhone = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()).getPhone();
+        EditUserDescriptor descriptor = new EditUserDescriptorBuilder(user).withPhone(duplicatePhone).build();
+        EditUserCommand editUserCommand = new EditUserCommand(descriptor);
+
+        assertCommandFailure(editUserCommand, model, EditUserCommand.MESSAGE_DUPLICATE_PHONE);
+    }
+
+    @Test
+    public void execute_duplicatePhoneFilteredList_failure() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        User user = model.getUser();
+        Phone duplicatePhone = model.getAddressBook().getPersonList()
+                .get(INDEX_SECOND_PERSON.getZeroBased()).getPhone();
+        EditUserDescriptor descriptor = new EditUserDescriptorBuilder(user).withPhone(duplicatePhone).build();
+        EditUserCommand editUserCommand = new EditUserCommand(descriptor);
+
+        assertCommandFailure(editUserCommand, model, EditUserCommand.MESSAGE_DUPLICATE_PHONE);
+    }
+
+    @Test
+    public void execute_duplicateEmailUnfilteredList_failure() {
+        User user = model.getUser();
+        Email duplicateEmail = model.getAddressBook().getPersonList()
+                .get(INDEX_FIRST_PERSON.getZeroBased()).getEmail();
+        EditUserDescriptor descriptor = new EditUserDescriptorBuilder(user).withEmail(duplicateEmail).build();
+        EditUserCommand editUserCommand = new EditUserCommand(descriptor);
+
+        assertCommandFailure(editUserCommand, model, EditUserCommand.MESSAGE_DUPLICATE_EMAIL);
+    }
+
+    @Test
+    public void execute_duplicateEmailFilteredList_failure() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        User user = model.getUser();
+        Email duplicateEmail = model.getAddressBook().getPersonList()
+                .get(INDEX_SECOND_PERSON.getZeroBased()).getEmail();
+        EditUserDescriptor descriptor = new EditUserDescriptorBuilder(user).withEmail(duplicateEmail).build();
+        EditUserCommand editUserCommand = new EditUserCommand(descriptor);
+
+        assertCommandFailure(editUserCommand, model, EditUserCommand.MESSAGE_DUPLICATE_EMAIL);
     }
 
     @Test

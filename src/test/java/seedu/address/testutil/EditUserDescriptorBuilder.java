@@ -63,10 +63,26 @@ public class EditUserDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code Phone} of the {@code EditUserDescriptorBuilder} that we are building.
+     */
+    public EditUserDescriptorBuilder withPhone(Phone phone) {
+        descriptor.setPhone(phone);
+        return this;
+    }
+
+    /**
      * Sets the {@code Email} of the {@code EditUserDescriptorBuilder} that we are building.
      */
     public EditUserDescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Email} of the {@code EditUserDescriptorBuilder} that we are building.
+     */
+    public EditUserDescriptorBuilder withEmail(Email email) {
+        descriptor.setEmail(email);
         return this;
     }
 

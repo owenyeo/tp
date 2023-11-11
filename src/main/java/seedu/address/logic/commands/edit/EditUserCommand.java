@@ -53,6 +53,8 @@ public class EditUserCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     public static final String MESSAGE_DUPLICATE_USER = "No changes to user.";
+    public static final String MESSAGE_DUPLICATE_PHONE = "This phone number already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_EMAIL = "This email already exists in the address book.";
 
     private final EditUserDescriptor editUserDescriptor;
 
@@ -73,6 +75,14 @@ public class EditUserCommand extends Command {
 
         if (userToEdit.equals(editedUser)) {
             throw new CommandException(MESSAGE_DUPLICATE_USER);
+        }
+
+        if (!userToEdit.isSamePhone(editedUser) && model.hasPhone(editedUser)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PHONE);
+        }
+
+        if (!userToEdit.isSameEmail(editedUser) && model.hasEmail(editedUser)) {
+            throw new CommandException(MESSAGE_DUPLICATE_EMAIL);
         }
 
         model.setUser(editedUser);
