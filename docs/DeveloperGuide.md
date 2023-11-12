@@ -334,14 +334,35 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage university life, social interactions, and schedule
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* NUS student
+* Has friends whose schedules they need to keep up with 
+* Is a part of group projects
+* Has many commitments and is busy 
+* Values efficiency and convenience
 
-**Value proposition**: manage contacts & schedule faster than a typical mouse/GUI-driven app
+**Value proposition**:
 
+#### Problem 
+The flexibility of university life grants the ability for students to personalise their schedules, 
+but this also means that everyone's timetables are different, 
+making it difficult to keep track of your friends and peers activity or availability.
+This can increase difficulty in schedule coordination and arranging meetups. 
+Coupled with the many commitments and fast-paced curriculum, this makes it harder than ever to maintain friendships.
+
+In addition, trying to plan meetups or comparing timetables with peers is often time-consuming and troublesome, 
+having to go back and forth with friends before a consensus can be reached, 
+and hopping around the media of your chats to view the timetables.
+
+#### How TimetaBRO solves the problem and makes users' lives easier
+
+TimtaBRO allows users to store friend profiles, consisting of their details and schedule, in a friend list. 
+It facilitates easy visual comparison between the user's timetable and any selected friend in the list, 
+and can search for common free times between the user and either all friends, or a specified friend. 
+This effectively eliminates the need to hop between timetables 
+and having to waste time conversing with peers to find an ideal meetup time.
+The convenient storing of all the schedules on TimetaBRO, 
+as well as reminders on the birthdays of the people in the friend list,
+helps users efficiently manage and keep up with their friendships.
 
 ### User stories
 
@@ -377,7 +398,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TimetaBRO` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
@@ -673,20 +694,24 @@ testers are expected to do more *exploratory* testing.
 
 ### Launch and shutdown
 
-1. Initial launch
+* Initial launch
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+* Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+* Shutdown: 
+
+  1. Run the `exit` command. The application should exit and shut down.
+
+* _{ more test cases …​ }_
 
 ### Deleting a person
 
