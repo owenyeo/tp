@@ -29,12 +29,12 @@ Before we jump into it, let's make sure that your TimetaBRO is working properly!
 1. Ensure you have Java 11 installed on your computer.
     * To check if Java 11 is currently installed, you may follow this short guide.
     * If Java 11 is not installed, you may follow the installation instructions over here.
-2. Next, download the latest 'timetabro.jar' from [here](https://github.com/AY2324S1-CS2103T-W12-4/tp).
+2. Next, download the latest 'timetabro.jar' from [here](https://github.com/AY2324S1-CS2103T-W12-4/tp/releases).
 3. Copy the file to the folder you want to use as a home folder for TimetaBRO.
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. You should see a pop up. That is your reminder for the events and birthdays for the day!
 
 ![Ui-labelled](images/ui-startup.png)
-<br><center><ins>Image: User interface layout of TimetaBRO upon startup with sample data</ins></center><br>
+<br><center><ins>Image: User interface layout of TimetaBRO upon startup with sample data</ins></center>
 
 Here are some commands you can try:
 
@@ -50,7 +50,7 @@ Nice! Now you know the basic commands and have launched TimetaBRO, lets get into
 ## **2. TimetaBRO User Interface**
 
 ![Ui-labelled](images/ui-breakdown.png)
-<br><center><ins>Image: User interface layout breakdown of TimetaBRO</ins></center><br>
+<br><center><ins>Image: User interface layout breakdown of TimetaBRO</ins></center>
 
 ### 2.1. Toolbar
 
@@ -73,7 +73,7 @@ and may be filtered display certain friends based on the executed command.
 ### 2.5. Daily reminder pop-up
 
 ![Ui-labelled](images/ui-reminder-popup.png)
-<br><center><ins>Image: User interface layout breakdown of TimetaBRO</ins></center><br>
+<br><center><ins>Image: User interface layout breakdown of TimetaBRO</ins></center>
 
 This reminder pop-up appears when you open the app. Don't forget them!
 
@@ -88,7 +88,7 @@ This section displays the non-recurring events you have for the day. It can be y
 ### 2.6. Profile display
 
 ![Ui-labelled](images/ui-profile-display.png)
-<br><center><ins>Image: TimetaBRO profile display breakdown</ins></center><br>
+<br><center><ins>Image: TimetaBRO profile display breakdown</ins></center>
 
 #### 2.6.1. User display
 
@@ -162,21 +162,15 @@ A person can have any number of tags (including 0). Go crazy!
 </div>
 
 **Successful Command:**
-<div style="background-color: #BEE5B0">
-
+```
 Edited Your Details: NAME, Phone: PHONE, Email: EMAIL; Address: ADDRESS; Birthday: BIRTHDAY; Tags: [TAG]...​
-
-</div>
+```
 
 **Unsuccessful Command:**\
 No changes:
-<div style="background-color: #FAA0A0">
-
 ````
 No changes to user.
 ````
-
-</div>
 
 #### 3.1.2 Adding recurring event to user: `addschedule user`
 
@@ -195,53 +189,39 @@ where `DAY_TIME` must be entered in the format `Day HHMM HHMM`.<br>
 
 **Successful Command:**\
 Input:
-<div style="background-color: #BEE5B0">
-
+```
 addschedule user type/CCA en/Basketball h/Tuesday 1500 1600
-
-</div>
-
+```
 Output:
-
-<div style="background-color: #BEE5B0">
-
-New event added:\
-CCA:\
+```
+New event added:
+CCA:
 BASKETBALL Tuesday 1500 1600 to [Your Name]
-
-</div>
+```
 
 **Unsuccessful Command:**\
 If a user uses the wrong format (i.e missing prefix, wrong event type),
 this error message will be shown:
-
-<div style="background-color: #FAA0A0">
-
-[error message] \
-Message Usage:\
-addschedule: Adds a schedule to the specified contact.\
-Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME h/[DAY_OF_WEEK START_TIME [HHMM] END_TIME [HHMM]]\
-Example: addschedule 1 type/cca en/Basketball h/Monday 1400 1600\
-NOTE: If you want to add a cca/module to yourself, use addschedule user\
+```
+[error message]
+Message Usage:
+addschedule: Adds a schedule to the specified contact.
+Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME h/[DAY_OF_WEEK START_TIME [HHMM] END_TIME [HHMM]]
+Example: addschedule 1 type/cca en/Basketball h/Monday 1400 1600
+NOTE: If you want to add a cca/module to yourself, use addschedule user
 Example: addschedule user type/cca en/Basketball h/Monday 1400 1600
-
-</div>
+```
 
 The error message at the top of the command feedback above will specify what needs to be rectified.
 
 Input:
-<div style="background-color: #FAA0A0">
-
+```
 addschedule user
-
-</div>
+```
 Output:
-
-<div style="background-color: #FAA0A0">
-
+```
 Missing prefix(es) for en/ type/ h/ !
-
-</div>
+```
 
 <div markdown="block" class="alert alert-info">
 
@@ -268,55 +248,41 @@ where `DATE_TIME` must be entered in the format `DATE [YYYY-MM-DD] START_TIME [H
 
 **Successful Command:**\
 Input:
-
-<div style="background-color: #BEE5B0">
-
+```
 addevent user en/Final Submission h/2023-10-17 1500 1600 r/y
-
-</div>
+```
 
 Output:
-
-<div style="background-color: #BEE5B0">
-
-New event added:\
-Dated Event:\
+```
+New event added:
+Dated Event:
 FINAL SUBMISSION 2023-10-17 1500 1600 to [Your Name]
-
-</div>
+```
 
 **Unsuccessful Command:**\
 If a user uses the wrong format (i.e missing prefix, wrong event type),
 this error message will be shown:
-
-<div style="background-color: #FAA0A0">
-
-[error message]\
-Message Usage:\
-addevent: Adds a non-recurring event to the calendar.\
-Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] StartTime (HHMM) EndTime (HHMM)] r/[REMINDER: y/n]\
-Example: addevent 1 en/CS2103T Lecture h/2020-03-02 1400 1600 r/y\
+```
+[error message]
+Message Usage:
+addevent: Adds a non-recurring event to the calendar.
+Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] StartTime (HHMM) EndTime (HHMM)] r/[REMINDER: y/n]
+Example: addevent 1 en/CS2103T Lecture h/2020-03-02 1400 1600 r/y
 Note: Index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself
-
-</div>
+```
 
 The error message at the top of the command feedback above will specify what needs to be rectified.\
 eg.\
 Input:
-
-<div style="background-color: #FAA0A0">
-
+```
 addevent user
-
-</div>
+```
 
 Output:
-
-<div style="background-color: #FAA0A0">
-
+```
 Missing prefix(es) for en/ h/ r/ !
+```
 
-</div>
 
 <div markdown="span" class="alert alert-warning">Caution:
 Events added outside of the current week are not visible! The application is streamlined for you to see what's ahead in the week, and not anything more.
@@ -342,63 +308,45 @@ Format: `rmschedule user type/EVENT_TYPE en/EVENT_NAME`
 
 **Successful commands:**\
 Input:
-
-<div style="background-color: #BEE5B0">
-
+```
 rmschedule user type/CCA en/Basketball
-
-</div>
+```
 
 Output:
-
-<div style="background-color: #BEE5B0">
-
+```
 BASKETBALL has been removed from [Your Name]!
-
-</div>
+```
 
 **Unsuccessful commands:**\
 If a user uses the wrong format (i.e missing prefix),
 this error message will be shown:
-
-<div style="background-color: #FAA0A0">
-
-[error message]\
-Message Usage:\
-rmschedule: Removes an event from the specified contact's calendar.\
-Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME\
-Example: rmschedule 1 type/cca en/Basketball\
-NOTE: If you want to remove an event from yourself, use index user\
+```
+[error message]
+Message Usage:
+rmschedule: Removes an event from the specified contact's calendar.
+Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME
+Example: rmschedule 1 type/cca en/Basketball
+NOTE: If you want to remove an event from yourself, use index user
 Example: rmschedule user type/cca en/Basketball
-
-</div>
+```
 
 The error message at the top of the command feedback above will specify what needs to be rectified.\
 eg.\
 Input:
-
-<div style="background-color: #FAA0A0">
-
+```
 rmschedule user
-
-</div>
+```
 
 Output:
-
-<div style="background-color: #FAA0A0">
-
+```
 Missing prefix(es) for en/ type/ !
-
-</div>
+```
 
 If a user inputs an invalid event type, the following error message will be shown:
-
-<div style="background-color: #FAA0A0">
-
+```
 Invalid event type!
 Event type must either be 'cca' or 'module'!
-
-</div>
+```
 
 <div markdown="block" class="alert alert-info">
 
@@ -418,36 +366,27 @@ Removes the specified event from your schedule. Use it when your plans changes!
 
 **Successful commands:**\
 Input:
-
-<div style="background-color: #BEE5B0">
-
+```
 rmevent user en/CS2103T exam
-
-</div>
+```
 
 Output:
-
-<div style="background-color: #BEE5B0">
-
+```
 Dated event 'CS2103T EXAM' deleted from your calendar!
-
-</div>
+```
 
 **Unsuccessful commands:**\
 If a user uses the wrong format (i.e missing prefix),
 this error message will be shown:
-
-<div style="background-color: #FAA0A0">
-
-Missing prefix(es) for en/ !\
-Message Usage:\
-rmevent: Removes an event from the specified contact's calendar.\
-Parameters: INDEX en/EVENT_NAME\
-Example: rmevent 1 en/CS2103T Final Exam\
-NOTE: If you want to remove an event from your calendar, use rmevent user.\
+```
+Missing prefix(es) for en/ !
+Message Usage:
+rmevent: Removes an event from the specified contact's calendar.
+Parameters: INDEX en/EVENT_NAME
+Example: rmevent 1 en/CS2103T Final Exam
+NOTE: If you want to remove an event from your calendar, use rmevent user.
 Example: rmevent user en/CS2103T Final Exam
-
-</div>
+```
 
 ### 3.2 Friend Commands
 
@@ -470,24 +409,17 @@ A person can have any number of tags (including 0)
 
 **Successful Command:**\
 Output:
-
-<div style="background-color: #BEE5B0">
-
-
+```
 New Person Added: {NAME}, Phone: {PHONE}, Email: {EMAIL}, Address: {ADDRESS}, Birthday: {BIRTHDAY}, tags: [{TAG}]
-
-</div>
+```
 
 **Unsuccessful Command:**\
 Output:
-
-<div style="background-color: #FAA0A0">
-
-Invalid command format!\
-add: Adds a person to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...\
+```
+Invalid command format!
+add: Adds a person to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...
 Example: add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 b/2000-01-01 t/friends t/owesMoney
-
-</div>
+```
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com b/2001-12-12 a/Downtown t/police`
@@ -508,38 +440,27 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG
   specifying any tags after it.
 * Click [here](#parameters) to find out more about the parameter constraints.
 
-
 **Successful Command:**
 
 Changes the specified parameters of specified friend’s profile.
 
 Output:
-
-<div style="background-color: #BEE5B0">
-
+```
 Edited Person {NAME}; Phone: {PHONE}; Email: {EMAIL}; Address: {ADDRESS}; Birthday: {BIRTHDAY}; tags: [{TAG}]
-
-</div>
+```
 
 **Unsuccessful Command:**\
 Displays an error message:
-
-<div style="background-color: #FAA0A0">
-
-Invalid command format!\
-edit: Edits the details of the person identified by the index number used in the displayed person list. Existing values will be overwritten by the input values.\
-Parameters: INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]...\
+```
+Invalid command format!
+edit: Edits the details of the person identified by the index number used in the displayed person list. Existing values will be overwritten by the input values.
+Parameters: INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]...
 Example: edit 1 p/91234567 e/johndoe@example.com
-
-</div>
-
+```
 If index given is not in the list, the following error message will be returned:
-
-<div style="background-color: #FAA0A0">
-
+```
 The person index provided is invalid
-
-</div>
+```
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -560,34 +481,25 @@ Format: `delete INDEX`
 Delete person from user’s profile.
 
 Output:
-
-<div style="background-color: #BEE5B0">
-
+```
 [Friend's Name] deleted.
-
-</div>
+```
 
 The friend should be removed from the friend's list. Good riddance! (Or see you later!)
 
 **Unsuccessful Command:**\
 If index is unspecified or not a positive integer, the following error message will be returned:
-
-<div style="background-color: #FAA0A0">
-
+```
 Invalid command format!
 delete: Deletes the person identified by the index number used in the displayed person list.
 Parameters: INDEX (must be a positive integer)
 Example: delete 1
-
-</div>
+```
 
 If index given is not in the list, the following error message will be returned:
-
-<div style="background-color: #FAA0A0">
-
+```
 The person index provided is invalid
-
-</div>
+```
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the list.
@@ -604,7 +516,7 @@ Format: `list`
 View your friend's timetable.
 
 ![Ui-labelled](images/ui-view-friend.png)
-<br><center><ins>Image: Friend profile selection on TimetaBRO</ins></center><br>
+<br><center><ins>Image: Friend profile selection on TimetaBRO</ins></center>
 
 **How to use:**
 1. Scroll down your list of friends, until you locate the friend's timetable you want to see.
@@ -625,76 +537,54 @@ Format: `addschedule INDEX type/TYPE en/EVENT_NAME h/DAY_TIME`
 
 **Successful Command:**\
 Input:
-
-<div style="background-color: #BEE5B0">
-
+```
 addschedule 1 type/module en/CS2030 h/Monday 1000 1400
-
-</div>
-
+```
 Output:
-
-<div style="background-color: #BEE5B0">
-
-New event added:\
-Module:\
+```
+New event added:
+Module:
 CS2030 Monday 1000 1400 to [Friend Name]
-
-</div>
+```
 
 **Unsuccessful Command:**\
 If the user does not put an index or the index is not a positive integer,
 this error messsage will be shown:
-
-<div style="background-color: #FAA0A0">
-
-Invalid index!\
+```
+Invalid index!
 Index can only be 'user' or a positive integer!
-
-</div>
+```
 
 If the user uses an index that is larger than the list,
 this error message will be shown:
-
-<div style="background-color: #FAA0A0">
-
-The person index provided is invalid\
+```
+The person index provided is invalid
 Index can be max [list size]!
-
-</div>
+```
 
 If a user uses the wrong format (i.e missing prefix, wrong event type),
 this error message will be shown:
-
-<div style="background-color: #FAA0A0">
-
-[error message]\
-Message Usage:\
-addschedule: Adds a schedule to the specified contact.\
-Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME h/[DAY_OF_WEEK START_TIME [HHMM] END_TIME [HHMM]]\
+```
+[error message]
+Message Usage:
+addschedule: Adds a schedule to the specified contact.
+Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME h/[DAY_OF_WEEK START_TIME [HHMM] END_TIME [HHMM]]
 Example: addschedule 1 type/cca en/Basketball h/Monday 1400 1600
-NOTE: If you want to add a cca/module to yourself, use addschedule user\
+NOTE: If you want to add a cca/module to yourself, use addschedule user
 Example: addschedule user type/cca en/Basketball h/Monday 1400 1600
-
-</div>
+```
 
 The error message at the top of the command feedback above will specify what needs to be changed. Helpful!\
 eg.\
 Input:
-
-<div style="background-color: #FAA0A0">
-
+```
 addschedule
-
-</div>
+```
 
 Output:
-
-<div style="background-color: #FAA0A0">
-
+```
 Missing prefix(es) for en/ type/ h/ !
-
-</div>
+```
 
 <div markdown="block" class="alert alert-info">
 
@@ -722,76 +612,55 @@ Format: `addevent INDEX en/EVENT_NAME h/DATE_TIME r/REMINDER`
 **Successful Command:**
 
 Input:
-
-<div style="background-color: #BEE5B0">
-
+```
 addevent 1 en/CS2030 Finals h/2023-10-31 1000 1400 r/y
-
-</div>
+```
 
 Output:
-
-<div style="background-color: #BEE5B0">
-
-New event added:\
-Dated Event:\
+```
+New event added:
+Dated Event:
 CS2030 FINALS 2023-10-31 1000 1400 to [Friend Name]
-
-</div>
+```
 
 **Unsuccessful Command:**
 
 If the user does not put an index or the index is not a positive integer,
 this error messsage will be shown:
-
-<div style="background-color: #FAA0A0">
-
-Invalid index!\
+```
+Invalid index!
 Index can only be 'user' or a positive integer!
-
-</div>
+```
 
 If the user uses an index that is larger than the list,
 this error message will be shown:
-
-<div style="background-color: #FAA0A0">
-
-The person index provided is invalid\
+```
+The person index provided is invalid
 Index can be max [list size]!
-
-</div>
+```
 
 If a user uses the wrong format (i.e missing prefix),
 this error message will be shown
-
-<div style="background-color: #FAA0A0">
-
-[error message]\
-Message Usage:\
-addevent: Adds a non-recurring event to the calendar.\
-Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] START_TIME [HHMM] END_TIME [HHMM] r/[REMINDER: y/n]\
-Example: addevent 1 en/CS2103T Final Exam h/2020-03-02 1400 1600 r/y\
+```
+[error message]
+Message Usage:
+addevent: Adds a non-recurring event to the calendar.
+Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] START_TIME [HHMM] END_TIME [HHMM] r/[REMINDER: y/n]
+Example: addevent 1 en/CS2103T Final Exam h/2020-03-02 1400 1600 r/y
 Note: Index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself
-
-</div>
+```
 
 The error message at the top of the command feedback above will specify what needs to be rectified.\
 eg.\
 Input:
-
-<div style="background-color: #FAA0A0">
-
+```
 addevent 1
-
-</div>
+```
 
 Output:
-
-<div style="background-color: #FAA0A0">
-
+```
 Missing prefix(es) for en/ h/ r/ !
-
-</div>
+```
 
 <div markdown="block" class="alert alert-info">
 
@@ -816,82 +685,58 @@ Format: `rmschedule INDEX type/EVENT_TYPE en/EVENT_NAME`
 
 **Successful commands:**\
 Input:
-
-<div style="background-color: #BEE5B0">
-
+```
 rmschedule 1 type/CCA en/Basketball
-
-</div>
+```
 
 Output:
-<div style="background-color: #BEE5B0">
-
+```
 BASKETBALL has been removed from [Friend's Name]!
-
-</div>
+```
 
 **Unsuccessful commands:**\
 If the user does not put an index or the index is not a positive integer,
 this error messsage will be shown:
-
-<div style="background-color: #FAA0A0">
-
-Invalid index!\
+```
+Invalid index!
 Index can only be 'user' or a positive integer!
-
-</div>
+```
 
 If the user uses an index that is larger than the list,
 this error message will be shown:
-
-<div style="background-color: #FAA0A0">
-
-
-The person index provided is invalid\
+```
+The person index provided is invalid
 Index can be max [list size]!
-
-</div>
+```
 
 If given event does not exist, this error message will be shown:
-
-<div style="background-color: #FAA0A0">
-
-[TYPE] [EVENT_NAME] does not exist!\
+```
+[TYPE] [EVENT_NAME] does not exist!
 Please check that you have entered the correct [TYPE] name!
-
-</div>
+```
 
 If wrong command format is used (i.e missing prefixes):
-
-<div style="background-color: #FAA0A0">
-
-[error message]\
-Message Usage:\
-rmschedule: Removes an event from the specified contact's calendar.\
-Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME\
-Example: rmschedule 1 type/cca en/Basketball\
-NOTE: If you want to remove an event from yourself, use index user\
+```
+[error message]
+Message Usage:
+rmschedule: Removes an event from the specified contact's calendar.
+Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME
+Example: rmschedule 1 type/cca en/Basketball
+NOTE: If you want to remove an event from yourself, use index user
 Example: rmschedule user type/cca en/Basketball
-
-</div>
+```
 
 The error message at the top of the command feedback above will specify what needs to be rectified.\
 eg.\
 Input:
-
-<div style="background-color: #FAA0A0">
-
+```
 rmschedule 1
-
-</div>
+```
 
 Output:
-
-<div style="background-color: #FAA0A0">
-
+```
 Missing prefix(es) for en/ type/ !
-
-</div>
+```
 
 <div markdown="block" class="alert alert-info">
 
@@ -914,64 +759,46 @@ Format: `rmevent INDEX en/EVENT_NAME`
 
 **Successful commands:**\
 Input:
-
-<div style="background-color: #BEE5B0">
-
+```
 rmevent 1 en/CS2103T Final Exam
-
-</div>
+```
 
 Output:
-
-<div style="background-color: #BEE5B0">
-
+```
 Dated event 'CS2103T FINAL EXAM' deleted from [Friend's Name]'s calendar!
-
-</div>
+```
 
 **Unsuccessful commands:**\
 If the user does not put an index or the index is not a positive integer,
 this error messsage will be shown:
-
-<div style="background-color: #FAA0A0">
-
-Invalid index!\
+```
+Invalid index!
 Index can only be 'user' or a positive integer!
-
-</div>
+```
 
 If the user uses an index that is larger than the list,
 this error message will be shown:
-
-<div style="background-color: #FAA0A0">
-
-The person index provided is invalid\
+```
+The person index provided is invalid
 Index can be max [list size]!
-
-</div>
+```
 
 If given event does not exist, this error message will be shown:
-
-<div style="background-color: #FAA0A0">
-
-Event [EVENT_NAME] does not exist!\
+```
+Event [EVENT_NAME] does not exist!
 Please check that you have entered the correct event name!
-
-</div>
+```
 
 If wrong command format is used (i.e missing prefix):
-
-<div style="background-color: #FAA0A0">
-
-Missing prefix(es) for en/ !\
-Message Usage:\
-rmevent: Removes an event from the specified contact's calendar.\
-Parameters: INDEX en/EVENT_NAME\
-Example: rmevent 1 en/CS2103T Final Exam\
-NOTE: If you want to remove an event from yourself, use rmevent user\
+```
+Missing prefix(es) for en/ !
+Message Usage:
+rmevent: Removes an event from the specified contact's calendar.
+Parameters: INDEX en/EVENT_NAME
+Example: rmevent 1 en/CS2103T Final Exam
+NOTE: If you want to remove an event from yourself, use rmevent user
 Example: rmevent user en/CS2103T Final Exam
-
-</div>
+```
 
 #### 3.2.10 Finding common free times with your friend(s): `cft`
 
@@ -991,100 +818,78 @@ Format:
 
 **Successful Command:**\
 Input:
-
-<div style="background-color: #BEE5B0">
-
+```
 cft
+```
 
-</div>
 
 Output:\
 Displays all the common free times you have with all your friends in your friend list.
 
-<div style="background-color: #BEE5B0">
-
-Here are the contacts with the same free time as you:\
-You and Bernice Yu have no common free time!\
-You and Charlotte have no common free time!\
-You have common free times with Alex Yeoh at:\
-[Monday 0000 0800]\
-[Monday 2000 2400]\
-[Tuesday 0000 1300]\
-[Wednesday 0000 1200]\
-[Wednesday 1800 2400]\
-[Thursday 0000 2400]\
-[Friday 0000 2400]\
-[Saturday 0000 2400]\
+```
+Here are the contacts with the same free time as you:
+You and Bernice Yu have no common free time!
+You and Charlotte have no common free time!
+You have common free times with Alex Yeoh at:
+[Monday 0000 0800]
+[Monday 2000 2400]
+[Tuesday 0000 1300]
+[Wednesday 0000 1200]
+[Wednesday 1800 2400]
+[Thursday 0000 2400]
+[Friday 0000 2400]
+[Saturday 0000 2400]
 [Sunday 0000 2400]
-
-</div>
+```
 
 Input:
-<div style="background-color: #BEE5B0">
-
+```
 cft 1
-
-</div>
+```
 
 Output:
-
-<div style="background-color: #BEE5B0">
-
-You have common free times with Alex Yeoh at:\
-[Monday 0000 0800]\
-[Monday 2000 2400]\
-[Tuesday 0000 1300]\
-[Wednesday 0000 1200]\
-[Wednesday 1800 2400]\
-[Thursday 0000 2400]\
-[Friday 0000 2400]\
-[Saturday 0000 2400]\
+```
+You have common free times with Alex Yeoh at:
+[Monday 0000 0800]
+[Monday 2000 2400]
+[Tuesday 0000 1300]
+[Wednesday 0000 1200]
+[Wednesday 1800 2400]
+[Thursday 0000 2400]
+[Friday 0000 2400]
+[Saturday 0000 2400]
 [Sunday 0000 2400]
-
-</div>
+```
 
 If your contact is a hustler and you have no common free times with a contact, it will display:
-
-<div style="background-color: #BEE5B0">
-
+```
 You and [Friend's Name] have no common free time!
+```
 
-</div>
 
 If you're super busy and your entire timetable is full for the whole week, it will return:
-
-<div style="background-color: #BEE5B0">
-
+```
 You have no free time!
-
-</div>
+```
 
 If you execute `cft` and you have no common free times with any contact, it will return:
-
-<div style="background-color: #BEE5B0">
-
+```
 You have no contacts with the same free time as you!
-
-</div>
+```
 
 **Unsuccessful Command:**
 
 If user inputs invalid command format, the app will display
-<div style="background-color: #FAA0A0">
-
-Invalid command format!\
-cft: Finds all contacts with the same free time as the User.\
+```
+Invalid command format!
+cft: Finds all contacts with the same free time as the User.
 Example: cft
-
-</div>
+```
 
 If user inputs an index that does not exist in the list, the app will display
-
-<div style="background-color: #FAA0A0">
-
+```
 The person index provided is invalid
-
-</div>
+```
 
 Examples:
 * `cft` lists all friends .
@@ -1102,31 +907,22 @@ Format: `setReminder EVENT_NAME`
 
 **Successful command:**\
 Input:
-
-<div style="background-color: #BEE5B0">
-
+```
 setReminder CS2103T Final Exam
-
-</div>
+```
 
 Output:
-
-<div style="background-color: #BEE5B0">
-
-Reminder set for following event:\
+```
+Reminder set for following event:
 CS2103T FINAL EXAM
-
-</div>
+```
 
 **Unsuccessful command:**
 
 If an invalid event name is used, it will return:
-
-<div style="background-color: #FAA0A0">
-
+```
 No such event exists!
-
-</div>
+```
 
 #### 3.3.2 Remove reminder for non-recurring events: `rmReminder`
 
@@ -1136,34 +932,23 @@ Format: `rmReminder EVENT_NAME`
 - Remove reminder for an event titled `EVENT_NAME` from the user's schedule.
 - Click [here](#parameters) to find out more about the parameter constraints.
 
-
 **Successful command:**\
 Input:
-
-<div style="background-color: #BEE5B0">
-
+```
 rmReminder CS2103T Final Exam
-
-</div>
+```
 
 Output:
-
-<div style="background-color: #BEE5B0">
-
-Reminder removed for following event:\
+```
+Reminder removed for following event:
 CS2103T FINAL EXAM
-
-</div>
+```
 
 **Unsuccessful command:**\
 If an invalid event name is used, it will return:
-
-<div style="background-color: #FAA0A0">
-
-````
+```
 No such event exists!
-````
-</div>
+```
 
 ### 3.4 Other Commands
 
@@ -1179,15 +964,11 @@ Clears all entries from TimetaBRO. Be careful not to delete everything by accide
 
 Format: `clear`
 
-**Successful Command:**
-
+**Successful Command:**\
 Output:
-
-<div style="background-color: #BEE5B0">
-
+```
 All friends have been deleted.
-
-</div> 
+```
 
 The entire friend list should be emptied. Start afresh!
 
@@ -1281,24 +1062,26 @@ If your changes to the data file makes its format invalid, TimetaBRO will discar
 
 ## **Command Summary**
 For you TLDR-ers!
-| Action                                      | Format and Examples                                                                                                                                                                |
-|---------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add a Friend**                            | `add n/NAME p/PHONE e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]…​`<br> Example: `add n/John Doe p/98765432 e/johnd@example.com a/1 Hon Sui Sen Dr, Singapore 117588 b/2023-11-05 t/police` |
-| **Add an Event to friend**                  | `addevent INDEX en/EVENT NAME h/DATE r/REMINDER`<br> Example: `addevent 1 en/CS2030 Finals h/2023-10-31 1000 1400 r/y`                                                             |
-| **Add an Event to user**                    | `addevent user en/EVENT NAME h/DATE r/REMINDER`<br> Example: `addevent user en/CS2030 Finals h/2023-10-31 1000 1400 r/y`                                                           |
-| **Remove an Event from friend**             | `rmevent INDEX en/EVENT NAME`<br> Example: `rmevent 1 en/CS2103T Lecture`                                                                                                          |
-| **Remove an Event from user**               | `rmevent user en/EVENT NAME`<br> Example: `rmevent user en/CS2103T Lecture`                                                                                                        |
-| **Add a Recurring Event to friend**         | `addschedule INDEX type/EVENT_TYPE en/EVENT_NAME h/DAY_TIME`<br> Example: `addschedule 1 type/module en/CS2030 h/Monday 1000 1400`                                                 |
-| **Add a Recurring Event to user**           | `addschedule user type/EVENT_TYPE en/EVENT_NAME h/DAY_TIME`<br> Example: `addschedule 1 type/module en/CS2030 h/Monday 1000 1400`                                                  |
-| **Remove a Recurring Event from friend**    | `rmschedule INDEX type/EVENT_TYPE en/EVENT_NAME`<br> Example: `rmschedule 1 type/CCA en/CS2103T Lecture`                                                                           |
-| **Remove a Recurring Event from user**      | `rmschedule user type/EVENT_TYPE en/EVENT_NAME`<br> Example: `rmschedule 1 type/CCA en/CS2103T Lecture`                                                                            |
-| **Remove a Reminder**                       | `rmReminder EVENT_NAME`<br> Example: `rmReminder CS2103T Lecture`                                                                                                                  |
-| **Set a Reminder**                          | `setReminder EVENT_NAME`<br> Example: `setReminder CS2103T Lecture`                                                                                                                |
-| **Clear All Entries**                       | `clear`                                                                                                                                                                            |
-| **Delete a Friend**                         | `delete INDEX`<br> Example: `delete 3`                                                                                                                                             |
-| **Edit Friend Info**                        | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`<br> Example: `edit 2 n/James Lee e/jameslee@example.com`                                       |
-| **Edit User Info**                          | `user [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`<br> Example: `user n/James Lee e/jameslee@example.com`                                               |
-| **List All Friends**                        | `list`                                                                                                                                                                             |
-| **View Help**                               | `help`                                                                                                                                                                             |
-| **Find Common Free Times with friend**      | `cft [INDEX]` Example: `cft 1`                                                                                                                                                     |
-| **Find Common Free Times with all friends** | `cft`<br>                                                                                                                                                                          |
+
+| Action                                      | Format and Examples                                                                                                                                                                  |
+|---------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add a Friend**                            | `add n/NAME p/PHONE e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]…​`<br> Example: `add n/John Doe p/98765432 e/johnd@example.com a/1 Hon Sui Sen Dr, Singapore 117588 b/2023-11-05 t/police`  |
+| **Add an Event to friend**                  | `addevent INDEX en/EVENT NAME h/DATE r/REMINDER`<br> Example: `addevent 1 en/CS2030 Finals h/2023-10-31 1000 1400 r/y`                                                               |
+| **Add an Event to user**                    | `addevent user en/EVENT NAME h/DATE r/REMINDER`<br> Example: `addevent user en/CS2030 Finals h/2023-10-31 1000 1400 r/y`                                                             |
+| **Remove an Event from friend**             | `rmevent INDEX en/EVENT NAME`<br> Example: `rmevent 1 en/CS2103T Lecture`                                                                                                            |
+| **Remove an Event from user**               | `rmevent user en/EVENT NAME`<br> Example: `rmevent user en/CS2103T Lecture`                                                                                                          |
+| **Add a Recurring Event to friend**         | `addschedule INDEX type/EVENT_TYPE en/EVENT_NAME h/DAY_TIME`<br> Example: `addschedule 1 type/module en/CS2030 h/Monday 1000 1400`                                                   |
+| **Add a Recurring Event to user**           | `addschedule user type/EVENT_TYPE en/EVENT_NAME h/DAY_TIME`<br> Example: `addschedule 1 type/module en/CS2030 h/Monday 1000 1400`                                                    |
+| **Remove a Recurring Event from friend**    | `rmschedule INDEX type/EVENT_TYPE en/EVENT_NAME`<br> Example: `rmschedule 1 type/CCA en/CS2103T Lecture`                                                                             |
+| **Remove a Recurring Event from user**      | `rmschedule user type/EVENT_TYPE en/EVENT_NAME`<br> Example: `rmschedule 1 type/CCA en/CS2103T Lecture`                                                                              |
+| **Remove a Reminder**                       | `rmReminder EVENT_NAME`<br> Example: `rmReminder CS2103T Lecture`                                                                                                                    |
+| **Set a Reminder**                          | `setReminder EVENT_NAME`<br> Example: `setReminder CS2103T Lecture`                                                                                                                  |
+| **Clear All Entries**                       | `clear`                                                                                                                                                                              |
+| **Delete a Friend**                         | `delete INDEX`<br> Example: `delete 3`                                                                                                                                               |
+| **Edit Friend Info**                        | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`<br> Example: `edit 2 n/James Lee e/jameslee@example.com`                                                |
+| **Edit User Info**                          | `user [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`<br> Example: `user n/James Lee e/jameslee@example.com`                                                        |
+| **List All Friends**                        | `list`                                                                                                                                                                               |
+| **View Help**                               | `help`                                                                                                                                                                               |
+| **Find Common Free Times with friend**      | `cft [INDEX]` Example: `cft 1`                                                                                                                                                       |
+| **Find Common Free Times with all friends** | `cft`<br>                                                                                                                                                                            |
+| **Exit**                                    | `exit`                                                                                                                                                                               |
