@@ -147,7 +147,7 @@ The `Model` can be broken down into its subpackages:
 
 * `Person` subpackage:
   * Represents a `Person` in the addressbook and their attributes that the application manages, namely their `timetable`, `Phone` number, `Address`, `Birthday`, `Email`, and `Name`.
-  * `UniquePersonList` ensures that the list of persons does not contain duplicate phone numbers or emails, and supports basic list operations.
+  * `UniquePersonList` ensures that the list of persons does not contain duplicate phone numbers or emails, and supports basic list operations.\
     <img src="images/TimetableClassDiagram.png" width="350" />
   * `timetable` subpackage encapsulates a person's schedule that includes a list of module timings (`Module`),
 co-curricular activities timings (`Cca`), and dated events (`DatedEvent`). The `Schedule` class provides functionality
@@ -209,6 +209,38 @@ who has birthdays on the day itself.
 ### Edit user details feature
 
 ### Model design considerations for schedule
+
+#### Description
+
+The app contains a timetable that helps NUS students keep track of their schedules and their friends' schedules simultaneously.
+The backend of the application contains a model representation of the schedule.
+
+#### Implementation
+
+![ProblemDomain](images/TimetableProblemDomain.png)
+
+In implementing the timetable model, we decided to use the OO domain model (OODM) to model objects in the problem domain.
+Given this description:\
+Each person has 1 schedule. A person is either the user or the user's friends. The schedule is viewed as a weekly timetable,
+which shows only the events for that are happening in the current week. The schedule consists of time blocks that are either recurring (module time slots or cca time slots)
+or non-recurring (dated events). All time slots have are displayed with a name, a start time and an end time.
+The user can toggle reminders for one-off events, and can query when they can meet their friends, when both their schedules are free.
+A free time is also a timeslot in the schedule, but is not displayed hence does not have a name.
+
+![SolutionDomain](images/TimetableSolutionDomain.png)
+
+The `logic` component interacts with the `timetable` via these command classes:
+* `AddScheduleCommand`, `RemoveScheduleCommand` - adds/removes a cca or module time slot.
+* `AddEventCommand`, `RemoveEventCommand` - adds/removes a dated event time slot.
+* `SetReminderCommand`, `RemoveReminderCommand` - adds/removes reminders from specified dated event.
+* `CommonFreeTimeCommand` - queries for gaps in user and friend'(s) schedules.
+
+The `Ui` component interacts with the `timetable` by:
+
+Hence, `Schedule` is implemented as the facade class for the timetable package. The `logic` and `ui` components need to access functionality
+deep inside the `timetable` component, but they should not be exposed to its internal details, such as the `TimeBlock` being the
+superclass of `DatedEvent`. Hence, they update/retrieve information about the `timetable` only through `schedule`. This reduces coupling in
+the design and increases abstraction.
 
 ### Click to View Friend Timetable Feature
 
@@ -309,12 +341,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -343,14 +369,14 @@ _{Explain here how the data archiving feature will be implemented}_
 **Value proposition**:
 
 #### Problem 
-The flexibility of university life grants the ability for students to personalise their schedules, 
-but this also means that everyone's timetables are different, 
+The flexibility of university life grants the ability for students to personalise their schedules,
+but this also means that everyone's timetables are different,
 making it difficult to keep track of your friends and peers activity or availability.
-This can increase difficulty in schedule coordination and arranging meetups. 
+This can increase difficulty in schedule coordination and arranging meetups.
 Coupled with the many commitments and fast-paced curriculum, this makes it harder than ever to maintain friendships.
 
-In addition, trying to plan meetups or comparing timetables with peers is often time-consuming and troublesome, 
-having to go back and forth with friends before a consensus can be reached, 
+In addition, trying to plan meetups or comparing timetables with peers is often time-consuming and troublesome,
+having to go back and forth with friends before a consensus can be reached,
 and hopping around the media of your chats to view the timetables.
 
 #### How TimetaBRO solves the problem and makes users' lives easier
@@ -400,14 +426,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TimetaBRO` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a friend**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list friends
+2.  TimetaBRO shows a list of friends
+3.  User requests to delete a specific friend in the list
+4.  TimetaBRO deletes the friend
 
     Use case ends.
 
@@ -419,19 +445,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TimetaBRO shows an error message.
 
       Use case resumes at step 2.
 
 
-**Use case: Edit a person**
+**Use case: Edit a person's details**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to edit a specific person in the list
-4.  AddressBook edits the person
+2.  TimetaBRO shows a list of persons
+3.  User requests to edit a specific friend in the list
+4.  TimetaBRO edits the person
 
     Use case ends.
 
@@ -441,39 +467,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+* 2b. User requests to edit user details
+
+    Use case resumes at step 4.
+
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TimetaBRO shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: Add a person**
+**Use case: Add a friend**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to add a new person to the list
-4.  AddressBook adds the new person
+1.  User requests to list friends
+2.  TimetaBRO shows a list of friends
+3.  User requests to add a new friend to the list
+4.  TimetaBRO adds the new friend
 
     Use case ends.
 
 **Extensions**
 
-* 3a. Not all the required fields of the person are provided.
+* 3a. Not all the required fields of the friend are provided.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. TimetaBRO shows an error message.
 
       Use case resumes at step 2.
 
-**Use case: Find a person**
+**Use case: Find a friend**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
+1.  User requests to list friends
+2.  TimetaBRO shows a list of friends
 3.  User requests to find names containing an inputted keyword
-4.  AddressBook shows a list of persons whose names contain the keyword
+4.  TimetaBRO shows a list of friends whose names contain the keyword
 
     Use case ends.
 
@@ -484,25 +514,194 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 
-**Use case: Check for common free times with friends**
+**Use case: Check for common free times with all friends**
 
 **MSS**
 
-1. User requests to list persons
-2. AddressBook shows a list of persons
-3. User requests for common free times either with a specific friend or entire address book
-4. If user requests for common free times with a specific friend, AddressBook shows the friend's free times.
-5. If user requests for common free times with entire address book, AddressBook shows list of friends with common free times, and their associated common free times
+1. User requests to list friends
+2. TimetaBRO shows a list of friends
+3. User requests for common free times with entire address book
+4. TimetaBRO shows list of friends with common free times, and their associated common free times
 
     Use case ends.
 
 **Extensions**
 
 * 2a. The list is empty
-* 4a. Friend has no common free time with User
-* 4b. Friend name specified by user does not exist
-* 5a. No contacts in User's address book has common free times with user
 
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. TimetaBRO shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User has no free time.
+
+    * 3b1. TimetaBRO indicates to the user that they have no free time.
+
+      Use case ends.
+
+**Use case: Check for common free times with a specific friend**
+
+**MSS**
+
+1. User requests to list friends
+2. TimetaBRO shows a list of friends
+3. User requests for common free times with a specific friend
+4. TimetaBRO shows the common free times the user has with the specific friend
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty
+
+  Use case ends.
+* 3a. Friend has no common free time with User
+  * 3a1. TimetaBRO indicates to the user that they have no common free time.
+
+  Use case ends.
+
+* 3b. Given index is invalid
+  * 3b1. TimetaBRO shows an error message
+
+  Use case resumes at step 2.
+
+* 3c. User has no free time
+  * 3c1. TimetaBRO indicates to the user that they have no free time.
+
+  Use case ends.
+
+**Use case: Add event to schedule**
+
+**MSS**
+1. User requests to add a new event to indicated person's schedule.
+2. TimetaBRO adds the event to the indicated person's schedule.
+
+Use case ends. 
+
+**Extensions**
+* 1a. User gives an invalid index.
+  
+  Use case continues from step 1.
+
+* 1b. Not all the required fields of the event are provided.
+  * 1b1. TimetaBRO shows an error message.
+  
+  Use case continues from step 1.
+
+* 1c. Event details inputted do not follow the fields constraints
+  * 1c1. TimetaBRO shows an error message.
+  
+  Use case continues from step 1.
+
+**Use case: Clear list of friends**
+
+**MSS**
+1. User requests to clear all friends from the list.
+2. TimetaBRO clears the entire list of friends.
+
+    Use case ends.
+
+**Use case: Exit the application**
+
+**MSS**
+1. User requests to exit the application.
+2. TimetaBRO saves all data and closes the application.
+    
+    Use case ends.
+
+**Use case: Find help**
+
+**MSS**
+1. User requests for help
+2. TimetaBRO opens a help window with a link to the [TimetaBRO User Guide](UserGuide.md)
+
+    Use case ends.
+
+**Use case: List friends**
+
+**MSS**
+1. User requests to list friends.
+2. TimetaBRO shows a list of all friends.
+
+    Use case ends.
+
+**Use case: Remove recurring event from schedule**
+
+**MSS**
+1. User requests to remove a recurring event from a specified person's schedule.
+2. TimetaBRO removes the event from the schedule.
+
+    Use case ends.
+
+**Extensions**
+* 1a. Given index to specify the person is invalid.
+  * 1a1. TimetaBRO shows an error message.
+
+    Use case continues from step 1. 
+* 1b. Event details inputted are not in the specified person's schedule.
+  * 1b1. TimetaBRO shows an error message.
+  
+    Use case continues from step 1.
+* 1c. Not all the required fields are provided.
+  * 1c1. TimetaBRO shows an error message.
+
+    Use case continues from step 1.
+* 1d. Event details provided are not within the parameters' specified constraints according to the User Guide.
+  * 1d1. TimetaBRO shows an error message.
+
+    Use case continues from step 1.
+
+**Use case: Remove reminder from non-recurring event**
+
+**MSS**
+1. User requests to remove a reminder from an event from a specified person's schedule.
+2. TimetaBRO removes the reminder from the event.
+
+    Use case ends. 
+
+**Extensions**
+* 1a. Given index to specify the person is invalid.
+    * 1a1. TimetaBRO shows an error message.
+
+      Use case continues from step 1.
+
+* 1b. Event name inputted are not in the specified person's schedule.
+    * 1b1. TimetaBRO shows an error message.
+
+      Use case continues from step 1.
+
+* 1c. Event name not provided.
+    * 1c1. TimetaBRO shows an error message.
+
+      Use case continues from step 1.
+
+**Use case: Set reminder for non-recurring event**
+
+**MSS**
+1. User requests to set a reminder for an event in a specified person's schedule.
+2. TimetaBRO turns on the reminder for the event. 
+
+    Use case ends.
+
+**Extensions**
+* 1a. Given index to specify the person is invalid.
+    * 1a1. TimetaBRO shows an error message.
+
+      Use case continues from step 1.
+
+* 1b. Event name inputted are not in the specified person's schedule.
+    * 1b1. TimetaBRO shows an error message.
+
+      Use case continues from step 1.
+
+* 1c. Event name not provided.
+    * 1c1. TimetaBRO shows an error message.
+
+      Use case continues from step 1.
 
 ### Non-Functional Requirements
 
