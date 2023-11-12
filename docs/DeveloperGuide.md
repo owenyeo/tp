@@ -208,6 +208,28 @@ who has birthdays on the day itself.
 
 ### Edit user details feature
 
+#### Description
+User can edit and add their own details, such as their phone numbers and birthdays, and also their schedules using this command, with the command word `user` and the following prefixes:
+- `n\`: Name
+- `p\`: Phone number
+- `e\`: E-mail
+- `t\`: Tags
+- `a\`: Address
+
+#### Implementation
+- The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which proceeds 
+to call `AddressBookParser#parseCommand()` method, which then calls `EditUserCommandParser#parse()`.
+- `EditUserCommandParser#parse()` then creates a `EditUserDescriptor` that stores the incoming data to edit user. It stores it using the `set` methods, with `setName()` shown in the diagram below.
+- `EditUserCommandParser` then returns a `EditUserCommand` object using the `EditUserDescriptor`.
+- The `EditUserCommand` is then passed up to `LogicManager`.
+- `LogicManager#execute(editUserCommand)` is called, which then calls `Model#getUser()`. A new `User` object is created with existing user information and incoming data from the `EditUserDescriptor`.
+ - `Model#setUser(editedUser)` is then called to save the updated user into `Model`.
+ - `Model` then updates `Storage`, allowing users to save data across sessions.
+
+ <img src="images/EditUserSequenceDiagram.png" width="350" />
+
+ <img src="images/EditUserExecuteSequenceDiagram.png" width="350" />
+
 ### Model design considerations for schedule
 
 ### Click to View Friend Timetable Feature

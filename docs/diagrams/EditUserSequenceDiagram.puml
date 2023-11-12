@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+skinparam backgroundColor<<frame>> #FFFFFF
+skinparam styleName<<frame>> frame
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditUserCommandParser" as EditUserCommandParser LOGIC_COLOR
+participant "editUserDescriptor:EditUserDescriptor" as EditUserDescriptor LOGIC_COLOR
+participant ":EditUserCommand" as EditUserCommand LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("user n/John Doe")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("user n/John Doe")
+activate AddressBookParser
+
+create EditUserCommandParser
+AddressBookParser -> EditUserCommandParser
+activate EditUserCommandParser
+
+EditUserCommandParser --> AddressBookParser
+deactivate EditUserCommandParser
+
+AddressBookParser -> EditUserCommandParser : parse("n/John Doe")
+activate EditUserCommandParser
+
+create EditUserDescriptor
+EditUserCommandParser -> EditUserDescriptor 
+activate EditUserDescriptor
+
+EditUserDescriptor --> EditUserCommandParser : editUserDescriptor
+deactivate EditUserDescriptor
+
+EditUserCommandParser -> EditUserDescriptor : setName("John Doe")
+activate EditUserDescriptor
+
+EditUserDescriptor --> EditUserCommandParser : editUserDescriptor
+deactivate EditUserDescriptor
+
+create EditUserCommand
+EditUserCommandParser -> EditUserCommand : EditUserCommand(editUserDescriptor)
+activate EditUserCommand
+
+EditUserCommand --> EditUserCommandParser : e
+deactivate EditUserCommand
+
+EditUserCommandParser --> AddressBookParser : e
+deactivate EditUserCommandParser
+
+AddressBookParser --> LogicManager : e
+deactivate AddressBookParser
+
+LogicManager -> EditUserCommand : execute(model)
+activate EditUserCommand
+ref over EditUserCommand : Execute Command
+
+EditUserCommand --> LogicManager : result
+deactivate EditUserCommand
+
+<-- LogicManager 
+@enduml
