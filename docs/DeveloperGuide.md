@@ -202,7 +202,7 @@ and return a list of them.
 - `getBirthdayList` will call the `getBirthdayList` method in `AddressBook` object.
 - `getBirthdayList` of the `AddressBook` object will return a list of `Person` objects in the `User` object's contacts
 who has birthdays on the day itself.
-- `showReminder` will display birthday reminders followed by dated events reminders in the relevant textareas.
+- `showReminder` will then display birthday reminders followed by dated events reminders in the relevant textareas.
 
 ### Add friend's schedule feature
 
