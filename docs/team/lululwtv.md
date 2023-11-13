@@ -17,6 +17,8 @@ https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=w12-4&sort=groupTitle
 
 - Changed `add` and `edit` commands to allow users to add friend's free times when adding the friend (past iteration) (feature has been removed)
 - Created `addschedule`, `rmschedule`, `addevent`, `rmevent`, and `cft` commands
+    - For each command class, created a corresponding parser class for the commands
+    - This allows for each command to work better as they have a separate parser class that can help parse the specific inputs for the commands
 - Created some test cases for the commands made by me
 - Fixed seveeral bugs pertaining to `add`, `edit`, `addschedule`, `rmschedule`, `addevent`, `rmevent` commands
 
