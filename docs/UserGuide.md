@@ -815,7 +815,6 @@ Format:
 
 **Finding common free times with entire friends list**: `cft`
 
-* Finds common free times with **all friends** in the list if `INDEX` is not included.
 * Finds common free times with friend of the specified `INDEX`. Use it with your best friend!
 * Finds common free times with **all friends** in the list if `INDEX` is not included. Now find someone to bug!
 
