@@ -113,13 +113,13 @@ The timetable will be displayed under all the profile information, and each prof
 
 The days of the week are arranged from Monday to Sunday, and the timeslots are arranged from earliest to latest. Hope you like how it looks!
 
-##### 2.6.3.1 Color coding
+##### 2.6.3.2 Color coding
 
 The event timeslots are color coded according to their type and vibe.
 
 Blue for module (recurring), red for cca (recurring), and green for dated (non-recurring) events. Let TimetaBRO brighten your day up!
 
-##### 2.6.3.1 Event block formation
+##### 2.6.3.3 Event block formation
 
 Each event block consists of the event name on the first line, and the start and end times on the second line. Simple yet elegant! (at least we hope you feel that way)
 
@@ -161,7 +161,7 @@ Personalise your profile information, such as your birthday and tags!
 
 Format: `user n/NAME p/PHONE e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...​`
 
-* Click [here](#parameters) to find out more about the parameter constraints.
+* Click [here](#4-parameters) to find out more about the parameter constraints.
 
 <div markdown="span" class="alert alert-primary">Tip:
 A person can have any number of tags (including 0). Go crazy!
@@ -191,7 +191,7 @@ Format: `addschedule user type/EVENT_TYPE en/EVENT_NAME h/DAY_TIME`
 where `DAY_TIME` must be entered in the format `Day HHMM HHMM`.<br>
 `Day` is any day of the week fully spelt out and is case-insensitive, `HHMM` is a 24H time format to indicate the start time and end time!
 - Event names will be changed to all upper case regardless of whether it was keyed it in lower case or upper case.
-- Click [here](#parameters) to find out more about the parameter constraints.
+- Click [here](#4-parameters) to find out more about the parameter constraints.
 
 
 **Successful Command:**\
@@ -252,7 +252,7 @@ Format: `addevent user en/EVENT NAME h/DAY_TIME r/REMINDER`
 where `DATE_TIME` must be entered in the format `DATE [YYYY-MM-DD] START_TIME [HHMM] END_TIME [HHMM]`. Date must be a valid date!
 - You can set whether you want to enable reminders for this event by inputting `y/n` under `[REMINDER]` so you don't forget them!
 - Event names will be changed to all upper case regardless of whether it was keyed it in lower case or upper case. TimetaBRO is hyping you up!
-- Click [here](#parameters) to find out more about the parameter constraints.
+- Click [here](#4-parameters) to find out more about the parameter constraints.
 
 **Successful Command:**\
 Input:
@@ -268,7 +268,7 @@ FINAL SUBMISSION 2023-10-17 1500 1600 to [Your Name]
 ```
 
 **Unsuccessful Command:**\
-If a user uses the wrong format (i.e missing prefix, wrong event type),
+If a user uses the wrong format (i.e. missing prefix, wrong event type),
 this error message will be shown:
 ```
 [error message]
@@ -314,7 +314,7 @@ Removes the specified recurring item from your schedule. Use it when your schedu
 
 Format: `rmschedule user type/EVENT_TYPE en/EVENT_NAME`
 
-- Click [here](#parameters) to find out more about the parameter constraints.
+- Click [here](#4-parameters) to find out more about the parameter constraints.
 
 **Successful commands:**\
 Input:
@@ -370,9 +370,9 @@ If there are multiple time slots with the same names, the command will remove ti
 
 Removes the specified event from your schedule. Use it when your plans changes!
 
-**Format:** `rmevent user en/EVENT_NAME`
+Format: `rmevent user en/EVENT_NAME`
 
-- Click [here](#parameters) to find out more about the parameter constraints.
+- Click [here](#4-parameters) to find out more about the parameter constraints.
 
 **Successful commands:**\
 Input:
@@ -411,7 +411,7 @@ Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...​`
 * You can't have duplicate phone numbers or emails.
 * Names can be alphanumeric. For Elon Musk's child's sake!
 * Birthdays must be a valid date. We do check the calendars!
-* Click [here](#parameters) to find out more about the parameter constraints.
+* Click [here](#4-parameters) to find out more about the parameter constraints.
 
 <div markdown="span" class="alert alert-primary">Tip:
 A person can have any number of tags (including 0)
@@ -451,7 +451,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG
 * When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative. It's not ideal, but we're working on it!
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
-* Click [here](#parameters) to find out more about the parameter constraints.
+* Click [here](#4-parameters) to find out more about the parameter constraints.
 
 **Successful Command:**
 
@@ -548,7 +548,7 @@ Format: `addschedule INDEX type/TYPE en/EVENT_NAME h/DAY_TIME`
 - Event date and time will be equal to `DAY_TIME`
   where `DAY_TIME` must be entered in the format `[monday/tuesday/wednesday/thursday/friday/saturday/sunday] HHMM [start time] HHMM [end time]`
 - Event names will be changed to all upper case regardless of whether it was keyed it in lower case or upper case. Imagine TimetaBRO hyping you up!
-- Click [here](#parameters) to find out more about the parameter constraints.
+- Click [here](#4-parameters) to find out more about the parameter constraints.
 
 **Successful Command:**\
 Input:
@@ -623,7 +623,7 @@ Format: `addevent INDEX en/EVENT_NAME h/DATE_TIME r/REMINDER`
   where `DATE` must be entered in the format `YYYY-MM-DD HHMM [start time] HHMM [end time]`. Date must be a real date too!
 - Users can set whether they want to enable reminders for this event by inputting `y/n` under `[REMINDER]`. Never forget these events again!
 - Event names will be changed to all upper case regardless of whether it was keyed it in lower case or upper case.
-- Click [here](#parameters) to find out more about the parameter constraints.
+- Click [here](#4-parameters) to find out more about the parameter constraints.
 
 **Successful Command:**\
 Input:
@@ -641,7 +641,7 @@ CS2030 FINALS 2023-10-31 1000 1400 to [Friend Name]
 **Unsuccessful Command:**
 
 If the user does not put an index or the index is not a positive integer,
-this error messsage will be shown:
+this error message will be shown:
 ```
 Invalid index!
 Index can only be 'user' or a positive integer!
@@ -698,7 +698,7 @@ Format: `rmschedule INDEX type/EVENT_TYPE en/EVENT_NAME`
 - Removes an event titled `EVENT_NAME` from the specified friend at `INDEX`
 - `EVENT_TYPE` is a prefix that can either be `module` or `CCA`. Pretty straightforward!
 - `EVENT_NAME` must exist in the friend's schedule.
-- Click [here](#parameters) to find out more about the parameter constraints.
+- Click [here](#4-parameters) to find out more about the parameter constraints.
 
 **Successful commands:**\
 Input:
@@ -772,7 +772,7 @@ Format: `rmevent INDEX en/EVENT_NAME`
 
 - Removes an event titled `EVENT_NAME` from the specified friend at `INDEX`
 - `EVENT_NAME` must exist in the friend's schedule.
-- Click [here](#parameters) to find out more about the parameter constraints.
+- Click [here](#4-parameters) to find out more about the parameter constraints.
 
 **Successful commands:**\
 Input:
@@ -877,7 +877,7 @@ You have common free times with Alex Yeoh at:
 [Sunday 0000 2400]
 ```
 
-If your contact is a hustler and you have no common free times with a contact, it will display:
+If your contact is a hustler, and you have no common free times with a contact, it will display:
 ```
 You and [Friend's Name] have no common free time!
 ```
@@ -919,7 +919,7 @@ Sets a reminder for a **dated, non-recurring event** from the user's schedule. Y
 
 Format: `setReminder EVENT_NAME`
 - Set reminder for an event titled `EVENT_NAME` from the user's schedule.
-- Click [here](#parameters) to find out more about the parameter constraints.
+- Click [here](#4-parameters) to find out more about the parameter constraints.
 
 **Successful command:**\
 Input:
@@ -946,7 +946,7 @@ Remove a reminder for a dated event from the user's schedule. Don't forget it!
 
 Format: `rmReminder EVENT_NAME`
 - Remove reminder for an event titled `EVENT_NAME` from the user's schedule.
-- Click [here](#parameters) to find out more about the parameter constraints.
+- Click [here](#4-parameters) to find out more about the parameter constraints.
 
 **Successful command:**\
 Input:
