@@ -371,7 +371,7 @@ public class Schedule {
     }
 
     /**
-     * Returns true if the given event overlaps with any event in the schedule
+     * Returns true if the given TimeBlock overlaps with any event in the schedule
      * @param event the event to be checked
      * @return true if the given event overlaps with any event in the schedule
      */
@@ -379,10 +379,46 @@ public class Schedule {
         List<TimeBlock> totalList = new ArrayList<>();
         totalList.addAll(modulesList);
         totalList.addAll(ccasList);
-        totalList.addAll(datedEventsList);
         for (TimeBlock e : totalList) {
             if (event.isOverlap(e)) {
                 return true;
+            }
+        }
+        List<DatedEvent> datedEventsList = getDatedEventsList();
+        LocalDate currentDate = LocalDate.now();
+
+        for (DatedEvent e : datedEventsList) {
+            if (!e.isBefore(currentDate)) {
+                if (event.isOverlap(e)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Returns true if the given event overlaps with any event in the schedule
+     * @param event the event to be checked
+     * @return true if the given event overlaps with any event in the schedule
+     */
+    public boolean isOverlapping(DatedEvent event) {
+        List<TimeBlock> totalList = new ArrayList<>();
+        totalList.addAll(modulesList);
+        totalList.addAll(ccasList);
+        for (TimeBlock e : totalList) {
+            if (e.isOverlap(event)) {
+                return true;
+            }
+        }
+        List<DatedEvent> datedEventsList = getDatedEventsList();
+        LocalDate currentDate = LocalDate.now();
+
+        for (DatedEvent e : datedEventsList) {
+            if (!e.isBefore(currentDate)) {
+                if (event.isOverlap(e)) {
+                    return true;
+                }
             }
         }
         return false;
