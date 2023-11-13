@@ -6,7 +6,7 @@ title: TimetaBRO
 [![CI Status](https://github.com/AY2324S1-CS2103T-W12-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2324S1-CS2103T-W12-4/tp/actions)
 [![codecov](https://codecov.io/gh/AY2324S1-CS2103-W12-4/tp/branch/master/graph/badge.svg)](https://codecov.io/gh/AY2324S1-CS2103-W12-4/tp)
 
-![Ui](images/Ui-Final.png)
+![Ui](images/Ui.png)
 
 **TimetaBRO is a desktop application for arranging meetups with busy friends.**
 Created by NUS students, TimetaBRO is dedicated to fellow NUS students to aid in
