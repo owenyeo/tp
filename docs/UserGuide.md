@@ -31,7 +31,7 @@ Before we jump into it, let's make sure that your TimetaBRO is working properly!
     * If Java 11 is not installed, you may follow the installation instructions over [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A).
 2. Next, download the latest 'timetabro.jar' from [here](https://github.com/AY2324S1-CS2103T-W12-4/tp).
 3. Copy the file to the folder you want to use as a home folder for TimetaBRO.
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. You should see a pop up. That is your reminder for the events and birthdays for the day!
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. You should see a pop-up. That is your reminder for the events and birthdays for the day!
 
 ![Ui-labelled](images/ui-startup.png)
 <br><center><ins>Image: User interface layout of TimetaBRO upon startup with sample data</ins></center>
@@ -39,7 +39,7 @@ Before we jump into it, let's make sure that your TimetaBRO is working properly!
 Here are some commands you can try:
 
   * `add n/Owen p/91792309 b/ 2001-12-26`:
-  adds a friend named Owen, with phone number 91792309 and birthday on 26 December 2001. 
+  adds a friend named Owen, with phone number 91792309 and birthday on 26 December 2001.
   Say hello to your new friend!
 
   * `addschedule 1 type/module en/CS2101 h/Monday 1200 1400`:
@@ -88,7 +88,7 @@ This section displays the names of friends whose birthday falls on the date of t
 
 #### 2.5.2. Event reminders
 
-This section displays the non-recurring events you have for the day. It can be your hangouts, meetings, or exams!
+This section displays the non-recurring events you have for the day. It can be your Hangouts, meetings, or exams!
 
 ### 2.6. Profile display
 
@@ -133,7 +133,7 @@ Each event block consists of the event name on the first line, and the start and
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
@@ -147,8 +147,9 @@ Each event block consists of the event name on the first line, and the start and
 * If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines! Space characters surrounding line-breaks may be omitted when copied over to the application.
 
 * Clicking on your friend's name will display their timetable on the bottom half of the right hand side of TimetaBRO.
+
 * Only times in 30-minute intervals are allowed. <br>
-eg. `1430` and `1500` will be excepted, `1445` and `2359` will not be allowed.
+  e.g. `1430` and `1500` will be excepted, `1445` and `2359` will not be allowed.
 
 </div>
 
@@ -205,7 +206,7 @@ BASKETBALL Tuesday 1500 1600 to [Your Name]
 ```
 
 **Unsuccessful Command:**\
-If a user uses the wrong format (i.e missing prefix, wrong event type),
+If a user uses the wrong format (i.e. missing prefix, wrong event type),
 this error message will be shown:
 ```
 [error message]
@@ -230,7 +231,7 @@ Missing prefix(es) for en/ type/ h/ !
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: Notes about the addschedule command:
+:information_source: Notes about the `addschedule` command:
 
 * Timeslots added of type `module` will be colored blue, while those of type `CCA` will be colored red.
 * To add an event that lasts until the end of the day (midnight), set the end timing as `2400`. We know it isn't ideal, but bear with us!
@@ -277,7 +278,7 @@ Note: Index should be the index of the friend you are adding the dated event to 
 ```
 
 The error message at the top of the command feedback above will specify what needs to be rectified.\
-eg.\
+e.g.\
 Input:
 ```
 addevent user
@@ -290,7 +291,7 @@ Missing prefix(es) for en/ h/ r/ !
 
 
 <div markdown="span" class="alert alert-warning">Caution:
-Events added outside of the current week are not visible! The application is streamlined for you to see what's ahead in the week, and not anything more.
+Events added outside the current week are not visible! The application is streamlined for you to see what's ahead in the week, and not anything more.
 </div>
 
 <div markdown="block" class="alert alert-info">
@@ -323,7 +324,7 @@ BASKETBALL has been removed from [Your Name]!
 ```
 
 **Unsuccessful commands:**\
-If a user uses the wrong format (i.e missing prefix),
+If a user uses the wrong format (i.e. missing prefix),
 this error message will be shown:
 ```
 [error message]
@@ -336,7 +337,7 @@ Example: rmschedule user type/cca en/Basketball
 ```
 
 The error message at the top of the command feedback above will specify what needs to be rectified.\
-eg.\
+e.g.\
 Input:
 ```
 rmschedule user
@@ -381,7 +382,7 @@ Dated event 'CS2103T EXAM' deleted from your calendar!
 ```
 
 **Unsuccessful commands:**\
-If a user uses the wrong format (i.e missing prefix),
+If a user uses the wrong format (i.e. missing prefix),
 this error message will be shown:
 ```
 Missing prefix(es) for en/ !
@@ -402,7 +403,7 @@ Adds a person to your TimetaBRO friend list. Watch as your list grows!
 Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...​`
 
 * Adds a person to your friend list to the last index!
-* You can't add someone with the same birthday and same name, because it's likely that they are the same person! (We know its not necessarily true but its the best way we can do it without collecting your NRIC...)
+* You can't add someone with the same birthday and same name, because it's likely that they are the same person! (We know it's not necessarily true, but it's the best way we can do it without collecting your NRIC...)
 * You can't have duplicate phone numbers or emails.
 * Names can be alphanumeric. For Elon Musk's child's sake!
 * Birthdays must be a valid date. We do check the calendars!
@@ -440,7 +441,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG
 * At least one of the optional fields must be provided.
 * Same constraints as add! Meaning no duplicate names. Birthdays also need to be valid dates.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative. It's not ideal, but we're working on it!
+* When editing tags, the existing tags of the person will be removed i.e. adding of tags is not cumulative. It's not ideal, but we're working on it!
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
 * Click [here](#parameters) to find out more about the parameter constraints.
@@ -468,22 +469,20 @@ The person index provided is invalid
 ```
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower` Edits the name of the 2nd person to be `Betsy Crower`.
+*  `edit 1 p/91234567 e/johndoe@example.com`: Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 2 n/Betsy Crower`: Edits the name of the 2nd person to be `Betsy Crower`.
 
-#### 3.2.3 Deleting a friend's information: `delete`
+#### 3.2.3 Deleting a friend's profile: `delete`
 
-Deletes the specified friend from TimetaBRO. Goodbye, old friend.
+Deletes the specified friend from your TimetaBRO friends list. Goodbye, old friend.
 
 Format: `delete INDEX`
 
 * Deletes the person at the specified `INDEX`, in the event they're no longer your friend.
 * The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer**, e.g. 1, 2, 3, …​
 
 **Successful Command:**
-
-Delete person from user’s profile.
 
 Output:
 ```
@@ -529,7 +528,7 @@ View your friend's timetable.
 
 #### 3.2.6 Adding recurring event to friend: `addschedule`
 
-This command adds a recurring event to a friend's schedule, like their modules and CCAs.
+This command adds a weekly recurring event to a friend's schedule, like their modules and CCAs.
 
 Format: `addschedule INDEX type/TYPE en/EVENT_NAME h/DAY_TIME`
 
@@ -537,7 +536,7 @@ Format: `addschedule INDEX type/TYPE en/EVENT_NAME h/DAY_TIME`
 - `TYPE` is a prefix that can either be `module` or `CCA`. Pretty straightforward!
 - Event date and time will be equal to `DAY_TIME`
   where `DAY_TIME` must be entered in the format `[monday/tuesday/wednesday/thursday/friday/saturday/sunday] HHMM [start time] HHMM [end time]`
-- Event names will be changed to all upper case regardless of whether it was keyed it in lower case or upper case. Imagine timetaBRO hyping you up!
+- Event names will be changed to all upper case regardless of whether it was keyed it in lower case or upper case. Imagine TimetaBRO hyping you up!
 - Click [here](#parameters) to find out more about the parameter constraints.
 
 **Successful Command:**\
@@ -554,7 +553,7 @@ CS2030 Monday 1000 1400 to [Friend Name]
 
 **Unsuccessful Command:**\
 If the user does not put an index or the index is not a positive integer,
-this error messsage will be shown:
+this error message will be shown:
 ```
 Invalid index!
 Index can only be 'user' or a positive integer!
@@ -567,7 +566,7 @@ The person index provided is invalid
 Index can be max [list size]!
 ```
 
-If a user uses the wrong format (i.e missing prefix, wrong event type),
+If a user uses the wrong format (i.e. missing prefix, wrong event type),
 this error message will be shown:
 ```
 [error message]
@@ -580,7 +579,7 @@ Example: addschedule user type/cca en/Basketball h/Monday 1400 1600
 ```
 
 The error message at the top of the command feedback above will specify what needs to be changed. Helpful!\
-eg.\
+e.g.\
 Input:
 ```
 addschedule
@@ -593,7 +592,7 @@ Missing prefix(es) for en/ type/ h/ !
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: Notes about the addschedule command:
+:information_source: Notes about the `addschedule` command:
 
 * Timeslots added of type `module` will be colored blue, while those of type `CCA` will be colored red.
 * To add an event that lasts until the end of the day (midnight), set the end timing as `2400`.
@@ -614,8 +613,7 @@ Format: `addevent INDEX en/EVENT_NAME h/DATE_TIME r/REMINDER`
 - Event names will be changed to all upper case regardless of whether it was keyed it in lower case or upper case.
 - Click [here](#parameters) to find out more about the parameter constraints.
 
-**Successful Command:**
-
+**Successful Command:**\
 Input:
 ```
 addevent 1 en/CS2030 Finals h/2023-10-31 1000 1400 r/y
@@ -644,7 +642,7 @@ The person index provided is invalid
 Index can be max [list size]!
 ```
 
-If a user uses the wrong format (i.e missing prefix),
+If a user uses the wrong format (i.e. missing prefix),
 this error message will be shown
 ```
 [error message]
@@ -656,7 +654,7 @@ Note: Index should be the index of the friend you are adding the dated event to 
 ```
 
 The error message at the top of the command feedback above will specify what needs to be rectified.\
-eg.\
+e.g.\
 Input:
 ```
 addevent 1
@@ -685,7 +683,7 @@ Format: `rmschedule INDEX type/EVENT_TYPE en/EVENT_NAME`
 
 - Removes an event titled `EVENT_NAME` from the specified friend at `INDEX`
 - `EVENT_TYPE` is a prefix that can either be `module` or `CCA`. Pretty straightforward!
-- `EVENT_NAME`must exist in the friend's schedule.
+- `EVENT_NAME` must exist in the friend's schedule.
 - Click [here](#parameters) to find out more about the parameter constraints.
 
 **Successful commands:**\
@@ -701,7 +699,7 @@ BASKETBALL has been removed from [Friend's Name]!
 
 **Unsuccessful commands:**\
 If the user does not put an index or the index is not a positive integer,
-this error messsage will be shown:
+this error message will be shown:
 ```
 Invalid index!
 Index can only be 'user' or a positive integer!
@@ -720,7 +718,7 @@ If given event does not exist, this error message will be shown:
 Please check that you have entered the correct [TYPE] name!
 ```
 
-If wrong command format is used (i.e missing prefixes):
+If wrong command format is used (i.e. missing prefixes):
 ```
 [error message]
 Message Usage:
@@ -732,7 +730,7 @@ Example: rmschedule user type/cca en/Basketball
 ```
 
 The error message at the top of the command feedback above will specify what needs to be rectified.\
-eg.\
+e.g.\
 Input:
 ```
 rmschedule 1
@@ -745,13 +743,13 @@ Missing prefix(es) for en/ type/ !
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: Notes about the rmschedule and rmevent command:
+:information_source: Notes about the `rmschedule` and `rmevent` command:
 
 If there are multiple time slots with the same names, the command will remove time slots in the chronological order they were added.
 
 </div>
 
-#### 3.2.9 Deleting non-recurrring event from friend: `rmevent`
+#### 3.2.9 Deleting non-recurring event from friend: `rmevent`
 
 Removes the specified event from the specified Person. Use this if there are a change in anyone's plans!<br>
 If there are multiple schedules with the same names, this command will the instance of the event that was added the earliest!<br>
@@ -775,7 +773,7 @@ Dated event 'CS2103T FINAL EXAM' deleted from [Friend's Name]'s calendar!
 
 **Unsuccessful commands:**\
 If the user does not put an index or the index is not a positive integer,
-this error messsage will be shown:
+this error message will be shown:
 ```
 Invalid index!
 Index can only be 'user' or a positive integer!
@@ -794,7 +792,7 @@ Event [EVENT_NAME] does not exist!
 Please check that you have entered the correct event name!
 ```
 
-If wrong command format is used (i.e missing prefix):
+If wrong command format is used (i.e. missing prefix):
 ```
 Missing prefix(es) for en/ !
 Message Usage:
@@ -826,7 +824,6 @@ Input:
 ```
 cft
 ```
-
 
 Output:\
 Displays all the common free times you have with all your friends in your friend list.
@@ -884,21 +881,21 @@ You have no contacts with the same free time as you!
 
 **Unsuccessful Command:**
 
-If user inputs invalid command format, the app will display
+If user inputs invalid command format, the app will display:
 ```
 Invalid command format!
 cft: Finds all contacts with the same free time as the User.
 Example: cft
 ```
 
-If user inputs an index that does not exist in the list, the app will display
+If user inputs an index that does not exist in the list, the app will display:
 ```
 The person index provided is invalid
 ```
 
 Examples:
 * `cft` lists all friends .
-* `cft 1` finds the 1st person on the addressbook list and displays the common free times you have with the person.
+* `cft 1` finds the 1st person in the TimetaBRO friend list and displays the common free times you have with the person.
 
 ### 3.3 Reminder Commands
 
@@ -1001,8 +998,8 @@ Command parameter inputs have constraints to ensure their use is streamlined.
 | **ADDRESS**             | No constraints.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | **EMAIL**               | Emails should be of the format `local-part@domain` and adhere to the following constraints: <br>1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br>2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. <br>The domain name must: <br>-  end with a domain label at least 2 characters long <br>- have each domain label start and end with alphanumeric characters <br>- have each domain label consist of alphanumeric characters, separated only by hyphens, if any. |
 | **BIRTHDAY**            | `YYYY-MM-DD`, a valid date.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| **DAY_TIME**            | `DAY HHMM HHMM` <br>`DAY` is any day of the week (case insensitive), <br> the first `HHMM` is the start time of the timeblock and the second is the end time, <br> `HHMM` is a 24 hour time format of half hour intervals, from `0000` to `2400`. <br> Example: `mOndaY 2330 2400`                                                                                                                                                                                                                                                                                                                                                                                                         |
-| **DATE_TIME**           | `YYYY-MM-DD HHMM HHMM`<br>`YYYY-MM-DD` is the date of the event which has to be valid, <br> the first `HHMM` is the start time of the timeblock and the second is the end time, <br> `HHMM` is a 24 hour time format of half hour intervals, from `0000` to `2400`. <br> Example: `2023-11-08 2330 2400`                                                                                                                                                                                                                                                                                                                                                                                   |
+| **DAY_TIME**            | `DAY HHMM HHMM` <br>`DAY` is any day of the week fully spelt out (case insensitive), <br> the first `HHMM` is the start time of the time block and the second is the end time, <br> `HHMM` is a 24 hour time format of half hour intervals, from `0000` to `2400`. <br> Example: `mOndaY 2330 2400`                                                                                                                                                                                                                                                                                                                                                                                        |
+| **DATE_TIME**           | `YYYY-MM-DD HHMM HHMM`<br>`YYYY-MM-DD` is the date of the event which has to be valid, <br> the first `HHMM` is the start time of the time block and the second is the end time, <br> `HHMM` is a 24 hour time format of half hour intervals, from `0000` to `2400`. <br> Example: `2023-11-08 2330 2400`                                                                                                                                                                                                                                                                                                                                                                                  |
 | **EVENT_NAME (MODULE)** | Accepts any NUS module code. Example: `CS2103T`/`UTC2113`/`MA1521`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | **EVENT_NAME (CCA)**    | Alphanumeric, any length.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | **EVENT_NAME**          | Alphanumeric, any length.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
@@ -1038,29 +1035,29 @@ TimetaBRO is compatible with multiple operating systems, including Windows, Mac,
 Nope! TimetaBRO does not offer a direct import feature for schedules from other calendar applications. You'll need to manually add your friends' schedules to TimetaBRO using the add command. Tedious, but we're on it!
 
 **Is there a way to set recurring events for specific dates or weekdays, like every Tuesday, without manually adding them one by one?**<br>
-Yes! You can add recurring events for specific weekdays in TimetaBRO using the addschedule command. This feature allows you to set events for particular days of the week, making it easier to input recurring events.
+Yes! You can add recurring events for specific weekdays in TimetaBRO using the `addschedule` command. This feature allows you to set events for particular days of the week, making it easier to input recurring events.
 
 **What happens if I accidentally delete a friend or event in TimetaBRO? Is there a way to recover deleted data?**<br>
-Sorry! TimetaBRO does not have a built-in data recovery feature. When you delete a friend or event, the data is permanently removed from the application. Do double check before deleting something, or clearing your app!
+Sorry! TimetaBRO does not have a built-in data recovery feature. When you delete a friend or event, the data is permanently removed from the application. Do double-check before deleting something, or clearing your app!
 
 
 **How can I customize the reminder settings for events added to TimetaBRO?**<br>
-You can customize the reminder settings for events when adding them using the addevent command. The r/y or r/n option allows you to enable or disable reminders for specific events.
+You can customize the reminder settings for events when adding them using the `addevent` command. The r/y or r/n option allows you to enable or disable reminders for specific events.
 
 **Is there a way to share my TimetaBRO schedule with others or export it to a different format, such as a calendar file?**<br>
 Nope! TimetaBRO currently does not support sharing schedules with others or exporting them to external formats. It primarily functions as a personal scheduling tool.
 
 **Can I remove a specific event or schedule from my timetable or my friends' timetable?**<br>
-Not yet! However, for now, you may set slightly different names for events with the same name, such as 'Meetup with Jason (1)' and 'Meetup with Jason (2)' so that you can select a the specific event to delete later. If not, when you try to remove an event from the schedule, it will remove the one that you added first!
+Not yet! However, for now, you may set slightly different names for events with the same name, such as 'Meetup with Jason (1)' and 'Meetup with Jason (2)' so that you can select the specific event to delete later. If not, when you try to remove an event from the schedule, it will remove the one that you added first!
 
 **If I have two events that overlap, can I add both of them to the calendar?**<br>
 Nope! As TimetaBRO was designed to be a timetable management app, we would not be allowing overlapping events to be added into the timetable. You don't wanna double book your own time!
 
-**`addevent` does not allow me to add an event with a name because I have another event with the same name, but thhat event has already passed. How can I add this new event?**<br>
+**`addevent` does not allow me to add an event with a name because I have another event with the same name, but that event has already passed. How can I add this new event?**<br>
 No worries! You can use `rmevent INDEX en/EVENT_NAME` to first remove the event with the same name, then continue to use `addevent` to add the event you would like to add.
 
 **Why do my event names automatically change to all capitalized letters?**<br>
-We want to standardize the format of all event names to prevent users from accidentally adding multiple events wit the same names but in different formats! (i.e only first letter is capitalized vs only last letter is capitalized)
+We want to standardize the format of all event names to prevent users from accidentally adding multiple events wit the same names but in different formats! (i.e. only first letter is capitalized vs only last letter is capitalized)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1068,7 +1065,7 @@ We want to standardize the format of all event names to prevent users from accid
 
 1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen :( But don't worry! The remedy is to delete the `preferences.json` file created by the application before running the application again! Simple!
 
-2. **The timetable only supports timings in 30-minute gaps** because this is an app made for NUS students! Since NUS timetables are set in 30-minute gaps, we ave adapted this to better fit the NUS timetable style.
+2. **The timetable only supports timings in 30-minute gaps** because this is an app made for NUS students! Since NUS timetables are set in 30-minute gaps, we have adapted this to better fit the NUS timetable style.
 
 3.  While you **can't select a specific event to delete**, don't sweat it. We've got you covered. The events are removed in the order they were added, following a first-in-first-out basis. So, the earliest added event will be the first to bid farewell! If you have any more questions, feel free to ask!
 
@@ -1080,8 +1077,8 @@ For you TLDR-ers!
 | Action                                      | Format and Examples                                                                                                                                                                  |
 |---------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add a Friend**                            | `add n/NAME p/PHONE e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]…​`<br> Example: `add n/John Doe p/98765432 e/johnd@example.com a/1 Hon Sui Sen Dr, Singapore 117588 b/2023-11-05 t/police`  |
-| **Add an Event to friend**                  | `addevent INDEX en/EVENT NAME h/DATE r/REMINDER`<br> Example: `addevent 1 en/CS2030 Finals h/2023-10-31 1000 1400 r/y`                                                               |
-| **Add an Event to user**                    | `addevent user en/EVENT NAME h/DATE r/REMINDER`<br> Example: `addevent user en/CS2030 Finals h/2023-10-31 1000 1400 r/y`                                                             |
+| **Add a Dated Event to friend**             | `addevent INDEX en/EVENT NAME h/DATE r/REMINDER`<br> Example: `addevent 1 en/CS2030 Finals h/2023-10-31 1000 1400 r/y`                                                               |
+| **Add a Dated Event to user**               | `addevent user en/EVENT NAME h/DATE r/REMINDER`<br> Example: `addevent user en/CS2030 Finals h/2023-10-31 1000 1400 r/y`                                                             |
 | **Remove an Event from friend**             | `rmevent INDEX en/EVENT NAME`<br> Example: `rmevent 1 en/CS2103T Lecture`                                                                                                            |
 | **Remove an Event from user**               | `rmevent user en/EVENT NAME`<br> Example: `rmevent user en/CS2103T Lecture`                                                                                                          |
 | **Add a Recurring Event to friend**         | `addschedule INDEX type/EVENT_TYPE en/EVENT_NAME h/DAY_TIME`<br> Example: `addschedule 1 type/module en/CS2030 h/Monday 1000 1400`                                                   |

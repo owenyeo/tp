@@ -7,26 +7,26 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## **1. Acknowledgements**
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **2. Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## **3. Design**
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document `docs/diagrams` folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-### Architecture
+### 3.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -58,15 +58,21 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class <br>
+  (which follows the corresponding API `interface` mentioned in the previous point.)
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface
+and implements its functionality using the `LogicManager.java` class
+which follows the `Logic` interface.
+Other components interact with a given component through its interface rather than the concrete class
+(Reason: to prevent outside component's being coupled to the implementation of a component),
+as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
 
-### UI component
+### 3.2 UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S1-CS2103T-W12-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -95,7 +101,7 @@ Depending on the state of the application, certain parts of the UI are shown or 
 
 Upon TimetaBRO being launched, the `Reminder` window will be shown on the bottom right hand corner of the desktop's screen.
 
-### Logic component
+### 3.3 Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2324S1-CS2103T-W12-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -113,9 +119,9 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `AddScheduleCommandParser`) and uses it to parse the command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddScheduleCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddScheduleCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to delete a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -125,7 +131,7 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+### 3.4 Model component
 **API** : [`Model.java`](https://github.com/AY2324S1-CS2103T-W12-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 **Description:**
@@ -146,20 +152,21 @@ The `Model` component stores and manages data. It accomplishes this by creating 
 The `Model` can be broken down into its subpackages:
 
 * `Person` subpackage:
-  * Represents a `Person` in the addressbook and their attributes that the application manages, namely their `timetable`, `Phone` number, `Address`, `Birthday`, `Email`, and `Name`.
+  * Represents a `Person` in TimetaBRO and their attributes that the application manages,
+    namely their `Name`, `Phone` number, `Email`, `Address`, `Birthday` and `Schedule`.
   * `UniquePersonList` ensures that the list of persons does not contain duplicate phone numbers or emails, and supports basic list operations.\
     <img src="images/TimetableClassDiagram.png" width="350" />
   * `timetable` subpackage encapsulates a person's schedule that includes a list of module timings (`Module`),
-co-curricular activities timings (`Cca`), and dated events (`DatedEvent`). The `Schedule` class provides functionality
-to retrieve the schedule for the current week, for a specific day, and to manage free time within the schedule. It also
-supports operations to add, edit, and delete various time blocks like modules and CCAs, ensuring that there are no
-overlapping events.
+    co-curricular activities timings (`Cca`), and dated events (`DatedEvent`). The `Schedule` class provides functionality
+    to retrieve the schedule for the current week, for a specific day, and to manage free time within the schedule. It also
+    supports operations to add, edit, and delete various time blocks like modules and CCAs, ensuring that there are no
+    overlapping events.
 * `user` subpackage:
   * The `User` class extends the `Person` class and includes additional management for dated events specific to the user. It allows for setting and removing reminders for events, retrieving events with reminders for the current day, and managing the user's dated events.
 * `util` subpackage:
   * The `SampleUtilData` utility class populates the `AddressBook` with sample data, providing first-time users a perspective of the application in use.
 
-### Storage component
+### 3.5 Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -176,24 +183,24 @@ The `Timetable` Classes
 * Allows users to save their friends' and their own timetables in JSON format, and read them back into corresponding objects
 * Depends on the related files in `Model`.
 
-### Common classes
+### 3.6 Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **4. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Reminder feature
+### 4.1 Reminder feature
 
-#### Description
+#### 4.1.1 Description
 
 The app will display a popup window with reminders for events with reminder set for them and
 for birthdays on the day itself at launch.
 
-#### Implementation
+#### 4.1.2 Implementation
 - At launch, the `showReminder` method in `Reminder` is called.
 - `showReminder` calls `returnRemindedEvent` in `User` object to get a list of events with reminders set for them and
 `getBirthdayList` in `Model` object to get a list of birthdays on the day itself.
@@ -204,11 +211,27 @@ and return a list of them.
 who has birthdays on the day itself.
 - `showReminder` will then display birthday reminders followed by dated events reminders in the relevant textareas.
 
-### Add friend's schedule feature
+### 4.2 Add friend's schedule feature
 
-### Edit user details feature
+#### 4.2.1 Description
+User can add a recurring event to their friend's timetable, such as a Module or a CCA, to indicate their friend's weekly schedules. This can be done so using the command word `addschedule`, followed by an INDEX (either "user" or an index number reflecting the index of the friend in the friends list), and the following prefixes: 
+- `type/`: Schedule type - Module/CCA
+- `en/`: CCA/Module name
+- `h/` : Day, Start Time and End Time (DDD HHMM HHMM)
 
-#### Description
+#### 4.2.2 Implementation
+- The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which proceeds to call `AddressBookParser#parseCommand()` method, which then calls `AddScheduleCommandParser#parse()`.
+- `AddScheduleCommandParser#parse()` parses the information from all the different prefixes, and returns a new instance of `AddScheduleCommand` with the relevant parsed information
+- The `AddScheduleCommand` is then passed up to the `LogicManager`
+- `LogicManager#execute(AddScheduleCommand)` is called, which then calls either `Schedule#addCca()` or `Schedule#addModule()` on a `Person` object depending on the user's input for the `type/` prefix
+- The `Person` object could either be the user, which is retrieved using `Model#getUser()`, or a friend in the addressbook, which is retrieved using `Model#getFilteredPersonList()#get()`, depending on the user's input for `INDEX`
+- The `Schedule` of the corresponding `Person` is then updated
+
+<img src="images/AddScheduleSequenceDiagram.png"/>
+
+### 4.3 Edit user details feature
+
+#### 4.3.1 Description
 User can edit and add their own details, such as their phone numbers and birthdays, and also their schedules using this command, with the command word `user` and the following prefixes:
 - `n\`: Name
 - `p\`: Phone number
@@ -216,8 +239,8 @@ User can edit and add their own details, such as their phone numbers and birthda
 - `t\`: Tags
 - `a\`: Address
 
-#### Implementation
-- The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which proceeds 
+#### 4.3.2 Implementation
+- The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which proceeds
 to call `AddressBookParser#parseCommand()` method, which then calls `EditUserCommandParser#parse()`.
 - `EditUserCommandParser#parse()` then creates a `EditUserDescriptor` that stores the incoming data to edit user. It stores it using the `set` methods, with `setName()` shown in the diagram below.
 - `EditUserCommandParser` then returns a `EditUserCommand` object using the `EditUserDescriptor`.
@@ -226,18 +249,18 @@ to call `AddressBookParser#parseCommand()` method, which then calls `EditUserCom
  - `Model#setUser(editedUser)` is then called to save the updated user into `Model`.
  - `Model` then updates `Storage`, allowing users to save data across sessions.
 
- <img src="images/EditUserSequenceDiagram.png" width="350" />
+ <img src="images/EditUserSequenceDiagram.png" width="1000" />
 
- <img src="images/EditUserExecuteSequenceDiagram.png" width="350" />
+ <img src="images/EditUserExecuteSequenceDiagram.png" width="500" />
 
-### Model design considerations for schedule
+### 4.4 Model design considerations for schedule
 
-#### Description
+#### 4.4.1 Description
 
 The app contains a timetable that helps NUS students keep track of their schedules and their friends' schedules simultaneously.
 The backend of the application contains a model representation of the schedule.
 
-#### Implementation
+#### 4.4.2 Implementation
 
 ![ProblemDomain](images/TimetableProblemDomain.png)
 
@@ -264,15 +287,15 @@ deep inside the `timetable` component, but they should not be exposed to its int
 superclass of `DatedEvent`. Hence, they update/retrieve information about the `timetable` only through `schedule`. This reduces coupling in
 the design and increases abstraction.
 
-### Click to View Friend Timetable Feature
+### 4.5 Click to View Friend Timetable Feature
 
-#### Description
+#### 4.5.1 Description
 
 Whichever list cell of the friend list is clicked on,
 it becomes selected,
 and is displayed on the bottom half of the right hand side of the app.
 
-#### Implementation
+#### 4.5.2 Implementation
 * The user clicks on the cell within the `ListView` of the friend list.
 * The `onMouseClicked` event is triggered upon the user's click.
 * `PersonListPanel.PersonListViewCell#updateItem()` handles this `MouseEvent` object:
@@ -366,7 +389,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **5. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -376,9 +399,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **6. Appendix: Requirements**
 
-### Product scope
+### 6.1 Product scope
 
 **Target user profile**:
 
@@ -390,7 +413,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Value proposition**:
 
-#### Problem
+#### 6.1.1 Problem
 The flexibility of university life grants the ability for students to personalise their schedules,
 but this also means that everyone's timetables are different,
 making it difficult to keep track of your friends and peers activity or availability.
@@ -401,7 +424,7 @@ In addition, trying to plan meetups or comparing timetables with peers is often 
 having to go back and forth with friends before a consensus can be reached,
 and hopping around the media of your chats to view the timetables.
 
-#### How TimetaBRO solves the problem and makes users' lives easier
+#### 6.1.2 How TimetaBRO solves the problem and makes users' lives easier
 
 TimtaBRO allows users to store friend profiles, consisting of their details and schedule, in a friend list.
 It facilitates easy visual comparison between the user's timetable and any selected friend in the list,
@@ -412,13 +435,12 @@ The convenient storing of all the schedules on TimetaBRO,
 as well as reminders on the birthdays of the people in the friend list,
 helps users efficiently manage and keep up with their friendships.
 
-### User Stories
+### 6.2 User Stories
 
 **Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​           | I want to …​                                                                      | So that I can…​                                                            |
 |----------|-------------------|-----------------------------------------------------------------------------------|----------------------------------------------------------------------------|
-| `* * *`  | new user          | see a welcoming popup when I first open the app                                   | navigate the app easily and fill up my own details                         |
 | `* * *`  | user              | add contacts to my list of friends using information like name and contact details | identify them more easily                                                  |
 | `* * *`  | user              | view my list of friends                                                           | see all my friends in a glance                                             |
 | `* * *`  | user              | edit details of my friends                                                        | keep their information up to date or change any wrongly filled information |
@@ -443,7 +465,7 @@ helps users efficiently manage and keep up with their friendships.
 | `*`      | student           | give my friends nicknames and set their profile pictures in my list               | personalize and easily identify them                                       |                                                |                                        |
 
 
-### Use cases
+### 6.3 Use cases
 
 (For all use cases below, the **System** is the `TimetaBRO` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -615,7 +637,7 @@ Use case ends.
 
 * 1c. Event details inputted do not follow the fields constraints
   * 1c1. TimetaBRO shows an error message.
-  
+
   Use case continues from step 1.
 
 **Use case: Clear list of friends**
@@ -724,7 +746,7 @@ Use case ends.
 
       Use case continues from step 1.
 
-### Non-Functional Requirements
+### 6.4 Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
@@ -736,23 +758,23 @@ Use case ends.
 8.  Should be designed with accessibility in mind, ensuring that it is usable by individuals with disabilities, including those who rely on screen readers or keyboard navigation.
 9.  Should be able to handle a growing number of contacts without a significant decrease in performance.
 
-### Glossary
+### 6.5 Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Performance**: Speed at which the app completes queries.
 * **Tampering**: Modifying data without permission from the owner of said data.
-* **normal usage**: Day-to-day usage of the app without any errors occurring.
+* **Normal usage**: Day-to-day usage of the app without any errors occurring.
 * **Optimal user experience**: User can utilise all functionality without bugs and lag.
-* **Event**:
-* **Non-recurring event**:
-* **Recurring event**:
-* **Timetable**:
+* **Event**: Time block that can be added to a Person's schedule that is in increments of 30 minutes.
+* **Non-recurring event**: Dated time block that only appears on the specified date.
+* **Recurring event**: Time block that repeats each week on the same day and time.
+* **Timetable**: Grid that is shown in the display profiles that showcases sorted time blocks.
 * **Reminder**:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **7. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -761,20 +783,18 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Add friend
+### 7.1 Add friend
 
-1. Add a person to the list
-   1. Test case: `add n/Amy Bee p/85355255 e/amy@gmail.com a/123, Jurong West Ave 6, #08-111 b/2020-12-01` <br>
+* Test case: `add n/Amy Bee p/85355255 e/amy@gmail.com a/123, Jurong West Ave 6, #08-111 b/2020-12-01` <br>
       Expected: A person with the given details is added to the list. List is updated with new person
-   2. Test case: `add Alice Pauline` <br>
+* Test case: `add Alice Pauline` <br>
       Expected: Error message is shown. Person is not added to the list. List remains unchanged.
-   3. Other incorrect add commands to try: `add n/Alice Pauline 11111111`, `add n/Alice Pauline 2000-01-01` , `...` <br>
+* Other incorrect add commands to try: `add n/Alice Pauline 11111111`, `add n/Alice Pauline 2000-01-01` , `...` <br>
       Expected: Similar to previous.
-2. _{ more test cases …​ }_
 
-### Add schedule
+### 7.2 Add schedule
 
-1. Add cca/module to the user's schedule
+* Add cca/module to the user's schedule
     1. Test case: `addschedule user type/cca en/table tennis h/monday 1400 1600` <br>
        Expected: A cca event with the given details is added to the user's schedule. Schedule is updated with new event.
    2. Test case: `addschedule user type/module en/cs2103t h/monday 1400 1600` <br>
@@ -783,7 +803,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Error message is shown. Event is not added to the schedule. Schedule remains unchanged.
    4. Other incorrect add commands to try: `addschedule user type/cca table tennis h/monday 1400 1600` and `addschedule user type/module en/cs2103t h/monday 1400 1650`,`...` <br>
       Expected: Similar to previous.
-2. Add cca/module to a friend's schedule
+* Add cca/module to a friend's schedule
     1. Test case: `addschedule 1 type/cca en/table tennis h/monday 1400 1600` <br>
        Expected: A cca event with the given details is added to the first friend's schedule. Schedule is updated with new event.
     2. Test case: `addschedule 1 type/module en/cs2103t h/monday 1400 1600` <br>
@@ -792,12 +812,12 @@ testers are expected to do more *exploratory* testing.
        Expected: Error message is shown. Event is not added to the schedule. Schedule remains unchanged.
     4. Other incorrect add commands to try: `addschedule 1 type/cca table tennis h/monday 1400 1600` and `addschedule 1 type/module en/cs2103t h/monday 1400 1650`, `...` <br>
        Expected: Similar to previous.
-3. _{ more test cases …​ }_
 
-### Delete schedule
+### 7.3 Delete schedule
 
-1. Delete cca/module from the user's schedule
-    1. Prerequisites: A cca/module has been added to the user's schedule eg `addschedule user type/cca en/table tennis h/monday 1400 1600` and `addschedule user type/module en/cs2103t h/monday 1400 1600`
+* Delete cca/module from the user's schedule
+    1. Prerequisites: A cca/module has been added to the user's schedule<br>
+       e.g. `addschedule user type/cca en/table tennis h/monday 1400 1600` and `addschedule user type/module en/cs2103t h/monday 1400 1600`
     2. Test case: `rmschedule user type/cca en/table tennis` <br>
        Expected: The cca is deleted from the user's schedule. Schedule is updated with the deletion.
     3. Test case: `rmschedule user type/module en/cs2103t` <br>
@@ -806,8 +826,9 @@ testers are expected to do more *exploratory* testing.
        Expected: Error message is shown. Event is not deleted from the schedule. Schedule remains unchanged.
     5. Other incorrect delete commands to try: `rmschedule user type/cca table tennis` and `rmschedule user type/cca en/cs2103t`, `...` <br>
        Expected: Similar to previous.
-2. Delete cca/module from a friend's schedule
-    1. Prerequisites: A cca/module has been added to the first friend's schedule eg `addschedule 1 type/cca en/table tennis h/monday 1400 1600` and `addschedule 1 type/module en/cs2103t h/monday 1400 1600`
+* Delete cca/module from a friend's schedule
+    1. Prerequisites: A cca/module has been added to the first friend's schedule <br>
+       e.g. `addschedule 1 type/cca en/table tennis h/monday 1400 1600` and `addschedule 1 type/module en/cs2103t h/monday 1400 1600`
     2. Test case: `rmschedule 1 type/cca en/table tennis` <br>
        Expected: The cca is deleted from the first friend's schedule. Schedule is updated with the deletion.
     3. Test case: `rmschedule 1 type/module en/cs2103t` <br>
@@ -816,37 +837,36 @@ testers are expected to do more *exploratory* testing.
        Expected: Error message is shown. Event is not deleted from the schedule. Schedule remains unchanged.
     5. Other incorrect delete commands to try: `rmschedule 1 type/cca table tennis` and `rmschedule 1 type/cca en/cs2103t`, `...` <br>
        Expected: Similar to previous.
-3. _{ more test cases …​ }_
 
-### Add event
+### 7.4 Add event
 
-1. Add non-recurring event to the user's schedule
+* Add non-recurring event to the user's schedule
     1. Test case: `addevent user en/meeting h/2023-11-15 1400 1600 r/y` <br>
        Expected: A event with the given details is added to the user's schedule. Schedule is updated with new event.
     2. Test case: `addevent user meeting h/2023-11-15 1400 1600 r/y` <br>
        Expected: Error message is shown. Event is not added to the schedule. Schedule remains unchanged.
     3. Other incorrect add commands to try: `addevent user en/meeting h/monday 1400 1650 r/y` and `addevent en/meeting h/monday 1400 1600 r/y`,`...` <br>
        Expected: Similar to previous.
-2. Add non-recurring event to a friend's schedule
+* Add non-recurring event to a friend's schedule
     1. Test case: `addevent 1 en/meeting h/2023-11-15 1400 1600 r/n` <br>
        Expected: A event with the given details is added to the first friend's schedule. Schedule is updated with new event.
     2. Test case: `addevent 1 meeting h/2023-11-15 1400 1600 r/n` <br>
        Expected: Error message is shown. Event is not added to the schedule. Schedule remains unchanged.
     3. Other incorrect add commands to try: `addevent 1 en/meeting h/monday 1400 1650 r/n` and `addevent en/meeting h/monday 1400 1600 r/n`,`...` <br>
        Expected: Similar to previous.
-3. _{ more test cases …​ }_
 
-### Toggle reminder for events
+### 7.5 Toggle reminder for events
 
-1. Set reminder for an event in the user's schedule
-    1. Prerequisites: A non-recurring event has been added to the user's schedule eg `addevent user en/meeting h/2023-11-15 1400 1600 r/n`
+* Set reminder for an event in the user's schedule
+    1. Prerequisites: A non-recurring event has been added to the user's schedule <br>
+       e.g. `addevent user en/meeting h/2023-11-15 1400 1600 r/n`
     2. Test case: `setReminder meeting` <br>
        Expected: A reminder is set for the event.
     3. Test case: `setReminder lecture` <br>
        Expected: Error message is shown. Reminder is not set for the event.
     4. Other incorrect reminder commands to try: `setReminder user meeting` and `setReminder en/meeting`, `...` <br>
        Expected: Similar to previous.
-2. Remove reminder for an event in th user's schedule
+* Remove reminder for an event in th user's schedule
     1. Prerequisites: A non-recurring event has been added to the user's schedule eg `addevent user en/meeting h/2023-11-15 1400 1600 r/y`
     2. Test case: `rmReminder meeting` <br>
       Expected: The reminder is removed for the event.
@@ -854,65 +874,83 @@ testers are expected to do more *exploratory* testing.
       Expected: Error message is shown. Reminder is not removed for the event.
     4. Other incorrect reminder commands to try: `rmReminder user meeting` and `rmReminder en/meeting`, `...` <br>
       Expected: Similar to previous.
-3. _{ more test cases …​ }_
 
-### Delete event
+### 7.6 Delete event
 
-1. Delete non-recurring event from the user's schedule
-    1. Prerequisites: A non-recurring event has been added to the user's schedule eg `addevent user en/meeting h/2023-11-15 1400 1600 r/y`
+* Delete non-recurring event from the user's schedule
+
+    1. Prerequisites: A non-recurring event has been added to the user's schedule<br>
+       e.g. `addevent user en/meeting h/2023-11-15 1400 1600 r/y`
+
     2. Test case: `rmevent user en/meeting` <br>
        Expected: The event is deleted from the user's schedule. Schedule is updated with the deletion.
+
     3. Test case: `rmevent user en/lecture` <br>
        Expected: Error message is shown. Event is not deleted from the schedule. Schedule remains unchanged.
+
     4. Other incorrect delete commands to try: `rmevent user meeting` and `rmevent en/meeting`, `...` <br>
        Expected: Similar to previous.
-2. Delete cca/module from a friend's schedule
-    1. Prerequisites: A non-recurring event has been added to the first friend's schedule eg `addevent 1 en/meeting h/2023-11-15 1400 1600 r/y`
+
+* Delete cca/module from a friend's schedule
+
+    1. Prerequisites: A non-recurring event has been added to the first friend's schedule <br>
+       e.g. `addevent 1 en/meeting h/2023-11-15 1400 1600 r/y`
+
     2. Test case: `rmevent 1 en/meeting` <br>
        Expected: The event is deleted from the first friend's schedule. Schedule is updated with the deletion.
+
     3. Test case: `rmevent 1 en/lecture` <br>
        Expected: Error message is shown. Event is not deleted from the schedule. Schedule remains unchanged.
+
     4. Other incorrect delete commands to try: `rmevent 1 meeting` and `rmevent en/meeting`, `...` <br>
        Expected: Similar to previous.
-3. _{ more test cases …​ }_
 
-### Edit user details
+### 7.7 Edit user details
 
-1. Edit details of user eg name, phone, email address, birthday, address
-    1. Test case: `user n/xyz` <br>
-       Expected: User's name is updated to xyz provided user's name is not xyz.
-   2. Test case: `user n/xyz` followed by `user n/xyz` <br>
-      Expected: Error message is shown. User's name is not updated to xyz. User's name remains unchanged.
-   3. Other incorrect edit commands to try: `user p/11111111` followed by `user p/11111111`, `user`, `...` <br>
-      Expected: Similar to previous.
-2. _{ more test cases …​ }_
+* Test case: `user n/xyz` <br>
+  Expected: User's name is updated to xyz provided user's name is not xyz.
 
-### Edit friend's details
+* Test case: `user n/xyz` followed by `user n/xyz` <br>
+  Expected: Error message is shown. User's name is not updated to xyz. User's name remains unchanged.
 
-1. Edit details of a friend eg name, phone, email address, birthday, address
-    1. Test case: `edit 1 n/xyz` <br>
-       Expected: First friend's name is updated to xyz provided first friend's name is not xyz.
-   2. Test case: `edit 1 n/xyz` followed by `edit 1 n/xyz` <br>
-      Expected: Error message is shown. First friend's name is not updated to xyz. First friend's name remains unchanged.
-   3. Other incorrect edit commands to try: `edit 1 p/11111111` followed by `edit 1 p/11111111`, `edit 1`, `...` <br>
-      Expected: Similar to previous.
-2. _{ more test cases …​ }_
+* Other incorrect edit commands to try: `user p/11111111` followed by `user p/11111111`, `user`, `...` <br>
+  Expected: Similar to previous.
 
-### Help command
+### 7.8 Edit a friend's details
 
-1. Open help menu for any questions
-    1. Test case: `help` <br>
-       Expected: Help menu popup is shown.
-2. _{ more test cases …​ }_
+* Test case: `edit 1 n/xyz` <br>
+  Expected: First friend's name is updated to xyz provided first friend's name is not xyz.
 
-### Clear command
+* Test case: `edit 1 n/xyz` followed by `edit 1 n/xyz` <br>
+  Expected: Error message is shown. First friend's name is not updated to xyz. First friend's name remains unchanged.
 
-1. Clear all contacts in the list
-    1. Test case: `clear` <br>
-       Expected: All contacts in the list are deleted. List is updated with the deletion and will be empty
-2. _{ more test cases …​ }_
+* Other incorrect edit commands to try: `edit 1 p/11111111` followed by `edit 1 p/11111111`, `edit 1`, `...` <br>
+  Expected: Similar to previous.
 
-### Launch and shutdown
+### 7.9 Deleting a person
+
+* Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+* Test case: `delete 1`<br>
+  Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+
+* Test case: `delete 0`<br>
+  Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+
+* Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+  Expected: Similar to previous.
+
+### 7.10 Help command
+
+* Test case: `help` <br>
+  Expected: Help menu popup is shown.
+
+### 7.11 Clear command
+
+* Test case: `clear` <br>
+  Expected: All contacts in the list are deleted. List is updated with the deletion and will be empty
+
+### 7.12 Launch and shutdown
 
 * Initial launch
 
@@ -931,29 +969,9 @@ testers are expected to do more *exploratory* testing.
 
   1. Run the `exit` command. The application should exit and shut down.
 
-* _{ more test cases …​ }_
+### 7.13 Saving data
 
-### Deleting a person
-
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
+* Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-1. _{ more test cases …​ }_
