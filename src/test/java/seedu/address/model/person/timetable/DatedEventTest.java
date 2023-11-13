@@ -8,18 +8,6 @@ import org.junit.jupiter.api.Test;
 
 public class DatedEventTest {
     @Test
-    public void toJsonString_success() {
-        DatedEvent datedEvent = new DatedEvent("badminton", "monday 1200 1400",
-                "2023-10-30", true);
-        assertEquals("{"
-                + "\"name\": \"" + "badminton" + "\","
-                + "\"date\": \"" + "2023-10-30" + "\","
-                + "\"timeBlock\": \"" + "[Monday 1200 1400]" + "\","
-                + "\"reminder\": " + true
-                + "}", datedEvent.toJsonString());
-    }
-
-    @Test
     public void isDatedEvent_success() {
         DatedEvent datedEvent = new DatedEvent("badminton", "monday 1200 1400",
                 "2023-10-30", true);

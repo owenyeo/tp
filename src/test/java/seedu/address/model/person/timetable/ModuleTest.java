@@ -68,15 +68,6 @@ public class ModuleTest {
     }
 
     @Test
-    public void toJsonString_success() {
-        Module module = new Module("CS2103", "monday 1200 1400");
-        assertEquals("{"
-                + "\"name\": \"" + "CS2103" + "\","
-                + "\"timeBlock\": \"" + "[Monday 1200 1400]" + "\""
-                + "}", module.toJsonString());
-    }
-
-    @Test
     public void isValidModuleName() {
         // null name
         assertThrows(NullPointerException.class, () -> Module.isValidModuleName(null));

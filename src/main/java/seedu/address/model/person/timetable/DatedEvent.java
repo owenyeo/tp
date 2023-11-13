@@ -118,20 +118,6 @@ public class DatedEvent extends TimeBlock {
         return test.matches(DATE_TIME_VALIDATION_REGEX);
     }
 
-    /**
-     * Returns a format of DateTime that can be stored in a Json File.
-     *
-     * @return Json formatted String.
-     */
-    public String toJsonString() {
-        return "{"
-                + "\"name\": \"" + name + "\","
-                + "\"date\": \"" + date.format(DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER_PATTERN)) + "\","
-                + "\"timeBlock\": \"" + super.toString() + "\","
-                + "\"reminder\": " + hasReminder
-                + "}";
-    }
-
     public LocalDate getDate() {
         return date;
     }
