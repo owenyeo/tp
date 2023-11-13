@@ -361,14 +361,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Target user profile**:
 
 * NUS student
-* Has friends whose schedules they need to keep up with 
+* Has friends whose schedules they need to keep up with
 * Is a part of group projects
-* Has many commitments and is busy 
+* Has many commitments and is busy
 * Values efficiency and convenience
 
 **Value proposition**:
 
-#### Problem 
+#### Problem
 The flexibility of university life grants the ability for students to personalise their schedules,
 but this also means that everyone's timetables are different,
 making it difficult to keep track of your friends and peers activity or availability.
@@ -381,12 +381,12 @@ and hopping around the media of your chats to view the timetables.
 
 #### How TimetaBRO solves the problem and makes users' lives easier
 
-TimtaBRO allows users to store friend profiles, consisting of their details and schedule, in a friend list. 
-It facilitates easy visual comparison between the user's timetable and any selected friend in the list, 
-and can search for common free times between the user and either all friends, or a specified friend. 
-This effectively eliminates the need to hop between timetables 
+TimtaBRO allows users to store friend profiles, consisting of their details and schedule, in a friend list.
+It facilitates easy visual comparison between the user's timetable and any selected friend in the list,
+and can search for common free times between the user and either all friends, or a specified friend.
+This effectively eliminates the need to hop between timetables
 and having to waste time conversing with peers to find an ideal meetup time.
-The convenient storing of all the schedules on TimetaBRO, 
+The convenient storing of all the schedules on TimetaBRO,
 as well as reminders on the birthdays of the people in the friend list,
 helps users efficiently manage and keep up with their friendships.
 
@@ -580,16 +580,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to add a new event to indicated person's schedule.
 2. TimetaBRO adds the event to the indicated person's schedule.
 
-Use case ends. 
+Use case ends.
 
 **Extensions**
 * 1a. User gives an invalid index.
-  
+
   Use case continues from step 1.
 
 * 1b. Not all the required fields of the event are provided.
   * 1b1. TimetaBRO shows an error message.
-  
+
   Use case continues from step 1.
 
 * 1c. Event details inputted do not follow the fields constraints
@@ -610,7 +610,7 @@ Use case ends.
 **MSS**
 1. User requests to exit the application.
 2. TimetaBRO saves all data and closes the application.
-    
+
     Use case ends.
 
 **Use case: Find help**
@@ -641,10 +641,10 @@ Use case ends.
 * 1a. Given index to specify the person is invalid.
   * 1a1. TimetaBRO shows an error message.
 
-    Use case continues from step 1. 
+    Use case continues from step 1.
 * 1b. Event details inputted are not in the specified person's schedule.
   * 1b1. TimetaBRO shows an error message.
-  
+
     Use case continues from step 1.
 * 1c. Not all the required fields are provided.
   * 1c1. TimetaBRO shows an error message.
@@ -661,7 +661,7 @@ Use case ends.
 1. User requests to remove a reminder from an event from a specified person's schedule.
 2. TimetaBRO removes the reminder from the event.
 
-    Use case ends. 
+    Use case ends.
 
 **Extensions**
 * 1a. Given index to specify the person is invalid.
@@ -683,7 +683,7 @@ Use case ends.
 
 **MSS**
 1. User requests to set a reminder for an event in a specified person's schedule.
-2. TimetaBRO turns on the reminder for the event. 
+2. TimetaBRO turns on the reminder for the event.
 
     Use case ends.
 
@@ -906,7 +906,7 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-* Shutdown: 
+* Shutdown:
 
   1. Run the `exit` command. The application should exit and shut down.
 
