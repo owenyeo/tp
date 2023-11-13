@@ -277,7 +277,8 @@ addevent: Adds a non-recurring event to the calendar.
 Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] StartTime (HHMM) EndTime (HHMM)]
 r/[REMINDER: y/n]
 Example: addevent 1 en/CS2103T Lecture h/2020-03-02 1400 1600 r/y
-Note: Index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself
+Note: Index should be the index of the friend you are adding the dated event to or
+'user' if you would like to add the event to yourself
 ```
 
 The error message at the top of the command feedback above will specify what needs to be rectified.\
@@ -419,8 +420,8 @@ A person can have any number of tags (including 0)
 **Successful Command:**\
 Output:
 ```
-New Person Added: {NAME}, Phone: {PHONE}, Email: {EMAIL}, Address: {ADDRESS}, Birthday:
-{BIRTHDAY}, tags: [{TAG}]
+New Person Added: {NAME}, Phone: {PHONE}, Email: {EMAIL}, Address: {ADDRESS},
+Birthday: {BIRTHDAY}, tags: [{TAG}]
 ```
 
 **Unsuccessful Command:**\
@@ -466,10 +467,10 @@ Edited Person {NAME}; Phone: {PHONE}; Email: {EMAIL}; Address: {ADDRESS}; Birthd
 Displays an error message:
 ```
 Invalid command format!
-edit: Edits the details of the person identified by the index number used in the displayed person
-list. Existing values will be overwritten by the input values.
-Parameters: INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]
-[b/BIRTHDAY] [t/TAG]...
+edit: Edits the details of the person identified by the index number used in the
+displayed person list. Existing values will be overwritten by the input values.
+Parameters: INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL]
+[a/ADDRESS] [b/BIRTHDAY] [t/TAG]...
 Example: edit 1 p/91234567 e/johndoe@example.com
 ```
 If index given is not in the list, the following error message will be returned:
@@ -504,7 +505,8 @@ The friend should be removed from the friend's list. Good riddance! (Or see you 
 If index is unspecified or not a positive integer, the following error message will be returned:
 ```
 Invalid command format!
-delete: Deletes the person identified by the index number used in the displayed person list.
+delete: Deletes the person identified by the index number used in the displayed
+person list.
 Parameters: INDEX (must be a positive integer)
 Example: delete 1
 ```
@@ -658,8 +660,8 @@ this error message will be shown
 [error message]
 Message Usage:
 addevent: Adds a non-recurring event to the calendar.
-Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] START_TIME [HHMM] END_TIME [HHMM]
-r/[REMINDER: y/n]
+Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] START_TIME [HHMM] END_TIME
+[HHMM]] r/[REMINDER: y/n]
 Example: addevent 1 en/CS2103T Final Exam h/2020-03-02 1400 1600 r/y
 Note: Index should be the index of the friend you are adding the dated event to or
 'user' if you would like to add the event to yourself
