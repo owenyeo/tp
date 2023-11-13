@@ -98,7 +98,7 @@ The `UI` component,
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-Depending on the state of the application, certain parts of the UI are shown or hidden in `MainWindow`. eg. `HelpWindow` and `SelectedFriendCard`.
+Depending on the state of the application, certain parts of the UI are shown or hidden in `MainWindow`. e.g. `HelpWindow` and `SelectedFriendCard`.
 
 Upon TimetaBRO being launched, the `Reminder` window will be shown on the bottom right hand corner of the desktop's screen.
 
@@ -212,6 +212,8 @@ and return a list of them.
 who has birthdays on the day itself.
 - `showReminder` will then display birthday reminders followed by dated events reminders in the relevant textareas.
 
+<img src="images/Reminder-window.png" width="300" />
+
 ### 4.2 Add friend's schedule feature
 
 #### 4.2.1 Description
@@ -239,6 +241,7 @@ User can edit and add their own details, such as their phone numbers and birthda
 - `e\`: E-mail
 - `t\`: Tags
 - `a\`: Address
+- `b\`: Birthday
 
 #### 4.3.2 Implementation
 - The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which proceeds
@@ -248,6 +251,7 @@ to call `AddressBookParser#parseCommand()` method, which then calls `EditUserCom
 - The `EditUserCommand` is then passed up to `LogicManager`.
 - `LogicManager#execute(editUserCommand)` is called, which then calls `Model#getUser()`. A new `User` object is created with existing user information and incoming data from the `EditUserDescriptor`.
  - `Model#setUser(editedUser)` is then called to save the updated user into `Model`.
+ - `Model` then updates `Storage`, allowing users to save data across sessions.
 
  <img src="images/EditUserSequenceDiagram.png" width="1000" />
 
@@ -296,6 +300,9 @@ it becomes selected,
 and is displayed on the bottom half of the right hand side of the app.
 
 #### 4.5.2 Implementation
+
+<img src="images/ClickToViewActivityDiagram.png" />
+
 * The user clicks on the cell within the `ListView` of the friend list.
 * The `onMouseClicked` event is triggered upon the user's click.
 * `PersonListPanel.PersonListViewCell#updateItem()` handles this `MouseEvent` object:
@@ -307,85 +314,6 @@ and retrieves the selected person from it using `ListCellSelectedEvent#getSelect
 * The selected person is used to create a new `SelectedFriendCard`, which is stored under `friendProfile`.
 * The contents of the `SelectedFriendPlaceHolder` is replaced with the `friendProfile`.
 * The position of the selected friend in the friend list is saved in `selectedFriendPos` for refreshing the display with any changes.
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -426,7 +354,7 @@ and hopping around the media of your chats to view the timetables.
 
 #### 6.1.2 How TimetaBRO solves the problem and makes users' lives easier
 
-TimtaBRO allows users to store friend profiles, consisting of their details and schedule, in a friend list.
+TimetaBRO allows users to store friend profiles, consisting of their details and schedule, in a friend list.
 It facilitates easy visual comparison between the user's timetable and any selected friend in the list,
 and can search for common free times between the user and either all friends, or a specified friend.
 This effectively eliminates the need to hop between timetables
