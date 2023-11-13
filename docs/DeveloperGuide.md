@@ -141,7 +141,7 @@ The `Model` component stores and manages data. It accomplishes this by creating 
 **Functionality:**
 
 * `Model` is not dependent on the other packages.
-* `Ui` references the `Model` to retrieve relevant information about the `User` and the friends to be displayed on the `MainWindow`.
+* `UI` references the `Model` to retrieve relevant information about the `User` and the friends to be displayed on the `MainWindow`.
 * `Logic` component communicates with the `Model` to make modifications based on the commands inputted.
 * `Storage` component refers to the `Model` to store the data on the computer's local memory.
 
@@ -151,12 +151,12 @@ The `Model` component stores and manages data. It accomplishes this by creating 
 
 The `Model` can be broken down into its subpackages:
 
-* `Person` subpackage:
+* `person` subpackage:
   * Represents a `Person` in TimetaBRO and their attributes that the application manages,
     namely their `Name`, `Phone` number, `Email`, `Address`, `Birthday` and `Schedule`.
   * `UniquePersonList` ensures that the list of persons does not contain duplicate phone numbers or emails, and supports basic list operations.\
     <img src="images/TimetableClassDiagram.png" width="350" />
-  * `timetable` subpackage encapsulates a person's schedule that includes a list of module timings (`Module`),
+  * `timetable` subpackage within the `person` subpackage encapsulates a person's schedule that includes a list of module timings (`Module`),
     co-curricular activities timings (`Cca`), and dated events (`DatedEvent`). The `Schedule` class provides functionality
     to retrieve the schedule for the current week, for a specific day, and to manage free time within the schedule. It also
     supports operations to add, edit, and delete various time blocks like modules and CCAs, ensuring that there are no
@@ -274,7 +274,7 @@ A free time is also a timeslot in the schedule, but is not displayed hence does 
 
 ![SolutionDomain](images/TimetableSolutionDomain.png)
 
-The `logic` component interacts with the `timetable` via these command classes:
+The `Logic` component interacts with the `timetable` via these command classes:
 * `AddScheduleCommand`, `RemoveScheduleCommand` - adds/removes a cca or module time slot.
 * `AddEventCommand`, `RemoveEventCommand` - adds/removes a dated event time slot.
 * `SetReminderCommand`, `RemoveReminderCommand` - adds/removes reminders from specified dated event.
@@ -282,9 +282,9 @@ The `logic` component interacts with the `timetable` via these command classes:
 
 The `Ui` component interacts with the `timetable` by:
 
-Hence, `Schedule` is implemented as the facade class for the timetable package. The `logic` and `ui` components need to access functionality
+Hence, `Schedule` is implemented as the facade class for the timetable package. The `Logic` and `Ui` components need to access functionality
 deep inside the `timetable` component, but they should not be exposed to its internal details, such as the `TimeBlock` being the
-superclass of `DatedEvent`. Hence, they update/retrieve information about the `timetable` only through `schedule`. This reduces coupling in
+superclass of `DatedEvent`. Hence, they update/retrieve information about the `timetable` only through `Schedule`. This reduces coupling in
 the design and increases abstraction.
 
 ### 4.5 Click to View Friend Timetable Feature
@@ -462,7 +462,6 @@ helps users efficiently manage and keep up with their friendships.
 | `* *`    | student           | view my friends' timetables                                                       | know more about their day                                                  |
 | `* *`    | student           | visually compare my timetable with that of my friends                             | quickly identify overlaps or free times                                    |
 | `* *`    | student           | identify common modules with my friends                                           | attend classes with them                                                   |                                    |
-| `*`      | student           | give my friends nicknames and set their profile pictures in my list               | personalize and easily identify them                                       |                                                |                                        |
 
 
 ### 6.3 Use cases
@@ -570,7 +569,7 @@ helps users efficiently manage and keep up with their friendships.
 
 **Extensions**
 
-* 2a. The list is empty
+* 2a. The list is empty.
 
   Use case ends.
 
@@ -599,20 +598,24 @@ helps users efficiently manage and keep up with their friendships.
 
 **Extensions**
 
-* 2a. The list is empty
+* 2a. The list is empty.
 
   Use case ends.
-* 3a. Friend has no common free time with User
+
+* 3a. Friend has no common free time with User.
+
   * 3a1. TimetaBRO indicates to the user that they have no common free time.
 
   Use case ends.
 
-* 3b. Given index is invalid
-  * 3b1. TimetaBRO shows an error message
+* 3b. Given index is invalid.
+
+  * 3b1. TimetaBRO shows an error message.
 
   Use case resumes at step 2.
 
-* 3c. User has no free time
+* 3c. User has no free time.
+
   * 3c1. TimetaBRO indicates to the user that they have no free time.
 
   Use case ends.
@@ -620,8 +623,8 @@ helps users efficiently manage and keep up with their friendships.
 **Use case: UC07 - Add event to schedule**
 
 **MSS**
-1. User requests to add a new event to indicated person's schedule.
-2. TimetaBRO adds the event to the indicated person's schedule.
+1. User requests to add a new event to indicated person's schedule
+2. TimetaBRO adds the event to the indicated person's schedule
 
 Use case ends.
 
@@ -631,11 +634,13 @@ Use case ends.
   Use case continues from step 1.
 
 * 1b. Not all the required fields of the event are provided.
+
   * 1b1. TimetaBRO shows an error message.
 
   Use case continues from step 1.
 
-* 1c. Event details inputted do not follow the fields constraints
+* 1c. Event details inputted do not follow the fields constraints.
+
   * 1c1. TimetaBRO shows an error message.
 
   Use case continues from step 1.
@@ -643,8 +648,8 @@ Use case ends.
 **Use case: UC08 - Clear list of friends**
 
 **MSS**
-1. User requests to clear all friends from the list.
-2. TimetaBRO clears the entire list of friends.
+1. User requests to clear all friends from the list
+2. TimetaBRO clears the entire list of friends
 
     Use case ends.
 
@@ -667,33 +672,40 @@ Use case ends.
 **Use case: UC11 - List friends**
 
 **MSS**
-1. User requests to list friends.
-2. TimetaBRO shows a list of all friends.
+1. User requests to list friends
+2. TimetaBRO shows a list of all friends
 
     Use case ends.
 
 **Use case: UC12 - Remove recurring event from schedule**
 
 **MSS**
-1. User requests to remove a recurring event from a specified person's schedule.
-2. TimetaBRO removes the event from the schedule.
+1. User requests to remove a recurring event from a specified person's schedule
+2. TimetaBRO removes the event from the schedule
 
     Use case ends.
 
 **Extensions**
 * 1a. Given index to specify the person is invalid.
+
   * 1a1. TimetaBRO shows an error message.
 
     Use case continues from step 1.
+
 * 1b. Event details inputted are not in the specified person's schedule.
+
   * 1b1. TimetaBRO shows an error message.
 
     Use case continues from step 1.
+
 * 1c. Not all the required fields are provided.
+
   * 1c1. TimetaBRO shows an error message.
 
     Use case continues from step 1.
+
 * 1d. Event details provided are not within the parameters' specified constraints according to the User Guide.
+
   * 1d1. TimetaBRO shows an error message.
 
     Use case continues from step 1.
@@ -701,23 +713,26 @@ Use case ends.
 **Use case: UC13 - Remove reminder from non-recurring event**
 
 **MSS**
-1. User requests to remove a reminder from an event from a specified person's schedule.
-2. TimetaBRO removes the reminder from the event.
+1. User requests to remove a reminder from an event from a specified person's schedule
+2. TimetaBRO removes the reminder from the event
 
     Use case ends.
 
 **Extensions**
 * 1a. Given index to specify the person is invalid.
+
     * 1a1. TimetaBRO shows an error message.
 
       Use case continues from step 1.
 
 * 1b. Event name inputted are not in the specified person's schedule.
+
     * 1b1. TimetaBRO shows an error message.
 
       Use case continues from step 1.
 
 * 1c. Event name not provided.
+
     * 1c1. TimetaBRO shows an error message.
 
       Use case continues from step 1.
@@ -725,23 +740,26 @@ Use case ends.
 **Use case: UC14 - Set reminder for non-recurring event**
 
 **MSS**
-1. User requests to set a reminder for an event in a specified person's schedule.
-2. TimetaBRO turns on the reminder for the event.
+1. User requests to set a reminder for an event in a specified person's schedule
+2. TimetaBRO turns on the reminder for the event
 
     Use case ends.
 
 **Extensions**
 * 1a. Given index to specify the person is invalid.
+
     * 1a1. TimetaBRO shows an error message.
 
       Use case continues from step 1.
 
 * 1b. Event name inputted are not in the specified person's schedule.
+
     * 1b1. TimetaBRO shows an error message.
 
       Use case continues from step 1.
 
 * 1c. Event name not provided.
+
     * 1c1. TimetaBRO shows an error message.
 
       Use case continues from step 1.
