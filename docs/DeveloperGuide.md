@@ -425,7 +425,6 @@ helps users efficiently manage and keep up with their friendships.
 
 | Priority | As a …​           | I want to …​                                                                      | So that I can…​                                                            |
 |----------|-------------------|-----------------------------------------------------------------------------------|----------------------------------------------------------------------------|
-| `* * *`  | new user          | see a welcoming popup when I first open the app                                   | navigate the app easily and fill up my own details                         |
 | `* * *`  | user              | add contacts to my list of friends using information like name and contact details | identify them more easily                                                  |
 | `* * *`  | user              | view my list of friends                                                           | see all my friends in a glance                                             |
 | `* * *`  | user              | edit details of my friends                                                        | keep their information up to date or change any wrongly filled information |
@@ -749,13 +748,13 @@ Use case ends.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Performance**: Speed at which the app completes queries.
 * **Tampering**: Modifying data without permission from the owner of said data.
-* **normal usage**: Day-to-day usage of the app without any errors occurring.
+* **Normal usage**: Day-to-day usage of the app without any errors occurring.
 * **Optimal user experience**: User can utilise all functionality without bugs and lag.
-* **Event**:
-* **Non-recurring event**:
-* **Recurring event**:
-* **Timetable**:
-* **Reminder**:
+* **Event**: Time block that can be added to a Person's schedule that is in increments of 30 minutes.
+* **Non-recurring event**: Dated time block that only appears on the specified date.
+* **Recurring event**: Time block that repeats each week on the same day and time.
+* **Timetable**: Grid that is shown in the display profiles that showcases sorted time blocks.
+* **Reminder**: 
 
 --------------------------------------------------------------------------------------------------------------------
 
