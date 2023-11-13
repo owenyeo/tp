@@ -98,7 +98,7 @@ The `UI` component,
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-Depending on the state of the application, certain parts of the UI are shown or hidden in `MainWindow`. eg. `HelpWindow` and `SelectedFriendCard`.
+Depending on the state of the application, certain parts of the UI are shown or hidden in `MainWindow`. e.g. `HelpWindow` and `SelectedFriendCard`.
 
 Upon TimetaBRO being launched, the `Reminder` window will be shown on the bottom right hand corner of the desktop's screen.
 
@@ -142,7 +142,7 @@ The `Model` component stores and manages data. It accomplishes this by creating 
 **Functionality:**
 
 * `Model` is not dependent on the other packages.
-* `Ui` references the `Model` to retrieve relevant information about the `User` and the friends to be displayed on the `MainWindow`.
+* `UI` references the `Model` to retrieve relevant information about the `User` and the friends to be displayed on the `MainWindow`.
 * `Logic` component communicates with the `Model` to make modifications based on the commands inputted.
 * `Storage` component refers to the `Model` to store the data on the computer's local memory.
 
@@ -152,12 +152,12 @@ The `Model` component stores and manages data. It accomplishes this by creating 
 
 The `Model` can be broken down into its subpackages:
 
-* `Person` subpackage:
+* `person` subpackage:
   * Represents a `Person` in TimetaBRO and their attributes that the application manages,
     namely their `Name`, `Phone` number, `Email`, `Address`, `Birthday` and `Schedule`.
   * `UniquePersonList` ensures that the list of persons does not contain duplicate phone numbers or emails, and supports basic list operations.\
     <img src="images/TimetableClassDiagram.png" width="350" />
-  * `timetable` subpackage encapsulates a person's schedule that includes a list of module timings (`Module`),
+  * `timetable` subpackage within the `person` subpackage encapsulates a person's schedule that includes a list of module timings (`Module`),
     co-curricular activities timings (`Cca`), and dated events (`DatedEvent`). The `Schedule` class provides functionality
     to retrieve the schedule for the current week, for a specific day, and to manage free time within the schedule. It also
     supports operations to add, edit, and delete various time blocks like modules and CCAs, ensuring that there are no
@@ -212,6 +212,8 @@ and return a list of them.
 who has birthdays on the day itself.
 - `showReminder` will then display birthday reminders followed by dated events reminders in the relevant textareas.
 
+<img src="images/Reminder-window.png" width="300" />
+
 ### 4.2 Add friend's schedule feature
 
 #### 4.2.1 Description
@@ -239,6 +241,7 @@ User can edit and add their own details, such as their phone numbers and birthda
 - `e\`: E-mail
 - `t\`: Tags
 - `a\`: Address
+- `b\`: Birthday
 
 #### 4.3.2 Implementation
 - The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which proceeds
@@ -254,7 +257,7 @@ to call `AddressBookParser#parseCommand()` method, which then calls `EditUserCom
 
  <img src="images/EditUserExecuteSequenceDiagram.png" width="500" />
 
-### 4.4 Model design considerations for schedule
+### 4.4 Schedule Model feature
 
 #### 4.4.1 Description
 
@@ -275,7 +278,7 @@ A free time is also a timeslot in the schedule, but is not displayed hence does 
 
 ![SolutionDomain](images/TimetableSolutionDomain.png)
 
-The `logic` component interacts with the `timetable` via these command classes:
+The `Logic` component interacts with the `timetable` via these command classes:
 * `AddScheduleCommand`, `RemoveScheduleCommand` - adds/removes a cca or module time slot.
 * `AddEventCommand`, `RemoveEventCommand` - adds/removes a dated event time slot.
 * `SetReminderCommand`, `RemoveReminderCommand` - adds/removes reminders from specified dated event.
@@ -283,9 +286,9 @@ The `logic` component interacts with the `timetable` via these command classes:
 
 The `Ui` component interacts with the `timetable` by:
 
-Hence, `Schedule` is implemented as the facade class for the timetable package. The `logic` and `ui` components need to access functionality
+Hence, `Schedule` is implemented as the facade class for the timetable package. The `Logic` and `Ui` components need to access functionality
 deep inside the `timetable` component, but they should not be exposed to its internal details, such as the `TimeBlock` being the
-superclass of `DatedEvent`. Hence, they update/retrieve information about the `timetable` only through `schedule`. This reduces coupling in
+superclass of `DatedEvent`. Hence, they update/retrieve information about the `timetable` only through `Schedule`. This reduces coupling in
 the design and increases abstraction.
 
 ### 4.5 Click to View Friend Timetable Feature
@@ -297,6 +300,9 @@ it becomes selected,
 and is displayed on the bottom half of the right hand side of the app.
 
 #### 4.5.2 Implementation
+
+<img src="images/ClickToViewActivityDiagram.png" />
+
 * The user clicks on the cell within the `ListView` of the friend list.
 * The `onMouseClicked` event is triggered upon the user's click.
 * `PersonListPanel.PersonListViewCell#updateItem()` handles this `MouseEvent` object:
@@ -308,85 +314,6 @@ and retrieves the selected person from it using `ListCellSelectedEvent#getSelect
 * The selected person is used to create a new `SelectedFriendCard`, which is stored under `friendProfile`.
 * The contents of the `SelectedFriendPlaceHolder` is replaced with the `friendProfile`.
 * The position of the selected friend in the friend list is saved in `selectedFriendPos` for refreshing the display with any changes.
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -427,7 +354,7 @@ and hopping around the media of your chats to view the timetables.
 
 #### 6.1.2 How TimetaBRO solves the problem and makes users' lives easier
 
-TimtaBRO allows users to store friend profiles, consisting of their details and schedule, in a friend list.
+TimetaBRO allows users to store friend profiles, consisting of their details and schedule, in a friend list.
 It facilitates easy visual comparison between the user's timetable and any selected friend in the list,
 and can search for common free times between the user and either all friends, or a specified friend.
 This effectively eliminates the need to hop between timetables
@@ -463,14 +390,12 @@ helps users efficiently manage and keep up with their friendships.
 | `* *`     | student          | view my friends' timetables                                                            | know more about their day                                                                            |
 | `* *`     | student          | visually compare my timetable with that of my friends                                  | quickly identify overlaps or free times                                                              |
 | `* *`     | student          | identify common modules with my friends                                                | attend classes with them                                                                             |
-| `*`       | student          | give my friends nicknames and set their profile pictures in my list                    | personalize and easily identify them                                                                 |
-
 
 ### 6.3 Use cases
 
 (For all use cases below, the **System** is the `TimetaBRO` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a friend**
+**Use case: UC01 - Delete a friend**
 
 **MSS**
 
@@ -494,7 +419,7 @@ helps users efficiently manage and keep up with their friendships.
       Use case resumes at step 2.
 
 
-**Use case: Edit a person's details**
+**Use case: UC02 - Edit a person's details**
 
 **MSS**
 
@@ -521,7 +446,7 @@ helps users efficiently manage and keep up with their friendships.
 
       Use case resumes at step 2.
 
-**Use case: Add a friend**
+**Use case: UC03 - Add a friend**
 
 **MSS**
 
@@ -540,7 +465,7 @@ helps users efficiently manage and keep up with their friendships.
 
       Use case resumes at step 2.
 
-**Use case: Find a friend**
+**Use case: UC04 - Find a friend**
 
 **MSS**
 
@@ -558,7 +483,7 @@ helps users efficiently manage and keep up with their friendships.
   Use case ends.
 
 
-**Use case: Check for common free times with all friends**
+**Use case: UC05 - Check for common free times with all friends**
 
 **MSS**
 
@@ -571,7 +496,7 @@ helps users efficiently manage and keep up with their friendships.
 
 **Extensions**
 
-* 2a. The list is empty
+* 2a. The list is empty.
 
   Use case ends.
 
@@ -587,7 +512,7 @@ helps users efficiently manage and keep up with their friendships.
 
       Use case ends.
 
-**Use case: Check for common free times with a specific friend**
+**Use case: UC06 - Check for common free times with a specific friend**
 
 **MSS**
 
@@ -600,29 +525,33 @@ helps users efficiently manage and keep up with their friendships.
 
 **Extensions**
 
-* 2a. The list is empty
+* 2a. The list is empty.
 
   Use case ends.
-* 3a. Friend has no common free time with User
+
+* 3a. Friend has no common free time with User.
+
   * 3a1. TimetaBRO indicates to the user that they have no common free time.
 
   Use case ends.
 
-* 3b. Given index is invalid
-  * 3b1. TimetaBRO shows an error message
+* 3b. Given index is invalid.
+
+  * 3b1. TimetaBRO shows an error message.
 
   Use case resumes at step 2.
 
-* 3c. User has no free time
+* 3c. User has no free time.
+
   * 3c1. TimetaBRO indicates to the user that they have no free time.
 
   Use case ends.
 
-**Use case: Add event to schedule**
+**Use case: UC07 - Add event to schedule**
 
 **MSS**
-1. User requests to add a new event to indicated person's schedule.
-2. TimetaBRO adds the event to the indicated person's schedule.
+1. User requests to add a new event to indicated person's schedule
+2. TimetaBRO adds the event to the indicated person's schedule
 
 Use case ends.
 
@@ -632,24 +561,26 @@ Use case ends.
   Use case continues from step 1.
 
 * 1b. Not all the required fields of the event are provided.
+
   * 1b1. TimetaBRO shows an error message.
 
   Use case continues from step 1.
 
-* 1c. Event details inputted do not follow the fields constraints
+* 1c. Event details inputted do not follow the fields constraints.
+
   * 1c1. TimetaBRO shows an error message.
 
   Use case continues from step 1.
 
-**Use case: Clear list of friends**
+**Use case: UC08 - Clear list of friends**
 
 **MSS**
-1. User requests to clear all friends from the list.
-2. TimetaBRO clears the entire list of friends.
+1. User requests to clear all friends from the list
+2. TimetaBRO clears the entire list of friends
 
     Use case ends.
 
-**Use case: Exit the application**
+**Use case: UC09 - Exit the application**
 
 **MSS**
 1. User requests to exit the application.
@@ -657,7 +588,7 @@ Use case ends.
 
     Use case ends.
 
-**Use case: Find help**
+**Use case: UC10 - Find help**
 
 **MSS**
 1. User requests for help
@@ -665,84 +596,97 @@ Use case ends.
 
     Use case ends.
 
-**Use case: List friends**
+**Use case: UC11 - List friends**
 
 **MSS**
-1. User requests to list friends.
-2. TimetaBRO shows a list of all friends.
+1. User requests to list friends
+2. TimetaBRO shows a list of all friends
 
     Use case ends.
 
-**Use case: Remove recurring event from schedule**
+**Use case: UC12 - Remove recurring event from schedule**
 
 **MSS**
-1. User requests to remove a recurring event from a specified person's schedule.
-2. TimetaBRO removes the event from the schedule.
+1. User requests to remove a recurring event from a specified person's schedule
+2. TimetaBRO removes the event from the schedule
 
     Use case ends.
 
 **Extensions**
 * 1a. Given index to specify the person is invalid.
+
   * 1a1. TimetaBRO shows an error message.
 
     Use case continues from step 1.
+
 * 1b. Event details inputted are not in the specified person's schedule.
+
   * 1b1. TimetaBRO shows an error message.
 
     Use case continues from step 1.
+
 * 1c. Not all the required fields are provided.
+
   * 1c1. TimetaBRO shows an error message.
 
     Use case continues from step 1.
+
 * 1d. Event details provided are not within the parameters' specified constraints according to the User Guide.
+
   * 1d1. TimetaBRO shows an error message.
 
     Use case continues from step 1.
 
-**Use case: Remove reminder from non-recurring event**
+**Use case: UC13 - Remove reminder from non-recurring event**
 
 **MSS**
-1. User requests to remove a reminder from an event from a specified person's schedule.
-2. TimetaBRO removes the reminder from the event.
+1. User requests to remove a reminder from an event from a specified person's schedule
+2. TimetaBRO removes the reminder from the event
 
     Use case ends.
 
 **Extensions**
 * 1a. Given index to specify the person is invalid.
+
     * 1a1. TimetaBRO shows an error message.
 
       Use case continues from step 1.
 
 * 1b. Event name inputted are not in the specified person's schedule.
+
     * 1b1. TimetaBRO shows an error message.
 
       Use case continues from step 1.
 
 * 1c. Event name not provided.
+
     * 1c1. TimetaBRO shows an error message.
 
       Use case continues from step 1.
 
-**Use case: Set reminder for non-recurring event**
+**Use case: UC14 - Set reminder for non-recurring event**
 
 **MSS**
-1. User requests to set a reminder for an event in a specified person's schedule.
-2. TimetaBRO turns on the reminder for the event.
+1. User requests to set a reminder for an event in a specified person's schedule
+2. TimetaBRO turns on the reminder for the event
 
     Use case ends.
 
 **Extensions**
 * 1a. Given index to specify the person is invalid.
+
     * 1a1. TimetaBRO shows an error message.
 
       Use case continues from step 1.
 
 * 1b. Event name inputted are not in the specified person's schedule.
+
     * 1b1. TimetaBRO shows an error message.
 
       Use case continues from step 1.
 
 * 1c. Event name not provided.
+
     * 1c1. TimetaBRO shows an error message.
 
       Use case continues from step 1.
