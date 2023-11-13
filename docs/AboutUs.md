@@ -16,7 +16,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/andrefoo)]
 [[portfolio](team/andrefoo.md)]
 
-* Role: Developer
+* Role: Model Developer
+* Secondary Role: UG/DG IC
 
 ### Khiew Yiquan, Edric
 
@@ -25,8 +26,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/lululwtv)]
 [[portfolio](team/lululwtv.md)]
 
-* Role: Developer
-* Responsibilities: Ui
+* Role: Logic Developer
+* Secondary Role: Milestones Tracker
 
 ### Krista Yeo Su-Anne
 
@@ -35,8 +36,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/kristayeo)]
 [[portfolio](team/kristayeo.md)]
 
-* Role: UI
-* Responsibilities: Data
+* Role: UI IC
+* Secondary Role: UG/DG IC
 
 ### Owen Yeo Le Yang
 
@@ -45,8 +46,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/owenyeo)]
 [[portfolio](team/owenyeo.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Storage Developer
+* Secondary Role: Code Quality IC
 
 ### Teo Zheng Yang
 
@@ -55,5 +56,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/teozhengyang)]
 [[portfolio](team/teozhengyang.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Test Engineer
+* Secondary Role: Reminder Feature
