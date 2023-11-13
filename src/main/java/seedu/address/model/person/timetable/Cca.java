@@ -108,18 +108,6 @@ public class Cca extends TimeBlock {
         return "Cca: [" + ccaName + "] " + super.toString();
     }
 
-    /**
-     * Converts the CCA object to its JSON string representation.
-     *
-     * @return JSON string representation of the CCA.
-     */
-    public String toJsonString() {
-        return "{"
-                + "\"ccaName\": \"" + ccaName + "\","
-                + "\"timeBlock\": \"" + super.toString() + "\""
-                + "}";
-    }
-
     @Override
     public boolean equals(Object other) {
         if (other == this) {

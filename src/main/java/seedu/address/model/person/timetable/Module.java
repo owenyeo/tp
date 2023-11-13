@@ -108,18 +108,6 @@ public class Module extends TimeBlock {
         return true;
     }
 
-    /**
-     * Returns a Json readable string representation of the instance of the module.
-     *
-     * @return String that is readable by JsonAdaptableModule.
-     */
-    public String toJsonString() {
-        return "{"
-                + "\"name\": \"" + moduleName + "\","
-                + "\"timeBlock\": \"" + super.toString() + "\""
-                + "}";
-    }
-
     @Override
     public String toString() {
         return "Module: [" + moduleName + "] " + super.toString();

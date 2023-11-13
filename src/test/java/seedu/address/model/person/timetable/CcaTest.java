@@ -64,15 +64,6 @@ public class CcaTest {
     }
 
     @Test
-    public void toJsonString_success() {
-        Cca cca = new Cca("badminton", "monday 1200 1400");
-        assertEquals("{"
-                        + "\"ccaName\": \"" + "badminton" + "\","
-                        + "\"timeBlock\": \"" + "[Monday 1200 1400]" + "\""
-                        + "}", cca.toJsonString());
-    }
-
-    @Test
     public void isValidCcaName() {
         // null name
         assertThrows(NullPointerException.class, () -> Cca.isValidCcaName(null));
