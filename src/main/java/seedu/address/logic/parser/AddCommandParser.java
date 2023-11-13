@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -77,7 +76,8 @@ public class AddCommandParser implements Parser<AddCommand> {
     private static void checkPresentPrefixes(ArgumentMultimap argumentMultimap) throws ParseException {
         if (!arePrefixesPresent(argumentMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_BIRTHDAY, PREFIX_TAG)) {
-            List<Prefix> missingPrefix = getMissingPrefixes(argumentMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+            List<Prefix> missingPrefix = getMissingPrefixes(argumentMultimap, PREFIX_NAME,
+                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_BIRTHDAY, PREFIX_TAG);
             String missingPrefixString = "";
             for (Prefix prefix : missingPrefix) {
@@ -116,7 +116,8 @@ public class AddCommandParser implements Parser<AddCommand> {
     private static void checkUniquePrefixes(ArgumentMultimap argumentMultimap) throws ParseException {
         if (!arePrefixesUnique(argumentMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_BIRTHDAY, PREFIX_TAG)) {
-            List<Prefix> duplicatePrefix = getDuplicatePrefixes(argumentMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+            List<Prefix> duplicatePrefix = getDuplicatePrefixes(argumentMultimap, PREFIX_NAME,
+                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_BIRTHDAY, PREFIX_TAG);
             String duplicatePrefixString = "";
             for (Prefix prefix : duplicatePrefix) {
