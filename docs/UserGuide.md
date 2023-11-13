@@ -1009,11 +1009,11 @@ Command parameter inputs have constraints to ensure their use is streamlined.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### 5. Saving the data
+## 5. Saving the data
 
 TimetaBRO data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### 6. Editing the data file
+## 6. Editing the data file
 
 TimetaBRO data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
