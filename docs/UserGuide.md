@@ -1023,34 +1023,36 @@ If your changes to the data file makes its format invalid, TimetaBRO will discar
 
 ## **7. FAQ**
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TimetaBRO home folder.
+**How do I transfer my data to another Computer?**<br>
+Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TimetaBRO home folder.
 
-**Q**: Is TimetaBRO compatible with Mac and Linux operating systems, or is it Windows-specific?<br>
-**A**: TimetaBRO is compatible with multiple operating systems, including Windows, Mac, and Linux! It runs on systems that support Java 11, so you can use it on your preferred platform.
+**Is TimetaBRO compatible with Mac and Linux operating systems, or is it Windows-specific?**<br>
+TimetaBRO is compatible with multiple operating systems, including Windows, Mac, and Linux! It runs on systems that support Java 11, so you can use it on your preferred platform.
 
-**Q:** Can I import my friend's schedule from a different calendar application into TimetaBRO?<br>
-**A:** Nope! TimetaBRO does not offer a direct import feature for schedules from other calendar applications. You'll need to manually add your friends' schedules to TimetaBRO using the add command. Tedious, but we're on it!
+**Can I import my friend's schedule from a different calendar application into TimetaBRO?**<br>
+Nope! TimetaBRO does not offer a direct import feature for schedules from other calendar applications. You'll need to manually add your friends' schedules to TimetaBRO using the add command. Tedious, but we're on it!
 
-**Q:** Is there a way to set recurring events for specific dates or weekdays, like every Tuesday, without manually adding them one by one?<br>
-**A:** Yes! You can add recurring events for specific weekdays in TimetaBRO using the addschedule command. This feature allows you to set events for particular days of the week, making it easier to input recurring events.
+**Is there a way to set recurring events for specific dates or weekdays, like every Tuesday, without manually adding them one by one?**<br>
+Yes! You can add recurring events for specific weekdays in TimetaBRO using the addschedule command. This feature allows you to set events for particular days of the week, making it easier to input recurring events.
 
-**Q:** What happens if I accidentally delete a friend or event in TimetaBRO? Is there a way to recover deleted data?<br>
-**A:** Sorry! TimetaBRO does not have a built-in data recovery feature. When you delete a friend or event, the data is permanently removed from the application. Do double check before deleting something, or clearing your app!
-**Q:** How can I customize the reminder settings for events added to TimetaBRO?<br>
-**A:** You can customize the reminder settings for events when adding them using the addevent command. The r/y or r/n option allows you to enable or disable reminders for specific events.
+**What happens if I accidentally delete a friend or event in TimetaBRO? Is there a way to recover deleted data?**<br>
+Sorry! TimetaBRO does not have a built-in data recovery feature. When you delete a friend or event, the data is permanently removed from the application. Do double check before deleting something, or clearing your app!
 
-**Q:** Is there a way to share my TimetaBRO schedule with others or export it to a different format, such as a calendar file?<br>
-**A:** Nope! TimetaBRO currently does not support sharing schedules with others or exporting them to external formats. It primarily functions as a personal scheduling tool.
 
-**Q:** Can I remove a specific event or schedule from my timetable or my friends' timetable? <br>
-**A:** Not yet! However, for now, you may set slightly different names for events with the same name, such as 'Meetup with Jason (1)' and 'Meetup with Jason (2)' so that you can select a the specific event to delete later.
+**How can I customize the reminder settings for events added to TimetaBRO?**<br>
+You can customize the reminder settings for events when adding them using the addevent command. The r/y or r/n option allows you to enable or disable reminders for specific events.
 
-**Q:** If I have two events that overlap, can I add both of them to the calendar? <br>
-**A:** Nope! As TimetaBRO was designed to be a timetable management app, we would not be allowing overlapping events to be added into the timetable. You don't wanna double book your own time!
+**Is there a way to share my TimetaBRO schedule with others or export it to a different format, such as a calendar file?**<br>
+Nope! TimetaBRO currently does not support sharing schedules with others or exporting them to external formats. It primarily functions as a personal scheduling tool.
 
-**Q:** `addevent` does not allow me to add an event with a name because I have another event with the same name, but thhat event has already passed. How can I add this new event?<br>
-**A:** No worries! You can use `rmevent INDEX en/EVENT_NAME` to first remove the event with the same name, then continue to use `addevent` to add the event you would like to add
+**Can I remove a specific event or schedule from my timetable or my friends' timetable?**<br>
+Not yet! However, for now, you may set slightly different names for events with the same name, such as 'Meetup with Jason (1)' and 'Meetup with Jason (2)' so that you can select a the specific event to delete later.
+
+**If I have two events that overlap, can I add both of them to the calendar?**<br>
+Nope! As TimetaBRO was designed to be a timetable management app, we would not be allowing overlapping events to be added into the timetable. You don't wanna double book your own time!
+
+**`addevent` does not allow me to add an event with a name because I have another event with the same name, but thhat event has already passed. How can I add this new event?**<br>
+No worries! You can use `rmevent INDEX en/EVENT_NAME` to first remove the event with the same name, then continue to use `addevent` to add the event you would like to add.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1082,6 +1084,6 @@ For you TLDR-ers!
 | **Edit User Info**                          | `user [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`<br> Example: `user n/James Lee e/jameslee@example.com`                                                        |
 | **List All Friends**                        | `list`                                                                                                                                                                               |
 | **View Help**                               | `help`                                                                                                                                                                               |
-| **Find Common Free Times with friend**      | `cft [INDEX]` Example: `cft 1`                                                                                                                                                       |
+| **Find Common Free Times with friend**      | `cft INDEX` <br> Example: `cft 1`                                                                                                                                                       |
 | **Find Common Free Times with all friends** | `cft`<br>                                                                                                                                                                            |
 | **Exit**                                    | `exit`                                                                                                                                                                               |
