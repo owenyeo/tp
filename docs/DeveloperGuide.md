@@ -206,6 +206,22 @@ who has birthdays on the day itself.
 
 ### Add friend's schedule feature
 
+#### Description
+User can add a recurring event to their friend's timetable, such as a Module or a CCA, to indicate their friend's weekly schedules. This can be done so using the command word `addschedule`, followed by an INDEX (either "user" or an index number reflecting the index of the friend in the friends list), and the following prefixes: 
+- `type/`: Schedule type - Module/CCA
+- `en/`: CCA/Module name
+- `h/` : Day, Start Time and End Time (DDD HHMM HHMM)
+
+#### Implementation
+- The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which proceeds to call `AddressBookParser#parseCommand()` method, which then calls `AddScheduleCommandParser#parse()`.
+- `AddScheduleCommandParser#parse()` parses the information from all the different prefixes, and returns a new instance of `AddScheduleCommand` with the relevant parsed information
+- The `AddScheduleCommand` is then passed up to the `LogicManager`
+- `LogicManager#execute(AddScheduleCommand)` is called, which then calls either `Schedule#addCca()` or `Schedule#addModule()` on a `Person` object depending on the user's input for the `type/` prefix
+- The `Person` object could either be the user, which is retrieved using `Model#getUser()`, or a friend in the addressbook, which is retrieved using `Model#getFilteredPersonList()#get()`, depending on the user's input for `INDEX`
+- The `Schedule` of the corresponding `Person` is then updated
+
+<img src="images/AddScheduleSequenceDiagram.png"/>
+
 ### Edit user details feature
 
 #### Description
