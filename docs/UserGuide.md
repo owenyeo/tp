@@ -1066,9 +1066,6 @@ Not yet! However, for now, you may set slightly different names for events with 
 **If I have two events that overlap, can I add both of them to the calendar?**<br>
 Nope! As TimetaBRO was designed to be a timetable management app, we would not be allowing overlapping events to be added into the timetable. You don't wanna double book your own time!
 
-**`addevent` does not allow me to add an event with a name because I have another event with the same name, but that event has already passed. How can I add this new event?**<br>
-No worries! You can use `rmevent INDEX en/EVENT_NAME` to first remove the event with the same name, then continue to use `addevent` to add the event you would like to add.
-
 **Why do my event names automatically change to all capitalized letters?**<br>
 We want to standardize the format of all event names to prevent users from accidentally adding multiple events wit the same names but in different formats! (i.e. only first letter is capitalized vs only last letter is capitalized)
 
