@@ -12,7 +12,7 @@ TimetaBRO, your ultimate companion for managing your university life, social int
 ### Summary of Contributions
 
 **Code contributed:**
-https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=owenyeo&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22
+[Link](https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=owenyeo&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22)
 
 **Enhancements implemented:**
 * **New Feature**: Added the ability to store user data, such as birthdays and schedules. It is stored in a Jackson file `userdata.json`
