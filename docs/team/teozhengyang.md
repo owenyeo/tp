@@ -1,4 +1,7 @@
-# Teo Zheng Yang's Project Portfolio Page
+---
+layout: page
+title: Teo Zheng Yang's Project Portfolio Page
+---
 
 ## Project: TimetaBRO
 
