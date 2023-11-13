@@ -217,7 +217,7 @@ who has birthdays on the day itself.
 ### 4.2 Add friend's schedule feature
 
 #### 4.2.1 Description
-User can add a recurring event to their friend's timetable, such as a Module or a CCA, to indicate their friend's weekly schedules. This can be done so using the command word `addschedule`, followed by an INDEX (either "user" or an index number reflecting the index of the friend in the friends list), and the following prefixes: 
+User can add a recurring event to their friend's timetable, such as a Module or a CCA, to indicate their friend's weekly schedules. This can be done so using the command word `addschedule`, followed by an INDEX (either "user" or an index number reflecting the index of the friend in the friends list), and the following prefixes:
 - `type/`: Schedule type - Module/CCA
 - `en/`: CCA/Module name
 - `h/` : Day, Start Time and End Time (DDD HHMM HHMM)

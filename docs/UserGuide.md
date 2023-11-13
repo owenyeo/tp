@@ -274,7 +274,7 @@ this error message will be shown:
 [error message]
 Message Usage:
 addevent: Adds a non-recurring event to the calendar.
-Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] StartTime (HHMM) EndTime (HHMM)] 
+Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] StartTime (HHMM) EndTime (HHMM)]
 r/[REMINDER: y/n]
 Example: addevent 1 en/CS2103T Lecture h/2020-03-02 1400 1600 r/y
 Note: Index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself
