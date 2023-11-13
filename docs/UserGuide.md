@@ -237,7 +237,7 @@ Missing prefix(es) for en/ type/ h/ !
 
 * Timeslots added of type `module` will be colored blue, while those of type `CCA` will be colored red.
 * To add an event that lasts until the end of the day (midnight), set the end timing as `2400`. We know it isn't ideal, but bear with us!
-* You will not be allowed to add an event that clashes with any existing events. We are making sure you don't double book!
+* You will not be allowed to add an event that clashes with any current or future events. We are making sure you don't double book!
 
 </div>
 
@@ -304,7 +304,7 @@ Events added outside the current week are not visible! The application is stream
 
 * Timeslots added with this command will be green.
 * To add an event that lasts until the end of the day (midnight), set the end timing as `2400`.
-* You will not be allowed to add an event that clashes with any existing events.
+* You will not be allowed to add an event that clashes with any current or future events. Keep those clashes in mind!
 
 </div>
 
@@ -608,7 +608,7 @@ Missing prefix(es) for en/ type/ h/ !
 
 * Timeslots added of type `module` will be colored blue, while those of type `CCA` will be colored red.
 * To add an event that lasts until the end of the day (midnight), set the end timing as `2400`.
-* You will not be allowed to add an event that clashes with any existing events.
+* You will not be allowed to add an event that clashes with any current or future events.
 
 </div>
 
@@ -685,7 +685,7 @@ Missing prefix(es) for en/ h/ r/ !
 
 * Timeslots added with this command will be green.
 * To add an event that lasts until the end of the day (midnight), set the end timing as `2400`.
-* You will not be allowed to add an event that clashes with any existing events.
+* You will not be allowed to add an event that clashes with any current or future events.
 
 </div>
 
