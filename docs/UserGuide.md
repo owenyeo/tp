@@ -39,7 +39,7 @@ Before we jump into it, let's make sure that your TimetaBRO is working properly!
 Here are some commands you can try:
 
   * `add n/Owen p/91792309 b/ 2001-12-26`:
-  adds a friend named Owen, with phone number 91792309 and birthday on 26 December 2001. 
+  adds a friend named Owen, with phone number 91792309 and birthday on 26 December 2001.
   Say hello to your new friend!
 
   * `addschedule 1 type/module en/CS2101 h/Monday 1200 1400`:
