@@ -165,6 +165,33 @@ public class DatedEvent extends TimeBlock {
         return name + " " + super.getTimeBlockString();
     }
 
+    /**
+     * Checks if this event's date is before the given date.
+     * @param date The date to compare with.
+     * @return true if this event's date is before the given date.
+     */
+    public boolean isBefore(LocalDate date) {
+        return this.date.isBefore(date);
+    }
+
+    /**
+     * Checks if this event overlaps with another event.
+     * This method assumes that two events overlap if they are on the same date.
+     * @param event The event to compare with.
+     * @return true if the events overlap.
+     */
+    public boolean isOverlap(DatedEvent event) {
+        if (!this.date.equals(event.date)) {
+            return false;
+        }
+        int thisStartTime = Integer.parseInt(this.getStartTime());
+        int thisEndTime = Integer.parseInt(this.getEndTime());
+        int eventStartTime = Integer.parseInt(event.getStartTime());
+        int eventEndTime = Integer.parseInt(event.getEndTime());
+
+        return thisStartTime < eventEndTime && thisEndTime > eventStartTime;
+    }
+
     @Override
     public boolean equals(Object e) {
         if (e == this) {

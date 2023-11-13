@@ -570,6 +570,10 @@ Use case ends.
 
   Use case continues from step 1.
 
+* 1d. Event clashes with other events in the schedule.
+
+    Use case continues from step 1.
+
 **Use case: UC08 - Clear list of friends**
 
 **MSS**
