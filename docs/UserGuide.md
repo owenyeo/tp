@@ -1046,7 +1046,7 @@ You can customize the reminder settings for events when adding them using the ad
 Nope! TimetaBRO currently does not support sharing schedules with others or exporting them to external formats. It primarily functions as a personal scheduling tool.
 
 **Can I remove a specific event or schedule from my timetable or my friends' timetable?**<br>
-Not yet! However, for now, you may set slightly different names for events with the same name, such as 'Meetup with Jason (1)' and 'Meetup with Jason (2)' so that you can select a the specific event to delete later.
+Not yet! However, for now, you may set slightly different names for events with the same name, such as 'Meetup with Jason (1)' and 'Meetup with Jason (2)' so that you can select a the specific event to delete later. If not, when you try to remove an event from the schedule, it will remove the one that you added first!
 
 **If I have two events that overlap, can I add both of them to the calendar?**<br>
 Nope! As TimetaBRO was designed to be a timetable management app, we would not be allowing overlapping events to be added into the timetable. You don't wanna double book your own time!
@@ -1054,11 +1054,18 @@ Nope! As TimetaBRO was designed to be a timetable management app, we would not b
 **`addevent` does not allow me to add an event with a name because I have another event with the same name, but thhat event has already passed. How can I add this new event?**<br>
 No worries! You can use `rmevent INDEX en/EVENT_NAME` to first remove the event with the same name, then continue to use `addevent` to add the event you would like to add.
 
+**Why do my event names automatically change to all capitalized letters?**<br>
+We want to standardize the format of all event names to prevent users from accidentally adding multiple events wit the same names but in different formats! (i.e only first letter is capitalized vs only last letter is capitalized)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **8. Known issues**
 
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen :( But don't worry! The remedy is to delete the `preferences.json` file created by the application before running the application again! Simple!
+
+2. **The timetable only supports timings in 30-minute gaps** because this is an app made for NUS students! Since NUS timetables are set in 30-minute gaps, we ave adapted this to better fit the NUS timetable style.
+
+3.  While you **can't select a specific event to delete**, don't sweat it. We've got you covered. The events are removed in the order they were added, following a first-in-first-out basis. So, the earliest added event will be the first to bid farewell! If you have any more questions, feel free to ask!
 
 --------------------------------------------------------------------------------------------------------------------
 
