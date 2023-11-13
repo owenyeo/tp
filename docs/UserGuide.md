@@ -169,7 +169,8 @@ A person can have any number of tags (including 0). Go crazy!
 
 **Successful Command:**
 ```
-Edited Your Details: NAME, Phone: PHONE, Email: EMAIL; Address: ADDRESS; Birthday: BIRTHDAY; Tags: [TAG]...​
+Edited Your Details: NAME, Phone: PHONE, Email: EMAIL; Address: ADDRESS; Birthday:
+BIRTHDAY; Tags: [TAG]...​
 ```
 
 **Unsuccessful Command:**\
@@ -212,7 +213,8 @@ this error message will be shown:
 [error message]
 Message Usage:
 addschedule: Adds a schedule to the specified contact.
-Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME h/[DAY_OF_WEEK START_TIME [HHMM] END_TIME [HHMM]]
+Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME h/[DAY_OF_WEEK START_TIME [HHMM]
+END_TIME [HHMM]]
 Example: addschedule 1 type/cca en/Basketball h/Monday 1400 1600
 NOTE: If you want to add a cca/module to yourself, use addschedule user
 Example: addschedule user type/cca en/Basketball h/Monday 1400 1600
@@ -272,7 +274,8 @@ this error message will be shown:
 [error message]
 Message Usage:
 addevent: Adds a non-recurring event to the calendar.
-Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] StartTime (HHMM) EndTime (HHMM)] r/[REMINDER: y/n]
+Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] StartTime (HHMM) EndTime (HHMM)] 
+r/[REMINDER: y/n]
 Example: addevent 1 en/CS2103T Lecture h/2020-03-02 1400 1600 r/y
 Note: Index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself
 ```
@@ -416,15 +419,18 @@ A person can have any number of tags (including 0)
 **Successful Command:**\
 Output:
 ```
-New Person Added: {NAME}, Phone: {PHONE}, Email: {EMAIL}, Address: {ADDRESS}, Birthday: {BIRTHDAY}, tags: [{TAG}]
+New Person Added: {NAME}, Phone: {PHONE}, Email: {EMAIL}, Address: {ADDRESS}, Birthday:
+{BIRTHDAY}, tags: [{TAG}]
 ```
 
 **Unsuccessful Command:**\
 Output:
 ```
 Invalid command format!
-add: Adds a person to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...
-Example: add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 b/2000-01-01 t/friends t/owesMoney
+add: Adds a person to the address book. Parameters: n/NAME p/PHONE e/EMAIL a/ADDRESS
+b/BIRTHDAY [t/TAG]...
+Example: add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25
+b/2000-01-01 t/friends t/owesMoney
 ```
 
 Examples:
@@ -452,15 +458,18 @@ Changes the specified fields of specified friend’s profile.
 
 Output:
 ```
-Edited Person {NAME}; Phone: {PHONE}; Email: {EMAIL}; Address: {ADDRESS}; Birthday: {BIRTHDAY}; tags: [{TAG}]
+Edited Person {NAME}; Phone: {PHONE}; Email: {EMAIL}; Address: {ADDRESS}; Birthday:
+{BIRTHDAY}; tags: [{TAG}]
 ```
 
 **Unsuccessful Command:**\
 Displays an error message:
 ```
 Invalid command format!
-edit: Edits the details of the person identified by the index number used in the displayed person list. Existing values will be overwritten by the input values.
-Parameters: INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]...
+edit: Edits the details of the person identified by the index number used in the displayed person
+list. Existing values will be overwritten by the input values.
+Parameters: INDEX (must be a positive integer) [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]
+[b/BIRTHDAY] [t/TAG]...
 Example: edit 1 p/91234567 e/johndoe@example.com
 ```
 If index given is not in the list, the following error message will be returned:
@@ -572,7 +581,8 @@ this error message will be shown:
 [error message]
 Message Usage:
 addschedule: Adds a schedule to the specified contact.
-Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME h/[DAY_OF_WEEK START_TIME [HHMM] END_TIME [HHMM]]
+Parameters: INDEX type/EVENT_TYPE en/EVENT_NAME h/[DAY_OF_WEEK START_TIME [HHMM]
+END_TIME [HHMM]]
 Example: addschedule 1 type/cca en/Basketball h/Monday 1400 1600
 NOTE: If you want to add a cca/module to yourself, use addschedule user
 Example: addschedule user type/cca en/Basketball h/Monday 1400 1600
@@ -648,9 +658,11 @@ this error message will be shown
 [error message]
 Message Usage:
 addevent: Adds a non-recurring event to the calendar.
-Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] START_TIME [HHMM] END_TIME [HHMM] r/[REMINDER: y/n]
+Parameters: INDEX en/EVENT_NAME h/[Date [YYYY-MM-DD] START_TIME [HHMM] END_TIME [HHMM]
+r/[REMINDER: y/n]
 Example: addevent 1 en/CS2103T Final Exam h/2020-03-02 1400 1600 r/y
-Note: Index should be the index of the friend you are adding the dated event to or 'user' if you would like to add the event to yourself
+Note: Index should be the index of the friend you are adding the dated event to or
+'user' if you would like to add the event to yourself
 ```
 
 The error message at the top of the command feedback above will specify what needs to be rectified.\
