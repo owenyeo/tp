@@ -24,7 +24,7 @@ https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=kristayeo&sort=groupT
   * Red for CCA (weekly recurring)
   * Green for dated events (non-recurring)
 * Displayed friend profile upon selection by mouse click from the friend list
-* Refresh display profiles upon relevant command executions (user, edit, addschedule, addevent, rmschedule, rmevent)
+* Refresh display profiles upon relevant command executions (`user`, `edit`, `addschedule`, `addevent`, `rmschedule`, `rmevent`)
 * Created the following UI related classes:
   * ListCellSelectedEvent.java
   * SelectedFriendCard.java
@@ -35,18 +35,25 @@ https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=kristayeo&sort=groupT
 
 **Contributions to the User Guide (UG):**
 
-* Wrote about addschedule, addevent, rmschedule, rmevent for both user and friend
+* Wrote the TimetaBRO User Interface
+* Wrote about `addschedule`, `addevent`, `rmschedule`, `rmevent` for both user and friend.
+* Contributed to the documentation of `edit`, `delete`, Viewing friend's profile, `cft`.
+* Ensured all the outputs for their respective features were correct.
 * Organised the UG, ensured that all the features followed the same format.
 * Added necessary additional notes and proofread the UG, cleaned up mistakes.
 
 **Contributions to the Developer Guide (DG):**
 
-[to be added later]
+* UI component of the Design
+* Implementation: Click to View Friend Timetable Feature
+* Product Scope: Target User Profile and Value Proposition
+* Contributed to the Glossary
+* Did formatting, organising of the code 
 
 **Contributions to team-based tasks:**
 
-* Consistently worked with teammates that worked on the backend to ensure the smooth display of the UI.
-* Occasionally approved and merged pull requests.
+* Approved and merged pull requests.
+* Wrote README.md and index.md
 
 **Contributions beyond the project team:**
 

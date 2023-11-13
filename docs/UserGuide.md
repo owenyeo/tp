@@ -113,13 +113,13 @@ The timetable will be displayed under all the profile information, and each prof
 
 The days of the week are arranged from Monday to Sunday, and the timeslots are arranged from earliest to latest. Hope you like how it looks!
 
-##### 2.6.3.1 Color coding
+##### 2.6.3.2 Color coding
 
 The event timeslots are color coded according to their type and vibe.
 
 Blue for module (recurring), red for cca (recurring), and green for dated (non-recurring) events. Let TimetaBRO brighten your day up!
 
-##### 2.6.3.1 Event block formation
+##### 2.6.3.3 Event block formation
 
 Each event block consists of the event name on the first line, and the start and end times on the second line. Simple yet elegant! (at least we hope you feel that way)
 
