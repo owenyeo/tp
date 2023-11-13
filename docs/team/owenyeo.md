@@ -41,7 +41,7 @@ TimetaBRO, your ultimate companion for managing your university life, social int
 
 **Contributions to the User Guide (UG):**
 * Wrote the introduction
-* Wrote About
+* Wrote the About section
 * Wrote the Quickstart
 * Updated tone throughout the UG.
 
