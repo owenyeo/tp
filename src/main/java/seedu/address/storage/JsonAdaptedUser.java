@@ -86,6 +86,7 @@ public class JsonAdaptedUser {
      * Converts this Jackson-friendly adapted person object into the model's {@code User} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @return User object.
      */
     public User toModelType() throws IllegalValueException {
         final List<Tag> personTags = new ArrayList<>();
@@ -104,6 +105,7 @@ public class JsonAdaptedUser {
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
+
         final Name modelName = new Name(name);
 
         if (phone == null) {
@@ -112,6 +114,7 @@ public class JsonAdaptedUser {
         if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
+
         final Phone modelPhone = new Phone(phone);
 
         if (email == null) {
@@ -120,6 +123,7 @@ public class JsonAdaptedUser {
         if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
+
         final Email modelEmail = new Email(email);
 
         if (address == null) {
@@ -128,6 +132,7 @@ public class JsonAdaptedUser {
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
+
         final Address modelAddress = new Address(address);
 
         if (birthday == null) {
@@ -137,11 +142,13 @@ public class JsonAdaptedUser {
         if (!Birthday.isValidBirthday(birthday)) {
             throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
         }
+
         final Birthday modelBirthday = new Birthday(birthday);
 
         if (schedule == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Schedule"));
         }
+
         final Schedule modelSchedule = schedule.toModelType();
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
