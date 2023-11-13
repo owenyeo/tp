@@ -424,7 +424,7 @@ helps users efficiently manage and keep up with their friendships.
 1.  User requests to list persons
 2.  TimetaBRO shows a list of persons
 3.  User requests to edit details of a specific friend in the list
-4.  TimetaBRO edits the information accordingly
+4.  TimetaBRO edits the friend's information accordingly
 
     Use case ends.
 
@@ -963,10 +963,4 @@ testers are expected to do more *exploratory* testing.
 * Shutdown:
 
   1. Run the `exit` command. The application should exit and shut down.
-
-### 7.13 Saving data
-
-* Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
