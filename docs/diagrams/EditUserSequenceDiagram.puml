@@ -9,14 +9,14 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":EditUserCommandParser" as EditUserCommandParser LOGIC_COLOR
-participant "editUserDescriptor:EditUserDescriptor" as EditUserDescriptor LOGIC_COLOR
-participant ":EditUserCommand" as EditUserCommand LOGIC_COLOR
+participant ":EditUserDescriptor" as EditUserDescriptor LOGIC_COLOR
+participant "e:EditUserCommand" as EditUserCommand LOGIC_COLOR
 end box
 
-[-> LogicManager : execute("user n/John Doe")
+[-> LogicManager : execute()
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("user n/John Doe")
+LogicManager -> AddressBookParser : parseCommand()
 activate AddressBookParser
 
 create EditUserCommandParser
@@ -26,24 +26,24 @@ activate EditUserCommandParser
 EditUserCommandParser --> AddressBookParser
 deactivate EditUserCommandParser
 
-AddressBookParser -> EditUserCommandParser : parse("n/John Doe")
+AddressBookParser -> EditUserCommandParser : parse()
 activate EditUserCommandParser
 
 create EditUserDescriptor
-EditUserCommandParser -> EditUserDescriptor
+EditUserCommandParser -> EditUserDescriptor :
 activate EditUserDescriptor
 
-EditUserDescriptor --> EditUserCommandParser : editUserDescriptor
+EditUserDescriptor --> EditUserCommandParser :
 deactivate EditUserDescriptor
 
-EditUserCommandParser -> EditUserDescriptor : setName("John Doe")
+EditUserCommandParser -> EditUserDescriptor : setName()
 activate EditUserDescriptor
 
-EditUserDescriptor --> EditUserCommandParser : editUserDescriptor
+EditUserDescriptor --> EditUserCommandParser :
 deactivate EditUserDescriptor
 
 create EditUserCommand
-EditUserCommandParser -> EditUserCommand : EditUserCommand(editUserDescriptor)
+EditUserCommandParser -> EditUserCommand :
 activate EditUserCommand
 
 EditUserCommand --> EditUserCommandParser : e

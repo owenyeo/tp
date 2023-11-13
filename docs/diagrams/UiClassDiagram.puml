@@ -16,6 +16,8 @@ Class PersonCard
 Class StatusBarFooter
 Class CommandBox
 Class UserCard
+Class SelectedFriendCard
+Class Reminder
 }
 
 package Model <<Rectangle>> {
@@ -36,6 +38,7 @@ MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" PersonListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow *-down-> "1" UserCard
+MainWindow *-down-> "1" SelectedFriendCard
 MainWindow --> "0..1" HelpWindow
 
 PersonListPanel -down-> "*" PersonCard
@@ -49,6 +52,7 @@ PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
 UserCard --|> UiPart
 HelpWindow --|> UiPart
+SelectedFriendCard --|> UiPart
 
 
 PersonCard ..> Model
@@ -60,6 +64,7 @@ UserCard -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
+ResultDisplay -[hidden]left- SelectedFriendCard
 
 MainWindow -[hidden]-|> UiPart
 @enduml
