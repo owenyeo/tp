@@ -253,7 +253,7 @@ to call `AddressBookParser#parseCommand()` method, which then calls `EditUserCom
 
  <img src="images/EditUserExecuteSequenceDiagram.png" width="500" />
 
-### 4.4 Model design considerations for schedule
+### 4.4 Schedule Model feature
 
 #### 4.4.1 Description
 
