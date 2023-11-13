@@ -86,6 +86,7 @@ The layout of these UI parts are defined in matching `.fxml` files that are in t
 
 The `UI` component,
 
+* displays a `Reminder` popup window at launch.
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
