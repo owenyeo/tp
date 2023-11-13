@@ -8,15 +8,15 @@ title: TimetaBRO
 
 ![Ui](images/Ui-Final.png)
 
-**TimetaBRO is a desktop application for arranging meetups with busy friends.** 
-Created by NUS students, TimetaBRO is dedicated to fellow NUS students to aid in 
+**TimetaBRO is a desktop application for arranging meetups with busy friends.**
+Created by NUS students, TimetaBRO is dedicated to fellow NUS students to aid in
 seamless schedule comparison and coordination.
 
 Before TimetaBRO, the typical method of comparing timetables with your peers 
 either for casual meetups or group projects consisted of hopping between screenshots of timetables. 
 However, with TimetaBRO, you now can store the schedules of your peers on one platform with easy visual comparison, 
-as well as our `cft` command that helps you find common free times 
-with the people in your friend list almost instantaneously! 
+as well as our `cft` command that helps you find common free times
+with the people in your friend list almost instantaneously!
 No more wasting time going back and forth with your friends trying to find meetup times, 
 and no more jumping around the media of your chats to view your friends timetables!
 
