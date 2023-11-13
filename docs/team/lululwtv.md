@@ -22,17 +22,24 @@ https://nus-cs2103-ay2324s1.github.io/tp-dashboard/?search=w12-4&sort=groupTitle
 - Updated UG to include expected features that may not be expected by users, such as:
     - Informing users in the UG that event names will be changed to all caps even if they did not key it in caps
     - Add sample code for the commands I have added
+- Wrote FAQ
+- Wrote Known Issues
+- Wrote Command Summary
 
 **Contributions to the Developer Guide (DG):**
 
 - Update DG on how addschedule command works
     - Created sequence diagram for addschedule command
 - Updated how Logic package works
+- Added implementation section on `addschedule` command
+- Added User Stories
 
 **Contributions to team-based tasks:**
-
-[to be added later]
+- Fixed 20 bugs after PE-Dry run, which led to significant improvements in the code
+- Kept track of code quality by fixing all checkstyle issues in gradle
+- Kept track of team's submissions and deadlines, ensuring that all tasks are submitted on time by teammates
 
 **Contributions beyond the project team:**
 
-[to be added later]
+- Took part in bug-catcher
+- Took part in PE-D
