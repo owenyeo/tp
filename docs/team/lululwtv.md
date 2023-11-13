@@ -1,4 +1,9 @@
-# Project Portfolio Page: TimetaBRO
+---
+layout: page
+title: Edric Khiew's Project Portfolio Page
+---
+
+# Project: TimetaBRO
 
 ## Overview
 TimetaBRO is a scheduling application that allows users to manage their own schedule as well as the schedules of their friends. It offers features such as adding and removing friends, adding and removing events, setting reminders, and finding common free times among friends. TimetaBRO is compatible with multiple operating systems and saves data automatically in a JSON file. It also allows advanced users to edit the data file directly. The application offers a command-line interface and provides a command summary for easy reference. TimetaBRO is a powerful tool for enhancing social connections and simplifying event planning.
