@@ -78,7 +78,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 **Description:**
 
-The `UI` component manages the user interface of TimetaBRO so it responds to any command to user inputs or action accordingly.
+The `UI` component manages the user interface of TimetaBRO, so it responds to any command to user inputs or action accordingly.
 It uses the JavaFx Ui framework.
 The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -439,30 +439,30 @@ helps users efficiently manage and keep up with their friendships.
 
 **Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​           | I want to …​                                                                      | So that I can…​                                                            |
-|----------|-------------------|-----------------------------------------------------------------------------------|----------------------------------------------------------------------------|
-| `* * *`  | user              | add contacts to my list of friends using information like name and contact details | identify them more easily                                                  |
-| `* * *`  | user              | view my list of friends                                                           | see all my friends in a glance                                             |
-| `* * *`  | user              | edit details of my friends                                                        | keep their information up to date or change any wrongly filled information |
-| `* * *`  | user              | search for a specific friend                                                      | find their information more easily                                         |
-| `* * *`  | user              | delete friends from my list of friends                                            | remove people who are no longer my friends and not needed in the list      |
-| `* * *`  | student           | add my timetable to the app                                                       | easily access and keep track of my timetable                           |
-| `* * *`  | student           | add my friend's timetable to the app                                              | keep track of my friends' schedules                                                   |
-| `* * *`  | student           | identify common free time slots with friends                                      | organize meals or other social activities with them                        |
-| `* * *`  | student           | set reminders about events                                                        | be well-prepared and organized for all my commitments                      |
-| `* * *`  | student           | create events                                                                     | keep track of important commitments and activities                         |
-| `* * *`  | busy student      | receive reminders about events                                                    | remember any upcoming events                                               |
-| `* * *`  | busy student      | receive reminders about my friends' birthdays                                     | plan something for their birthday                                          |
-| `* * *`    | student           | edit my timetable                                                                 | update changes in my timetable                                             |
-| `* * *`    | student           | view my own timetable                                                             | plan my day and easily view my commitments                                 |
-| `* * *`      | student | add a class to my timetable | update my timetable as I take on more classes
-| `* * *` | user | add non-recurring events to my timetable, such as meetups with friends | keep track of all the events happening in my life, not just my classes
-| `* * *` | student | remove classes that I am no longer taking from my timetable | make sure my timetable is accurate for weeks like Week 13, where some modules no longer have classes
-| `* * *` | user | remove non-recurring events from my timetable | change my timetable in the event there are changes to my plans
-| `* *`    | student           | view my friends' timetables                                                       | know more about their day                                                  |
-| `* *`    | student           | visually compare my timetable with that of my friends                             | quickly identify overlaps or free times                                    |
-| `* *`    | student           | identify common modules with my friends                                           | attend classes with them                                                   |                                    |
-| `*`      | student           | give my friends nicknames and set their profile pictures in my list               | personalize and easily identify them                                       |                                                |                                        |
+| Priority  | As a …​          | I want to …​                                                                           | So that I can…​                                                                                        |
+|-----------|------------------|----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| `* * *`   | user             | add contacts to my list of friends using information like name and contact details     | identify them more easily                                                                              |
+| `* * *`   | user             | view my list of friends                                                                | see all my friends in a glance                                                                         |
+| `* * *`   | user             | edit details of my friends                                                             | keep their information up to date or change any wrongly filled information                             |
+| `* * *`   | user             | search for a specific friend                                                           | find their information more easily                                                                     |
+| `* * *`   | user             | delete friends from my list of friends                                                 | remove people who are no longer my friends and not needed in the list                                  |
+| `* * *`   | student          | add my timetable to the app                                                            | easily access and keep track of my timetable                                                           |
+| `* * *`   | student          | add my friend's timetable to the app                                                   | keep track of my friends' schedules                                                                    |
+| `* * *`   | student          | identify common free time slots with friends                                           | organize meals or other social activities with them                                                    |
+| `* * *`   | student          | set reminders about events                                                             | be well-prepared and organized for all my commitments                                                  |
+| `* * *`   | student          | create events                                                                          | keep track of important commitments and activities                                                     |
+| `* * *`   | busy student     | receive reminders about events                                                         | remember any upcoming events                                                                           |
+| `* * *`   | busy student     | receive reminders about my friends' birthdays                                          | plan something for their birthday                                                                      |
+| `* * *`   | student          | edit my timetable                                                                      | update changes in my timetable                                                                         |
+| `* * *`   | student          | view my own timetable                                                                  | plan my day and easily view my commitments                                                             |
+| `* * *`   | student          | add a class to my timetable                                                            | update my timetable as I take on more classes                                                          |
+| `* * *`   | user             | add non-recurring events to my timetable, such as meetups with friends                 | keep track of all the events happening in my life, not just my classes                                 |
+| `* * *`   | student          | remove classes that I am no longer taking from my timetable                            | make sure my timetable is accurate for weeks like Week 13, where some modules no longer have classes   |
+| `* * *`   | user             | remove non-recurring events from my timetable                                          | change my timetable in the event there are changes to my plans                                         |
+| `* *`     | student          | view my friends' timetables                                                            | know more about their day                                                                              |
+| `* *`     | student          | visually compare my timetable with that of my friends                                  | quickly identify overlaps or free times                                                                |
+| `* *`     | student          | identify common modules with my friends                                                | attend classes with them                                                                               |
+| `*`       | student          | give my friends nicknames and set their profile pictures in my list                    | personalize and easily identify them                                                                   |
 
 
 ### 6.3 Use cases
