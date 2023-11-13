@@ -62,5 +62,5 @@ ref over EditUserCommand : Execute Command
 EditUserCommand --> LogicManager : result
 deactivate EditUserCommand
 
-<-- LogicManager 
+<-- LogicManager
 @enduml

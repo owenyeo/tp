@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("addschedule user type/cca en/table tennis h/monday 1400 1600")
+[-> LogicManager : execute("addschedule user...")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("addschedule user type/cca en/table tennis h/monday 1400 1600")
+LogicManager -> AddressBookParser : parseCommand("addschedule user...")
 activate AddressBookParser
 
 create AddScheduleCommandParser
@@ -27,7 +27,7 @@ activate AddScheduleCommandParser
 AddScheduleCommandParser --> AddressBookParser
 deactivate AddScheduleCommandParser
 
-AddressBookParser -> AddScheduleCommandParser : parse("user type/cca en/table tennis h/monday 1400 1600")
+AddressBookParser -> AddScheduleCommandParser : parse("user type/cca...")
 activate AddScheduleCommandParser
 
 create AddScheduleCommand

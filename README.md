@@ -16,7 +16,7 @@ Schedule tracking and coordination has never been easier, faster, or more conven
 
 ## Product Screenshot:
 
-![Ui](docs/images/Ui-Final.png)
+![Ui](docs/images/Ui.png)
 
 * The project simulates an ongoing software project for a desktop application (called _TimetaBRO_) used for finding meetup times.
   * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
