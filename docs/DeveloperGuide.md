@@ -61,11 +61,11 @@ Each of the four main components (also shown in the diagram above),
 * implements its functionality using a concrete `{Component Name}Manager` class <br>
   (which follows the corresponding API `interface` mentioned in the previous point.)
 
-For example, the `Logic` component defines its API in the `Logic.java` interface 
-and implements its functionality using the `LogicManager.java` class 
-which follows the `Logic` interface. 
-Other components interact with a given component through its interface rather than the concrete class 
-(Reason: to prevent outside component's being coupled to the implementation of a component), 
+For example, the `Logic` component defines its API in the `Logic.java` interface
+and implements its functionality using the `LogicManager.java` class
+which follows the `Logic` interface.
+Other components interact with a given component through its interface rather than the concrete class
+(Reason: to prevent outside component's being coupled to the implementation of a component),
 as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
@@ -224,7 +224,7 @@ User can edit and add their own details, such as their phone numbers and birthda
 - `a\`: Address
 
 #### 4.3.2 Implementation
-- The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which proceeds 
+- The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which proceeds
 to call `AddressBookParser#parseCommand()` method, which then calls `EditUserCommandParser#parse()`.
 - `EditUserCommandParser#parse()` then creates a `EditUserDescriptor` that stores the incoming data to edit user. It stores it using the `set` methods, with `setName()` shown in the diagram below.
 - `EditUserCommandParser` then returns a `EditUserCommand` object using the `EditUserDescriptor`.
@@ -621,7 +621,7 @@ Use case ends.
 
 * 1c. Event details inputted do not follow the fields constraints
   * 1c1. TimetaBRO shows an error message.
-  
+
   Use case continues from step 1.
 
 **Use case: Clear list of friends**
@@ -754,7 +754,7 @@ Use case ends.
 * **Non-recurring event**: Dated time block that only appears on the specified date.
 * **Recurring event**: Time block that repeats each week on the same day and time.
 * **Timetable**: Grid that is shown in the display profiles that showcases sorted time blocks.
-* **Reminder**: 
+* **Reminder**:
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -865,7 +865,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: A non-recurring event has been added to the user's schedule<br>
        e.g. `addevent user en/meeting h/2023-11-15 1400 1600 r/y`
-  
+
     2. Test case: `rmevent user en/meeting` <br>
        Expected: The event is deleted from the user's schedule. Schedule is updated with the deletion.
 

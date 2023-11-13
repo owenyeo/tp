@@ -38,12 +38,12 @@ Before we jump into it, let's make sure that your TimetaBRO is working properly!
 
 Here are some commands you can try:
 
-  * add n/Owen p/91792309 b/ 2001-12-26:
-  adds a friend named Owen, with phone number 91792309 and birthday on 26 December 2001
-  * addschedule 1 type/module en/CS2101 h/Monday 1200 1400:
-  adds a module CS2101 into the schedule of the first person in your friends list that occurs on Monday 12pm to 2pm
-  * cft Friday 1200 1400:
-  Filters your friend list to people who are free on these timings
+  * `add n/Owen p/91792309 b/ 2001-12-26`:
+    adds a friend named Owen, with phone number 91792309 and birthday on 26 December 2001
+  * `addschedule 1 type/module en/CS2101 h/Monday 1200 1400`:
+    adds a module CS2101 into the schedule of the first person in your friends list that occurs on Monday 12pm to 2pm
+  * `cft Friday 1200 1400`:
+    Filters your friend list to people who are free on these timings
 
 Nice! Now you know the basic commands and have launched TimetaBRO, lets get into the finer details.
 
