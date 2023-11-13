@@ -12,7 +12,6 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
@@ -75,16 +74,16 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     private static void checkPresentPrefixes(ArgumentMultimap argumentMultimap) throws ParseException {
         if (!arePrefixesPresent(argumentMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_BIRTHDAY, PREFIX_TAG)) {
+                        PREFIX_BIRTHDAY)) {
             List<Prefix> missingPrefix = getMissingPrefixes(argumentMultimap, PREFIX_NAME,
                         PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_BIRTHDAY, PREFIX_TAG);
+                        PREFIX_BIRTHDAY);
             String missingPrefixString = "";
             for (Prefix prefix : missingPrefix) {
                 missingPrefixString += prefix + " ";
             }
             throw new ParseException(String.format("Missing prefix(es) for %s!\n"
-                + "Message Usage:\n" + AddEventCommand.MESSAGE_USAGE, missingPrefixString));
+                + "Message Usage:\n" + AddCommand.MESSAGE_USAGE, missingPrefixString));
         }
     }
 
@@ -115,10 +114,10 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     private static void checkUniquePrefixes(ArgumentMultimap argumentMultimap) throws ParseException {
         if (!arePrefixesUnique(argumentMultimap, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_BIRTHDAY, PREFIX_TAG)) {
+                        PREFIX_BIRTHDAY)) {
             List<Prefix> duplicatePrefix = getDuplicatePrefixes(argumentMultimap, PREFIX_NAME,
                         PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
-                        PREFIX_BIRTHDAY, PREFIX_TAG);
+                        PREFIX_BIRTHDAY);
             String duplicatePrefixString = "";
             for (Prefix prefix : duplicatePrefix) {
                 duplicatePrefixString += prefix + " ";
