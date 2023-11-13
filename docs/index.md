@@ -12,12 +12,12 @@ title: TimetaBRO
 Created by NUS students, TimetaBRO is dedicated to fellow NUS students to aid in
 seamless schedule comparison and coordination.
 
-Before TimetaBRO, the typical method of comparing timetables with your peers 
-either for casual meetups or group projects consisted of hopping between screenshots of timetables. 
-However, with TimetaBRO, you now can store the schedules of your peers on one platform with easy visual comparison, 
+Before TimetaBRO, the typical method of comparing timetables with your peers
+either for casual meetups or group projects consisted of hopping between screenshots of timetables.
+However, with TimetaBRO, you now can store the schedules of your peers on one platform with easy visual comparison,
 as well as our `cft` command that helps you find common free times
 with the people in your friend list almost instantaneously!
-No more wasting time going back and forth with your friends trying to find meetup times, 
+No more wasting time going back and forth with your friends trying to find meetup times,
 and no more jumping around the media of your chats to view your friends timetables!
 
 Manage your friendships, meetings, and commitments better and faster with TimetaBRO!
