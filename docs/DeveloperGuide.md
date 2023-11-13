@@ -469,7 +469,7 @@ helps users efficiently manage and keep up with their friendships.
 
 (For all use cases below, the **System** is the `TimetaBRO` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a friend**
+**Use case: UC01 - Delete a friend**
 
 **MSS**
 
@@ -493,7 +493,7 @@ helps users efficiently manage and keep up with their friendships.
       Use case resumes at step 2.
 
 
-**Use case: Edit a person's details**
+**Use case: UC02 - Edit a person's details**
 
 **MSS**
 
@@ -520,7 +520,7 @@ helps users efficiently manage and keep up with their friendships.
 
       Use case resumes at step 2.
 
-**Use case: Add a friend**
+**Use case: UC03 - Add a friend**
 
 **MSS**
 
@@ -539,7 +539,7 @@ helps users efficiently manage and keep up with their friendships.
 
       Use case resumes at step 2.
 
-**Use case: Find a friend**
+**Use case: UC04 - Find a friend**
 
 **MSS**
 
@@ -557,7 +557,7 @@ helps users efficiently manage and keep up with their friendships.
   Use case ends.
 
 
-**Use case: Check for common free times with all friends**
+**Use case: UC05 - Check for common free times with all friends**
 
 **MSS**
 
@@ -586,7 +586,7 @@ helps users efficiently manage and keep up with their friendships.
 
       Use case ends.
 
-**Use case: Check for common free times with a specific friend**
+**Use case: UC06 - Check for common free times with a specific friend**
 
 **MSS**
 
@@ -617,7 +617,7 @@ helps users efficiently manage and keep up with their friendships.
 
   Use case ends.
 
-**Use case: Add event to schedule**
+**Use case: UC07 - Add event to schedule**
 
 **MSS**
 1. User requests to add a new event to indicated person's schedule.
@@ -640,7 +640,7 @@ Use case ends.
 
   Use case continues from step 1.
 
-**Use case: Clear list of friends**
+**Use case: UC08 - Clear list of friends**
 
 **MSS**
 1. User requests to clear all friends from the list.
@@ -648,7 +648,7 @@ Use case ends.
 
     Use case ends.
 
-**Use case: Exit the application**
+**Use case: UC09 - Exit the application**
 
 **MSS**
 1. User requests to exit the application.
@@ -656,7 +656,7 @@ Use case ends.
 
     Use case ends.
 
-**Use case: Find help**
+**Use case: UC10 - Find help**
 
 **MSS**
 1. User requests for help
@@ -664,7 +664,7 @@ Use case ends.
 
     Use case ends.
 
-**Use case: List friends**
+**Use case: UC11 - List friends**
 
 **MSS**
 1. User requests to list friends.
@@ -672,7 +672,7 @@ Use case ends.
 
     Use case ends.
 
-**Use case: Remove recurring event from schedule**
+**Use case: UC12 - Remove recurring event from schedule**
 
 **MSS**
 1. User requests to remove a recurring event from a specified person's schedule.
@@ -698,7 +698,7 @@ Use case ends.
 
     Use case continues from step 1.
 
-**Use case: Remove reminder from non-recurring event**
+**Use case: UC13 - Remove reminder from non-recurring event**
 
 **MSS**
 1. User requests to remove a reminder from an event from a specified person's schedule.
@@ -722,7 +722,7 @@ Use case ends.
 
       Use case continues from step 1.
 
-**Use case: Set reminder for non-recurring event**
+**Use case: UC14 - Set reminder for non-recurring event**
 
 **MSS**
 1. User requests to set a reminder for an event in a specified person's schedule.
