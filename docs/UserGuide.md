@@ -26,10 +26,10 @@ Additionally, we included FAQs and a glossary in case you have any additional qu
 
 ## **1. Quickstart**
 Before we jump into it, let's make sure that your TimetaBRO is working properly!
-1. Ensure you have Java 11 installed on your computer.
-    * To check if Java 11 is currently installed, you may follow this short guide.
-    * If Java 11 is not installed, you may follow the installation instructions over here.
-2. Next, download the latest 'timetabro.jar' from [here](https://github.com/AY2324S1-CS2103T-W12-4/tp/releases).
+1. Ensure you have Java 11 installed on your computer. This is important!
+    * To check if Java 11 is currently installed, you may follow this [short guide](https://www.baeldung.com/java-check-is-installed).
+    * If Java 11 is not installed, you may follow the installation instructions over [here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A).
+2. Next, download the latest 'timetabro.jar' from [here](https://github.com/AY2324S1-CS2103T-W12-4/tp).
 3. Copy the file to the folder you want to use as a home folder for TimetaBRO.
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. You should see a pop up. That is your reminder for the events and birthdays for the day!
 
@@ -39,11 +39,17 @@ Before we jump into it, let's make sure that your TimetaBRO is working properly!
 Here are some commands you can try:
 
   * `add n/Owen p/91792309 b/ 2001-12-26`:
-    adds a friend named Owen, with phone number 91792309 and birthday on 26 December 2001
+  adds a friend named Owen, with phone number 91792309 and birthday on 26 December 2001. 
+  Say hello to your new friend!
+
   * `addschedule 1 type/module en/CS2101 h/Monday 1200 1400`:
-    adds a module CS2101 into the schedule of the first person in your friends list that occurs on Monday 12pm to 2pm
+  adds a module CS2101 into the schedule of the first person in your friends list that occurs on Monday 12pm to 2pm. If you did not change anything else, index 1 should refer to Alex Yeoh. He now has CS2101 in his timetable!
+
   * `cft Friday 1200 1400`:
-    Filters your friend list to people who are free on these timings
+  Filters your friend list to people who are free on these timings. Alex and Owen should both be free!
+
+  * `delete 1`:
+  Deletes a person off your list based on their index. It's time to say goodbye to Alex.
 
 Nice! Now you know the basic commands and have launched TimetaBRO, lets get into the finer details.
 
@@ -63,13 +69,12 @@ This is where you can input our cool commands to perform actions on TimetaBRO.
 ### 2.3. Command feedback box
 
 This displays information related to your entered input in the command input box. <br>
-Errors and success messages all will be here, and they will guide you to use TimetaBRO more effectively. Keep an eye out!
+Errors and success messages all will be here, and they will guide you to use TimetaBRO more effectively. Keep an eye out here!
 
 ### 2.4. Friends list
 
 This section displays all your friends in your list by default,
 and may be filtered display certain friends based on the executed command.
-
 ### 2.5. Daily reminder pop-up
 
 ![Ui-labelled](images/ui-reminder-popup.png)
@@ -98,7 +103,7 @@ At all times, this section displays the user profile. This consists of all the u
 
 This section is blank by default.
 It displays the profile of whichever friend is selected from the list by clicking on it.<br>
-Upon selection, the list cell of that friend will turn blue, and you can see your friend's details and schedule for qucik comaprisons.
+Upon selection, the list cell of that friend will turn blue, and you can see your friend's details and schedule for quick comparisons.
 
 #### 2.6.3. Display features
 
@@ -106,17 +111,17 @@ Upon selection, the list cell of that friend will turn blue, and you can see you
 
 The timetable will be displayed under all the profile information, and each profile section is scrollable.
 
-The days of the week are arranged from Monday to Sunday, and the timeslots are arranged from earliest to latest. Hope you guys like how it looks!
+The days of the week are arranged from Monday to Sunday, and the timeslots are arranged from earliest to latest. Hope you like how it looks!
 
 ##### 2.6.3.1 Color coding
 
-The event timeslots are color coded according to their type.
+The event timeslots are color coded according to their type and vibe.
 
-Blue for module (recurring), red for cca (recurring), and green for dated (non-recurring) events.
+Blue for module (recurring), red for cca (recurring), and green for dated (non-recurring) events. Let TimetaBRO brighten your day up!
 
 ##### 2.6.3.1 Event block formation
 
-Each event block consists of the event name on the first line, and the start and end times on the second line.
+Each event block consists of the event name on the first line, and the start and end times on the second line. Simple yet elegant! (at least we hope you feel that way)
 
 ## **3. Features**
 
@@ -151,7 +156,7 @@ eg. `1430` and `1500` will be excepted, `1445` and `2359` will not be allowed.
 
 #### 3.1.1 Editing User Information: `user`
 
-Personalise your profile information.
+Personalise your profile information, such as your birthday and tags!
 
 Format: `user n/NAME p/PHONE e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...​`
 
@@ -174,7 +179,7 @@ No changes to user.
 
 #### 3.1.2 Adding recurring event to user: `addschedule user`
 
-This command adds a recurring event to your schedule.
+This command adds a recurring event to your schedule, such as a class or CCA.
 
 Format: `addschedule user type/EVENT_TYPE en/EVENT_NAME h/DAY_TIME`
 
@@ -212,7 +217,7 @@ NOTE: If you want to add a cca/module to yourself, use addschedule user
 Example: addschedule user type/cca en/Basketball h/Monday 1400 1600
 ```
 
-The error message at the top of the command feedback above will specify what needs to be rectified.
+The error message at the top of the command feedback above will specify what needs to be changed!
 
 Input:
 ```
@@ -228,7 +233,7 @@ Missing prefix(es) for en/ type/ h/ !
 :information_source: Notes about the addschedule command:
 
 * Timeslots added of type `module` will be colored blue, while those of type `CCA` will be colored red.
-* To add an event that lasts until the end of the day (midnight), set the end timing as `2400`.
+* To add an event that lasts until the end of the day (midnight), set the end timing as `2400`. We know it isn't ideal, but bear with us!
 * You will not be allowed to add an event that clashes with any existing events. We are making sure you don't double book!
 
 </div>
@@ -392,7 +397,7 @@ Example: rmevent user en/CS2103T Final Exam
 
 #### 3.2.1 Adding a friend: `add`
 
-Adds a person to your TimetaBRO friend list.
+Adds a person to your TimetaBRO friend list. Watch as your list grows!
 
 Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...​`
 
@@ -400,7 +405,7 @@ Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...​`
 * You can't add someone with the same birthday and same name, because it's likely that they are the same person! (We know its not necessarily true but its the best way we can do it without collecting your NRIC...)
 * You can't have duplicate phone numbers or emails.
 * Names can be alphanumeric. For Elon Musk's child's sake!
-* Birthdays must be a valid date! We do check the calendars.
+* Birthdays must be a valid date. We do check the calendars!
 * Click [here](#parameters) to find out more about the parameter constraints.
 
 <div markdown="span" class="alert alert-primary">Tip:
@@ -427,7 +432,7 @@ Examples:
 
 #### 3.2.2 Editing friend information: `edit`
 
-Edits a friend's details in TimetaBRO.
+Edits a friend's details in TimetaBRO. Use it when they change addresses or phone numbers!
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`
 
@@ -435,14 +440,14 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG
 * At least one of the optional fields must be provided.
 * Same constraints as add! Meaning no duplicate names. Birthdays also need to be valid dates.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative. We're working on it!
+* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative. It's not ideal, but we're working on it!
 * You can remove all the person’s tags by typing `t/` without
   specifying any tags after it.
 * Click [here](#parameters) to find out more about the parameter constraints.
 
 **Successful Command:**
 
-Changes the specified parameters of specified friend’s profile.
+Changes the specified fields of specified friend’s profile.
 
 Output:
 ```
@@ -468,7 +473,7 @@ Examples:
 
 #### 3.2.3 Deleting a friend's information: `delete`
 
-Deletes the specified friend from TimetaBRO.
+Deletes the specified friend from TimetaBRO. Goodbye, old friend.
 
 Format: `delete INDEX`
 
@@ -507,7 +512,7 @@ Examples:
 
 #### 3.2.4 Listing all friends: `list`
 
-Shows a list of all your added friends.
+Shows a list of all your added friends!
 
 Format: `list`
 
