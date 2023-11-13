@@ -43,7 +43,7 @@ EditUserDescriptor --> EditUserCommandParser :
 deactivate EditUserDescriptor
 
 create EditUserCommand
-EditUserCommandParser -> EditUserCommand : 
+EditUserCommandParser -> EditUserCommand :
 activate EditUserCommand
 
 EditUserCommand --> EditUserCommandParser : e
