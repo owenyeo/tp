@@ -217,7 +217,7 @@ who has birthdays on the day itself.
 ### 4.2 Add friend's schedule feature
 
 #### 4.2.1 Description
-User can add a recurring event to their friend's timetable, such as a Module or a CCA, to indicate their friend's weekly schedules. This can be done so using the command word `addschedule`, followed by an INDEX (either "user" or an index number reflecting the index of the friend in the friends list), and the following prefixes: 
+User can add a recurring event to their friend's timetable, such as a Module or a CCA, to indicate their friend's weekly schedules. This can be done so using the command word `addschedule`, followed by an INDEX (either "user" or an index number reflecting the index of the friend in the friends list), and the following prefixes:
 - `type/`: Schedule type - Module/CCA
 - `en/`: CCA/Module name
 - `h/` : Day, Start Time and End Time (DDD HHMM HHMM)
@@ -278,13 +278,11 @@ A free time is also a timeslot in the schedule, but is not displayed hence does 
 
 ![SolutionDomain](images/TimetableSolutionDomain.png)
 
-The `Logic` component interacts with the `timetable` via these command classes:
+The `Logic` and `Ui` component interacts with the `timetable` via these command classes:
 * `AddScheduleCommand`, `RemoveScheduleCommand` - adds/removes a cca or module time slot.
 * `AddEventCommand`, `RemoveEventCommand` - adds/removes a dated event time slot.
 * `SetReminderCommand`, `RemoveReminderCommand` - adds/removes reminders from specified dated event.
 * `CommonFreeTimeCommand` - queries for gaps in user and friend'(s) schedules.
-
-The `Ui` component interacts with the `timetable` by:
 
 Hence, `Schedule` is implemented as the facade class for the timetable package. The `Logic` and `Ui` components need to access functionality
 deep inside the `timetable` component, but they should not be exposed to its internal details, such as the `TimeBlock` being the
