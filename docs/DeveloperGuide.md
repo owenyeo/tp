@@ -79,7 +79,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 **Description:**
 
 The `UI` component manages the user interface of TimetaBRO, so it responds to any command to user inputs or action accordingly.
-It uses the JavaFx Ui framework.
+It uses the JavaFx UI framework.
 The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 **Functionality:**
@@ -236,12 +236,12 @@ User can add a recurring event to their friend's timetable, such as a Module or 
 
 #### 4.3.1 Description
 User can edit and add their own details, such as their phone numbers and birthdays, and also their schedules using this command, with the command word `user` and the following prefixes:
-- `n\`: Name
-- `p\`: Phone number
-- `e\`: E-mail
-- `t\`: Tags
-- `a\`: Address
-- `b\`: Birthday
+- `n/`: Name
+- `p/`: Phone number
+- `e/`: E-mail
+- `t/`: Tags
+- `a/`: Address
+- `b/`: Birthday
 
 #### 4.3.2 Implementation
 - The `MainWindow#executeCommand()` calls `LogicManager#execute()` method, which proceeds
@@ -378,7 +378,7 @@ helps users efficiently manage and keep up with their friendships.
 | `* * *`   | student          | set reminders about events                                                             | be well-prepared and organized for all my commitments                                                |
 | `* * *`   | student          | create events                                                                          | keep track of important commitments and activities                                                   |
 | `* * *`   | busy student     | receive reminders about events                                                         | remember any upcoming events                                                                         |
-| `* * *`   | busy student     | receive reminders about my friends' birthdays                                          | plan something for their birthday                                                                    |
+| `* * *`   | busy student     | receive reminders about my friends' birthdays                                          | remember to wish them                                                                                |
 | `* * *`   | student          | edit my timetable                                                                      | update changes in my timetable                                                                       |
 | `* * *`   | student          | view my own timetable                                                                  | plan my day and easily view my commitments                                                           |
 | `* * *`   | student          | add a class to my timetable                                                            | update my timetable as I take on more classes                                                        |
@@ -412,7 +412,7 @@ helps users efficiently manage and keep up with their friendships.
 
 * 3a. The given index is invalid.
 
-    * 3a1. TimetaBRO shows an error message.
+    * 3a1. TimetaBRO shows an invalid index error message.
 
       Use case resumes at step 2.
 
@@ -423,8 +423,8 @@ helps users efficiently manage and keep up with their friendships.
 
 1.  User requests to list persons
 2.  TimetaBRO shows a list of persons
-3.  User requests to edit a specific friend in the list
-4.  TimetaBRO edits the person
+3.  User requests to edit details of a specific friend in the list
+4.  TimetaBRO edits the information accordingly
 
     Use case ends.
 
@@ -434,13 +434,25 @@ helps users efficiently manage and keep up with their friendships.
 
   Use case ends.
 
-* 2b. User requests to edit user details
+* 3a. User requests to edit user details
 
     Use case resumes at step 4.
 
-* 3a. The given index is invalid.
+* 3b. The given index is invalid.
 
-    * 3a1. TimetaBRO shows an error message.
+    * 3b1. TimetaBRO shows an invalid index error message.
+
+      Use case resumes at step 2.
+
+* 3c. New details provided is identical to the existing details
+
+    * 3c1. TimetaBRO shows an error message stating that there is no change.
+
+      Use case resumes at step 2.
+
+* 3d. New details provided do not adhere to their respective requirements
+
+    * 3d1. TimetaBRO shows an error message with command instructions.
 
       Use case resumes at step 2.
 
@@ -459,7 +471,13 @@ helps users efficiently manage and keep up with their friendships.
 
 * 3a. Not all the required fields of the friend are provided.
 
-    * 3a1. TimetaBRO shows an error message.
+    * 3a1. TimetaBRO shows an error message with command instructions.
+
+      Use case resumes at step 2.
+
+* 3b. Details provided do not adhere to their respective field requirements
+
+    * 3b1. TimetaBRO shows an error message with command instructions.
 
       Use case resumes at step 2.
 
@@ -498,15 +516,9 @@ helps users efficiently manage and keep up with their friendships.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. User has no free time.
 
-    * 3a1. TimetaBRO shows an error message.
-
-      Use case resumes at step 2.
-
-* 3b. User has no free time.
-
-    * 3b1. TimetaBRO indicates to the user that they have no free time.
+    * 3a1. TimetaBRO indicates to the user that they have no free time.
 
       Use case ends.
 
@@ -517,7 +529,7 @@ helps users efficiently manage and keep up with their friendships.
 1. User requests to list friends
 2. TimetaBRO shows a list of friends
 3. User requests for common free times with a specific friend
-4. TimetaBRO shows the common free times the user has with the specific friend
+4. TimetaBRO lists the common free times the user has with the specific friend
 
    Use case ends.
 
@@ -531,21 +543,29 @@ helps users efficiently manage and keep up with their friendships.
 
   * 3a1. TimetaBRO indicates to the user that they have no common free time.
 
-  Use case ends.
+    Use case ends.
 
 * 3b. Given index is invalid.
 
-  * 3b1. TimetaBRO shows an error message.
+  * 3b1. TimetaBRO shows an invalid index error message.
 
-  Use case resumes at step 2.
+    Use case resumes at step 2.
 
 * 3c. User has no free time.
 
   * 3c1. TimetaBRO indicates to the user that they have no free time.
 
-  Use case ends.
+    Use case ends.
 
-**Use case: UC07 - Add event to schedule**
+**Use case: UC07 - List friends**
+
+**MSS**
+1. User requests to list friends
+2. TimetaBRO shows a list of all friends
+
+   Use case ends.
+
+**Use case: UC08 - Add event to schedule**
 
 **MSS**
 1. User requests to add a new event to indicated person's schedule
@@ -556,60 +576,32 @@ Use case ends.
 **Extensions**
 * 1a. User gives an invalid index.
 
-  Use case continues from step 1.
-
-* 1b. Not all the required fields of the event are provided.
-
-  * 1b1. TimetaBRO shows an error message.
-
-  Use case continues from step 1.
-
-* 1c. Event details inputted do not follow the fields constraints.
-
-  * 1c1. TimetaBRO shows an error message.
-
-  Use case continues from step 1.
-
-* 1d. Event clashes with other events in the schedule.
+  * TimetaBRO shows an invalid index error message.
 
     Use case continues from step 1.
 
-**Use case: UC08 - Clear list of friends**
+* 1b. Not all the required fields of the event are provided.
+
+  * 1b1. TimetaBRO shows an error message with command instructions.
+
+    Use case continues from step 1.
+
+* 1c. Event details inputted do not follow the fields constraints.
+
+  * 1c1. TimetaBRO shows an error message with command instructions.
+
+    Use case continues from step 1.
+
+* 1d. Event overlaps with an existing event.
+
+    * 1d1. TimetaBRO shows an error message stating which event it overlaps with.
+
+      Use case continues from step 1.
+
+**Use case: UC09 - Remove an event from schedule**
 
 **MSS**
-1. User requests to clear all friends from the list
-2. TimetaBRO clears the entire list of friends
-
-    Use case ends.
-
-**Use case: UC09 - Exit the application**
-
-**MSS**
-1. User requests to exit the application.
-2. TimetaBRO saves all data and closes the application.
-
-    Use case ends.
-
-**Use case: UC10 - Find help**
-
-**MSS**
-1. User requests for help
-2. TimetaBRO opens a help window with a link to the [TimetaBRO User Guide](UserGuide.md)
-
-    Use case ends.
-
-**Use case: UC11 - List friends**
-
-**MSS**
-1. User requests to list friends
-2. TimetaBRO shows a list of all friends
-
-    Use case ends.
-
-**Use case: UC12 - Remove recurring event from schedule**
-
-**MSS**
-1. User requests to remove a recurring event from a specified person's schedule
+1. User requests to remove an event from a specified person's schedule
 2. TimetaBRO removes the event from the schedule
 
     Use case ends.
@@ -617,7 +609,7 @@ Use case ends.
 **Extensions**
 * 1a. Given index to specify the person is invalid.
 
-  * 1a1. TimetaBRO shows an error message.
+  * 1a1. TimetaBRO shows an invalid index error message.
 
     Use case continues from step 1.
 
@@ -629,17 +621,11 @@ Use case ends.
 
 * 1c. Not all the required fields are provided.
 
-  * 1c1. TimetaBRO shows an error message.
+  * 1c1. TimetaBRO shows an error message with command instructions.
 
     Use case continues from step 1.
 
-* 1d. Event details provided are not within the parameters' specified constraints according to the User Guide.
-
-  * 1d1. TimetaBRO shows an error message.
-
-    Use case continues from step 1.
-
-**Use case: UC13 - Remove reminder from non-recurring event**
+**Use case: UC10 - Remove reminder from non-recurring event**
 
 **MSS**
 1. User requests to remove a reminder from an event from a specified person's schedule
@@ -650,7 +636,7 @@ Use case ends.
 **Extensions**
 * 1a. Given index to specify the person is invalid.
 
-    * 1a1. TimetaBRO shows an error message.
+    * 1a1. TimetaBRO shows an invalid index error message.
 
       Use case continues from step 1.
 
@@ -662,11 +648,11 @@ Use case ends.
 
 * 1c. Event name not provided.
 
-    * 1c1. TimetaBRO shows an error message.
+    * 1c1. TimetaBRO shows an error message with command instructions.
 
       Use case continues from step 1.
 
-**Use case: UC14 - Set reminder for non-recurring event**
+**Use case: UC11 - Set reminder for non-recurring event**
 
 **MSS**
 1. User requests to set a reminder for an event in a specified person's schedule
@@ -693,6 +679,30 @@ Use case ends.
 
       Use case continues from step 1.
 
+**Use case: UC12 - Clear list of friends**
+
+**MSS**
+1. User requests to clear all friends from the list
+2. TimetaBRO clears the entire list of friends
+
+   Use case ends.
+
+**Use case: UC13 - Find help**
+
+**MSS**
+1. User requests for help
+2. TimetaBRO opens a help window with a link to the [TimetaBRO User Guide](UserGuide.md)
+
+   Use case ends.
+
+**Use case: UC14 - Exit the application**
+
+**MSS**
+1. User requests to exit the application.
+2. TimetaBRO saves all data and closes the application.
+
+   Use case ends.
+
 ### 6.4 Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -717,7 +727,7 @@ Use case ends.
 * **Non-recurring event**: Dated time block that only appears on the specified date.
 * **Recurring event**: Time block that repeats each week on the same day and time.
 * **Timetable**: Grid that is shown in the display profiles that showcases sorted time blocks.
-* **Reminder**:
+* **Reminder**: Scheduled notification about an event or birthday on the day itself
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -734,91 +744,129 @@ testers are expected to do more *exploratory* testing.
 
 * Test case: `add n/Amy Bee p/85355255 e/amy@gmail.com a/123, Jurong West Ave 6, #08-111 b/2020-12-01` <br>
       Expected: A person with the given details is added to the list. List is updated with new person
+
 * Test case: `add Alice Pauline` <br>
       Expected: Error message is shown. Person is not added to the list. List remains unchanged.
+
 * Other incorrect add commands to try: `add n/Alice Pauline 11111111`, `add n/Alice Pauline 2000-01-01` , `...` <br>
       Expected: Similar to previous.
 
 ### 7.2 Add schedule
 
 * Add cca/module to the user's schedule
+
     1. Test case: `addschedule user type/cca en/table tennis h/monday 1400 1600` <br>
        Expected: A cca event with the given details is added to the user's schedule. Schedule is updated with new event.
-   2. Test case: `addschedule user type/module en/cs2103t h/monday 1400 1600` <br>
+
+    2. Test case: `addschedule user type/module en/cs2103t h/monday 1400 1600` <br>
       Expected: A module event with the given details is added to the user's schedule. Schedule is updated with new event.
-   3. Test case: `addschedule user type/event en/lecture h/monday 1400 1600` <br>
+
+    3. Test case: `addschedule user type/event en/lecture h/monday 1400 1600` <br>
       Expected: Error message is shown. Event is not added to the schedule. Schedule remains unchanged.
-   4. Other incorrect add commands to try: `addschedule user type/cca table tennis h/monday 1400 1600` and `addschedule user type/module en/cs2103t h/monday 1400 1650`,`...` <br>
+
+    4. Other incorrect add commands to try: `addschedule user type/cca table tennis h/monday 1400 1600` and `addschedule user type/module en/cs2103t h/monday 1400 1650`,`...` <br>
       Expected: Similar to previous.
+
 * Add cca/module to a friend's schedule
+
     1. Test case: `addschedule 1 type/cca en/table tennis h/monday 1400 1600` <br>
        Expected: A cca event with the given details is added to the first friend's schedule. Schedule is updated with new event.
+
     2. Test case: `addschedule 1 type/module en/cs2103t h/monday 1400 1600` <br>
        Expected: A module event with the given details is added to the first friend's schedule. Schedule is updated with new event.
+
     3. Test case: `addschedule 1 type/event en/lecture h/monday 1400 1600` <br>
        Expected: Error message is shown. Event is not added to the schedule. Schedule remains unchanged.
+
     4. Other incorrect add commands to try: `addschedule 1 type/cca table tennis h/monday 1400 1600` and `addschedule 1 type/module en/cs2103t h/monday 1400 1650`, `...` <br>
        Expected: Similar to previous.
 
 ### 7.3 Delete schedule
 
 * Delete cca/module from the user's schedule
+
     1. Prerequisites: A cca/module has been added to the user's schedule<br>
        e.g. `addschedule user type/cca en/table tennis h/monday 1400 1600` and `addschedule user type/module en/cs2103t h/monday 1400 1600`
+
     2. Test case: `rmschedule user type/cca en/table tennis` <br>
        Expected: The cca is deleted from the user's schedule. Schedule is updated with the deletion.
+
     3. Test case: `rmschedule user type/module en/cs2103t` <br>
        Expected: The module is deleted from the user's schedule. Schedule is updated with the deletion.
+
     4. Test case: `rmschedule user type/event en/lecture` <br>
        Expected: Error message is shown. Event is not deleted from the schedule. Schedule remains unchanged.
+
     5. Other incorrect delete commands to try: `rmschedule user type/cca table tennis` and `rmschedule user type/cca en/cs2103t`, `...` <br>
        Expected: Similar to previous.
+
 * Delete cca/module from a friend's schedule
+
     1. Prerequisites: A cca/module has been added to the first friend's schedule <br>
        e.g. `addschedule 1 type/cca en/table tennis h/monday 1400 1600` and `addschedule 1 type/module en/cs2103t h/monday 1400 1600`
+
     2. Test case: `rmschedule 1 type/cca en/table tennis` <br>
        Expected: The cca is deleted from the first friend's schedule. Schedule is updated with the deletion.
+
     3. Test case: `rmschedule 1 type/module en/cs2103t` <br>
        Expected: The module is deleted from the first friend's schedule. Schedule is updated with the deletion.
+
     4. Test case: `rmschedule 1 type/event en/lecture` <br>
        Expected: Error message is shown. Event is not deleted from the schedule. Schedule remains unchanged.
+
     5. Other incorrect delete commands to try: `rmschedule 1 type/cca table tennis` and `rmschedule 1 type/cca en/cs2103t`, `...` <br>
        Expected: Similar to previous.
 
 ### 7.4 Add event
 
 * Add non-recurring event to the user's schedule
+
     1. Test case: `addevent user en/meeting h/2023-11-15 1400 1600 r/y` <br>
        Expected: A event with the given details is added to the user's schedule. Schedule is updated with new event.
+
     2. Test case: `addevent user meeting h/2023-11-15 1400 1600 r/y` <br>
        Expected: Error message is shown. Event is not added to the schedule. Schedule remains unchanged.
+
     3. Other incorrect add commands to try: `addevent user en/meeting h/monday 1400 1650 r/y` and `addevent en/meeting h/monday 1400 1600 r/y`,`...` <br>
        Expected: Similar to previous.
+
 * Add non-recurring event to a friend's schedule
+
     1. Test case: `addevent 1 en/meeting h/2023-11-15 1400 1600 r/n` <br>
        Expected: A event with the given details is added to the first friend's schedule. Schedule is updated with new event.
+
     2. Test case: `addevent 1 meeting h/2023-11-15 1400 1600 r/n` <br>
        Expected: Error message is shown. Event is not added to the schedule. Schedule remains unchanged.
+
     3. Other incorrect add commands to try: `addevent 1 en/meeting h/monday 1400 1650 r/n` and `addevent en/meeting h/monday 1400 1600 r/n`,`...` <br>
        Expected: Similar to previous.
 
 ### 7.5 Toggle reminder for events
 
 * Set reminder for an event in the user's schedule
+
     1. Prerequisites: A non-recurring event has been added to the user's schedule <br>
        e.g. `addevent user en/meeting h/2023-11-15 1400 1600 r/n`
+
     2. Test case: `setReminder meeting` <br>
        Expected: A reminder is set for the event.
+
     3. Test case: `setReminder lecture` <br>
        Expected: Error message is shown. Reminder is not set for the event.
+
     4. Other incorrect reminder commands to try: `setReminder user meeting` and `setReminder en/meeting`, `...` <br>
        Expected: Similar to previous.
+
 * Remove reminder for an event in th user's schedule
+
     1. Prerequisites: A non-recurring event has been added to the user's schedule eg `addevent user en/meeting h/2023-11-15 1400 1600 r/y`
+
     2. Test case: `rmReminder meeting` <br>
       Expected: The reminder is removed for the event.
+
     3. Test case: `rmReminder lecture` <br>
       Expected: Error message is shown. Reminder is not removed for the event.
+
     4. Other incorrect reminder commands to try: `rmReminder user meeting` and `rmReminder en/meeting`, `...` <br>
       Expected: Similar to previous.
 
