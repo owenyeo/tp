@@ -30,7 +30,7 @@ AddressBookParser -> EditUserCommandParser : parse("n/John Doe")
 activate EditUserCommandParser
 
 create EditUserDescriptor
-EditUserCommandParser -> EditUserDescriptor 
+EditUserCommandParser -> EditUserDescriptor
 activate EditUserDescriptor
 
 EditUserDescriptor --> EditUserCommandParser : editUserDescriptor
@@ -62,5 +62,5 @@ ref over EditUserCommand : Execute Command
 EditUserCommand --> LogicManager : result
 deactivate EditUserCommand
 
-<-- LogicManager 
+<-- LogicManager
 @enduml
