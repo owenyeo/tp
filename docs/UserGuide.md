@@ -913,7 +913,7 @@ Examples:
 
 #### 3.3.1 Set reminder for non-recurring events: `setReminder`
 
-Sets a reminder for a **dated, non-recurring event** from your schedule. You'll never forget another!
+Sets a reminder for a **dated, non-recurring event** in your schedule. You'll never forget another!
 
 Format: `setReminder EVENT_NAME`
 - Set reminder for an event titled `EVENT_NAME` in your schedule!
