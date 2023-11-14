@@ -164,7 +164,7 @@ Format: `user n/NAME p/PHONE e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...​`
 * Click [here](#4-parameters) to find out more about the parameter constraints.
 
 <div markdown="span" class="alert alert-primary">Tip:
-A person can have any number of tags (including 0). Go crazy!
+You can have any number of tags (including 0). Go crazy!
 </div>
 
 **Successful Command:**
@@ -207,7 +207,7 @@ BASKETBALL Tuesday 1500 1600 to [Your Name]
 ```
 
 **Unsuccessful Command:**\
-If a user uses the wrong format (i.e. missing prefix, wrong event type),
+If you use the wrong format (i.e. missing prefix, wrong event type),
 this error message will be shown:
 ```
 [error message]
@@ -268,7 +268,7 @@ FINAL SUBMISSION 2023-10-17 1500 1600 to [Your Name]
 ```
 
 **Unsuccessful Command:**\
-If a user uses the wrong format (i.e. missing prefix, wrong event type),
+If you use the wrong format (i.e. missing prefix, wrong event type),
 this error message will be shown:
 ```
 [error message]
@@ -328,7 +328,7 @@ BASKETBALL has been removed from [Your Name]!
 ```
 
 **Unsuccessful commands:**\
-If a user uses the wrong format (i.e. missing prefix),
+If you use the wrong format (i.e. missing prefix),
 this error message will be shown:
 ```
 [error message]
@@ -352,7 +352,7 @@ Output:
 Missing prefix(es) for en/ type/ !
 ```
 
-If a user inputs an invalid event type, the following error message will be shown:
+If you input an invalid event type, the following error message will be shown:
 ```
 Invalid event type!
 Event type must either be 'cca' or 'module'!
@@ -386,7 +386,7 @@ Dated event 'CS2103T EXAM' deleted from your calendar!
 ```
 
 **Unsuccessful commands:**\
-If a user uses the wrong format (i.e. missing prefix),
+If you use the wrong format (i.e. missing prefix),
 this error message will be shown:
 ```
 Missing prefix(es) for en/ !
@@ -414,7 +414,7 @@ Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS b/BIRTHDAY [t/TAG]...​`
 * Click [here](#4-parameters) to find out more about the parameter constraints.
 
 <div markdown="span" class="alert alert-primary">Tip:
-A person can have any number of tags (including 0)
+Your friend can have any number of tags (including 0). Go crazy!
 </div>
 
 **Successful Command:**\
@@ -563,21 +563,21 @@ CS2030 Monday 1000 1400 to [Friend Name]
 ```
 
 **Unsuccessful Command:**\
-If the user does not put an index or the index is not a positive integer,
+If you do not put an index or the index is not a positive integer,
 this error message will be shown:
 ```
 Invalid index!
 Index can only be 'user' or a positive integer!
 ```
 
-If the user uses an index that is larger than the list,
+If you use an index that is larger than the list,
 this error message will be shown:
 ```
 The person index provided is invalid
 Index can be max [list size]!
 ```
 
-If a user uses the wrong format (i.e. missing prefix, wrong event type),
+If you use the wrong format (i.e. missing prefix, wrong event type),
 this error message will be shown:
 ```
 [error message]
@@ -621,7 +621,7 @@ Format: `addevent INDEX en/EVENT_NAME h/DATE_TIME r/REMINDER`
 - Adds an event titled `EVENT_NAME` to the specified friend at `INDEX`
 - Event date and time will be equal to `DATE`
   where `DATE` must be entered in the format `YYYY-MM-DD HHMM [start time] HHMM [end time]`. Date must be a real date too!
-- Users can set whether they want to enable reminders for this event by inputting `y/n` under `[REMINDER]`. Never forget these events again!
+- The reminder feature only works for events in your schedule so far. We're working on it! So for now using `y/n` does not matter for events added to your friends' schedules but it is still necessary!
 - Event names will be changed to all upper case regardless of whether it was keyed it in lower case or upper case.
 - Click [here](#4-parameters) to find out more about the parameter constraints.
 
@@ -640,21 +640,21 @@ CS2030 FINALS 2023-10-31 1000 1400 to [Friend Name]
 
 **Unsuccessful Command:**
 
-If the user does not put an index or the index is not a positive integer,
+If you do not put an index or the index is not a positive integer,
 this error message will be shown:
 ```
 Invalid index!
 Index can only be 'user' or a positive integer!
 ```
 
-If the user uses an index that is larger than the list,
+If you use an index that is larger than the list,
 this error message will be shown:
 ```
 The person index provided is invalid
 Index can be max [list size]!
 ```
 
-If a user uses the wrong format (i.e. missing prefix),
+If you use the wrong format (i.e. missing prefix),
 this error message will be shown
 ```
 [error message]
@@ -712,14 +712,14 @@ BASKETBALL has been removed from [Friend's Name]!
 ```
 
 **Unsuccessful commands:**\
-If the user does not put an index or the index is not a positive integer,
+If you do not put an index or the index is not a positive integer,
 this error message will be shown:
 ```
 Invalid index!
 Index can only be 'user' or a positive integer!
 ```
 
-If the user uses an index that is larger than the list,
+If you use an index that is larger than the list,
 this error message will be shown:
 ```
 The person index provided is invalid
@@ -786,14 +786,14 @@ Dated event 'CS2103T FINAL EXAM' deleted from [Friend's Name]'s calendar!
 ```
 
 **Unsuccessful commands:**\
-If the user does not put an index or the index is not a positive integer,
+If you do not put an index or the index is not a positive integer,
 this error message will be shown:
 ```
 Invalid index!
 Index can only be 'user' or a positive integer!
 ```
 
-If the user uses an index that is larger than the list,
+If you use an index that is larger than the list,
 this error message will be shown:
 ```
 The person index provided is invalid
@@ -881,7 +881,6 @@ If your contact is a hustler, and you have no common free times with a contact, 
 You and [Friend's Name] have no common free time!
 ```
 
-
 If you're super busy and your entire timetable is full for the whole week, it will return:
 ```
 You have no free time!
@@ -894,14 +893,14 @@ You have no contacts with the same free time as you!
 
 **Unsuccessful Command:**
 
-If user inputs invalid command format, the app will display:
+If you input invalid command format, the app will display:
 ```
 Invalid command format!
 cft: Finds all contacts with the same free time as the User.
 Example: cft
 ```
 
-If user inputs an index that does not exist in the list, the app will display:
+If you input an index that does not exist in the list, the app will display:
 ```
 The person index provided is invalid
 ```
@@ -914,10 +913,10 @@ Examples:
 
 #### 3.3.1 Set reminder for non-recurring events: `setReminder`
 
-Sets a reminder for a **dated, non-recurring event** from the user's schedule. You'll never forget another!
+Sets a reminder for a **dated, non-recurring event** in your schedule. You'll never forget another!
 
 Format: `setReminder EVENT_NAME`
-- Set reminder for an event titled `EVENT_NAME` from the user's schedule.
+- Set reminder for an event titled `EVENT_NAME` in your schedule!
 - Click [here](#4-parameters) to find out more about the parameter constraints.
 
 **Successful command:**\
@@ -941,10 +940,10 @@ No such event exists!
 
 #### 3.3.2 Remove reminder for non-recurring events: `rmReminder`
 
-Remove a reminder for a dated event from the user's schedule. Don't forget it!
+Remove a reminder for a dated event from your schedule. You'll never be reminded again!
 
 Format: `rmReminder EVENT_NAME`
-- Remove reminder for an event titled `EVENT_NAME` from the user's schedule.
+- Remove reminder for an event titled `EVENT_NAME` in your schedule.
 - Click [here](#4-parameters) to find out more about the parameter constraints.
 
 **Successful command:**\
@@ -1103,6 +1102,6 @@ For you TLDR-ers!
 | **Edit User Info**                          | `user [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [b/BIRTHDAY] [t/TAG]…​`<br> Example: `user n/James Lee e/jameslee@example.com`                                                        |
 | **List All Friends**                        | `list`                                                                                                                                                                               |
 | **View Help**                               | `help`                                                                                                                                                                               |
-| **Find Common Free Times with friend**      | `cft INDEX` <br> Example: `cft 1`                                                                                                                                                       |
+| **Find Common Free Times with friend**      | `cft INDEX` <br> Example: `cft 1`                                                                                                                                                    |
 | **Find Common Free Times with all friends** | `cft`<br>                                                                                                                                                                            |
 | **Exit**                                    | `exit`                                                                                                                                                                               |
